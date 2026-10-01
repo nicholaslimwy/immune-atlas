@@ -2,7 +2,7 @@
 // src/types, so adding, removing or retyping a field there fails `tsc` until the shape matches.
 import { CELL_ARMS, CELL_FAMILIES, CELL_LINEAGES, CELL_STATUSES, type Cell } from '../src/types/cell.ts'
 import { INTERACTION_TYPES, type Interaction } from '../src/types/interaction.ts'
-import type { Location } from '../src/types/location.ts'
+import { LOCATION_STATUSES, type Location } from '../src/types/location.ts'
 import { MOLECULE_KINDS, type Molecule } from '../src/types/molecule.ts'
 
 /** Pushes a message for each problem with `value`. `_type` only ties the check to a TS type. */
@@ -98,6 +98,7 @@ export const locationShape: Shape<Location> = {
   summary: req(text),
   hotspots: req(arrayOf(objectOf<Location['hotspots'][number]>({ region: req(id), target: req(id) }))),
   residents: req(arrayOf(objectOf<Location['residents'][number]>({ cell: req(id), note: opt(text) }))),
+  status: opt(oneOf(LOCATION_STATUSES)),
 }
 
 export const cellShape: Shape<Cell> = {

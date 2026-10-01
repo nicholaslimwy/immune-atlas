@@ -27,6 +27,24 @@ export const INK = '#1F2933'
 /** Red blood cells are background art, not a family: muted so they never compete with myeloid orange. */
 export const RED_CELL = { tint: '#F6D6D6', base: '#D98C8C' }
 
+/**
+ * Anatomy in scenes (the body scene first). Muted, and kept away from the five family hues, so places
+ * never read as cells. Blood-filled parts (vessels, heart, marrow) use the red-cell base.
+ */
+export const ANATOMY = {
+  /** Stage background behind every scene. */
+  stage: '#EEF1F4',
+  /** The body silhouette. */
+  figure: '#FFFFFF',
+  /** Lymph nodes and lymphatic vessels (base); thymus (tint). */
+  lymphTint: '#F4E7B8',
+  lymphBase: '#C9A13B',
+  spleen: '#B0606E',
+  bone: '#F2ECDF',
+  epidermis: '#D9A07E',
+  dermis: '#F3D9C6',
+}
+
 /** Every colour an icon may use. */
 export const ICON_COLOURS: string[] = [
   INK,

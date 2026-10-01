@@ -1,0 +1,10 @@
+{
+  "id": "thymus",
+  "name": "Thymus",
+  "parent": "body",
+  "scene": "scenes/thymus.svg",
+  "summary": "Stub: scene not built yet (Phase 4).",
+  "hotspots": [],
+  "residents": [],
+  "status": "stub"
+}

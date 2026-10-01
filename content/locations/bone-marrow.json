@@ -1,0 +1,10 @@
+{
+  "id": "bone-marrow",
+  "name": "Bone marrow",
+  "parent": "body",
+  "scene": "scenes/bone-marrow.svg",
+  "summary": "Stub: scene not built yet (Phase 4).",
+  "hotspots": [],
+  "residents": [],
+  "status": "stub"
+}

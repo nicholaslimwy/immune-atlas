@@ -21,7 +21,10 @@ export function resolvePath(pathname: string): Resolved | undefined {
   let current = getRoot()
   if (!current || segments[0] !== slugOf(current)) return undefined
   for (const [i, segment] of segments.slice(1).entries()) {
-    const child: Location | undefined = getChildren(current.id).find((c) => slugOf(c) === segment)
+    // A stub place has no scene yet, so it has no URL either.
+    const child: Location | undefined = getChildren(current.id).find(
+      (c) => slugOf(c) === segment && c.status !== 'stub',
+    )
     if (child) {
       current = child
       continue

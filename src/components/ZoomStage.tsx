@@ -87,7 +87,7 @@ export default function ZoomStage({ location }: { location: Location }) {
   useEffect(() => {
     for (const { target } of shownLocation?.hotspots ?? []) {
       const next = getLocation(target)
-      if (next) loadScene(next).catch(() => {})
+      if (next && next.status !== 'stub') loadScene(next).catch(() => {})
     }
   }, [shownLocation])
 

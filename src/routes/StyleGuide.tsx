@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 import { familyVars, GENERIC, ICONS, iconPx, iconRef } from '../art/icons.ts'
 import { BODY_UNITS } from '../art/iconSpecs.ts'
-import { FAMILY_COLOURS, INK, RED_CELL } from '../art/palette.ts'
+import { ANATOMY, FAMILY_COLOURS, INK, RED_CELL } from '../art/palette.ts'
 import CellIcon from '../components/CellIcon.tsx'
 import { getCell, getCells } from '../engine/content.ts'
 import { CELL_FAMILIES } from '../types/cell.ts'
@@ -97,6 +97,20 @@ export default function StyleGuide() {
               <Swatch hex={RED_CELL.base} role="red cell" />
             </div>
             <p className="members">Ink outlines membranes and nuclei and sets label text. Red cells are background art in blood, muted so they never compete with myeloid orange.</p>
+          </div>
+          <div className="family">
+            <h3>Anatomy (scenes)</h3>
+            <div className="swatches">
+              <Swatch hex={ANATOMY.stage} role="stage" />
+              <Swatch hex={ANATOMY.figure} role="figure" />
+              <Swatch hex={ANATOMY.bone} role="bone" />
+              <Swatch hex={ANATOMY.lymphTint} role="thymus" />
+              <Swatch hex={ANATOMY.lymphBase} role="lymph" />
+              <Swatch hex={ANATOMY.spleen} role="spleen" />
+              <Swatch hex={ANATOMY.dermis} role="dermis" />
+              <Swatch hex={ANATOMY.epidermis} role="epidermis" />
+            </div>
+            <p className="members">Places, kept muted and away from the family hues so they never read as cells. Vessels, heart and marrow use the red-cell base.</p>
           </div>
         </div>
       </section>

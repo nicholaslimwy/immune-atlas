@@ -1,0 +1,10 @@
+{
+  "id": "spleen",
+  "name": "Spleen",
+  "parent": "body",
+  "scene": "scenes/spleen.svg",
+  "summary": "Stub: scene not built yet (Phase 4).",
+  "hotspots": [],
+  "residents": [],
+  "status": "stub"
+}

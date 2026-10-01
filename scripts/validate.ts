@@ -98,8 +98,12 @@ if (locations.size && !locationFiles.broken && roots.length !== 1) {
 }
 const segments = new Map<string, string>() // "<parent>/<segment>" -> file, to catch clashing URLs
 for (const { file, data: loc } of locations.values()) {
+  const stub = loc.status === 'stub'
   if (loc.parent !== null) {
     if (!isLocation(loc.parent)) error(file, `parent: no location "${loc.parent}"`)
+    else if (locations.get(loc.parent)?.data.status === 'stub') {
+      error(file, `parent: "${loc.parent}" is a stub, so this place could never be reached`)
+    }
     // Walk up; meeting this location again means a cycle.
     const seen = new Set([loc.id])
     for (let p = locations.get(loc.parent); p?.data.parent; p = locations.get(p.data.parent)) {
@@ -115,6 +119,14 @@ for (const { file, data: loc } of locations.values()) {
   const other = segments.get(key)
   if (other) error(file, `URL segment "${loc.slug ?? loc.id}" is already used by sibling ${other}`)
   else segments.set(key, file)
+
+  // A stub is only a name and a place in the tree: its scene is planned, so nothing in it is checked yet.
+  if (stub) {
+    if (loc.parent === null) error(file, `status: the root cannot be a stub`)
+    if (loc.hotspots.length) error(file, `hotspots: a stub has no scene to hold them; leave empty`)
+    if (loc.residents.length) error(file, `residents: add them when the scene is built; leave empty`)
+    continue
+  }
 
   const scenePath = join(root, 'public', loc.scene)
   const svg = existsSync(scenePath) ? readFileSync(scenePath, 'utf8') : undefined

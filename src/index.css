@@ -72,11 +72,80 @@ h1:focus {
   cursor: pointer;
 }
 
-.hotspot:hover,
-.hotspot:focus-visible {
+/* A hotspot that is a single shape (the placeholder blood scene) gets a highlight stroke. */
+.hotspot:not(g):hover,
+.hotspot:not(g):focus-visible {
   stroke: #1a73e8;
   stroke-width: 5;
   outline: none;
+}
+
+/* A hotspot group (illustrated scenes) holds art, a leader, a .leader-dot and a .scene-label:
+   the label and the dot light up instead, so the art keeps its own strokes. */
+g.hotspot {
+  outline: none;
+}
+
+.scene-label {
+  font-family: inherit;
+}
+
+g.hotspot:is(:hover, :focus-visible) .scene-label {
+  fill: #1a73e8;
+  text-decoration: underline;
+}
+
+g.hotspot:is(:hover, :focus-visible) .leader-dot {
+  fill: #1a73e8;
+  r: 5px;
+}
+
+g.hotspot:focus-visible .leader-dot {
+  stroke: #1a73e8;
+  stroke-width: 6;
+  paint-order: stroke;
+}
+
+.scene-label-soon {
+  fill: #52606d;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* A place not built yet: hollow dot, and a notice instead of a zoom. */
+g.hotspot-soon .leader-dot {
+  fill: #fff;
+  stroke: #1f2933;
+}
+
+.scene-notice {
+  position: absolute;
+  left: 50%;
+  bottom: 0.75rem;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 1.5rem);
+}
+
+.scene-notice p {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 0;
+  padding: 0.4rem 0.5rem 0.4rem 0.9rem;
+  border: 1px solid #1f2933;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.95rem;
+}
+
+.scene-notice button {
+  padding: 0 0.4rem;
+  border: 0;
+  background: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
 /* The scene, with the cell panel beside it when one is open; stacked on narrow screens. */

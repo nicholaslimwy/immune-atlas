@@ -1,0 +1,10 @@
+{
+  "id": "lymph-node",
+  "name": "Lymph node",
+  "parent": "body",
+  "scene": "scenes/lymph-node.svg",
+  "summary": "Stub: scene not built yet (Phase 4).",
+  "hotspots": [],
+  "residents": [],
+  "status": "stub"
+}

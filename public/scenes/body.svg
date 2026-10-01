@@ -1,6 +1,109 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Whole body placeholder scene">
-  <rect width="800" height="500" fill="#EEF1F4"/>
-  <rect x="300" y="40" width="200" height="420" rx="24" fill="#C9CED6"/>
-  <rect id="vessel" x="385" y="90" width="30" height="320" fill="#C0392B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
-  <text x="430" y="255" font-size="20" fill="#1F2933" font-family="system-ui, sans-serif" pointer-events="none">Vessel</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="group" aria-label="Whole body">
+<!-- Body scene. Generated, then hand-checked. Each hotspot group holds its art, a leader ending in
+     a .leader-dot, one [data-zoom-anchor] element (its centre is where the zoom starts; usually the
+     dot) and an empty .scene-label the engine fills
+     with the target's name from /content. Colours: src/art/palette.ts (ANATOMY, RED_CELL, INK). -->
+<rect width="800" height="500" fill="#EEF1F4"/>
+<g id="figure" aria-hidden="true">
+  <circle cx="400" cy="47" r="26" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M388 69.6 L387 99.6 A13 13 0 1 0 413 99.6 L412 69.6 A12 12 0 0 0 388 69.6 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M400 98 C380 98 362 100 350 106 C338 112 340 128 346 142 C352 168 366 190 366 208 C366 226 354 240 354 256 C354 268 372 276 400 276 C428 276 446 268 446 256 C446 240 434 226 434 208 C434 190 448 168 454 142 C460 128 462 112 450 106 C438 100 420 98 400 98 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M341.7 111.8 L316.1 186.6 A10.5 10.5 0 0 0 335.7 194 L366 121 A13 13 0 1 0 341.7 111.8 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M434 121 L464.3 194 A10.5 10.5 0 0 0 483.9 186.6 L458.3 111.8 A13 13 0 1 0 434 121 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M315.9 187.3 L297.8 254 A7.5 7.5 0 0 0 312 258.6 L335.9 193.6 A10.5 10.5 0 1 0 315.9 187.3 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M464.1 193.6 L488 258.6 A7.5 7.5 0 0 0 502.2 254 L484.1 187.3 A10.5 10.5 0 1 0 464.1 193.6 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M297.4 255.6 L290.4 277.3 A9 9 0 1 0 307.8 282 L312.8 259.8 A8 8 0 0 0 297.4 255.6 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M487.2 259.8 L492.2 282 A9 9 0 1 0 509.6 277.3 L502.6 255.6 A8 8 0 0 0 487.2 259.8 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M356 256.8 L360 362.5 A13 13 0 0 0 385.9 363.7 L399.8 258.9 A22 22 0 1 0 356 256.8 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M400.2 258.9 L414.1 363.7 A13 13 0 0 0 440 362.5 L444 256.8 A22 22 0 1 0 400.2 258.9 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M360 362.4 L363 452.3 A8 8 0 0 0 379 452.6 L386 363 A13 13 0 1 0 360 362.4 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M414 363 L421 452.6 A8 8 0 0 0 437 452.3 L440 362.4 A13 13 0 1 0 414 363 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M363.1 452.8 L355.5 471.3 A7 7 0 0 0 368 477.6 L378.3 460.4 A8.5 8.5 0 1 0 363.1 452.8 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M421.7 460.4 L432 477.6 A7 7 0 0 0 444.5 471.3 L436.9 452.8 A8.5 8.5 0 1 0 421.7 460.4 Z" fill="#1F2933" stroke="#1F2933" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <circle cx="400" cy="47" r="26" fill="#FFFFFF"/>
+  <path d="M388 69.6 L387 99.6 A13 13 0 1 0 413 99.6 L412 69.6 A12 12 0 0 0 388 69.6 Z" fill="#FFFFFF"/>
+  <path d="M400 98 C380 98 362 100 350 106 C338 112 340 128 346 142 C352 168 366 190 366 208 C366 226 354 240 354 256 C354 268 372 276 400 276 C428 276 446 268 446 256 C446 240 434 226 434 208 C434 190 448 168 454 142 C460 128 462 112 450 106 C438 100 420 98 400 98 Z" fill="#FFFFFF"/>
+  <path d="M341.7 111.8 L316.1 186.6 A10.5 10.5 0 0 0 335.7 194 L366 121 A13 13 0 1 0 341.7 111.8 Z" fill="#FFFFFF"/>
+  <path d="M434 121 L464.3 194 A10.5 10.5 0 0 0 483.9 186.6 L458.3 111.8 A13 13 0 1 0 434 121 Z" fill="#FFFFFF"/>
+  <path d="M315.9 187.3 L297.8 254 A7.5 7.5 0 0 0 312 258.6 L335.9 193.6 A10.5 10.5 0 1 0 315.9 187.3 Z" fill="#FFFFFF"/>
+  <path d="M464.1 193.6 L488 258.6 A7.5 7.5 0 0 0 502.2 254 L484.1 187.3 A10.5 10.5 0 1 0 464.1 193.6 Z" fill="#FFFFFF"/>
+  <path d="M297.4 255.6 L290.4 277.3 A9 9 0 1 0 307.8 282 L312.8 259.8 A8 8 0 0 0 297.4 255.6 Z" fill="#FFFFFF"/>
+  <path d="M487.2 259.8 L492.2 282 A9 9 0 1 0 509.6 277.3 L502.6 255.6 A8 8 0 0 0 487.2 259.8 Z" fill="#FFFFFF"/>
+  <path d="M356 256.8 L360 362.5 A13 13 0 0 0 385.9 363.7 L399.8 258.9 A22 22 0 1 0 356 256.8 Z" fill="#FFFFFF"/>
+  <path d="M400.2 258.9 L414.1 363.7 A13 13 0 0 0 440 362.5 L444 256.8 A22 22 0 1 0 400.2 258.9 Z" fill="#FFFFFF"/>
+  <path d="M360 362.4 L363 452.3 A8 8 0 0 0 379 452.6 L386 363 A13 13 0 1 0 360 362.4 Z" fill="#FFFFFF"/>
+  <path d="M414 363 L421 452.6 A8 8 0 0 0 437 452.3 L440 362.4 A13 13 0 1 0 414 363 Z" fill="#FFFFFF"/>
+  <path d="M363.1 452.8 L355.5 471.3 A7 7 0 0 0 368 477.6 L378.3 460.4 A8.5 8.5 0 1 0 363.1 452.8 Z" fill="#FFFFFF"/>
+  <path d="M421.7 460.4 L432 477.6 A7 7 0 0 0 444.5 471.3 L436.9 452.8 A8.5 8.5 0 1 0 421.7 460.4 Z" fill="#FFFFFF"/>
+</g>
+<g id="lymph-nodes">
+  <path d="M392 236 L392 96 L387 88 M392 96 L397 90 M392 236 L377 249 M392 236 L423 249 M392 134 L358 140 M392 134 L442 140" fill="none" stroke="#C9A13B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M413 90 L392 100" fill="none" stroke="#C9A13B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <ellipse cx="386" cy="86" rx="5" ry="3.6" transform="rotate(70 386 86)" fill="#C9A13B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <ellipse cx="385" cy="96" rx="5" ry="3.6" transform="rotate(60 385 96)" fill="#C9A13B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <ellipse cx="414" cy="86" rx="5" ry="3.6" transform="rotate(-70 414 86)" fill="#C9A13B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <ellipse cx="415" cy="96" rx="5" ry="3.6" transform="rotate(-60 415 96)" fill="#C9A13B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <ellipse cx="358" cy="140" rx="5" ry="3.6" transform="rotate(30 358 140)" fill="#C9A13B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <ellipse cx="362" cy="149" rx="5" ry="3.6" transform="rotate(20 362 149)" fill="#C9A13B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <ellipse cx="442" cy="140" rx="5" ry="3.6" transform="rotate(-30 442 140)" fill="#C9A13B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <ellipse cx="438" cy="149" rx="5" ry="3.6" transform="rotate(-20 438 149)" fill="#C9A13B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <ellipse cx="372" cy="246" rx="5" ry="3.6" transform="rotate(-30 372 246)" fill="#C9A13B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <ellipse cx="379" cy="252" rx="5" ry="3.6" transform="rotate(-40 379 252)" fill="#C9A13B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <ellipse cx="428" cy="246" rx="5" ry="3.6" transform="rotate(30 428 246)" fill="#C9A13B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <ellipse cx="421" cy="252" rx="5" ry="3.6" transform="rotate(40 421 252)" fill="#C9A13B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M258 90 L385 91" fill="none" stroke="#1F2933" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+  <circle class="leader-dot" data-zoom-anchor="" cx="385" cy="91" r="3.5" fill="#1F2933" stroke="#FFFFFF" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+  <text class="scene-label" x="250" y="96" text-anchor="end" font-size="19" font-weight="600" fill="#1F2933"></text>
+</g>
+<g id="thymus">
+  <path d="M399 114 C393 112 388 118 389 126 C390 134 393 140 399 141 C401 134 401 122 399 114 Z" fill="#F4E7B8" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M401 114 C407 112 412 118 411 126 C410 134 407 140 401 141 C399 134 399 122 401 114 Z" fill="#F4E7B8" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M542 106 L404 126" fill="none" stroke="#1F2933" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+  <circle class="leader-dot" data-zoom-anchor="" cx="404" cy="126" r="3.5" fill="#1F2933" stroke="#FFFFFF" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+  <text class="scene-label" x="550" y="112" text-anchor="start" font-size="19" font-weight="600" fill="#1F2933"></text>
+</g>
+<g id="blood-vessels">
+  <path d="M400 236 L400 142" fill="none" stroke="#D98C8C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M400 113 L400 100 L395 76 M400 100 L405 76" fill="none" stroke="#D98C8C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M400 236 L393 262 L391 300 L384 362 L375 446" fill="none" stroke="#D98C8C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M400 236 L407 262 L409 300 L416 362 L425 446" fill="none" stroke="#D98C8C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M391 128 L356 120 L327 190 L306 254" fill="none" stroke="#D98C8C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M409 128 L444 120 L473 190 L494 254" fill="none" stroke="#D98C8C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M396 150 C399 140 414 138 421 146 C428 154 424 170 410 177 C398 172 392 162 396 150 Z" fill="#D98C8C" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M542 160 L410 160" fill="none" stroke="#1F2933" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+  <circle class="leader-dot" data-zoom-anchor="" cx="410" cy="160" r="3.5" fill="#1F2933" stroke="#FFFFFF" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+  <text class="scene-label" x="550" y="166" text-anchor="start" font-size="19" font-weight="600" fill="#1F2933"></text>
+</g>
+<g id="spleen">
+  <path d="M410 205 C406 196 414 186 426 184 C436 182 442 188 440 194 C437 192 432 194 432 198 C433 203 428 208 420 209 C415 210 411 208 410 205 Z" fill="#B0606E" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M542 214 L425 197" fill="none" stroke="#1F2933" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+  <circle class="leader-dot" data-zoom-anchor="" cx="425" cy="197" r="3.5" fill="#1F2933" stroke="#FFFFFF" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+  <text class="scene-label" x="550" y="220" text-anchor="start" font-size="19" font-weight="600" fill="#1F2933"></text>
+</g>
+<g id="skin">
+  <clipPath id="skin-lens"><circle cx="314" cy="222" r="20"/></clipPath>
+  <g clip-path="url(#skin-lens)">
+    <rect x="294" y="202" width="40" height="40" fill="#EEF1F4"/>
+    <rect x="294" y="216" width="40" height="26" fill="#F3D9C6"/>
+    <rect x="294" y="216" width="40" height="7" fill="#D9A07E"/>
+    <path d="M309 216 L315 227 L319 216 Z" fill="#EEF1F4"/>
+    <circle cx="315" cy="230" r="2.6" fill="#D98C8C"/>
+    <circle cx="305" cy="233" r="1.6" fill="#D98C8C"/>
+  </g>
+  <circle data-zoom-anchor="" cx="314" cy="222" r="20" fill="none" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M258 230 L294 228" fill="none" stroke="#1F2933" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+  <circle class="leader-dot" cx="294" cy="228" r="3.5" fill="#1F2933" stroke="#FFFFFF" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+  <text class="scene-label" x="250" y="236" text-anchor="end" font-size="19" font-weight="600" fill="#1F2933"></text>
+</g>
+<g id="bone-marrow">
+  <path d="M373 267.5 L366.5 351.4 A7.5 7.5 0 1 0 381.5 352.3 L385 268.2 A6 6 0 0 0 373 267.5 Z" fill="#F2ECDF" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <circle cx="385" cy="264" r="6" fill="#F2ECDF" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M375.9 275.9 L372.2 343.9 A2.6 2.6 0 0 0 377.4 344.1 L381.1 276.1 A2.6 2.6 0 0 0 375.9 275.9 Z" fill="#D98C8C"/>
+  <path d="M415 268.2 L418.5 352.3 A7.5 7.5 0 1 0 433.5 351.4 L427 267.5 A6 6 0 0 0 415 268.2 Z" fill="#F2ECDF" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <circle cx="415" cy="264" r="6" fill="#F2ECDF" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M418.9 276.1 L422.6 344.1 A2.6 2.6 0 0 0 427.8 343.9 L424.1 275.9 A2.6 2.6 0 0 0 418.9 276.1 Z" fill="#D98C8C"/>
+  <path d="M258 324 L377 318" fill="none" stroke="#1F2933" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+  <circle class="leader-dot" data-zoom-anchor="" cx="377" cy="318" r="3.5" fill="#1F2933" stroke="#FFFFFF" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+  <text class="scene-label" x="250" y="330" text-anchor="end" font-size="19" font-weight="600" fill="#1F2933"></text>
+</g>
 </svg>

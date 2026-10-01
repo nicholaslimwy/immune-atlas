@@ -1,0 +1,10 @@
+{
+  "id": "skin",
+  "name": "Skin",
+  "parent": "body",
+  "scene": "scenes/skin.svg",
+  "summary": "Stub: scene not built yet (Phase 4).",
+  "hotspots": [],
+  "residents": [],
+  "status": "stub"
+}

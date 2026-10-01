@@ -44,7 +44,10 @@ function measureHotspots(svg: string, loc: Location): LoadedScene['centres'] {
     const box = root?.getBoundingClientRect()
     if (box && box.width > 0) {
       for (const { region, target } of loc.hotspots) {
-        const r = host.querySelector(`[id="${region}"]`)?.getBoundingClientRect()
+        // Aim at the hotspot's [data-zoom-anchor] element when it has one (a spread-out region such as
+        // the lymph nodes would otherwise zoom into the middle of its bounding box), else the region.
+        const el = host.querySelector(`[id="${region}"]`)
+        const r = (el?.querySelector('[data-zoom-anchor]') ?? el)?.getBoundingClientRect()
         if (!r) continue
         centres[target] = {
           x: (r.left + r.width / 2 - box.left) / box.width,

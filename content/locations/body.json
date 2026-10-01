@@ -3,7 +3,14 @@
   "name": "Whole body",
   "parent": null,
   "scene": "scenes/body.svg",
-  "summary": "Placeholder (Phase 1). The whole-body view; the vessel rectangle leads to peripheral blood.",
-  "hotspots": [{ "region": "vessel", "target": "peripheral-blood" }],
+  "summary": "Pick a place to zoom into: the blood, the organs where immune cells develop (bone marrow, thymus) or meet invaders (lymph nodes, spleen), or the skin, the barrier where many infections begin.",
+  "hotspots": [
+    { "region": "blood-vessels", "target": "peripheral-blood" },
+    { "region": "lymph-nodes", "target": "lymph-node" },
+    { "region": "bone-marrow", "target": "bone-marrow" },
+    { "region": "thymus", "target": "thymus" },
+    { "region": "spleen", "target": "spleen" },
+    { "region": "skin", "target": "skin" }
+  ],
   "residents": []
 }
