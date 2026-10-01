@@ -53,6 +53,8 @@ export const ANATOMY = {
   follicle: '#E8D9B5',
   germinalCentre: '#FBF6EA',
   paracortex: '#F4ECDC',
+  /** Bone marrow between the vessels: a pale warm ground under the packed developing cells. Fat cells use the figure white. */
+  marrow: '#F6ECE8',
 }
 
 /** Every colour an icon may use. */

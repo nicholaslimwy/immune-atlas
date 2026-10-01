@@ -3,8 +3,29 @@
   "name": "Bone marrow",
   "parent": "body",
   "scene": "scenes/bone-marrow.svg",
-  "summary": "Stub: scene not built yet (Phase 4).",
-  "hotspots": [],
-  "residents": [],
-  "status": "stub"
+  "summary": "Red bone marrow fills the spaces inside bones and makes nearly every blood cell, hundreds of billions a day in an adult. Haematopoietic stem cells rest in niches beside blood vessels, many close to the bone surface. Their offspring divide and mature in the spaces between the sinusoids, wide thin-walled vessels that finished cells squeeze through to reach the blood. Drawn roughly to scale: this view is about a quarter of a millimetre across. Pick a cell.",
+  "hotspots": [
+    { "region": "haematopoietic-stem-cell", "target": "haematopoietic-stem-cell" },
+    { "region": "plasma-cell", "target": "plasma-cell" },
+    { "region": "nk-cell", "target": "nk-cell" },
+    { "region": "monocyte", "target": "monocyte" },
+    { "region": "platelet", "target": "platelet" },
+    { "region": "neutrophil", "target": "neutrophil" },
+    { "region": "eosinophil", "target": "eosinophil" },
+    { "region": "naive-b", "target": "naive-b" },
+    { "region": "macrophage", "target": "macrophage" }
+  ],
+  "residents": [
+    { "cell": "haematopoietic-stem-cell", "note": "Rests in a niche beside a blood vessel, often near the bone surface, where stromal cells keep it quiet. Now and then it divides, to renew itself and to make the progenitors of every blood cell." },
+    { "cell": "neutrophil", "note": "Develops here from dividing precursors, its nucleus going from round to kidney-shaped to band to lobed. The marrow keeps a large reserve of mature neutrophils that is released into the blood within hours of an infection." },
+    { "cell": "eosinophil", "note": "Develops here, driven mainly by IL-5, then leaves for the blood and the tissues." },
+    { "cell": "basophil", "note": "Develops here, then leaves to circulate in the blood." },
+    { "cell": "monocyte", "note": "Develops here and leaves into the blood through the sinusoids; in mice that exit depends on the chemokine receptor CCR2." },
+    { "cell": "platelet", "note": "Made by megakaryocytes, giant cells that sit against the sinusoids and push long extensions through the wall; the blood flow breaks them into platelets." },
+    { "cell": "macrophage", "note": "A central macrophage anchors each erythroblastic island, a ring of developing red cells; it supports them and swallows the nuclei they throw out as they mature." },
+    { "cell": "naive-b", "note": "B cells develop here, are checked for antibodies that react against the body, and leave as immature B cells that finish maturing in the spleen. Mature naive B cells also pass back through the marrow." },
+    { "cell": "nk-cell", "note": "Develops here; its development depends on IL-15." },
+    { "cell": "plasma-cell", "note": "Long-lived plasma cells settle in niches beside stromal cells and can keep making antibody for years." },
+    { "cell": "memory-t", "note": "The marrow holds many memory T cells, which rest and slowly divide here." }
+  ]
 }
