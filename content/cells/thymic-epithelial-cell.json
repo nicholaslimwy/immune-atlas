@@ -1,0 +1,12 @@
+{
+  "id": "thymic-epithelial-cell",
+  "name": "Thymic epithelial cell",
+  "arm": "stromal",
+  "lineage": "stromal",
+  "family": "support",
+  "markers": [],
+  "summary": "Stub: profile not written yet.",
+  "functions": [],
+  "sources": [],
+  "status": "stub"
+}

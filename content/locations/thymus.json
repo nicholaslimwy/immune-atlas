@@ -3,8 +3,24 @@
   "name": "Thymus",
   "parent": "body",
   "scene": "scenes/thymus.svg",
-  "summary": "Stub: scene not built yet (Phase 4).",
-  "hotspots": [],
-  "residents": [],
-  "status": "stub"
+  "summary": "The thymus is where T cells are made. Progenitors arrive from the bone marrow through blood vessels at the junction between cortex and medulla. In the cortex they multiply and are tested: only those whose receptor can recognise self-MHC survive, and most die. Survivors move to the medulla, where cells that react strongly to the body's own proteins are removed or become regulatory T cells. The rest leave as naive T cells. The dashed arrow traces that route. The thymus is largest in childhood and shrinks with age. Pick a cell.",
+  "hotspots": [
+    { "region": "thymic-epithelial-cell", "target": "thymic-epithelial-cell" },
+    { "region": "macrophage", "target": "macrophage" },
+    { "region": "naive-cd4-t", "target": "naive-cd4-t" },
+    { "region": "conventional-dendritic-cell", "target": "conventional-dendritic-cell" },
+    { "region": "cytotoxic-cd8-t", "target": "cytotoxic-cd8-t" },
+    { "region": "regulatory-t", "target": "regulatory-t" },
+    { "region": "plasmacytoid-dendritic-cell", "target": "plasmacytoid-dendritic-cell" }
+  ],
+  "residents": [
+    { "cell": "thymic-epithelial-cell", "note": "Forms the meshwork that holds the developing T cells. In the cortex, epithelial cells show self-peptides on MHC and keep the thymocytes whose receptors can bind them (positive selection). In the medulla, epithelial cells switch on thousands of proteins normally made only in other organs, many through the gene AIRE, so that T cells reacting against them can be removed. Hassall's corpuscles are whorls of old medullary epithelial cells." },
+    { "cell": "macrophage", "note": "Most developing T cells fail selection and die in the cortex; macrophages there swallow them quickly, so few dead cells are ever seen." },
+    { "cell": "naive-cd4-t", "note": "Thymocytes whose receptor binds peptide on MHC class II become CD4 T cells. After passing the medulla's checks they leave through blood vessels at the corticomedullary junction as naive CD4 T cells." },
+    { "cell": "cytotoxic-cd8-t", "note": "Thymocytes whose receptor binds peptide on MHC class I become CD8 T cells, finish their checks in the medulla and leave as naive CD8 T cells." },
+    { "cell": "conventional-dendritic-cell", "note": "Gathers at the corticomedullary junction and in the medulla, showing self-proteins, including ones picked up from the medullary epithelial cells, to developing T cells; those that react too strongly die." },
+    { "cell": "plasmacytoid-dendritic-cell", "note": "Found in the medulla. Some carry proteins from the rest of the body into the thymus, helping remove T cells that would react against them (shown mainly in mice)." },
+    { "cell": "regulatory-t", "note": "Most regulatory T cells are made here: CD4 thymocytes that recognise self-peptides fairly strongly in the medulla switch on FOXP3 instead of dying." },
+    { "cell": "naive-b", "note": "A few B cells live in the medulla and show self-antigens to developing T cells, adding to their selection." }
+  ]
 }
