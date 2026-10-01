@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Neutrophil placeholder scene">
+  <rect width="800" height="500" fill="#FBE3DA"/>
+  <rect x="250" y="100" width="300" height="300" rx="40" fill="#E4572E" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
+  <text x="400" y="257" font-size="24" text-anchor="middle" fill="#1F2933" font-family="system-ui, sans-serif" pointer-events="none">Neutrophil (placeholder)</text>
+</svg>

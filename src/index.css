@@ -9,3 +9,72 @@ body {
 main {
   padding: 2rem;
 }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.back {
+  font: inherit;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid #1f2933;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.back:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.crumbs {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.crumbs li + li::before {
+  content: '›';
+  margin: 0 0.5rem;
+}
+
+h1:focus {
+  outline: none;
+}
+
+/* Scenes are authored at 800x500, so the stage has that shape. overflow: hidden clips the 8x zoom. */
+.stage {
+  position: relative;
+  max-width: 800px;
+  aspect-ratio: 8 / 5;
+  overflow: hidden;
+  background: #eef1f4;
+}
+
+.zoom-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.scene,
+.scene svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hotspot {
+  cursor: pointer;
+}
+
+.hotspot:hover,
+.hotspot:focus-visible {
+  stroke: #1a73e8;
+  stroke-width: 5;
+  outline: none;
+}

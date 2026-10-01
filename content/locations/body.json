@@ -1,0 +1,9 @@
+{
+  "id": "body",
+  "name": "Whole body",
+  "parent": null,
+  "scene": "scenes/body.svg",
+  "summary": "Placeholder (Phase 1). The whole-body view; the vessel rectangle leads to peripheral blood.",
+  "hotspots": [{ "region": "vessel", "target": "peripheral-blood" }],
+  "residents": []
+}

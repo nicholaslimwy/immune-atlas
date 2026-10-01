@@ -1,0 +1,9 @@
+{
+  "id": "neutrophil",
+  "name": "Neutrophil",
+  "parent": "peripheral-blood",
+  "scene": "scenes/neutrophil.svg",
+  "summary": "TEMPORARY (Phase 1). Stand-in scene so the third URL level works. In Phase 2 this becomes content/cells/neutrophil.json and a side panel, and this file is deleted.",
+  "hotspots": [],
+  "residents": []
+}

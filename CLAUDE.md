@@ -207,9 +207,17 @@ Phases 1 and 2 use plain placeholder shapes on purpose.
 | 2026-10-01 | Project lives at `C:\Users\limn\immune-atlas`; plan moved to `docs/build-plan.md` |
 | 2026-10-01 | Provisional style tokens (viewBox, stroke, hex colours) proposed; lock in Phase 3 |
 | 2026-10-01 | Framer Motion and React Router deferred to Phase 1 to keep the Phase 0 scaffold bare |
+| 2026-10-01 | React Router added (Phase 1.1); one `/body/*` route resolves paths against the Location tree; scenes fetched and inlined at runtime |
 
 ## Current status and next task
 
-**Status:** Phase 0 complete (2026-10-01). Gate passed: `CLAUDE.md` written; Vite + React + TypeScript scaffolded in this folder; `npm run build` and `npm run lint` pass; `npm run dev` serves a blank "Immune System Atlas" page at http://localhost:5173 with no console errors. Git repo initialised, no commits yet. `.claude/launch.json` defines the `dev` server for previews. Folder skeleton exists (empty, `.gitkeep`); no content, routing or art yet.
+**Status:** Phase 1, session 1 complete (2026-10-01). React Router added. `/` redirects to `/body`; a single `/body/*` route resolves the path against the Location tree (`src/engine/paths.ts`), so `/body`, `/body/blood` and `/body/blood/neutrophil` all load directly. Scenes are placeholder SVGs in `public/scenes/`, described by `content/locations/{body,peripheral-blood,neutrophil}.json` (Location schema, unchanged). `src/engine/content.ts` loads the JSON with `import.meta.glob`; `src/components/Scene.tsx` fetches the SVG, inlines it, and turns each `hotspots[].region` element into a focusable, labelled button (click, Enter or Space navigates). Unknown URLs show a Not found page. Verified in the browser: vessel on `/body` leads to `/body/blood`, which leads to `/body/blood/neutrophil`; direct URL loads work; no console errors. `npm run build` and `npm run lint` pass. Framer Motion not yet added (no animation this session). Nothing committed yet beyond Phase 0.
 
-**Next task:** Phase 1, session 1: add React Router with routes `/body`, `/body/blood`, `/body/blood/:cell`, and scene switching between coloured placeholder rectangles.
+**Temporary / open points for Phase 2:**
+
+- `neutrophil.json` is a stand-in Location so the third URL level exists. Phase 2 replaces it with `content/cells/neutrophil.json` plus the side panel and deletes the file (cells are not locations).
+- URL segment `blood` differs from the id `peripheral-blood`; the mapping lives in `SLUGS` in `src/engine/paths.ts`. Decide whether to keep it there or add a `slug` field to Location.
+- Hosting must rewrite unknown paths to `index.html` (SPA fallback) or direct URLs will 404 in production.
+- Hotspot hover/focus styling is a stroke only; real hotspot visuals and a plain list view come with the art phase.
+
+**Next task:** Phase 1, session 2: zoom transition (Framer Motion), Back button and breadcrumbs, empty side panel for `/body/blood/:cell`. Gate: click through body to blood and back with working URLs.

@@ -1,0 +1,59 @@
+import type { Location } from '../types/location.ts'
+
+export interface LoadedScene {
+  svg: string
+  /** Hotspot centres as fractions (0-1) of the scene box, keyed by the hotspot's target id. */
+  centres: Record<string, { x: number; y: number }>
+}
+
+// Scenes are authored at this size so one fixed stage aspect ratio fits them all.
+export const SCENE_W = 800
+export const SCENE_H = 500
+
+const cache = new Map<string, Promise<LoadedScene>>()
+
+/** Fetch a scene once and measure its hotspots; later calls reuse the result. */
+export function loadScene(loc: Location): Promise<LoadedScene> {
+  let hit = cache.get(loc.id)
+  if (!hit) {
+    hit = fetch(import.meta.env.BASE_URL + loc.scene)
+      .then((res) => {
+        if (!res.ok) throw new Error(`${loc.scene}: HTTP ${res.status}`)
+        return res.text()
+      })
+      .then((svg) => ({ svg, centres: measureHotspots(svg, loc) }))
+    hit.catch(() => cache.delete(loc.id)) // allow a retry after a failure
+    cache.set(loc.id, hit)
+  }
+  return hit
+}
+
+// Render the SVG off-screen at stage size so the zoom can aim at each hotspot,
+// transforms and all, whatever the final art looks like.
+function measureHotspots(svg: string, loc: Location): LoadedScene['centres'] {
+  const host = document.createElement('div')
+  host.setAttribute('aria-hidden', 'true')
+  host.style.cssText = `position:fixed;left:-99999px;top:0;width:${SCENE_W}px;height:${SCENE_H}px;visibility:hidden`
+  host.innerHTML = svg
+  const root = host.querySelector('svg')
+  root?.setAttribute('width', '100%')
+  root?.setAttribute('height', '100%')
+  document.body.appendChild(host)
+  const centres: LoadedScene['centres'] = {}
+  try {
+    const box = root?.getBoundingClientRect()
+    if (box && box.width > 0) {
+      for (const { region, target } of loc.hotspots) {
+        const r = host.querySelector(`[id="${region}"]`)?.getBoundingClientRect()
+        if (!r) continue
+        centres[target] = {
+          x: (r.left + r.width / 2 - box.left) / box.width,
+          y: (r.top + r.height / 2 - box.top) / box.height,
+        }
+      }
+    }
+  } finally {
+    host.remove()
+  }
+  return centres
+}

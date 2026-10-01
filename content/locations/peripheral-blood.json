@@ -1,0 +1,9 @@
+{
+  "id": "peripheral-blood",
+  "name": "Peripheral blood",
+  "parent": "body",
+  "scene": "scenes/peripheral-blood.svg",
+  "summary": "Placeholder (Phase 1). Circulating blood; the orange rectangle leads to a neutrophil placeholder.",
+  "hotspots": [{ "region": "neutrophil", "target": "neutrophil" }],
+  "residents": []
+}
