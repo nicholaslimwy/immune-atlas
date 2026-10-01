@@ -4,7 +4,7 @@
   "cellOntologyId": "CL:0000794",
   "arm": "adaptive",
   "lineage": "lymphoid",
-  "markers": ["CD3", "CD8 (in mice also on a dendritic cell subset; not in humans)", "Perforin and granzyme B (in its granules, once activated)", "CD45RO (human, once activated)", "CD44 high (mouse, once activated)", "KLRG1 (short-lived killer cells)"],
+  "markers": ["CD3", "CD8 (in mice also on a dendritic cell subset; not in humans)", "Perforin and granzyme B (in its granules, once activated)", "CD45RO (human marker, once activated)", "CD44 high (mouse marker, once activated)", "KLRG1 (on killer cells that have divided many times and can divide little further)"],
   "summary": "A T cell that kills infected and cancerous cells. Its receptor recognises a peptide held on MHC class I, which almost every cell in the body displays, so it can check nearly any cell for a virus hiding inside. After a dendritic cell activates it in a lymph node, it multiplies enormously and travels to the infected tissue to kill.",
   "functions": [
     "Starts as a naive CD8 T cell that circulates between blood and lymph nodes using CCR7 and CD62L, like a naive CD4 T cell, waiting for a dendritic cell to show it the right peptide on MHC class I.",
@@ -12,7 +12,8 @@
     "Multiplies enormously after activation: in mice, the cells recognising a single viral peptide can increase more than 10,000-fold in about a week.",
     "Kills by docking onto its target and releasing perforin and granzymes into the narrow gap between them, making the target destroy itself (apoptosis). It can also kill through Fas ligand, then moves on to the next target.",
     "Releases IFN-γ and TNF, which make nearby cells display more MHC class I and switch macrophages into a stronger killing state.",
-    "Mostly dies once the infection is cleared (around 90-95% of the expanded cells); the survivors become long-lived memory T cells. Exactly when and how memory cells branch off from killer cells is still debated."
+    "Mostly dies once the infection is cleared (around 90-95% of the expanded cells); the survivors become long-lived memory T cells.",
+    "Debated: exactly when and how memory cells branch off from killer cells."
   ],
   "abundance": "CD8 T cells make up roughly 15-35% of lymphocytes in adult human blood (about 0.2-0.9 × 10⁹ per litre), about half as many as CD4 T cells. In healthy people most are naive or memory cells; active killers are numerous only during an infection, although people carrying cytomegalovirus keep a large standing pool. Laboratory mice have far fewer memory and killer CD8 T cells than adult humans.",
   "sources": [
@@ -30,6 +31,7 @@
     "Peschon JJ, Morrissey PJ, Grabstein KH, et al. Early lymphocyte expansion is severely impaired in interleukin 7 receptor-deficient mice. J Exp Med. 1994;180(5):1955-1960.",
     "Puel A, Ziegler SF, Buckley RH, Leonard WJ. Defective IL7R expression in T(-)B(+)NK(+) severe combined immunodeficiency. Nat Genet. 1998;20(4):394-397.",
     "Josefowicz SZ, Lu LF, Rudensky AY. Regulatory T cells: mechanisms of differentiation and function. Annu Rev Immunol. 2012;30:531-564.",
+    "Voehringer D, Koschella M, Pircher H. Lack of proliferative capacity of human effector and memory T cells expressing killer cell lectinlike receptor G1 (KLRG1). Blood. 2002;100(10):3698-3702.",
     "Cell Ontology, CL:0000794 (CD8-positive, alpha-beta cytotoxic T cell)."
   ],
   "status": "draft"

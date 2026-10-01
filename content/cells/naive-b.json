@@ -4,7 +4,7 @@
   "cellOntologyId": "CL:0000788",
   "arm": "adaptive",
   "lineage": "lymphoid",
-  "markers": ["CD19", "CD20", "IgM and IgD (its surface antibody, the B-cell receptor)", "CD21", "CD23", "No CD27 (in humans CD27 marks memory B cells; not in mice)", "B220 (CD45R, mouse)"],
+  "markers": ["CD19", "CD20", "IgM and IgD (its surface antibody, the B-cell receptor)", "CD21", "CD23", "No CD27 (human marker; in humans CD27 marks memory B cells)", "B220 (CD45R; mouse marker)"],
   "summary": "A B cell that has left the bone marrow but not yet met its antigen. It carries one unique antibody on its surface as its receptor, and circulates between blood, lymph nodes and spleen. If it finds its antigen and gets help from T cells, it can become an antibody-secreting plasma cell or a long-lived memory B cell.",
   "functions": [
     "Circulates through blood and lymph, entering lymph nodes through specialised vessels (high endothelial venules) and settling in B-cell follicles, drawn by the chemokine CXCL13.",
@@ -12,7 +12,8 @@
     "Takes in the antigen it has bound, cuts it into peptides and shows them on MHC class II to helper T cells at the edge of the follicle, which reply with CD40L and cytokines such as IL-21 and IL-4.",
     "With T-cell help, either starts a germinal centre, where its antibody gets better at binding (affinity maturation), or becomes a short-lived plasma cell outside the follicle that quickly makes mostly IgM antibody.",
     "Responds more readily to antigen coated with complement: its receptor CD21 binds the complement fragment and lowers the threshold for activation.",
-    "Can be switched on without T-cell help by antigens with many repeating units, such as bacterial polysaccharides. This is mainly done by marginal zone B cells and, in mice, B-1 cells; whether humans have a true B-1 equivalent is debated."
+    "Can be switched on without T-cell help by antigens with many repeating units, such as bacterial polysaccharides. This is mainly done by marginal zone B cells and, in mice, B-1 cells.",
+    "Debated: whether humans have a true equivalent of mouse B-1 cells."
   ],
   "abundance": "B cells make up about 5-15% of lymphocytes in adult human blood (roughly 0.1-0.5 × 10⁹ per litre), and about two-thirds of them are naive. Laboratory mice differ: B cells are often about half of their blood lymphocytes.",
   "sources": [

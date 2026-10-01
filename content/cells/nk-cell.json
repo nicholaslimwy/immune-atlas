@@ -4,7 +4,7 @@
   "cellOntologyId": "CL:0000623",
   "arm": "innate",
   "lineage": "lymphoid",
-  "markers": ["CD56 (human NK cells only)", "CD16", "NKp46 (CD335)", "NKG2D", "No CD3 (tells it apart from T cells)", "NK1.1 (some mouse strains only)", "CD49b (DX5, mouse)"],
+  "markers": ["CD56 (human only)", "CD16", "NKp46 (CD335)", "NKG2D", "No CD3 (tells it apart from T cells)", "NK1.1 (mouse only; some strains)", "CD49b (DX5; mouse marker)"],
   "summary": "A large lymphocyte of the innate immune system that kills virus-infected and cancerous cells without needing to have met them before. It checks other cells for signs of stress and for a healthy level of MHC class I, which viruses and tumours often remove. NK cells also release IFN-γ, which helps macrophages and T cells fight infection.",
   "functions": [
     "Kills cells that have lost MHC class I from their surface ('missing self'). Healthy cells display MHC class I, which holds NK cells back through inhibitory receptors: KIRs in humans, while mice use an unrelated receptor family, Ly49, for the same job.",
@@ -12,7 +12,8 @@
     "Kills by releasing perforin, which punches holes in the target's membrane, and granzymes, which enter through the holes and make the target destroy itself (apoptosis).",
     "Kills antibody-coated cells: its receptor CD16 grips the tail of IgG antibodies bound to a target (antibody-dependent cellular cytotoxicity, ADCC).",
     "Is switched on within hours of infection by cytokines from macrophages and dendritic cells (IL-12, IL-15, IL-18 and type I interferons), and in return releases IFN-γ that makes macrophages better killers.",
-    "Belongs to the innate lymphoid cell family, alongside ILC1s in group 1. Where to draw the line between NK cells and ILC1s, and whether NK cells that expand after cytomegalovirus infection (seen in mice and humans) count as true memory, are still debated."
+    "Belongs to the innate lymphoid cell family, alongside ILC1s in group 1.",
+    "Debated: where to draw the line between NK cells and ILC1s, and whether NK cells that expand after cytomegalovirus infection (seen in mice and humans) count as true memory."
   ],
   "abundance": "About 5-15% of lymphocytes in adult human blood (roughly 0.1-0.5 × 10⁹ per litre). About 90% of these are the strongly killing CD56-dim subset; the cytokine-making CD56-bright subset is commoner in lymph nodes. Mouse NK cells do not carry CD56, so mouse subsets are defined differently (by CD27 and CD11b).",
   "sources": [

@@ -4,14 +4,15 @@
   "cellOntologyId": "CL:0000895",
   "arm": "adaptive",
   "lineage": "lymphoid",
-  "markers": ["CD3", "CD4", "CD45RA (human; mice use low CD44 instead to tell naive from memory)", "CCR7", "CD62L", "CD28"],
+  "markers": ["CD3", "CD4", "CD45RA (human marker)", "CD44 low (mouse marker)", "CCR7", "CD62L", "CD28"],
   "summary": "A helper T cell that has left the thymus but not yet met its antigen: a peptide held on MHC class II by antigen-presenting cells. It circulates between blood and lymph nodes looking for it. When a dendritic cell presents that peptide, it multiplies and specialises, becoming a Th1, Th2, Th17, Tfh or regulatory T cell.",
   "functions": [
     "Patrols lymph nodes: it leaves the blood through high endothelial venules using CCR7 and CD62L, spends hours touching dendritic cells in the T-cell zone and, if it finds nothing, returns to the blood through the lymph.",
     "Is activated only when three signals arrive together: its T-cell receptor binds the right peptide on MHC class II, CD28 binds CD80 or CD86 on the dendritic cell (co-stimulation), and cytokines set the direction.",
     "Multiplies rapidly once activated (clonal expansion), driven partly by IL-2 that it makes itself, so the few cells that recognise an antigen become thousands.",
     "Specialises according to the cytokines around it: IL-12 steers it to Th1, IL-4 to Th2, IL-6 with TGF-β to Th17, IL-6 and IL-21 to Tfh, and TGF-β with IL-2 to regulatory T cells. Much of this was worked out in mice; in humans the Th17 and Tfh signals differ.",
-    "Leaves behind memory T cells after an infection. Whether these pass through an effector stage first, and how fixed each helper fate is once chosen, are still debated.",
+    "Leaves behind long-lived memory T cells after an infection, which respond faster if the same microbe returns.",
+    "Debated: whether memory T cells pass through an effector stage first, and how fixed each helper fate is once chosen.",
     "Survives for years without meeting its antigen, kept alive by IL-7 and brief contacts with self-peptides. In adult humans the thymus shrinks and naive T cells are kept up mainly by slow division outside it; in mice the thymus stays the main source throughout life."
   ],
   "abundance": "CD4 T cells make up roughly 30-60% of lymphocytes in adult human blood (about 0.5-1.5 × 10⁹ per litre). About half are naive in young adults, falling steadily with age. Laboratory mice, kept free of most infections, have few memory T cells, so most of their blood CD4 T cells are naive.",

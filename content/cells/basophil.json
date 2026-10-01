@@ -4,13 +4,13 @@
   "cellOntologyId": "CL:0000767",
   "arm": "innate",
   "lineage": "myeloid",
-  "markers": ["FcεRIα (high-affinity IgE receptor)", "CD123 (IL-3 receptor α)", "CCR3 (CD193)", "CD203c (human only)", "CD49b (used to identify mouse basophils)"],
+  "markers": ["FcεRIα (high-affinity IgE receptor)", "CD123 (IL-3 receptor α)", "CCR3 (CD193)", "CD203c (basophil marker)", "CD49b (mouse marker)"],
   "summary": "The rarest white blood cell, under 1% of those in blood. Dense dark purple granules usually hide its lobed nucleus. Basophils carry IgE antibodies on their surface; when an allergen binds that IgE, they release histamine within minutes. They are also an early source of IL-4, which steers immune responses towards allergy and anti-parasite defence.",
   "functions": [
     "Holds IgE on its surface through the high-affinity receptor FcεRI. When an allergen or parasite antigen cross-links that IgE, it releases histamine and other granule contents within minutes (degranulation). It can also be triggered without IgE, for example by the complement fragment C5a.",
     "Makes lipid mediators such as leukotriene C4 after activation, which narrow the airways and make blood vessels leaky.",
     "Produces IL-4 and IL-13 quickly after activation, which help T cells become and stay Th2 cells and push B cells to switch to making IgE.",
-    "Leaves the blood into allergic tissue such as skin and airways hours after exposure, contributing to the late phase of allergic reactions. In mice it is needed for resistance to repeated tick feeding and helps expel some parasitic worms.",
+    "Leaves the blood into allergic tissue such as skin and airways hours after exposure, contributing to the late phase of allergic reactions. It helps expel some parasitic worms, and in mice it is needed for resistance to repeated tick feeding.",
     "Shares much with mast cells (the IgE receptor, histamine), but matures in the bone marrow and circulates in the blood, while mast cells finish maturing in tissues and stay there.",
     "Debated: whether basophils present antigen to naive T cells and so start Th2 responses. Mouse studies in 2009 suggested they do; later work found dendritic cells were needed, and human basophils carry little MHC class II."
   ],

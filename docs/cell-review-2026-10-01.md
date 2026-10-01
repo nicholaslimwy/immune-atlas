@@ -1,6 +1,27 @@
 # Cell content review, Phase 2 session 5 (2026-10-01)
 
-Self-review of the nine draft blood profiles for scientific errors, inconsistent terms and uncited claims. **Proposed, not applied.** Each item says what to change and why. The immunology reviewer should still check every profile; this list does not replace that.
+Self-review of the nine draft blood profiles for scientific errors, inconsistent terms and uncited claims. The immunology reviewer should still check every profile; this list does not replace that.
+
+## Outcome (applied 2026-10-01)
+
+| Item | Decision | Applied as |
+| --- | --- | --- |
+| A1 | Basophil marker, no species | `CD203c (basophil marker)` |
+| A2 | Keep as is | no change |
+| A3 | Different definition | `KLRG1 (on killer cells that have divided many times and can divide little further)`, cited to Voehringer et al. 2002 (human cells; the mouse short-lived effector work is Kaech & Cui 2012, already cited) |
+| A4 | Proposed | "is studied in mice engineered..." |
+| A5 | Keep as is | no change |
+| B1 | Omit fat tissue | item now reads "Debated: what eosinophils do in healthy tissue such as the gut lining..." |
+| B2 | Cite Janeway | "It helps expel some parasitic worms" no longer says "in mice"; cited to Janeway (already in sources). Janeway was not opened this session, so the reviewer should confirm the chapter and the human evidence |
+| B3, B4 | Cite | already added with the session 5 interactions |
+| C1 | Proposed | applied to all marker lists (see CLAUDE.md naming rules) |
+| C2 | Option 1 | five mixed items split (platelet, NK, naive B, naive CD4 T, cytotoxic CD8 T); monocyte "Revised view:" kept, since it is a revision, not a debate |
+| C3 | Proposed | "white blood cells" everywhere |
+| C4 | Monocyte-derived dendritic cell | used in summary and functions, no abbreviation (see note) |
+
+Note on C4: "mDC" usually means *myeloid* dendritic cell in human blood (i.e. conventional dendritic cells), so it would cause the very confusion C4 is meant to avoid. If an abbreviation is wanted, "moDC" is the usual one.
+
+## Original proposals
 
 ## A. Scientific errors or overstatements
 

@@ -9,13 +9,14 @@
   "functions": [
     "Plugs damaged blood vessels: it sticks to exposed collagen through von Willebrand factor, changes shape, and clumps with other platelets.",
     "Provides the surface on which the clotting cascade builds a fibrin mesh, which seals the wound and can also trap bacteria.",
-    "Releases granule contents when activated: ADP and serotonin that recruit more platelets, chemokines such as CXCL4 (platelet factor 4) and CCL5 that attract white cells, and antimicrobial peptides.",
+    "Releases granule contents when activated: ADP and serotonin that recruit more platelets, chemokines such as CXCL4 (platelet factor 4) and CCL5 that attract white blood cells, and antimicrobial peptides.",
     "Senses microbes through Toll-like receptors such as TLR4 and binds bacteria in the blood. In mice, platelets help macrophages in the liver (Kupffer cells) catch blood-borne bacteria.",
-    "Sticks to neutrophils and monocytes through P-selectin, pushing neutrophils to cast extracellular traps and monocytes to make inflammatory cytokines. Whether this helps or harms overall in severe infection (sepsis) is debated, because the same clumps can block small vessels.",
-    "Human platelets carry the antibody receptor FcγRIIA, which mice lack, so antibody-triggered platelet activation (as in some drug reactions) can only be studied in mice engineered to carry the human receptor.",
+    "Sticks to neutrophils and monocytes through P-selectin, pushing neutrophils to cast extracellular traps and monocytes to make inflammatory cytokines.",
+    "Debated: whether these platelet clumps help or harm overall in severe infection (sepsis), because they can also block small vessels.",
+    "Human platelets carry the antibody receptor FcγRIIA, which mice lack, so antibody-triggered platelet activation (as in some drug reactions) is studied in mice engineered to carry the human receptor.",
     "Made mainly by megakaryocytes in the bone marrow. Mouse studies found that many platelets are also made by megakaryocytes in the lungs; how much this happens in humans is not yet known."
   ],
-  "abundance": "About 150-400 × 10⁹ per litre of blood in adult humans, far outnumbering white cells. Mice have several times more (roughly 1,000 × 10⁹ per litre), and theirs are smaller and last only about four to five days.",
+  "abundance": "About 150-400 × 10⁹ per litre of blood in adult humans, far outnumbering white blood cells. Mice have several times more (roughly 1,000 × 10⁹ per litre), and theirs are smaller and last only about four to five days.",
   "sources": [
     "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapter 1.",
     "Semple JW, Italiano JE Jr, Freedman J. Platelets and the immune continuum. Nat Rev Immunol. 2011;11(4):264-274.",
