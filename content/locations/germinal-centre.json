@@ -1,0 +1,25 @@
+{
+  "id": "germinal-centre",
+  "name": "Germinal centre",
+  "parent": "lymph-node",
+  "scene": "scenes/germinal-centre.svg",
+  "summary": "A germinal centre forms inside a B-cell follicle a few days into an immune response. In the dark zone, B cells that have met their antigen divide fast and mutate their antibody genes; in the light zone they test the new antibody against antigen held by follicular dendritic cells, and the best binders win help from Tfh cells. The winners leave as plasma cells or memory B cells.",
+  "hotspots": [
+    { "region": "naive-b", "target": "naive-b" },
+    { "region": "germinal-centre-b", "target": "germinal-centre-b" },
+    { "region": "macrophage", "target": "macrophage" },
+    { "region": "follicular-dendritic-cell", "target": "follicular-dendritic-cell" },
+    { "region": "tfh", "target": "tfh" },
+    { "region": "memory-b", "target": "memory-b" },
+    { "region": "plasma-cell", "target": "plasma-cell" }
+  ],
+  "residents": [
+    { "cell": "naive-b", "note": "Resting B cells pushed aside by the growing germinal centre form the mantle zone around it." },
+    { "cell": "germinal-centre-b", "note": "Divides and mutates its antibody genes in the dark zone, then moves to the light zone to be tested; it cycles between the two zones many times." },
+    { "cell": "macrophage", "note": "Tingible body macrophages swallow the many germinal centre B cells that die after failing selection." },
+    { "cell": "follicular-dendritic-cell", "note": "Its long processes hold antigen, bound by antibody and complement, on which B cells in the light zone test their antibody." },
+    { "cell": "tfh", "note": "Gives survival and division signals (CD40L, IL-21) to the B cells that show it the most antigen." },
+    { "cell": "memory-b", "note": "Leaves the germinal centre to recirculate, ready for a faster response next time." },
+    { "cell": "plasma-cell", "note": "Leaves the germinal centre to make high-affinity antibody, in the medulla or in the bone marrow." }
+  ]
+}

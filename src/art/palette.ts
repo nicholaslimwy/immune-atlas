@@ -45,6 +45,14 @@ export const ANATOMY = {
   dermis: '#F3D9C6',
   /** The wall of a vessel seen in section (blood scene); its flattened endothelial nuclei use the red-cell base. */
   vesselWall: '#E4BDBD',
+  /**
+   * Inside a lymph node (and later the spleen's white pulp): warm neutrals of the lymph hue. Follicles
+   * are the darkest (densely packed B cells), germinal centres the palest, as on a stained section;
+   * the T-cell zone and medullary cords sit between. Sinuses use the lymph tint.
+   */
+  follicle: '#E8D9B5',
+  germinalCentre: '#FBF6EA',
+  paracortex: '#F4ECDC',
 }
 
 /** Every colour an icon may use. */

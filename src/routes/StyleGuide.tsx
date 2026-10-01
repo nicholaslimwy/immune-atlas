@@ -101,8 +101,11 @@ export default function StyleGuide() {
               <Swatch hex={ANATOMY.dermis} role="dermis" />
               <Swatch hex={ANATOMY.epidermis} role="epidermis" />
               <Swatch hex={ANATOMY.vesselWall} role="vessel wall" />
+              <Swatch hex={ANATOMY.follicle} role="follicle" />
+              <Swatch hex={ANATOMY.germinalCentre} role="germinal centre" />
+              <Swatch hex={ANATOMY.paracortex} role="T-cell zone" />
             </div>
-            <p className="members">Places, kept muted and away from the family hues so they never read as cells. Vessels, heart and marrow use the red-cell base, as do the flattened nuclei of a vessel wall.</p>
+            <p className="members">Places, kept muted and away from the family hues so they never read as cells. Vessels, heart and marrow use the red-cell base, as do the flattened nuclei of a vessel wall. Inside a lymph node, follicles are the darkest and germinal centres the palest, as on a stained section; sinuses use the lymph tint, the capsule and lymph vessel walls the lymph base.</p>
           </div>
         </div>
       </section>

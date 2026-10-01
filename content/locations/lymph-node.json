@@ -3,8 +3,26 @@
   "name": "Lymph node",
   "parent": "body",
   "scene": "scenes/lymph-node.svg",
-  "summary": "Stub: scene not built yet (Phase 4).",
-  "hotspots": [],
-  "residents": [],
-  "status": "stub"
+  "summary": "Lymph nodes sit along the lymph vessels and filter the fluid draining from the tissues. Dendritic cells arrive in the lymph carrying antigen; naive T and B cells arrive from the blood and wait in their own zones. When one meets its antigen it multiplies, and the response leaves in the outgoing lymph. Cells are drawn at true size relative to each other but far larger than the node. Pick a cell, or zoom into the germinal centre.",
+  "hotspots": [
+    { "region": "macrophage", "target": "macrophage" },
+    { "region": "naive-b", "target": "naive-b" },
+    { "region": "follicular-dendritic-cell", "target": "follicular-dendritic-cell" },
+    { "region": "germinal-centre", "target": "germinal-centre" },
+    { "region": "conventional-dendritic-cell", "target": "conventional-dendritic-cell" },
+    { "region": "naive-cd4-t", "target": "naive-cd4-t" },
+    { "region": "cytotoxic-cd8-t", "target": "cytotoxic-cd8-t" },
+    { "region": "plasma-cell", "target": "plasma-cell" }
+  ],
+  "residents": [
+    { "cell": "macrophage", "note": "Subcapsular sinus macrophages line the floor of the sinus and catch particles and viruses arriving in the lymph; medullary macrophages clear the lymph before it leaves." },
+    { "cell": "conventional-dendritic-cell", "note": "Arrives in the afferent lymph carrying antigen from the tissues and settles in the T-cell zone, where it presents the antigen to T cells." },
+    { "cell": "naive-b", "note": "Enters from the blood and waits in a B-cell follicle for its antigen." },
+    { "cell": "follicular-dendritic-cell", "note": "Stromal cell of the follicles that holds intact antigen on its surface for B cells to sample." },
+    { "cell": "tfh", "note": "Moves from the T-cell zone to the edge of the follicle and into germinal centres, where it helps B cells." },
+    { "cell": "germinal-centre-b", "note": "Found in germinal centres, which form in follicles during an immune response." },
+    { "cell": "naive-cd4-t", "note": "Enters from the blood through high endothelial venules and scans dendritic cells in the T-cell zone." },
+    { "cell": "cytotoxic-cd8-t", "note": "Enters from the blood through high endothelial venules and scans dendritic cells in the T-cell zone." },
+    { "cell": "plasma-cell", "note": "Many settle in the medullary cords and release antibody into the lymph leaving the node." }
+  ]
 }
