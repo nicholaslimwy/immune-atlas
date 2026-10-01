@@ -1,0 +1,8 @@
+{
+  "id": "th1-helps-cytotoxic-cd8-t",
+  "source": "th1",
+  "target": "cytotoxic-cd8-t",
+  "type": "helps",
+  "via": ["cd40l", "il-2"],
+  "description": "Helper T cells, often Th1 cells, strengthen the CD8 T-cell response. Much of this help is indirect: CD40L \"licenses\" the dendritic cell presenting to both cells, and IL-2 helps the CD8 T cells multiply. Help matters most for good CD8 memory."
+}

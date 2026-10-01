@@ -14,4 +14,12 @@
   <text x="645" y="282" font-size="20" text-anchor="middle" fill="#1F2933" font-family="system-ui, sans-serif" pointer-events="none">Monocyte</text>
   <rect id="platelet" x="355" y="375" width="90" height="50" rx="25" fill="#8A8F98" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
   <text x="400" y="450" font-size="18" text-anchor="middle" fill="#1F2933" font-family="system-ui, sans-serif" pointer-events="none">Platelet</text>
+  <rect id="naive-cd4-t" x="205" y="55" width="105" height="80" rx="40" fill="#2F6DB5" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
+  <text x="257" y="101" font-size="16" font-weight="600" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, sans-serif" pointer-events="none">Naive CD4 T</text>
+  <rect id="cytotoxic-cd8-t" x="470" y="20" width="135" height="80" rx="40" fill="#2F6DB5" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
+  <text x="537" y="66" font-size="16" font-weight="600" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, sans-serif" pointer-events="none">Cytotoxic CD8 T</text>
+  <rect id="nk-cell" x="15" y="325" width="115" height="90" rx="40" fill="#8E5BB5" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
+  <text x="72" y="376" font-size="16" font-weight="600" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, sans-serif" pointer-events="none">NK cell</text>
+  <rect id="naive-b" x="480" y="385" width="100" height="80" rx="40" fill="#3E9B63" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
+  <text x="530" y="431" font-size="16" font-weight="600" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, sans-serif" pointer-events="none">Naive B</text>
 </svg>

@@ -1,0 +1,8 @@
+{
+  "id": "nk-cell-helps-naive-cd4-t",
+  "source": "nk-cell",
+  "target": "naive-cd4-t",
+  "type": "helps",
+  "via": ["ifn-gamma"],
+  "description": "NK cells drawn into a lymph node during inflammation can supply the IFN-γ that steers newly activated CD4 T cells towards Th1. Shown in mice; how much this matters in humans is not known."
+}

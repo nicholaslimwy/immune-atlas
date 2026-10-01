@@ -1,0 +1,8 @@
+{
+  "id": "naive-cd4-t-differentiates-into-tfh",
+  "source": "naive-cd4-t",
+  "target": "tfh",
+  "type": "differentiates-into",
+  "via": ["il-6", "il-21"],
+  "description": "Activated naive CD4 T cells that receive IL-6 and IL-21, and keep contact with B cells, become Tfh cells and move to the B-cell follicles. In humans IL-12 from dendritic cells is also a strong driver of this step, more so than in mice."
+}

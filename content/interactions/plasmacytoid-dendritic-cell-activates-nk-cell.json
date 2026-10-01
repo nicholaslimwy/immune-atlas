@@ -1,0 +1,8 @@
+{
+  "id": "plasmacytoid-dendritic-cell-activates-nk-cell",
+  "source": "plasmacytoid-dendritic-cell",
+  "target": "nk-cell",
+  "type": "activates",
+  "via": ["type-i-interferon"],
+  "description": "Plasmacytoid dendritic cells make large amounts of type I interferon within hours of sensing a virus, which sharpens NK-cell killing and makes NK cells multiply."
+}

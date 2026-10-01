@@ -1,0 +1,8 @@
+{
+  "id": "cytotoxic-cd8-t-activates-macrophage",
+  "source": "cytotoxic-cd8-t",
+  "target": "macrophage",
+  "type": "activates",
+  "via": ["ifn-gamma"],
+  "description": "IFN-γ released by cytotoxic CD8 T cells in infected tissue switches nearby macrophages into a stronger killing state."
+}

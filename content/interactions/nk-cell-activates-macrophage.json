@@ -1,0 +1,8 @@
+{
+  "id": "nk-cell-activates-macrophage",
+  "source": "nk-cell",
+  "target": "macrophage",
+  "type": "activates",
+  "via": ["ifn-gamma"],
+  "description": "IFN-γ from NK cells switches macrophages into a stronger microbe-killing state early in an infection, before Th1 cells can supply it."
+}

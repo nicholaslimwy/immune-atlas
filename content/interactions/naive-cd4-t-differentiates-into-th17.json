@@ -1,0 +1,8 @@
+{
+  "id": "naive-cd4-t-differentiates-into-th17",
+  "source": "naive-cd4-t",
+  "target": "th17",
+  "type": "differentiates-into",
+  "via": ["il-6", "tgf-beta"],
+  "description": "In mice, IL-6 together with TGF-β turns activated naive CD4 T cells into Th17 cells, and IL-23 then keeps them going. In human cells IL-1β, IL-6 and IL-23 matter most, and how much TGF-β is needed has been debated."
+}

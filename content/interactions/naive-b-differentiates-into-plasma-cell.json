@@ -1,0 +1,7 @@
+{
+  "id": "naive-b-differentiates-into-plasma-cell",
+  "source": "naive-b",
+  "target": "plasma-cell",
+  "type": "differentiates-into",
+  "description": "Some activated B cells become plasma cells straight away, outside the follicle, making a first wave of mostly IgM antibody within days. Most of these early plasma cells live only a few days."
+}

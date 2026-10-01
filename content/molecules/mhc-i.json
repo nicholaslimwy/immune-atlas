@@ -1,0 +1,6 @@
+{
+  "id": "mhc-i",
+  "name": "MHC class I",
+  "kind": "other",
+  "summary": "A surface molecule on almost every cell with a nucleus that displays short peptides from proteins made inside the cell. Cytotoxic CD8 T cells inspect it for viral or abnormal peptides; NK cells attack cells that have lost it. In humans it is called HLA class I."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "naive-cd4-t-differentiates-into-regulatory-t",
+  "source": "naive-cd4-t",
+  "target": "regulatory-t",
+  "type": "differentiates-into",
+  "via": ["tgf-beta", "il-2"],
+  "description": "With TGF-β and IL-2, some activated naive CD4 T cells become induced regulatory T cells, especially in the gut; most regulatory T cells come straight from the thymus instead. Induced ones are well documented in mice but hard to identify in humans, because activated human T cells briefly switch on FOXP3, the regulatory T-cell master gene, too."
+}

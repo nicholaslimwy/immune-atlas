@@ -1,0 +1,6 @@
+{
+  "id": "ctla-4",
+  "name": "CTLA-4 (CD152)",
+  "kind": "receptor",
+  "summary": "A receptor on regulatory T cells and activated T cells. It binds CD80 and CD86 on dendritic cells more tightly than the activating receptor CD28 does, and can strip them off the dendritic cell, damping down T-cell activation."
+}

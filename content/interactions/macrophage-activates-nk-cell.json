@@ -1,0 +1,8 @@
+{
+  "id": "macrophage-activates-nk-cell",
+  "source": "macrophage",
+  "target": "nk-cell",
+  "type": "activates",
+  "via": ["il-12", "il-18"],
+  "description": "Macrophages that sense microbes release IL-12 and IL-18, which together push NK cells to make IFN-γ. The IFN-γ in turn makes the macrophages better killers, a loop that holds infections in check in the first days, before T cells arrive."
+}

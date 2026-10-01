@@ -1,0 +1,8 @@
+{
+  "id": "naive-b-presents-antigen-to-tfh",
+  "source": "naive-b",
+  "target": "tfh",
+  "type": "presents-antigen-to",
+  "via": ["mhc-ii"],
+  "description": "A B cell that has bound its antigen takes it in and shows its peptides on MHC class II at the edge of the follicle. Activated CD4 T cells that recognise the same antigen bind to it, and this contact helps them become full Tfh cells."
+}

@@ -1,0 +1,7 @@
+{
+  "id": "naive-b-differentiates-into-memory-b",
+  "source": "naive-b",
+  "target": "memory-b",
+  "type": "differentiates-into",
+  "description": "Some activated B cells become memory B cells early, before or without entering a germinal centre; these mostly keep IgM and carry few mutations. Most of the evidence comes from mice."
+}

@@ -1,0 +1,6 @@
+{
+  "id": "cd40l",
+  "name": "CD40L (CD154)",
+  "kind": "other",
+  "summary": "A surface molecule on activated helper T cells. It binds CD40 on B cells, dendritic cells and macrophages: B cells need this signal to form germinal centres and switch antibody class, and it \"licenses\" dendritic cells to activate CD8 T cells."
+}

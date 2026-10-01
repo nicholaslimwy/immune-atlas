@@ -1,0 +1,6 @@
+{
+  "id": "il-18",
+  "name": "IL-18",
+  "kind": "cytokine",
+  "summary": "A cytokine released by macrophages and other cells after they sense infection or damage. Working with IL-12, it pushes NK cells and T cells to make IFN-γ."
+}

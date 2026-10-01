@@ -1,0 +1,7 @@
+{
+  "id": "naive-cd4-t-differentiates-into-memory-t",
+  "source": "naive-cd4-t",
+  "target": "memory-t",
+  "type": "differentiates-into",
+  "description": "After an infection, some of the CD4 T cells that responded survive as long-lived memory T cells that respond faster next time. Whether they pass through an effector stage first or branch off earlier is still debated."
+}

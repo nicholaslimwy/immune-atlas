@@ -1,0 +1,6 @@
+{
+  "id": "ifn-gamma",
+  "name": "IFN-γ (interferon gamma)",
+  "kind": "cytokine",
+  "summary": "A cytokine made by NK cells, Th1 cells and cytotoxic CD8 T cells. It switches macrophages into a stronger killing state, makes cells display more MHC molecules, and steers newly activated helper T cells towards Th1."
+}

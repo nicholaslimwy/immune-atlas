@@ -1,0 +1,7 @@
+{
+  "id": "cytotoxic-cd8-t-differentiates-into-memory-t",
+  "source": "cytotoxic-cd8-t",
+  "target": "memory-t",
+  "type": "differentiates-into",
+  "description": "After the infection clears, most killer CD8 T cells die, but around 5-10% survive as memory T cells. Whether memory cells come from killer cells or branch off earlier is still debated."
+}

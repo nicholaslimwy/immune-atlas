@@ -10,13 +10,21 @@
     { "region": "eosinophil", "target": "eosinophil" },
     { "region": "basophil", "target": "basophil" },
     { "region": "monocyte", "target": "monocyte" },
-    { "region": "platelet", "target": "platelet" }
+    { "region": "platelet", "target": "platelet" },
+    { "region": "nk-cell", "target": "nk-cell" },
+    { "region": "naive-cd4-t", "target": "naive-cd4-t" },
+    { "region": "cytotoxic-cd8-t", "target": "cytotoxic-cd8-t" },
+    { "region": "naive-b", "target": "naive-b" }
   ],
   "residents": [
     { "cell": "neutrophil" },
     { "cell": "eosinophil" },
     { "cell": "basophil" },
     { "cell": "monocyte" },
-    { "cell": "platelet" }
+    { "cell": "platelet" },
+    { "cell": "nk-cell" },
+    { "cell": "naive-cd4-t" },
+    { "cell": "cytotoxic-cd8-t" },
+    { "cell": "naive-b" }
   ]
 }
