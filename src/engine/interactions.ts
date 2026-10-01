@@ -1,5 +1,5 @@
 import type { Interaction } from '../types/interaction.ts'
-import { getCell, getInteraction, getInteractionsOf, getLocation, getMolecule } from './content.ts'
+import { getCell, getInteraction, getInteractions, getInteractionsOf, getLocation, getMolecule } from './content.ts'
 
 type Type = Interaction['type']
 
@@ -81,4 +81,30 @@ export function interactionLinksOf(cellId: string): InteractionLink[] {
       }
     })
     .sort((a, b) => a.other.name.localeCompare(b.other.name) || a.verb.localeCompare(b.verb))
+}
+
+/** One interaction that a molecule carries, told from the source's side, for the glossary entry. */
+export interface MoleculeUse {
+  id: string
+  source: { id: string; name: string }
+  /** Lower case, to sit mid-sentence: "recruits". */
+  verb: string
+  target: { id: string; name: string }
+  description: string
+  where: string[]
+}
+
+/** Every interaction whose `via` lists `moleculeId`, sorted by the source's name. */
+export function usesOfMolecule(moleculeId: string): MoleculeUse[] {
+  return getInteractions()
+    .filter((ix) => ix.via?.includes(moleculeId))
+    .map((ix) => ({
+      id: ix.id,
+      source: { id: ix.source, name: nameOf(ix.source) },
+      verb: VERBS[ix.type].active.toLowerCase(),
+      target: { id: ix.target, name: nameOf(ix.target) },
+      description: ix.description,
+      where: (ix.where ?? []).map((l) => getLocation(l)?.name ?? l),
+    }))
+    .sort((a, b) => a.source.name.localeCompare(b.source.name) || a.target.name.localeCompare(b.target.name))
 }

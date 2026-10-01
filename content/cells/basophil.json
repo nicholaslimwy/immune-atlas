@@ -1,6 +1,10 @@
 {
   "id": "basophil",
   "name": "Basophil",
+  "aliases": [
+    "basophil granulocyte"
+  ],
+  "home": "peripheral-blood",
   "cellOntologyId": "CL:0000767",
   "arm": "innate",
   "lineage": "myeloid",

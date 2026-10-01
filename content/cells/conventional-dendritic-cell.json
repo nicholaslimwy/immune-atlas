@@ -1,6 +1,11 @@
 {
   "id": "conventional-dendritic-cell",
   "name": "Conventional dendritic cell",
+  "aliases": [
+    "cDC",
+    "classical dendritic cell",
+    "myeloid dendritic cell"
+  ],
   "cellOntologyId": "CL:0000990",
   "arm": "innate",
   "lineage": "myeloid",

@@ -1,6 +1,10 @@
 {
   "id": "platelet",
   "name": "Platelet",
+  "aliases": [
+    "thrombocyte"
+  ],
+  "home": "peripheral-blood",
   "cellOntologyId": "CL:0000233",
   "arm": "stromal",
   "lineage": "myeloid",

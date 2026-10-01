@@ -1,4 +1,4 @@
-import { getCell, getChildren, getLocation, getRoot } from './content.ts'
+import { getCell, getCellHome, getChildren, getLocation, getRoot } from './content.ts'
 import type { Cell } from '../types/cell.ts'
 import type { Location } from '../types/location.ts'
 
@@ -50,4 +50,17 @@ export function pathFor(loc: Location): string {
 /** The URL of a cell's panel open over `loc`'s scene. */
 export function cellPathFor(loc: Location, cellId: string): string {
   return `${pathFor(loc)}/${cellId}`
+}
+
+/** The URL of a molecule's glossary entry. */
+export function glossaryPathFor(moleculeId: string): string {
+  return `/glossary/${moleculeId}`
+}
+
+/** Where a link to a cell or place goes: a cell's panel over `inScene` (or its home), a place's scene. */
+export function entityPath(id: string, inScene?: Location): string | undefined {
+  const cell = getCell(id)
+  if (cell) return cellPathFor(inScene ?? getCellHome(cell), id)
+  const loc = getLocation(id)
+  return loc && loc.status !== 'stub' ? pathFor(loc) : undefined
 }

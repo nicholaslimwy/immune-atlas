@@ -1,6 +1,11 @@
 {
   "id": "naive-cd4-t",
   "name": "Naive CD4 T cell",
+  "aliases": [
+    "naive helper T cell",
+    "CD4 T cell",
+    "Th0"
+  ],
   "cellOntologyId": "CL:0000895",
   "arm": "adaptive",
   "lineage": "lymphoid",

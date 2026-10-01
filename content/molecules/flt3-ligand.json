@@ -1,6 +1,10 @@
 {
   "id": "flt3-ligand",
   "name": "FLT3 ligand (FLT3L)",
+  "aliases": [
+    "FL",
+    "FLT3 ligand"
+  ],
   "kind": "cytokine",
   "summary": "A growth factor that drives the development of dendritic cells from bone marrow progenitors. Mice lacking it have few dendritic cells and NK cells."
 }

@@ -1,6 +1,10 @@
 {
   "id": "macrophage",
   "name": "Macrophage",
+  "aliases": [
+    "histiocyte"
+  ],
+  "home": "skin",
   "cellOntologyId": "CL:0000235",
   "arm": "innate",
   "lineage": "myeloid",

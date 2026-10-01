@@ -1,6 +1,10 @@
 {
   "id": "memory-b",
   "name": "Memory B cell",
+  "aliases": [
+    "B memory cell",
+    "Bmem"
+  ],
   "cellOntologyId": "CL:0000787",
   "arm": "adaptive",
   "lineage": "lymphoid",

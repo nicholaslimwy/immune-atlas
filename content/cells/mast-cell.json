@@ -1,6 +1,9 @@
 {
   "id": "mast-cell",
   "name": "Mast cell",
+  "aliases": [
+    "mastocyte"
+  ],
   "cellOntologyId": "CL:0000097",
   "arm": "innate",
   "lineage": "myeloid",

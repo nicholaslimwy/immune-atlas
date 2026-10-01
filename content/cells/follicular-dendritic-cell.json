@@ -1,6 +1,9 @@
 {
   "id": "follicular-dendritic-cell",
   "name": "Follicular dendritic cell",
+  "aliases": [
+    "FDC"
+  ],
   "cellOntologyId": "CL:0000442",
   "arm": "stromal",
   "lineage": "stromal",

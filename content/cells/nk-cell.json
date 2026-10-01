@@ -1,6 +1,12 @@
 {
   "id": "nk-cell",
   "name": "NK cell (natural killer cell)",
+  "aliases": [
+    "NK",
+    "natural killer cell",
+    "large granular lymphocyte"
+  ],
+  "home": "peripheral-blood",
   "cellOntologyId": "CL:0000623",
   "arm": "innate",
   "lineage": "lymphoid",

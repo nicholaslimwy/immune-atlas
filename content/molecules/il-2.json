@@ -1,6 +1,9 @@
 {
   "id": "il-2",
   "name": "IL-2",
+  "aliases": [
+    "Interleukin-2"
+  ],
   "kind": "cytokine",
   "summary": "A cytokine made mainly by activated T cells. It drives activated T cells to multiply, and regulatory T cells need it to survive."
 }

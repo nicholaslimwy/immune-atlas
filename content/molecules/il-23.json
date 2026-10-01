@@ -1,6 +1,9 @@
 {
   "id": "il-23",
   "name": "IL-23",
+  "aliases": [
+    "Interleukin-23"
+  ],
   "kind": "cytokine",
   "summary": "A cytokine of the IL-12 family made by dendritic cells and macrophages after they sense microbes. It keeps Th17 cells and group 3 innate lymphoid cells going and makes them release IL-17 and IL-22."
 }

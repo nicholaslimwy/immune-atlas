@@ -1,6 +1,13 @@
 {
   "id": "innate-lymphoid-cell",
   "name": "Innate lymphoid cells (ILC1, ILC2 and ILC3)",
+  "aliases": [
+    "ILC",
+    "ILC1",
+    "ILC2",
+    "ILC3",
+    "innate lymphoid cell"
+  ],
   "cellOntologyId": "CL:0001065",
   "arm": "innate",
   "lineage": "lymphoid",

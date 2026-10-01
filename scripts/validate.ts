@@ -197,6 +197,51 @@ for (const { file, data: cell } of cellFiles.valid.values()) {
   if (cell.status === 'reviewed' && !cell.lastReviewed) {
     error(file, `lastReviewed: required once status is "reviewed"`)
   }
+
+  // Search opens a cell's panel over its home scene: the explicit `home`, else the first place that
+  // lists it as a resident (src/engine/content.ts, getCellHome). Either way it must be a real, built place.
+  const residentIn = [...locations.values()].filter((l) => l.data.residents.some((r) => r.cell === cell.id))
+  if (cell.home !== undefined) {
+    const home = locations.get(cell.home)?.data
+    if (!home) {
+      if (!isLocation(cell.home)) error(file, `home: no location "${cell.home}"`)
+    } else if (home.status === 'stub') {
+      error(file, `home: "${home.id}" is a stub and has no scene to open the panel over`)
+    } else if (!residentIn.some((l) => l.data.id === home.id)) {
+      error(file, `home: "${home.id}" does not list ${cell.id} as a resident`)
+    }
+  } else if (!residentIn.some((l) => l.data.status !== 'stub')) {
+    warn(file, `home: ${cell.id} is a resident nowhere, so search opens it over the whole body`)
+  }
+}
+
+// Search names (name, aliases, place and tour names): an alias that repeats its own cell or molecule's
+// name, or another entry's name or alias, adds nothing or makes a search ambiguous. Compared ignoring
+// case, spaces and punctuation, the way search does.
+const squash = (s: string) => s.normalize('NFKD').replace(/[^\p{L}\p{N}]/gu, '').toLowerCase()
+const searchNames = new Map<string, { file: string; label: string }[]>()
+const addSearchName = (text: string, file: string, label: string) => {
+  const key = squash(text)
+  searchNames.set(key, [...(searchNames.get(key) ?? []), { file, label }])
+}
+for (const { file, data: item } of [...cellFiles.valid.values(), ...moleculeFiles.valid.values()]) {
+  addSearchName(item.name, file, item.id)
+  for (const alias of item.aliases ?? []) addSearchName(alias, file, item.id)
+}
+for (const { file, data: loc } of locations.values()) if (loc.status !== 'stub') addSearchName(loc.name, file, loc.id)
+for (const { file, data: tour } of tourFiles.valid.values()) addSearchName(tour.title, file, tour.id)
+for (const [key, owners] of searchNames) {
+  if (owners.length < 2) continue
+  const ids = [...new Set(owners.map((o) => o.label))]
+  for (const file of new Set(owners.map((o) => o.file))) {
+    const others = ids.filter((i) => !owners.some((o) => o.file === file && o.label === i))
+    warn(
+      file,
+      others.length
+        ? `aliases: "${key}" is also a name or alias of ${others.join(', ')}; a search for it is ambiguous`
+        : `aliases: "${key}" repeats this entry's own name or another of its aliases`,
+    )
+  }
 }
 
 // Interactions: every end, molecule and place must exist. Movement points at a location.

@@ -1,6 +1,10 @@
 {
   "id": "tfh",
   "name": "Tfh cell (T follicular helper cell)",
+  "aliases": [
+    "follicular helper T cell",
+    "T follicular helper"
+  ],
   "cellOntologyId": "CL:0002038",
   "arm": "adaptive",
   "lineage": "lymphoid",

@@ -8,6 +8,10 @@ export const CELL_STATUSES = ['stub', 'draft', 'reviewed'] as const
 export interface Cell {
   id: string
   name: string
+  /** Other names a visitor might search for: "PMN" for neutrophil. Search only; never shown as the name. */
+  aliases?: string[]
+  /** The place a search result opens this cell's panel in. Defaults to the first place it is a resident of. */
+  home?: string
   /** Standard Cell Ontology id, e.g. "CL:0000775". */
   cellOntologyId?: string
   arm: (typeof CELL_ARMS)[number]

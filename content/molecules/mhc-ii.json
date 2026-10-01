@@ -1,6 +1,10 @@
 {
   "id": "mhc-ii",
   "name": "MHC class II",
+  "aliases": [
+    "HLA class II",
+    "MHC-II"
+  ],
   "kind": "other",
   "summary": "A surface molecule on antigen-presenting cells (dendritic cells, macrophages and B cells) that displays peptides from material the cell has taken in. CD4 T cells recognise peptides held on it. In humans it is called HLA class II; activated human T cells carry it too, but mouse T cells do not."
 }

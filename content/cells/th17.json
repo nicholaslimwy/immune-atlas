@@ -1,6 +1,10 @@
 {
   "id": "th17",
   "name": "Th17 cell",
+  "aliases": [
+    "T helper 17",
+    "type 17 helper T cell"
+  ],
   "cellOntologyId": "CL:0000899",
   "arm": "adaptive",
   "lineage": "lymphoid",

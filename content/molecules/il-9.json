@@ -1,6 +1,9 @@
 {
   "id": "il-9",
   "name": "IL-9",
+  "aliases": [
+    "Interleukin-9"
+  ],
   "kind": "cytokine",
   "summary": "A cytokine made mainly by Th2 cells (and the Th9 subset). It helps mast cells multiply and mucus-making cells expand in the lungs and gut, shown mainly in mice."
 }

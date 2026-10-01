@@ -1,6 +1,9 @@
 {
   "id": "il-5",
   "name": "IL-5",
+  "aliases": [
+    "Interleukin-5"
+  ],
   "kind": "cytokine",
   "summary": "A cytokine made mainly by Th2 cells and group 2 innate lymphoid cells. It is the main signal for making eosinophils, releasing them from the bone marrow and keeping them alive. Antibodies that block it are used to treat severe eosinophilic asthma."
 }

@@ -1,6 +1,10 @@
 {
   "id": "th2",
   "name": "Th2 cell",
+  "aliases": [
+    "T helper 2",
+    "type 2 helper T cell"
+  ],
   "cellOntologyId": "CL:0000546",
   "arm": "adaptive",
   "lineage": "lymphoid",

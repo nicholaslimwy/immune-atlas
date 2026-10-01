@@ -1,6 +1,7 @@
 {
   "id": "monocyte",
   "name": "Monocyte",
+  "home": "peripheral-blood",
   "cellOntologyId": "CL:0000576",
   "arm": "innate",
   "lineage": "myeloid",

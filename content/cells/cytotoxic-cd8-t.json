@@ -1,6 +1,13 @@
 {
   "id": "cytotoxic-cd8-t",
   "name": "Cytotoxic CD8 T cell",
+  "aliases": [
+    "CTL",
+    "cytotoxic T lymphocyte",
+    "killer T cell",
+    "CD8 T cell",
+    "Tc cell"
+  ],
   "cellOntologyId": "CL:0000794",
   "arm": "adaptive",
   "lineage": "lymphoid",

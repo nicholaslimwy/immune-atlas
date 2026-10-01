@@ -1,6 +1,11 @@
 {
   "id": "naive-b",
   "name": "Naive B cell",
+  "aliases": [
+    "B lymphocyte",
+    "naive B lymphocyte"
+  ],
+  "home": "peripheral-blood",
   "cellOntologyId": "CL:0000788",
   "arm": "adaptive",
   "lineage": "lymphoid",

@@ -1,6 +1,9 @@
 {
   "id": "langerhans-cell",
   "name": "Langerhans cell",
+  "aliases": [
+    "epidermal dendritic cell"
+  ],
   "cellOntologyId": "CL:0000453",
   "arm": "innate",
   "lineage": "myeloid",

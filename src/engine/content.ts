@@ -44,6 +44,10 @@ export function getCells(): Cell[] {
   return [...cells.values()]
 }
 
+export function getInteractions(): Interaction[] {
+  return [...interactions.values()]
+}
+
 export function getInteraction(id: string): Interaction | undefined {
   return interactions.get(id)
 }
@@ -63,4 +67,23 @@ export function getTour(id: string): Tour | undefined {
 
 export function getTours(): Tour[] {
   return [...tours.values()]
+}
+
+export function getLocations(): Location[] {
+  return [...locations.values()]
+}
+
+export function getMolecules(): Molecule[] {
+  return [...molecules.values()]
+}
+
+/**
+ * The place a search result opens `cell`'s panel in: its `home` if it has one, otherwise the first
+ * built place (by id) that lists it as a resident, otherwise the whole body.
+ */
+export function getCellHome(cell: Cell): Location {
+  const home = cell.home ? locations.get(cell.home) : undefined
+  if (home) return home
+  const sorted = [...locations.values()].sort((a, b) => a.id.localeCompare(b.id))
+  return sorted.find((l) => l.status !== 'stub' && l.residents.some((r) => r.cell === cell.id)) ?? getRoot()!
 }

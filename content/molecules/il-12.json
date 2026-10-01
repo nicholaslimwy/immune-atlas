@@ -1,6 +1,9 @@
 {
   "id": "il-12",
   "name": "IL-12",
+  "aliases": [
+    "Interleukin-12"
+  ],
   "kind": "cytokine",
   "summary": "A cytokine made by dendritic cells and macrophages after they sense microbes. It activates NK cells and steers newly activated CD4 T cells to become Th1 cells."
 }

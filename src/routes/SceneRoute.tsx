@@ -1,5 +1,5 @@
 import { useEffect, useRef, type PointerEvent } from 'react'
-import { Link, Navigate, useLocation, useNavigate } from 'react-router'
+import { Link, Navigate, useLocation, useNavigate, useNavigationType } from 'react-router'
 import Breadcrumbs from '../components/Breadcrumbs.tsx'
 import CellPanel from '../components/CellPanel.tsx'
 import TourPanel from '../components/TourPanel.tsx'
@@ -46,6 +46,23 @@ export default function SceneRoute() {
     shownView.current = view
     if (!inTour) (panelHeadingRef.current ?? headingRef.current)?.focus()
   }, [view, inTour])
+
+  // Read once, at mount: whether this view was reached by a click from another page.
+  const arrivedByClick = useRef(useNavigationType() === 'PUSH')
+
+  // Entering a tour from outside it (the entry link, a search result) removes the control that was used, so
+  // focus goes to the tour's title. A direct load of a step URL does not steal focus.
+  const wasInTour = useRef(inTour)
+  useEffect(() => {
+    if (inTour && !wasInTour.current) headingRef.current?.focus()
+    wasInTour.current = inTour
+  }, [inTour])
+
+  // Arriving from another page by a click (a search result chosen on a glossary entry) mounts this view
+  // fresh, with the old page's focus gone: land on the title. A direct page load (not PUSH) does not.
+  useEffect(() => {
+    if (arrivedByClick.current) (panelHeadingRef.current ?? headingRef.current)?.focus()
+  }, [])
 
   // Steps move with the arrow keys too (not while typing, and not with a modifier held). One step
   // past the last is the end screen.

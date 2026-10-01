@@ -105,6 +105,8 @@ export const locationShape: Shape<Location> = {
 export const cellShape: Shape<Cell> = {
   id: req(id),
   name: req(text),
+  aliases: opt(arrayOf(text)),
+  home: opt(id),
   cellOntologyId: opt<string>((v, path, errors) => {
     if (typeof v !== 'string' || !/^CL:\d{7}$/.test(v)) {
       errors.push(`${path}: expected a Cell Ontology id like CL:0000775, got ${JSON.stringify(v)}`)
@@ -136,6 +138,7 @@ export const interactionShape: Shape<Interaction> = {
 export const moleculeShape: Shape<Molecule> = {
   id: req(id),
   name: req(text),
+  aliases: opt(arrayOf(text)),
   kind: req(oneOf(MOLECULE_KINDS)),
   summary: req(text),
 }

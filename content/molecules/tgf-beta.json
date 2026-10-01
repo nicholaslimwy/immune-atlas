@@ -1,6 +1,10 @@
 {
   "id": "tgf-beta",
   "name": "TGF-β (transforming growth factor beta)",
+  "aliases": [
+    "TGFβ",
+    "TGF-beta"
+  ],
   "kind": "cytokine",
   "summary": "A cytokine made in an inactive form and switched on locally. It damps down immune responses, helps make regulatory T cells and, with IL-6, Th17 cells. Its role in making Th17 cells is clearer in mice than in humans."
 }

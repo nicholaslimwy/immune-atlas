@@ -1,6 +1,11 @@
 {
   "id": "plasma-cell",
   "name": "Plasma cell",
+  "aliases": [
+    "antibody-secreting cell",
+    "ASC",
+    "plasmocyte"
+  ],
   "cellOntologyId": "CL:0000786",
   "arm": "adaptive",
   "lineage": "lymphoid",

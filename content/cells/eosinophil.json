@@ -1,6 +1,10 @@
 {
   "id": "eosinophil",
   "name": "Eosinophil",
+  "aliases": [
+    "eosinophil granulocyte"
+  ],
+  "home": "peripheral-blood",
   "cellOntologyId": "CL:0000771",
   "arm": "innate",
   "lineage": "myeloid",

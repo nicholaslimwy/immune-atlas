@@ -1,6 +1,9 @@
 {
   "id": "il-6",
   "name": "IL-6",
+  "aliases": [
+    "Interleukin-6"
+  ],
   "kind": "cytokine",
   "summary": "A cytokine made by macrophages, dendritic cells and many other cells during inflammation. It helps steer CD4 T cells towards Th17 and Tfh, raises fever and tells the liver to make acute-phase proteins."
 }

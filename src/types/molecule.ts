@@ -4,6 +4,8 @@ export const MOLECULE_KINDS = ['cytokine', 'chemokine', 'receptor', 'antibody', 
 export interface Molecule {
   id: string
   name: string
+  /** Other names a visitor might search for: "Interleukin-12" for IL-12. Search only. */
+  aliases?: string[]
   kind: (typeof MOLECULE_KINDS)[number]
   summary: string
 }

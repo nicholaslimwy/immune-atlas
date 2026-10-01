@@ -1,6 +1,11 @@
 {
   "id": "plasmacytoid-dendritic-cell",
   "name": "Plasmacytoid dendritic cell",
+  "aliases": [
+    "pDC",
+    "plasmacytoid DC",
+    "interferon-producing cell"
+  ],
   "cellOntologyId": "CL:0000784",
   "arm": "innate",
   "lineage": "myeloid",

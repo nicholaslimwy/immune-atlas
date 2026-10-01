@@ -1,6 +1,12 @@
 {
   "id": "memory-t",
   "name": "Memory T cell",
+  "aliases": [
+    "T memory cell",
+    "Tmem",
+    "resident memory T cell"
+  ],
+  "home": "skin",
   "cellOntologyId": "CL:0000813",
   "arm": "adaptive",
   "lineage": "lymphoid",

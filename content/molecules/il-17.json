@@ -1,6 +1,10 @@
 {
   "id": "il-17",
   "name": "IL-17",
+  "aliases": [
+    "Interleukin-17",
+    "IL-17A"
+  ],
   "kind": "cytokine",
   "summary": "A family of cytokines, mainly IL-17A, made by Th17 cells and some innate lymphoid cells. It tells epithelial and stromal cells to make chemokines and G-CSF that bring in neutrophils."
 }

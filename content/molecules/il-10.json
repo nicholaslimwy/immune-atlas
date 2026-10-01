@@ -1,6 +1,9 @@
 {
   "id": "il-10",
   "name": "IL-10",
+  "aliases": [
+    "Interleukin-10"
+  ],
   "kind": "cytokine",
   "summary": "A cytokine that damps down inflammation. It is made by regulatory T cells and by many other immune cells, and it reduces the activity of macrophages and dendritic cells. Without it, mice develop severe gut inflammation."
 }

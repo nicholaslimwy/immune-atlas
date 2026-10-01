@@ -1,6 +1,10 @@
 {
   "id": "ccl19-ccl21",
   "name": "CCL19 and CCL21",
+  "aliases": [
+    "CCL19",
+    "CCL21"
+  ],
   "kind": "chemokine",
   "summary": "Two chemokines that bind the receptor CCR7. CCL21 lines lymphatic vessels and the T-cell zone of lymph nodes; CCL19 is made by stromal cells and dendritic cells in the node. They guide mature dendritic cells into lymph vessels and bring naive T cells and dendritic cells together."
 }

@@ -1,6 +1,12 @@
 {
   "id": "germinal-centre-b",
   "name": "Germinal centre B cell",
+  "aliases": [
+    "GC B cell",
+    "centroblast",
+    "centrocyte",
+    "germinal center B cell"
+  ],
   "cellOntologyId": "CL:0000844",
   "arm": "adaptive",
   "lineage": "lymphoid",

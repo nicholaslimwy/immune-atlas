@@ -1,6 +1,10 @@
 {
   "id": "thymic-epithelial-cell",
   "name": "Thymic epithelial cell",
+  "aliases": [
+    "TEC",
+    "thymic epithelium"
+  ],
   "cellOntologyId": "CL:0002293",
   "arm": "stromal",
   "lineage": "stromal",

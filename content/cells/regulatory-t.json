@@ -1,6 +1,10 @@
 {
   "id": "regulatory-t",
   "name": "Regulatory T cell",
+  "aliases": [
+    "Treg",
+    "suppressor T cell"
+  ],
   "cellOntologyId": "CL:0000792",
   "arm": "adaptive",
   "lineage": "lymphoid",

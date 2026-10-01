@@ -1,6 +1,11 @@
 {
   "id": "haematopoietic-stem-cell",
   "name": "Haematopoietic stem cell",
+  "aliases": [
+    "HSC",
+    "hematopoietic stem cell",
+    "blood stem cell"
+  ],
   "cellOntologyId": "CL:0000037",
   "arm": "stromal",
   "lineage": "other",

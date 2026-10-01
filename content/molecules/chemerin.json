@@ -1,6 +1,9 @@
 {
   "id": "chemerin",
   "name": "Chemerin",
+  "aliases": [
+    "RARRES2"
+  ],
   "kind": "other",
   "summary": "A chemoattractant protein (not a true chemokine) that binds the receptor ChemR23 on plasmacytoid dendritic cells, macrophages and some other dendritic cells. It is found on the inner surface of high endothelial venules in lymph nodes and on inflamed skin vessels, where it helps these cells leave the blood."
 }

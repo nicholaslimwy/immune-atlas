@@ -1,6 +1,12 @@
 {
   "id": "neutrophil",
   "name": "Neutrophil",
+  "aliases": [
+    "PMN",
+    "polymorphonuclear leukocyte",
+    "neutrophil granulocyte"
+  ],
+  "home": "peripheral-blood",
   "cellOntologyId": "CL:0000775",
   "arm": "innate",
   "lineage": "myeloid",

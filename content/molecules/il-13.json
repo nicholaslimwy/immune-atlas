@@ -1,6 +1,9 @@
 {
   "id": "il-13",
   "name": "IL-13",
+  "aliases": [
+    "Interleukin-13"
+  ],
   "kind": "cytokine",
   "summary": "A cytokine made by Th2 cells, innate lymphoid cells and mast cells. Like IL-4 it acts on epithelial cells, smooth muscle, macrophages and B cells: it drives the mucus and gut contractions that expel worms, repair-type macrophage activation and, in humans, switching to IgE."
 }

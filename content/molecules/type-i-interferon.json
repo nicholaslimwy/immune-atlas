@@ -1,6 +1,12 @@
 {
   "id": "type-i-interferon",
   "name": "Type I interferons (IFN-α and IFN-β)",
+  "aliases": [
+    "IFN-I",
+    "type I IFN",
+    "interferon alpha",
+    "interferon beta"
+  ],
   "kind": "cytokine",
   "summary": "Cytokines made by virus-infected cells and, in very large amounts, by plasmacytoid dendritic cells. They put nearby cells into an antiviral state and quickly activate NK cells."
 }
