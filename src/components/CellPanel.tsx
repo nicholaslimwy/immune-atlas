@@ -2,8 +2,10 @@ import type { Ref } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { motion } from 'framer-motion'
 import { getLocation } from '../engine/content.ts'
+import { mentionAnnotator } from '../engine/glossary.ts'
 import { interactionLinksOf, type InteractionLink } from '../engine/interactions.ts'
 import { cellPathFor, pathFor } from '../engine/paths.ts'
+import MoleculeText, { MoleculeList } from './MoleculeText.tsx'
 import type { Cell } from '../types/cell.ts'
 import type { Location } from '../types/location.ts'
 
@@ -36,6 +38,8 @@ export default function CellPanel({ cell, location, headingRef }: Props) {
   const closeTo = pathFor(location)
   const links = interactionLinksOf(cell.id)
   const stub = cell.status === 'stub'
+  // One annotator for the whole panel, used in reading order: each molecule is marked at its first mention only.
+  const mark = mentionAnnotator()
 
   const hrefFor = (other: InteractionLink['other']) => {
     const loc = other.kind === 'location' ? getLocation(other.id) : undefined
@@ -70,7 +74,9 @@ export default function CellPanel({ cell, location, headingRef }: Props) {
         <p className="soon">Full profile coming soon.</p>
       ) : (
         <>
-          <p>{cell.summary}</p>
+          <p>
+            <MoleculeText parts={mark(cell.summary)} />
+          </p>
 
           {cell.markers.length > 0 && (
             <section>
@@ -88,7 +94,9 @@ export default function CellPanel({ cell, location, headingRef }: Props) {
               <h3>What it does</h3>
               <ul>
                 {cell.functions.map((f) => (
-                  <li key={f}>{f}</li>
+                  <li key={f}>
+                    <MoleculeText parts={mark(f)} />
+                  </li>
                 ))}
               </ul>
             </section>
@@ -97,7 +105,9 @@ export default function CellPanel({ cell, location, headingRef }: Props) {
           {cell.abundance && (
             <section>
               <h3>Abundance</h3>
-              <p>{cell.abundance}</p>
+              <p>
+                <MoleculeText parts={mark(cell.abundance)} />
+              </p>
             </section>
           )}
         </>
@@ -115,10 +125,14 @@ export default function CellPanel({ cell, location, headingRef }: Props) {
                   <span className="ix-verb">{ix.verb}</span> <Link to={hrefFor(ix.other)}>{ix.other.name}</Link>
                   {ix.other.stub && <span className="soon-tag">full profile coming soon</span>}
                 </p>
-                <p>{ix.description}</p>
+                <p>
+                  <MoleculeText parts={mark(ix.description)} />
+                </p>
                 {(ix.via.length > 0 || ix.where.length > 0) && (
                   <p className="ix-meta">
-                    {ix.via.length > 0 && <>Via {ix.via.join(', ')}</>}
+                    {ix.via.length > 0 && <>
+                        Via <MoleculeList items={ix.via.map(mark)} />
+                      </>}
                     {ix.via.length > 0 && ix.where.length > 0 && ' · '}
                     {ix.where.length > 0 && <>In {ix.where.join(', ')}</>}
                   </p>

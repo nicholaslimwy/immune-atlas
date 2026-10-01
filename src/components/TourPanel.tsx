@@ -1,7 +1,9 @@
 import { Link } from 'react-router'
 import { getCell } from '../engine/content.ts'
+import { mentionAnnotator } from '../engine/glossary.ts'
 import { interactionLine } from '../engine/interactions.ts'
 import { tourStepPath } from '../engine/tours.ts'
+import MoleculeText, { MoleculeList } from './MoleculeText.tsx'
 import type { Tour } from '../types/tour.ts'
 
 interface Props {
@@ -26,6 +28,9 @@ export default function TourPanel({ tour, index, onBack, onNext, onExit, onResta
   const first = index === 0
   const last = index === tour.steps.length - 1
   const lines = step?.interactions.flatMap((id) => interactionLine(id) ?? []) ?? []
+  // One annotator for the step, in reading order: the caption first, then the interactions below it.
+  const mark = mentionAnnotator()
+  const caption = step ? mark(step.caption) : undefined
   const highlighted = step?.highlight.map((id) => getCell(id)?.name ?? id) ?? []
 
   return (
@@ -58,7 +63,9 @@ export default function TourPanel({ tour, index, onBack, onNext, onExit, onResta
       {/* Announced when the step changes, so the controls can keep focus. */}
       <div aria-live="polite">
         {step ? (
-          <p className="tour-caption">{step.caption}</p>
+          <p className="tour-caption">
+            <MoleculeText parts={caption!} />
+          </p>
         ) : (
           <div className="tour-end">
             <p className="tour-caption">
@@ -100,10 +107,14 @@ export default function TourPanel({ tour, index, onBack, onNext, onExit, onResta
                 <p className="ix-head">
                   {ix.source} <span className="ix-verb">{ix.verb}</span> {ix.target}
                 </p>
-                <p>{ix.description}</p>
+                <p>
+                  <MoleculeText parts={mark(ix.description)} />
+                </p>
                 {(ix.via.length > 0 || ix.where.length > 0) && (
                   <p className="ix-meta">
-                    {ix.via.length > 0 && <>Via {ix.via.join(', ')}</>}
+                    {ix.via.length > 0 && <>
+                        Via <MoleculeList items={ix.via.map(mark)} />
+                      </>}
                     {ix.via.length > 0 && ix.where.length > 0 && ' · '}
                     {ix.where.length > 0 && <>In {ix.where.join(', ')}</>}
                   </p>

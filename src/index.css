@@ -914,3 +914,136 @@ main[data-tour] {
     grid-template-columns: 4.6rem 1fr;
   }
 }
+
+/* Molecule names in running text: a dotted underline marks a term that opens its summary on hover, focus or tap. */
+.mol-term {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: underline dotted #52606d;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  cursor: help;
+}
+
+.mol-term:hover,
+.mol-term[aria-expanded='true'] {
+  background: #e8f1fb;
+}
+
+.mol-term:focus-visible {
+  outline: 2px solid #1f2933;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Fixed to the viewport (MoleculeText places it) so the panel's scrolling does not clip it. */
+.mol-pop {
+  position: fixed;
+  z-index: 40;
+  display: block;
+  box-sizing: border-box;
+  width: min(18rem, calc(100vw - 24px));
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #52606d;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(31, 41, 51, 0.25);
+  color: #1f2933;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.mol-pop > span,
+.mol-pop > a {
+  display: block;
+}
+
+.mol-pop-name {
+  font-weight: 700;
+}
+
+.mol-pop-kind {
+  margin-left: 0.3rem;
+  color: #52606d;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.mol-pop-text {
+  margin: 0.25rem 0 0.4rem;
+}
+
+.mol-pop-link {
+  font-size: 0.85rem;
+}
+
+/* Glossary pages. */
+main.glossary {
+  max-width: 46rem;
+}
+
+.glossary-jump ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.glossary-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.glossary-list li {
+  padding: 0.75rem 0;
+  border-top: 1px solid #e4e7eb;
+}
+
+.glossary-list h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.glossary-list p {
+  margin: 0.2rem 0 0;
+}
+
+.glossary section {
+  scroll-margin-top: 1rem;
+}
+
+/* Site header: the name and the glossary link sit together on the left. */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.site-link {
+  color: #1f2933;
+  white-space: nowrap;
+}
+
+.site-link[aria-current='page'] {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .site-nav {
+    gap: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
