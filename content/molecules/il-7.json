@@ -1,0 +1,6 @@
+{
+  "id": "il-7",
+  "name": "IL-7",
+  "kind": "cytokine",
+  "summary": "A cytokine made by stromal cells in the bone marrow, thymus and lymph nodes. Developing T cells need it in both mice and humans, developing B cells only in mice. It also keeps naive and memory T cells alive."
+}

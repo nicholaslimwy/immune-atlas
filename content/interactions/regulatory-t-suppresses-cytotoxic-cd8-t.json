@@ -1,0 +1,8 @@
+{
+  "id": "regulatory-t-suppresses-cytotoxic-cd8-t",
+  "source": "regulatory-t",
+  "target": "cytotoxic-cd8-t",
+  "type": "suppresses",
+  "via": ["ctla-4"],
+  "description": "Regulatory T cells hold back CD8 T cells in the same ways they restrain CD4 T cells: CTLA-4 strips CD80 and CD86 off dendritic cells, and they soak up IL-2. This helps stop attacks on the body's own tissues."
+}

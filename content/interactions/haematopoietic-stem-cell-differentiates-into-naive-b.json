@@ -1,0 +1,8 @@
+{
+  "id": "haematopoietic-stem-cell-differentiates-into-naive-b",
+  "source": "haematopoietic-stem-cell",
+  "target": "naive-b",
+  "type": "differentiates-into",
+  "via": ["il-7"],
+  "description": "In the bone marrow, haematopoietic stem cells give rise to B cells through lymphoid progenitors; they leave as immature B cells and finish maturing in the spleen. IL-7 is essential for this in mice, but people lacking the IL-7 receptor still make B cells."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "conventional-dendritic-cell-activates-nk-cell",
+  "source": "conventional-dendritic-cell",
+  "target": "nk-cell",
+  "type": "activates",
+  "via": ["il-15", "il-12"],
+  "description": "Dendritic cells that sense microbes hold IL-15 on their surface for NK cells to touch and release IL-12, which together prime NK cells to kill and make IFN-γ. Much of the evidence comes from mice."
+}

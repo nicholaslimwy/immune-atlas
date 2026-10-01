@@ -1,0 +1,8 @@
+{
+  "id": "monocyte-recruits-neutrophil",
+  "source": "monocyte",
+  "target": "neutrophil",
+  "type": "recruits",
+  "where": ["peripheral-blood"],
+  "description": "Patrolling monocytes that find damaged cells in a blood vessel lining call in neutrophils, which kill those cells; the monocytes then clear away the debris. Shown in mice."
+}

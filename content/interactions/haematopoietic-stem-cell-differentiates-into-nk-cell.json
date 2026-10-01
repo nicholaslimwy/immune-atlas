@@ -1,0 +1,8 @@
+{
+  "id": "haematopoietic-stem-cell-differentiates-into-nk-cell",
+  "source": "haematopoietic-stem-cell",
+  "target": "nk-cell",
+  "type": "differentiates-into",
+  "via": ["il-15"],
+  "description": "In the bone marrow, haematopoietic stem cells give rise to NK cells through lymphoid progenitors. NK cells need IL-15 to develop and survive; mice lacking it have almost none."
+}

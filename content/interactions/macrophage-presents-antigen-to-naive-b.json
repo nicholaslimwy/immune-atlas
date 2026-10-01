@@ -1,0 +1,7 @@
+{
+  "id": "macrophage-presents-antigen-to-naive-b",
+  "source": "macrophage",
+  "target": "naive-b",
+  "type": "presents-antigen-to",
+  "description": "Macrophages lining the lymph node's entry channel (the subcapsular sinus) catch viruses and other particles arriving in the lymph and hand them, intact rather than as peptides, to B cells in the follicle below. Shown mainly in mice."
+}

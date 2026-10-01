@@ -1,0 +1,8 @@
+{
+  "id": "haematopoietic-stem-cell-differentiates-into-cytotoxic-cd8-t",
+  "source": "haematopoietic-stem-cell",
+  "target": "cytotoxic-cd8-t",
+  "type": "differentiates-into",
+  "via": ["il-7"],
+  "description": "Progenitors from haematopoietic stem cells leave the bone marrow for the thymus and become T cells there; those selected to recognise peptides on MHC class I leave as naive CD8 T cells. IL-7 is needed for this in both mice and humans."
+}

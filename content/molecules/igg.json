@@ -1,0 +1,6 @@
+{
+  "id": "igg",
+  "name": "IgG (immunoglobulin G)",
+  "kind": "antibody",
+  "summary": "The most common antibody class in blood, made in large amounts later in a response and after vaccination. It coats microbes so phagocytes can engulf them, switches on complement, crosses the placenta to protect the baby, and lets NK cells kill antibody-coated cells through CD16."
+}

@@ -3,6 +3,6 @@
   "source": "naive-cd4-t",
   "target": "th1",
   "type": "differentiates-into",
-  "via": ["il-12"],
+  "via": ["il-12", "ifn-gamma"],
   "description": "IL-12 from dendritic cells, together with IFN-γ, steers activated naive CD4 T cells to become Th1 cells, which fight microbes that live inside cells."
 }

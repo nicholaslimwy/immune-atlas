@@ -1,0 +1,8 @@
+{
+  "id": "plasma-cell-activates-nk-cell",
+  "source": "plasma-cell",
+  "target": "nk-cell",
+  "type": "activates",
+  "via": ["igg"],
+  "description": "Plasma cells make IgG that coats infected or cancerous cells; NK cells grip the antibody tails with CD16 and kill the coated cell (antibody-dependent cellular cytotoxicity, ADCC)."
+}

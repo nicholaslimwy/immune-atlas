@@ -1,0 +1,7 @@
+{
+  "id": "macrophage-phagocytoses-platelet",
+  "source": "macrophage",
+  "target": "platelet",
+  "type": "phagocytoses",
+  "description": "Macrophages in the spleen and liver engulf ageing platelets and platelets coated with antibody, one of the main ways platelets are cleared from the blood; liver cells take up others."
+}
