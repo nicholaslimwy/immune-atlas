@@ -1,0 +1,8 @@
+{
+  "id": "haematopoietic-stem-cell-migrates-to-peripheral-blood",
+  "source": "haematopoietic-stem-cell",
+  "target": "peripheral-blood",
+  "type": "migrates-to",
+  "via": ["g-csf", "cxcl12"],
+  "description": "A few haematopoietic stem cells leave the marrow for the blood and return to it, shown in mice. G-CSF, which lowers marrow CXCL12, or drugs that block its receptor CXCR4, push many more out; they are collected from the blood for transplants."
+}

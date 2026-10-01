@@ -1,0 +1,9 @@
+{
+  "id": "haematopoietic-stem-cell-differentiates-into-plasmacytoid-dendritic-cell",
+  "source": "haematopoietic-stem-cell",
+  "target": "plasmacytoid-dendritic-cell",
+  "type": "differentiates-into",
+  "via": ["flt3-ligand"],
+  "where": ["bone-marrow"],
+  "description": "In the bone marrow, haematopoietic stem cells give rise to plasmacytoid dendritic cells, which depend on FLT3 ligand. Whether they come from myeloid or lymphoid progenitors is debated, and many may arise from lymphoid ones."
+}

@@ -6,5 +6,6 @@
   "via": [
     "il-3"
   ],
+  "where": ["bone-marrow"],
   "description": "In the bone marrow, haematopoietic stem cells give rise to basophils through a series of myeloid progenitors. IL-3 is the main growth factor for their production and survival, and it primes them to release histamine."
 }

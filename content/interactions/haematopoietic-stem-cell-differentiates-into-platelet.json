@@ -6,5 +6,6 @@
   "via": [
     "thrombopoietin"
   ],
+  "where": ["bone-marrow"],
   "description": "Haematopoietic stem cells give rise to megakaryocytes, giant bone marrow cells that push long extensions into blood vessels and shed platelets from their tips. Thrombopoietin, made mainly by the liver, drives this process."
 }

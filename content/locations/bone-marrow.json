@@ -16,7 +16,7 @@
     { "region": "macrophage", "target": "macrophage" }
   ],
   "residents": [
-    { "cell": "haematopoietic-stem-cell", "note": "Rests in a niche beside a blood vessel, often near the bone surface, where stromal cells keep it quiet. Now and then it divides, to renew itself and to make the progenitors of every blood cell." },
+    { "cell": "haematopoietic-stem-cell", "note": "Rests in a niche beside a blood vessel, often near the bone surface, where stromal cells hold it in place with SCF and CXCL12 and keep it quiet. Now and then it divides, to renew itself and to make the progenitors of every blood cell. Whether the key niches lie around arterioles or sinusoids is debated." },
     { "cell": "neutrophil", "note": "Develops here from dividing precursors, its nucleus going from round to kidney-shaped to band to lobed. The marrow keeps a large reserve of mature neutrophils that is released into the blood within hours of an infection." },
     { "cell": "eosinophil", "note": "Develops here, driven mainly by IL-5, then leaves for the blood and the tissues." },
     { "cell": "basophil", "note": "Develops here, then leaves to circulate in the blood." },

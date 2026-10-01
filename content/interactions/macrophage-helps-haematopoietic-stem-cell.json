@@ -1,0 +1,8 @@
+{
+  "id": "macrophage-helps-haematopoietic-stem-cell",
+  "source": "macrophage",
+  "target": "haematopoietic-stem-cell",
+  "type": "helps",
+  "where": ["bone-marrow"],
+  "description": "In mouse bone marrow, macrophages help keep haematopoietic stem cells in their niches: when they are removed, stem cells leave the marrow for the blood. Evidence in people is limited."
+}

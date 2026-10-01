@@ -1,0 +1,9 @@
+{
+  "id": "haematopoietic-stem-cell-differentiates-into-mast-cell",
+  "source": "haematopoietic-stem-cell",
+  "target": "mast-cell",
+  "type": "differentiates-into",
+  "via": ["scf"],
+  "where": ["bone-marrow"],
+  "description": "Haematopoietic stem cells give rise to mast cell progenitors in the bone marrow. Unlike most blood cells, these leave in the blood before they are mature and finish developing in tissues such as skin and gut, driven by stem cell factor."
+}

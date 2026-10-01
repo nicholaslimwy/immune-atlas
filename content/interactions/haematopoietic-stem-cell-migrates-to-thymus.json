@@ -1,0 +1,7 @@
+{
+  "id": "haematopoietic-stem-cell-migrates-to-thymus",
+  "source": "haematopoietic-stem-cell",
+  "target": "thymus",
+  "type": "migrates-to",
+  "description": "The stem cells themselves stay in the marrow. Their descendants, early T-cell progenitors, travel through the blood to the thymus, where they become T cells."
+}

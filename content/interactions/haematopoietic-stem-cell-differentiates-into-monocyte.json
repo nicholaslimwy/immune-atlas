@@ -6,5 +6,6 @@
   "via": [
     "m-csf"
   ],
+  "where": ["bone-marrow"],
   "description": "In the bone marrow, haematopoietic stem cells give rise to monocytes through a series of myeloid progenitors. M-CSF supports their production and survival; mature monocytes then leave the marrow for the blood using the receptor CCR2."
 }
