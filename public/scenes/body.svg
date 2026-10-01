@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Whole body placeholder scene">
   <rect width="800" height="500" fill="#EEF1F4"/>
   <rect x="300" y="40" width="200" height="420" rx="24" fill="#C9CED6"/>
-  <rect id="vessel" x="100" y="60" width="30" height="100" fill="#C0392B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
+  <rect id="vessel" x="385" y="90" width="30" height="320" fill="#C0392B" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
   <text x="430" y="255" font-size="20" fill="#1F2933" font-family="system-ui, sans-serif" pointer-events="none">Vessel</text>
 </svg>
