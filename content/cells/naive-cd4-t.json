@@ -1,0 +1,34 @@
+{
+  "id": "naive-cd4-t",
+  "name": "Naive CD4 T cell",
+  "cellOntologyId": "CL:0000895",
+  "arm": "adaptive",
+  "lineage": "lymphoid",
+  "markers": ["CD3", "CD4", "CD45RA (human; mice use low CD44 instead to tell naive from memory)", "CCR7", "CD62L", "CD28"],
+  "summary": "A helper T cell that has left the thymus but not yet met its antigen: a peptide held on MHC class II by antigen-presenting cells. It circulates between blood and lymph nodes looking for it. When a dendritic cell presents that peptide, it multiplies and specialises, becoming a Th1, Th2, Th17, Tfh or regulatory T cell.",
+  "functions": [
+    "Patrols lymph nodes: it leaves the blood through high endothelial venules using CCR7 and CD62L, spends hours touching dendritic cells in the T-cell zone and, if it finds nothing, returns to the blood through the lymph.",
+    "Is activated only when three signals arrive together: its T-cell receptor binds the right peptide on MHC class II, CD28 binds CD80 or CD86 on the dendritic cell (co-stimulation), and cytokines set the direction.",
+    "Multiplies rapidly once activated (clonal expansion), driven partly by IL-2 that it makes itself, so the few cells that recognise an antigen become thousands.",
+    "Specialises according to the cytokines around it: IL-12 steers it to Th1, IL-4 to Th2, IL-6 with TGF-β to Th17, IL-6 and IL-21 to Tfh, and TGF-β with IL-2 to regulatory T cells. Much of this was worked out in mice; in humans the Th17 and Tfh signals differ.",
+    "Leaves behind memory T cells after an infection. Whether these pass through an effector stage first, and how fixed each helper fate is once chosen, are still debated.",
+    "Survives for years without meeting its antigen, kept alive by IL-7 and brief contacts with self-peptides. In adult humans the thymus shrinks and naive T cells are kept up mainly by slow division outside it; in mice the thymus stays the main source throughout life."
+  ],
+  "abundance": "CD4 T cells make up roughly 30-60% of lymphocytes in adult human blood (about 0.5-1.5 × 10⁹ per litre). About half are naive in young adults, falling steadily with age. Laboratory mice, kept free of most infections, have few memory T cells, so most of their blood CD4 T cells are naive.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapter 9.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters 9-10.",
+    "von Andrian UH, Mempel TR. Homing and cellular traffic in lymph nodes. Nat Rev Immunol. 2003;3(11):867-878.",
+    "Zhu J, Yamane H, Paul WE. Differentiation of effector CD4 T cell populations. Annu Rev Immunol. 2010;28:445-489.",
+    "Acosta-Rodriguez EV, Napolitani G, Lanzavecchia A, Sallusto F. Interleukins 1beta and 6 but not transforming growth factor-beta are essential for the differentiation of interleukin 17-producing human T helper cells. Nat Immunol. 2007;8(9):942-949.",
+    "Schmitt N, Morita R, Bourdery L, et al. Human dendritic cells induce the differentiation of interleukin-21-producing T follicular helper-like cells through interleukin-12. Immunity. 2009;31(1):158-169.",
+    "Crotty S. T follicular helper cell biology: a decade of discovery and diseases. Immunity. 2019;50(5):1132-1148.",
+    "Josefowicz SZ, Lu LF, Rudensky AY. Regulatory T cells: mechanisms of differentiation and function. Annu Rev Immunol. 2012;30:531-564.",
+    "Qureshi OS, Zheng Y, Nakamura K, et al. Trans-endocytosis of CD80 and CD86: a molecular basis for the cell-extrinsic function of CTLA-4. Science. 2011;332(6029):600-603.",
+    "den Braber I, Mugwagwa T, Vrisekoop N, et al. Maintenance of peripheral naive T cells is sustained by thymus output in mice but not humans. Immunity. 2012;36(2):288-297.",
+    "Beura LK, Hamilton SE, Bi K, et al. Normalizing the environment recapitulates adult human immune traits in laboratory mice. Nature. 2016;532(7600):512-516.",
+    "Martín-Fontecha A, Thomsen LL, Brett S, et al. Induced recruitment of NK cells to lymph nodes provides IFN-gamma for T(H)1 priming. Nat Immunol. 2004;5(12):1260-1265.",
+    "Cell Ontology, CL:0000895 (naive thymus-derived CD4-positive, alpha-beta T cell)."
+  ],
+  "status": "draft"
+}

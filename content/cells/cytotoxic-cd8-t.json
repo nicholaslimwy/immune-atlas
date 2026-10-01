@@ -1,0 +1,33 @@
+{
+  "id": "cytotoxic-cd8-t",
+  "name": "Cytotoxic CD8 T cell",
+  "cellOntologyId": "CL:0000794",
+  "arm": "adaptive",
+  "lineage": "lymphoid",
+  "markers": ["CD3", "CD8 (in mice also on a dendritic cell subset; not in humans)", "Perforin and granzyme B (in its granules, once activated)", "CD45RO (human, once activated)", "CD44 high (mouse, once activated)", "KLRG1 (short-lived killer cells)"],
+  "summary": "A T cell that kills infected and cancerous cells. Its receptor recognises a peptide held on MHC class I, which almost every cell in the body displays, so it can check nearly any cell for a virus hiding inside. After a dendritic cell activates it in a lymph node, it multiplies enormously and travels to the infected tissue to kill.",
+  "functions": [
+    "Starts as a naive CD8 T cell that circulates between blood and lymph nodes using CCR7 and CD62L, like a naive CD4 T cell, waiting for a dendritic cell to show it the right peptide on MHC class I.",
+    "Can be activated against viruses that never infect dendritic cells, because one dendritic cell type (cDC1) puts peptides from engulfed infected cells onto MHC class I (cross-presentation). Help from CD4 T cells, mostly relayed through the dendritic cell, strengthens the response and the memory it leaves.",
+    "Multiplies enormously after activation: in mice, the cells recognising a single viral peptide can increase more than 10,000-fold in about a week.",
+    "Kills by docking onto its target and releasing perforin and granzymes into the narrow gap between them, making the target destroy itself (apoptosis). It can also kill through Fas ligand, then moves on to the next target.",
+    "Releases IFN-γ and TNF, which make nearby cells display more MHC class I and switch macrophages into a stronger killing state.",
+    "Mostly dies once the infection is cleared (around 90-95% of the expanded cells); the survivors become long-lived memory T cells. Exactly when and how memory cells branch off from killer cells is still debated."
+  ],
+  "abundance": "CD8 T cells make up roughly 15-35% of lymphocytes in adult human blood (about 0.2-0.9 × 10⁹ per litre), about half as many as CD4 T cells. In healthy people most are naive or memory cells; active killers are numerous only during an infection, although people carrying cytomegalovirus keep a large standing pool. Laboratory mice have far fewer memory and killer CD8 T cells than adult humans.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters 9 and 11.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapter 11.",
+    "Zhang N, Bevan MJ. CD8+ T cells: foot soldiers of the immune system. Immunity. 2011;35(2):161-168.",
+    "Joffre OP, Segura E, Savina A, Amigorena S. Cross-presentation by dendritic cells. Nat Rev Immunol. 2012;12(8):557-569.",
+    "Bevan MJ. Helping the CD8+ T-cell response. Nat Rev Immunol. 2004;4(8):595-602.",
+    "Murali-Krishna K, Altman JD, Suresh M, et al. Counting antigen-specific CD8 T cells: a reevaluation of bystander activation during viral infection. Immunity. 1998;8(2):177-187.",
+    "Halle S, Halle O, Förster R. Mechanisms and dynamics of T cell-mediated cytotoxicity in vivo. Trends Immunol. 2017;38(6):432-443.",
+    "Kaech SM, Cui W. Transcriptional control of effector and memory CD8+ T cell differentiation. Nat Rev Immunol. 2012;12(11):749-761.",
+    "Sylwester AW, Mitchell BL, Edgar JB, et al. Broadly targeted human cytomegalovirus-specific CD4+ and CD8+ T cells dominate the memory compartments of exposed subjects. J Exp Med. 2005;202(5):673-685.",
+    "Shortman K, Heath WR. The CD8+ dendritic cell subset. Immunol Rev. 2010;234(1):18-31.",
+    "Beura LK, Hamilton SE, Bi K, et al. Normalizing the environment recapitulates adult human immune traits in laboratory mice. Nature. 2016;532(7600):512-516.",
+    "Cell Ontology, CL:0000794 (CD8-positive, alpha-beta cytotoxic T cell)."
+  ],
+  "status": "draft"
+}

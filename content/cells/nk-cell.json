@@ -1,0 +1,32 @@
+{
+  "id": "nk-cell",
+  "name": "NK cell (natural killer cell)",
+  "cellOntologyId": "CL:0000623",
+  "arm": "innate",
+  "lineage": "lymphoid",
+  "markers": ["CD56 (human NK cells only)", "CD16", "NKp46 (CD335)", "NKG2D", "No CD3 (tells it apart from T cells)", "NK1.1 (some mouse strains only)", "CD49b (DX5, mouse)"],
+  "summary": "A large lymphocyte of the innate immune system that kills virus-infected and cancerous cells without needing to have met them before. It checks other cells for signs of stress and for a healthy level of MHC class I, which viruses and tumours often remove. NK cells also release IFN-γ, which helps macrophages and T cells fight infection.",
+  "functions": [
+    "Kills cells that have lost MHC class I from their surface ('missing self'). Healthy cells display MHC class I, which holds NK cells back through inhibitory receptors: KIRs in humans, while mice use an unrelated receptor family, Ly49, for the same job.",
+    "Kills stressed, infected or cancerous cells that display stress molecules recognised by activating receptors such as NKG2D. The balance of activating and inhibitory signals decides whether it strikes.",
+    "Kills by releasing perforin, which punches holes in the target's membrane, and granzymes, which enter through the holes and make the target destroy itself (apoptosis).",
+    "Kills antibody-coated cells: its receptor CD16 grips the tail of IgG antibodies bound to a target (antibody-dependent cellular cytotoxicity, ADCC).",
+    "Is switched on within hours of infection by cytokines from macrophages and dendritic cells (IL-12, IL-15, IL-18 and type I interferons), and in return releases IFN-γ that makes macrophages better killers.",
+    "Belongs to the innate lymphoid cell family, alongside ILC1s in group 1. Where to draw the line between NK cells and ILC1s, and whether NK cells that expand after cytomegalovirus infection (seen in mice and humans) count as true memory, are still debated."
+  ],
+  "abundance": "About 5-15% of lymphocytes in adult human blood (roughly 0.1-0.5 × 10⁹ per litre). About 90% of these are the strongly killing CD56-dim subset; the cytokine-making CD56-bright subset is commoner in lymph nodes. Mouse NK cells do not carry CD56, so mouse subsets are defined differently (by CD27 and CD11b).",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapter 3.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapter 4.",
+    "Vivier E, Tomasello E, Baratin M, Walzer T, Ugolini S. Functions of natural killer cells. Nat Immunol. 2008;9(5):503-510.",
+    "Caligiuri MA. Human natural killer cells. Blood. 2008;112(3):461-469.",
+    "Ljunggren HG, Kärre K. In search of the 'missing self': MHC molecules and NK cell recognition. Immunol Today. 1990;11(7):237-244.",
+    "Vivier E, Artis D, Colonna M, et al. Innate lymphoid cells: 10 years on. Cell. 2018;174(5):1054-1066.",
+    "Sun JC, Beilke JN, Lanier LL. Adaptive immune features of natural killer cells. Nature. 2009;457(7229):557-561.",
+    "Hayakawa Y, Smyth MJ. CD27 dissects mature NK cells into two subsets with distinct responsiveness and migratory capacity. J Immunol. 2006;176(3):1517-1524.",
+    "Martín-Fontecha A, Thomsen LL, Brett S, et al. Induced recruitment of NK cells to lymph nodes provides IFN-gamma for T(H)1 priming. Nat Immunol. 2004;5(12):1260-1265.",
+    "Mestas J, Hughes CCW. Of mice and not men: differences between mouse and human immunology. J Immunol. 2004;172(5):2731-2738.",
+    "Cell Ontology, CL:0000623 (natural killer cell)."
+  ],
+  "status": "draft"
+}

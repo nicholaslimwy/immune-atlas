@@ -1,0 +1,11 @@
+{
+  "id": "conventional-dendritic-cell",
+  "name": "Conventional dendritic cell",
+  "arm": "innate",
+  "lineage": "myeloid",
+  "markers": [],
+  "summary": "Stub: profile not written yet.",
+  "functions": [],
+  "sources": [],
+  "status": "stub"
+}

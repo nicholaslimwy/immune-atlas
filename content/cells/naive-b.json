@@ -1,0 +1,32 @@
+{
+  "id": "naive-b",
+  "name": "Naive B cell",
+  "cellOntologyId": "CL:0000788",
+  "arm": "adaptive",
+  "lineage": "lymphoid",
+  "markers": ["CD19", "CD20", "IgM and IgD (its surface antibody, the B-cell receptor)", "CD21", "CD23", "No CD27 (in humans CD27 marks memory B cells; not in mice)", "B220 (CD45R, mouse)"],
+  "summary": "A B cell that has left the bone marrow but not yet met its antigen. It carries one unique antibody on its surface as its receptor, and circulates between blood, lymph nodes and spleen. If it finds its antigen and gets help from T cells, it can become an antibody-secreting plasma cell or a long-lived memory B cell.",
+  "functions": [
+    "Circulates through blood and lymph, entering lymph nodes through specialised vessels (high endothelial venules) and settling in B-cell follicles, drawn by the chemokine CXCL13.",
+    "Binds whole, unprocessed antigen with its B-cell receptor, unlike a T cell, which only sees fragments held on MHC. Antigen reaches it in the lymph or is held on the surface of macrophages and follicular dendritic cells.",
+    "Takes in the antigen it has bound, cuts it into peptides and shows them on MHC class II to helper T cells at the edge of the follicle, which reply with CD40L and cytokines such as IL-21 and IL-4.",
+    "With T-cell help, either starts a germinal centre, where its antibody gets better at binding (affinity maturation), or becomes a short-lived plasma cell outside the follicle that quickly makes mostly IgM antibody.",
+    "Responds more readily to antigen coated with complement: its receptor CD21 binds the complement fragment and lowers the threshold for activation.",
+    "Can be switched on without T-cell help by antigens with many repeating units, such as bacterial polysaccharides. This is mainly done by marginal zone B cells and, in mice, B-1 cells; whether humans have a true B-1 equivalent is debated."
+  ],
+  "abundance": "B cells make up about 5-15% of lymphocytes in adult human blood (roughly 0.1-0.5 × 10⁹ per litre), and about two-thirds of them are naive. Laboratory mice differ: B cells are often about half of their blood lymphocytes.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters 8 and 10.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters 8 and 12.",
+    "Cyster JG, Allen CDC. B cell responses: cell interaction dynamics and decisions. Cell. 2019;177(3):524-540.",
+    "Pieper K, Grimbacher B, Eibel H. B-cell biology and development. J Allergy Clin Immunol. 2013;131(4):959-971.",
+    "Ansel KM, Ngo VN, Hyman PL, et al. A chemokine-driven positive feedback loop organizes lymphoid follicles. Nature. 2000;406(6793):309-314.",
+    "Dempsey PW, Allison ME, Akkaraju S, Goodnow CC, Fearon DT. C3d of complement as a molecular adjuvant: bridging innate and acquired immunity. Science. 1996;271(5247):348-350.",
+    "Klein U, Rajewsky K, Küppers R. Human immunoglobulin (Ig)M+IgD+ peripheral blood B cells expressing the CD27 cell surface antigen carry somatically mutated variable region genes: CD27 as a general marker for somatically mutated (memory) B cells. J Exp Med. 1998;188(9):1679-1689.",
+    "Griffin DO, Holodick NE, Rothstein TL. Human B1 cells in umbilical cord and adult peripheral blood express the novel phenotype CD20+ CD27+ CD43+ CD70-. J Exp Med. 2011;208(1):67-80.",
+    "Taylor JJ, Pape KA, Jenkins MK. A germinal center-independent pathway generates unswitched memory B cells early in the primary response. J Exp Med. 2012;209(3):597-606.",
+    "Mestas J, Hughes CCW. Of mice and not men: differences between mouse and human immunology. J Immunol. 2004;172(5):2731-2738.",
+    "Cell Ontology, CL:0000788 (naive B cell)."
+  ],
+  "status": "draft"
+}
