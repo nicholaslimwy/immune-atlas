@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Platelet. Cue: a tiny, slightly irregular disc with no nucleus; its granules cluster in the centre. -->
+  <path d="M14 46 C14 31 28 19 47 18 C67 17 86 27 87 45 C88 62 76 79 55 82 C34 85 14 68 14 46 Z" fill="#E3E5E8" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <g fill="#5A5F68">
+    <circle cx="44" cy="42" r="6"/>
+    <circle cx="60" cy="47" r="5"/>
+    <circle cx="48" cy="60" r="5.5"/>
+    <circle cx="35" cy="56" r="4"/>
+    <circle cx="62" cy="63" r="3.6"/>
+    <circle cx="55" cy="33" r="3.4"/>
+  </g>
+</svg>

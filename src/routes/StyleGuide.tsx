@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
-import { ICONS, iconPx } from '../art/icons.ts'
+import { familyVars, GENERIC, ICONS, iconPx, iconRef } from '../art/icons.ts'
 import { BODY_UNITS } from '../art/iconSpecs.ts'
 import { FAMILY_COLOURS, INK, RED_CELL } from '../art/palette.ts'
 import CellIcon from '../components/CellIcon.tsx'
@@ -16,6 +16,10 @@ const RED_CELL_UM = 7.5
 
 const nameOf = (id: string) => getCell(id)?.name ?? id
 const familyOf = (id: string) => FAMILY_COLOURS[getCell(id)?.family ?? 'support']
+const familyRank = (id: string) => CELL_FAMILIES.indexOf(getCell(id)?.family ?? 'support')
+
+/** Drawn icons grouped by family (style guide order), largest first within a family. */
+const ORDERED = [...ICONS].sort((a, b) => familyRank(a.id) - familyRank(b.id) || b.diameterUm - a.diameterUm)
 
 /** A red blood cell disc (paler centre for the biconcave dip), sized like a cell body. */
 function RedCell({ pxPerUm, dashed = false }: { pxPerUm: number; dashed?: boolean }) {
@@ -121,7 +125,20 @@ export default function StyleGuide() {
           <dt>Look-alikes</dt>
           <dd>
             B and T cells look the same under a microscope, so their icons differ by a receptor on the membrane:
-            Y-shaped antibody for every B-cell icon, a blunt two-chain receptor for every T-cell icon.
+            Y-shaped antibody for every B-cell icon, a blunt two-chain receptor for every T-cell icon. The NK cell has
+            neither receptor.
+          </dd>
+          <dt>Granules</dt>
+          <dd>
+            Size and density tell the granulocytes apart: fine and sparse (neutrophil), large and packed around a
+            visible two-lobed nucleus (eosinophil), coarse and dark over the nucleus (basophil, the one icon drawn
+            granules-over-nucleus). The two killers, NK cell and cytotoxic CD8 T, share a small cluster of killing
+            granules.
+          </dd>
+          <dt>Placeholder</dt>
+          <dd>
+            Cells with no icon yet are drawn with the generic icon: plain body, small round nucleus, dashed membrane, in
+            their family colours.
           </dd>
         </dl>
       </section>
@@ -139,7 +156,7 @@ export default function StyleGuide() {
               <span>{RED_CELL_UM} µm</span>
             </figcaption>
           </figure>
-          {ICONS.map((icon) => (
+          {ORDERED.map((icon) => (
             <figure key={icon.id}>
               <CellIcon cell={icon.id} pxPerUm={COMPARE_PX_PER_UM} />
               <figcaption>
@@ -159,7 +176,7 @@ export default function StyleGuide() {
         <p>The same icons at the blood scene's {SCENE_PX_PER_UM} px per µm, among red cells. The receptor cue must still read here.</p>
         <div className="scene-row" style={{ background: RED_CELL.tint }}>
           <RedCell pxPerUm={SCENE_PX_PER_UM} />
-          {ICONS.map((icon) => (
+          {ORDERED.map((icon) => (
             <figure key={icon.id}>
               <CellIcon cell={icon.id} pxPerUm={SCENE_PX_PER_UM} />
               <figcaption>{nameOf(icon.id)}</figcaption>
@@ -172,7 +189,7 @@ export default function StyleGuide() {
       <section>
         <h2>Icons in detail</h2>
         <div className="detail-row">
-          {ICONS.map((icon) => {
+          {ORDERED.map((icon) => {
             const family = familyOf(icon.id)
             return (
               <figure key={icon.id} className="detail">
@@ -191,6 +208,25 @@ export default function StyleGuide() {
             )
           })}
         </div>
+      </section>
+
+      <section>
+        <h2>Placeholder for cells not drawn yet</h2>
+        <p>{GENERIC.cue}</p>
+        <div className="detail-row">
+          {CELL_FAMILIES.map((family) => (
+            <figure key={family}>
+              <svg viewBox="0 0 100 100" width={96} height={96} role="img" aria-label={`Generic icon, ${FAMILY_COLOURS[family].label}`} style={familyVars(family)}>
+                <use href={`#${iconRef(GENERIC.id)}`} />
+              </svg>
+              <figcaption>{FAMILY_COLOURS[family].label}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <p className="members">
+          Cells using it now: {cells.filter((cell) => !ICONS.some((icon) => icon.id === cell.id)).map((cell) => cell.name).sort().join(', ')}.{' '}
+          <code>src/icons/{GENERIC.id}.svg</code>
+        </p>
       </section>
     </main>
   )

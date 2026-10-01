@@ -1,6 +1,6 @@
-import { ICONS, iconRef } from '../art/icons.ts'
+import { SPRITE_ICONS, iconRef } from '../art/icons.ts'
 
-const symbols = ICONS.map(
+const symbols = SPRITE_ICONS.map(
   ({ id, markup }) => `<symbol id="${iconRef(id)}" viewBox="0 0 100 100">${markup}</symbol>`,
 ).join('')
 

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- NK cell. Cue: large granular lymphocyte: a round, slightly indented nucleus with more cytoplasm than a small lymphocyte, and a cluster of coarse killing granules beside the indent. No antigen receptor glyph (it has neither a T- nor a B-cell receptor). -->
+  <circle cx="50" cy="50" r="40" fill="#E6D8F0" stroke="#1F2933" stroke-width="2" vector-effect="non-scaling-stroke"/>
+  <g fill="#5E3580">
+    <circle cx="27" cy="62" r="2.6"/>
+    <circle cx="34" cy="69" r="2.6"/>
+    <circle cx="25" cy="70" r="2.2"/>
+    <circle cx="42" cy="75" r="2.4"/>
+    <circle cx="33" cy="77" r="2.2"/>
+    <circle cx="20" cy="56" r="2"/>
+    <circle cx="44" cy="67" r="2"/>
+  </g>
+  <path d="M30 40 C30 27 42 19 55 20 C68 21 78 31 77 45 C76 58 66 67 54 66 C49 65 47 61 44 58 C41 55 36 56 33 53 C30 50 30 45 30 40 Z" fill="#8E5BB5" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <g fill="#5E3580">
+    <path d="M40 33 q4 -6 10 -8 q-1 5 -6 8 q-2 1 -4 0 z"/>
+    <path d="M71 50 q-2 5 -7 7 q0 -4 3 -6 q2 -2 4 -1 z"/>
+    <ellipse cx="62" cy="32" rx="3.2" ry="2" transform="rotate(20 62 32)"/>
+    <ellipse cx="52" cy="50" rx="2.8" ry="1.8" transform="rotate(-15 52 50)"/>
+  </g>
+</svg>

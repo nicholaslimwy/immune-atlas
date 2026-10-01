@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Eosinophil. Cue: two-lobed nucleus (lobes joined by a thin band) among large, densely packed red-orange granules, bigger and far denser than the neutrophil's. -->
+  <circle cx="50" cy="50" r="40" fill="#FBD9CC" stroke="#1F2933" stroke-width="2" vector-effect="non-scaling-stroke"/>
+  <g fill="#E4572E">
+    <circle cx="56.2" cy="15.9" r="2.6"/>
+    <circle cx="47.6" cy="16.6" r="2.6"/>
+    <circle cx="37.7" cy="20" r="2.4"/>
+    <circle cx="61.3" cy="21.2" r="2.7"/>
+    <circle cx="29.6" cy="21.9" r="2.3"/>
+    <circle cx="50.4" cy="22.7" r="2.3"/>
+    <circle cx="69.9" cy="22.9" r="2.6"/>
+    <circle cx="44.2" cy="23" r="2.3"/>
+    <circle cx="55.8" cy="25" r="2.4"/>
+    <circle cx="37.7" cy="26.9" r="2.7"/>
+    <circle cx="62.3" cy="28" r="2.7"/>
+    <circle cx="29.9" cy="28.2" r="2.4"/>
+    <circle cx="47.7" cy="28.2" r="2.7"/>
+    <circle cx="71.2" cy="29" r="2.2"/>
+    <circle cx="23.8" cy="29.4" r="2.2"/>
+    <circle cx="77.1" cy="30" r="2.6"/>
+    <circle cx="55" cy="31.2" r="2.3"/>
+    <circle cx="50.1" cy="35.5" r="2.4"/>
+    <circle cx="80.7" cy="36.7" r="2.7"/>
+    <circle cx="17.4" cy="38" r="2.4"/>
+    <circle cx="81.5" cy="43.2" r="2.5"/>
+    <circle cx="17.6" cy="44.1" r="2.3"/>
+    <circle cx="81.3" cy="49.2" r="2.3"/>
+    <circle cx="16.3" cy="50.2" r="2.7"/>
+    <circle cx="84.7" cy="53.8" r="2.3"/>
+    <circle cx="16.4" cy="57" r="2.3"/>
+    <circle cx="79.4" cy="57" r="2.5"/>
+    <circle cx="51.8" cy="58.9" r="2.2"/>
+    <circle cx="22.6" cy="61.4" r="2.5"/>
+    <circle cx="82.3" cy="62.3" r="2.3"/>
+    <circle cx="76.6" cy="62.9" r="2.2"/>
+    <circle cx="44.5" cy="63" r="2.7"/>
+    <circle cx="54" cy="65.3" r="2.7"/>
+    <circle cx="69.9" cy="65.4" r="2.3"/>
+    <circle cx="60.5" cy="66" r="2.5"/>
+    <circle cx="39.8" cy="67.3" r="2.6"/>
+    <circle cx="28.8" cy="67.6" r="2.7"/>
+    <circle cx="80.5" cy="67.9" r="2.2"/>
+    <circle cx="48.3" cy="68.3" r="2.4"/>
+    <circle cx="22.6" cy="68.6" r="2.5"/>
+    <circle cx="75.4" cy="71.2" r="2.5"/>
+    <circle cx="63.5" cy="71.5" r="2.3"/>
+    <circle cx="69.2" cy="72.1" r="2.2"/>
+    <circle cx="57.5" cy="73.3" r="2.5"/>
+    <circle cx="35.8" cy="73.6" r="2.3"/>
+    <circle cx="29.8" cy="74.8" r="2.5"/>
+    <circle cx="50.2" cy="75" r="2.7"/>
+    <circle cx="41.9" cy="75.3" r="2.5"/>
+    <circle cx="71.4" cy="78" r="2.4"/>
+    <circle cx="65" cy="79.1" r="2.4"/>
+    <circle cx="54" cy="80.6" r="2.3"/>
+    <circle cx="43.4" cy="81" r="2.2"/>
+    <circle cx="37" cy="81.1" r="2.6"/>
+    <circle cx="59.6" cy="83.1" r="2.5"/>
+    <circle cx="49" cy="84.7" r="2.5"/>
+  </g>
+  <path d="M50 45.5 C56 45.5 57 33 64 33 C72 33 77.5 39 77.5 46.5 C77.5 54 71.5 60 64 60 C57 60 56 51 50 51 C44 51 43 60 36 60 C28.5 60 22.5 54 22.5 46.5 C22.5 39 28 33 36 33 C43 33 44 45.5 50 45.5 Z" fill="#E4572E" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+</svg>

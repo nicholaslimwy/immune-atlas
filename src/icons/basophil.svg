@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Basophil. Cue: coarse, dense dark granules that lie over the nucleus and mostly hide it. Granules are drawn after the nucleus on purpose (the one exception to the draw order). -->
+  <circle cx="50" cy="50" r="40" fill="#FBD9CC" stroke="#1F2933" stroke-width="2" vector-effect="non-scaling-stroke"/>
+  <path d="M28 40 C28 31 36 28 43 29 C51 30 56 36 55 44 C56 47 60 45 64 46 C71 48 75 54 73 61 C71 68 63 72 56 70 C49 68 46 62 47 57 C45 56 41 59 36 58 C30 57 27 50 28 40 Z" fill="#E4572E" stroke="#1F2933" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <g fill="#A8341A">
+    <circle cx="59.3" cy="16.8" r="3"/>
+    <circle cx="43.4" cy="18.9" r="2.7"/>
+    <circle cx="52.8" cy="22" r="4.1"/>
+    <circle cx="65.2" cy="24.6" r="3.8"/>
+    <circle cx="37.4" cy="26.2" r="4.6"/>
+    <circle cx="28.2" cy="26.3" r="3.2"/>
+    <circle cx="71.8" cy="28.4" r="2.7"/>
+    <circle cx="49.2" cy="29.6" r="2.8"/>
+    <circle cx="62.4" cy="31.7" r="2.8"/>
+    <circle cx="79.6" cy="34.7" r="3.9"/>
+    <circle cx="24.3" cy="34.9" r="2.7"/>
+    <circle cx="54.6" cy="36.6" r="2.7"/>
+    <circle cx="32.3" cy="37" r="4.3"/>
+    <circle cx="69.9" cy="38.3" r="3.6"/>
+    <circle cx="44.7" cy="38.4" r="3.1"/>
+    <circle cx="18" cy="44.1" r="3.6"/>
+    <circle cx="58.7" cy="44.9" r="4.3"/>
+    <circle cx="26.4" cy="46.4" r="4.1"/>
+    <circle cx="36.8" cy="49" r="3.7"/>
+    <circle cx="80" cy="49.5" r="4.3"/>
+    <circle cx="69.7" cy="50" r="3.8"/>
+    <circle cx="50.5" cy="51.3" r="3.5"/>
+    <circle cx="62.2" cy="52.9" r="2.9"/>
+    <circle cx="18" cy="54" r="4.5"/>
+    <circle cx="42.8" cy="54.2" r="2.9"/>
+    <circle cx="30.7" cy="55.6" r="3.7"/>
+    <circle cx="65.5" cy="59.4" r="3.4"/>
+    <circle cx="57.6" cy="59.5" r="3.2"/>
+    <circle cx="76.8" cy="61.3" r="4.1"/>
+    <circle cx="44.5" cy="62" r="3.4"/>
+    <circle cx="27.4" cy="62.2" r="2.6"/>
+    <circle cx="35" cy="63.6" r="3.9"/>
+    <circle cx="19.3" cy="63.6" r="3.6"/>
+    <circle cx="70" cy="65.3" r="2.7"/>
+    <circle cx="49.5" cy="70" r="3.6"/>
+    <circle cx="24.2" cy="70.2" r="3.6"/>
+    <circle cx="64.7" cy="70.7" r="2.8"/>
+    <circle cx="31.6" cy="73" r="2.8"/>
+    <circle cx="74.8" cy="73.5" r="3"/>
+    <circle cx="57.7" cy="73.9" r="3.7"/>
+    <circle cx="41.7" cy="76" r="3.8"/>
+    <circle cx="32.6" cy="79.7" r="2.6"/>
+    <circle cx="65.4" cy="79.9" r="3.5"/>
+    <circle cx="50.5" cy="81.5" r="3.4"/>
+    <circle cx="58.7" cy="83.2" r="3"/>
+    <circle cx="43.5" cy="83.5" r="2.9"/>
+  </g>
+</svg>

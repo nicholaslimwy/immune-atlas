@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Cytotoxic CD8 T cell. Cue: the T-cell body and blunt two-chain receptors of the naive CD4 T icon, plus a few killing granules in the widest part of the cytoplasm (shared with the NK cell: both kill). -->
+  <g fill="none" stroke="#1D4680" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path transform="rotate(18 50 50)" d="M47 11 V2.4 M53 11 V2.4"/>
+    <path transform="rotate(90 50 50)" d="M47 11 V2.4 M53 11 V2.4"/>
+    <path transform="rotate(162 50 50)" d="M47 11 V2.4 M53 11 V2.4"/>
+    <path transform="rotate(234 50 50)" d="M47 11 V2.4 M53 11 V2.4"/>
+    <path transform="rotate(306 50 50)" d="M47 11 V2.4 M53 11 V2.4"/>
+  </g>
+  <circle cx="50" cy="50" r="40" fill="#D3E2F4" stroke="#1F2933" stroke-width="2" vector-effect="non-scaling-stroke"/>
+  <g fill="#1D4680">
+    <circle cx="21.5" cy="66" r="2.1"/>
+    <circle cx="26.5" cy="73" r="2.1"/>
+    <circle cx="33.5" cy="78.5" r="2.1"/>
+    <circle cx="18.5" cy="58" r="1.7"/>
+  </g>
+  <circle cx="52" cy="48" r="32" fill="#2F6DB5" stroke="#1F2933" stroke-width="2" vector-effect="non-scaling-stroke"/>
+  <g fill="#1D4680">
+    <path d="M30 40 q3 -6 9 -9 q-1 5 -5 8 q-2 2 -4 1 z"/>
+    <path d="M71 61 q-2 6 -8 9 q0 -5 4 -8 q2 -2 4 -1 z"/>
+    <ellipse cx="57" cy="36" rx="3.5" ry="2.2" transform="rotate(20 57 36)"/>
+    <ellipse cx="45" cy="60" rx="3" ry="2" transform="rotate(-15 45 60)"/>
+  </g>
+</svg>

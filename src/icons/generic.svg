@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Generic cell, for cells whose icon is not drawn yet (stubs). Not a cell id. A plain body with a small round nucleus and no cue, outlined with a dashed membrane so it never passes for a finished icon. Fills come from the placing element's family (CSS variables set by CellIcon), grey if unset. -->
+  <circle cx="50" cy="50" r="40" style="fill: var(--cell-tint, #E3E5E8)" stroke="#1F2933" stroke-width="2" stroke-dasharray="7 5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+  <circle cx="50" cy="50" r="20" style="fill: var(--cell-base, #8A8F98)" stroke="#1F2933" stroke-width="2" vector-effect="non-scaling-stroke"/>
+</svg>
