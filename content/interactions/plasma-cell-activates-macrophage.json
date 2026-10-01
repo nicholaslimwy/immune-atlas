@@ -1,0 +1,9 @@
+{
+  "id": "plasma-cell-activates-macrophage",
+  "source": "plasma-cell",
+  "target": "macrophage",
+  "type": "activates",
+  "via": ["igg"],
+  "where": ["skin"],
+  "description": "IgG made by plasma cells coats bacteria in the tissue. Macrophages grip the antibody tails with Fcγ receptors such as CD64, which speeds up engulfing and triggers the macrophage to release inflammatory signals."
+}

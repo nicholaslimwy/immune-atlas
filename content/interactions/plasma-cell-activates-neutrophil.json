@@ -1,0 +1,9 @@
+{
+  "id": "plasma-cell-activates-neutrophil",
+  "source": "plasma-cell",
+  "target": "neutrophil",
+  "type": "activates",
+  "via": ["igg"],
+  "where": ["skin"],
+  "description": "Plasma cells make IgG, which travels in the blood and coats bacteria. Neutrophils grip the antibody tails with Fcγ receptors and engulf coated bacteria far more readily than bare ones; antibody can also switch on complement, which adds to the coating."
+}

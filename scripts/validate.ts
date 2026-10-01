@@ -185,6 +185,7 @@ for (const { file, data: loc } of locations.values()) {
 
 // Cells: citations, summary length and review dates follow the status.
 const SUMMARY_MAX_WORDS = 60
+const CAPTION_MAX_WORDS = 40
 for (const { file, data: cell } of cellFiles.valid.values()) {
   if (cell.status !== 'stub' && cell.sources.length === 0) {
     error(file, `sources: a ${cell.status} cell needs at least one citation`)
@@ -221,6 +222,8 @@ for (const { file, data: tour } of tourFiles.valid.values()) {
   if (!tour.steps.length) error(file, 'steps: a tour needs at least one step')
   tour.steps.forEach((step, i) => {
     const at = `steps[${i}]`
+    const captionWords = step.caption.trim().split(/\s+/).length
+    if (captionWords > CAPTION_MAX_WORDS) error(file, `${at}.caption: ${captionWords} words; a caption allows ${CAPTION_MAX_WORDS}`)
     const loc = locations.get(step.location)?.data
     if (!loc) {
       if (!isLocation(step.location)) error(file, `${at}.location: no location "${step.location}"`)

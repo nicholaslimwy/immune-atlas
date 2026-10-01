@@ -1,0 +1,80 @@
+{
+  "id": "infection",
+  "title": "From a skin cut to antibodies",
+  "steps": [
+    {
+      "location": "skin",
+      "focus": "platelet",
+      "caption": "A small cut breaks the skin's barrier. Bacteria from the surface slip in while platelets begin plugging the gap. Left alone, the bacteria would multiply in the tissue below.",
+      "highlight": ["platelet"],
+      "interactions": []
+    },
+    {
+      "location": "skin",
+      "focus": "mast-cell",
+      "caption": "Resident mast cells and macrophages sense the bacteria and raise the alarm. Their signals, including histamine and TNF, widen nearby vessels and make them leaky and sticky, so blood cells can reach the wound.",
+      "highlight": ["mast-cell", "macrophage"],
+      "interactions": ["mast-cell-recruits-neutrophil", "macrophage-recruits-neutrophil"]
+    },
+    {
+      "location": "skin",
+      "focus": "neutrophil",
+      "caption": "Neutrophils, the most common white blood cells, stick to the vessel wall, squeeze out and follow chemical signals to the wound. Within hours they swarm there, swallowing and killing bacteria.",
+      "highlight": ["neutrophil"],
+      "interactions": ["neutrophil-migrates-to-skin"]
+    },
+    {
+      "location": "skin",
+      "focus": "conventional-dendritic-cell",
+      "caption": "Dendritic cells in the skin engulf bacteria and cut them into fragments. Sensing danger, they enter a lymph vessel and travel to the nearest lymph node, carrying those fragments (antigens) to show to T cells.",
+      "highlight": ["conventional-dendritic-cell"],
+      "interactions": ["conventional-dendritic-cell-migrates-to-lymph-node"]
+    },
+    {
+      "location": "lymph-node",
+      "focus": "conventional-dendritic-cell",
+      "caption": "In the T-cell zone, the dendritic cell displays bacterial fragments to naive CD4 T cells. The one whose receptor fits is activated and, with the right signals, starts to become a T follicular helper (Tfh) cell.",
+      "highlight": ["conventional-dendritic-cell", "naive-cd4-t"],
+      "interactions": [
+        "conventional-dendritic-cell-presents-antigen-to-naive-cd4-t",
+        "naive-cd4-t-differentiates-into-tfh"
+      ]
+    },
+    {
+      "location": "lymph-node",
+      "focus": "naive-b",
+      "caption": "A B cell in the follicle whose antibody binds bacterial antigen takes it in and shows fragments to a Tfh cell at the follicle edge. The Tfh cell helps with signals that keep the B cell alive and dividing.",
+      "highlight": ["naive-b"],
+      "interactions": ["naive-b-presents-antigen-to-tfh", "tfh-helps-naive-b"]
+    },
+    {
+      "location": "germinal-centre",
+      "focus": "germinal-centre-b",
+      "caption": "The helped B cell founds a germinal centre. Its antibody genes mutate as it divides, and Tfh cells reward the B cells whose antibodies bind best. Winners leave as plasma cells, which make antibody, or as memory B cells.",
+      "highlight": ["germinal-centre-b", "tfh", "plasma-cell", "memory-b"],
+      "interactions": [
+        "naive-b-differentiates-into-germinal-centre-b",
+        "tfh-helps-germinal-centre-b",
+        "germinal-centre-b-differentiates-into-plasma-cell",
+        "germinal-centre-b-differentiates-into-memory-b"
+      ]
+    },
+    {
+      "location": "skin",
+      "focus": "neutrophil",
+      "caption": "Plasma cells release antibodies (IgG), which travel in lymph and blood back to the wound and stick to the bacteria. Coated bacteria are easier for neutrophils and macrophages to recognise and swallow.",
+      "highlight": ["neutrophil", "macrophage"],
+      "interactions": ["plasma-cell-activates-neutrophil", "plasma-cell-activates-macrophage"]
+    },
+    {
+      "location": "body",
+      "caption": "After the infection clears, memory B cells remain, circulating through blood and lymph nodes, and some plasma cells settle in the bone marrow. If the same bacteria return, antibody arrives sooner and in larger amounts.",
+      "highlight": [],
+      "interactions": [
+        "memory-b-migrates-to-peripheral-blood",
+        "memory-b-differentiates-into-plasma-cell",
+        "plasma-cell-migrates-to-bone-marrow"
+      ]
+    }
+  ]
+}

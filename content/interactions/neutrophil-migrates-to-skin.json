@@ -1,0 +1,9 @@
+{
+  "id": "neutrophil-migrates-to-skin",
+  "source": "neutrophil",
+  "target": "skin",
+  "type": "migrates-to",
+  "via": ["cxcl8", "tnf"],
+  "where": ["peripheral-blood"],
+  "description": "Healthy skin holds almost no neutrophils. After a cut or infection, TNF makes the lining of small vessels near the wound sticky and CXCL8 (mice use related chemokines) guides neutrophils out of the blood and through the vessel wall. In mouse skin they then gather in dense swarms at the damage."
+}
