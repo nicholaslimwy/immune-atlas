@@ -1,7 +1,7 @@
 // Cell icons: one SVG file per cell type in src/icons (file name = cell id), drawn once and placed
 // everywhere through the sprite (IconSprite.tsx) as <use href="#icon-<cell id>">.
 import type { Cell } from '../types/cell.ts'
-import { BODY_UNITS, GENERIC_ICON, GENERIC_SPEC, ICON_SPECS, type IconSpec } from './iconSpecs.ts'
+import { BODY_UNITS, GENERIC_ICON, ICON_SPECS, RED_CELL_ICON, RESERVED_ICONS, type IconSpec } from './iconSpecs.ts'
 import { FAMILY_COLOURS } from './palette.ts'
 
 const files = import.meta.glob<string>('../icons/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -12,22 +12,25 @@ export interface CellIconArt extends IconSpec {
   markup: string
 }
 
-// The validator guarantees every file is a cell with a spec, or the generic icon.
+// The validator guarantees every file is a cell with a spec, or a reserved icon (generic, red cell).
 const ALL: CellIconArt[] = Object.entries(files)
   .map(([path, svg]) => {
     const id = path.slice(path.lastIndexOf('/') + 1, -'.svg'.length)
     const markup = svg.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '')
-    return { id, markup, ...(id === GENERIC_ICON ? GENERIC_SPEC : ICON_SPECS[id]) }
+    return { id, markup, ...(RESERVED_ICONS[id] ?? ICON_SPECS[id]) }
   })
   .sort((a, b) => a.id.localeCompare(b.id))
 
-/** Every icon in the sprite, the generic one included. */
+/** Every icon in the sprite, the reserved ones (generic, red cell) included. */
 export const SPRITE_ICONS = ALL
 
-/** The drawn cell icons (not the generic placeholder). */
-export const ICONS: CellIconArt[] = ALL.filter((icon) => icon.id !== GENERIC_ICON)
+/** The drawn cell icons (not the generic placeholder or the red cell). */
+export const ICONS: CellIconArt[] = ALL.filter((icon) => !(icon.id in RESERVED_ICONS))
 
 export const GENERIC: CellIconArt = ALL.find((icon) => icon.id === GENERIC_ICON)!
+
+/** The red blood cell: background art in blood, and the size reference on /styleguide. */
+export const RED_CELL_ART: CellIconArt = ALL.find((icon) => icon.id === RED_CELL_ICON)!
 
 export function getIcon(id: string): CellIconArt | undefined {
   return ICONS.find((icon) => icon.id === id)

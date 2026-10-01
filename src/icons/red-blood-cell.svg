@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Red blood cell. Background art, not a cell record (reserved name). Cue: a disc with a pale centre where the biconcave dip is thinnest; no nucleus. No ink outline, so red cells sit behind the outlined white cells. Squash it in a scene (scale on one axis) to show a tilted or edge-on cell. -->
+  <circle cx="50" cy="50" r="40" fill="#D98C8C"/>
+  <circle cx="50" cy="50" r="13" fill="#F6D6D6"/>
+</svg>

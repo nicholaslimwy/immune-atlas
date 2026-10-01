@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
-import { familyVars, GENERIC, ICONS, iconPx, iconRef } from '../art/icons.ts'
+import { familyVars, GENERIC, ICONS, iconPx, iconRef, RED_CELL_ART } from '../art/icons.ts'
 import { BODY_UNITS } from '../art/iconSpecs.ts'
 import { ANATOMY, FAMILY_COLOURS, INK, RED_CELL } from '../art/palette.ts'
 import CellIcon from '../components/CellIcon.tsx'
@@ -11,8 +11,6 @@ import { CELL_FAMILIES } from '../types/cell.ts'
 const COMPARE_PX_PER_UM = 12
 /** Scale cells are drawn at in the blood scene (800x500). */
 const SCENE_PX_PER_UM = 7
-/** Red blood cell diameter, drawn as the size reference. */
-const RED_CELL_UM = 7.5
 
 const nameOf = (id: string) => getCell(id)?.name ?? id
 const familyOf = (id: string) => FAMILY_COLOURS[getCell(id)?.family ?? 'support']
@@ -21,19 +19,12 @@ const familyRank = (id: string) => CELL_FAMILIES.indexOf(getCell(id)?.family ?? 
 /** Drawn icons grouped by family (style guide order), largest first within a family. */
 const ORDERED = [...ICONS].sort((a, b) => familyRank(a.id) - familyRank(b.id) || b.diameterUm - a.diameterUm)
 
-/** A red blood cell disc (paler centre for the biconcave dip), sized like a cell body. */
-function RedCell({ pxPerUm, dashed = false }: { pxPerUm: number; dashed?: boolean }) {
-  const px = (RED_CELL_UM * pxPerUm * 100) / BODY_UNITS
+/** The red blood cell icon (background art, not a cell record), the size reference. */
+function RedCell({ pxPerUm }: { pxPerUm: number }) {
+  const px = iconPx(RED_CELL_ART, pxPerUm)
   return (
     <svg viewBox="0 0 100 100" width={px} height={px} role="img" aria-label="Red blood cell (size reference)">
-      {dashed ? (
-        <circle cx="50" cy="50" r="40" fill="none" stroke={RED_CELL.base} strokeWidth="2" strokeDasharray="6 4" vectorEffect="non-scaling-stroke" />
-      ) : (
-        <>
-          <circle cx="50" cy="50" r="40" fill={RED_CELL.base} />
-          <circle cx="50" cy="50" r="15" fill={RED_CELL.tint} />
-        </>
-      )}
+      <use href={`#${iconRef(RED_CELL_ART.id)}`} />
     </svg>
   )
 }
@@ -109,8 +100,9 @@ export default function StyleGuide() {
               <Swatch hex={ANATOMY.spleen} role="spleen" />
               <Swatch hex={ANATOMY.dermis} role="dermis" />
               <Swatch hex={ANATOMY.epidermis} role="epidermis" />
+              <Swatch hex={ANATOMY.vesselWall} role="vessel wall" />
             </div>
-            <p className="members">Places, kept muted and away from the family hues so they never read as cells. Vessels, heart and marrow use the red-cell base.</p>
+            <p className="members">Places, kept muted and away from the family hues so they never read as cells. Vessels, heart and marrow use the red-cell base, as do the flattened nuclei of a vessel wall.</p>
           </div>
         </div>
       </section>
@@ -149,6 +141,17 @@ export default function StyleGuide() {
             granules-over-nucleus). The two killers, NK cell and cytotoxic CD8 T, share a small cluster of killing
             granules.
           </dd>
+          <dt>Red cells</dt>
+          <dd>
+            Background art, not a cell: a disc with a pale centre and no outline, squashed in a scene to show a tilted or
+            edge-on cell. They fill the blood scene but never compete with the outlined white cells.
+          </dd>
+          <dt>Scenes</dt>
+          <dd>
+            Authored at 800x500. A scene that places cells declares one px per µm and draws every cell at it. Motion is
+            gentle (red cells drift with the flow, white cells bob in place) and stops for visitors who ask for reduced
+            motion. Every hotspot is a labelled button at least 108 scene units across, so it can be tapped on a phone.
+          </dd>
           <dt>Placeholder</dt>
           <dd>
             Cells with no icon yet are drawn with the generic icon: plain body, small round nucleus, dashed membrane, in
@@ -160,14 +163,14 @@ export default function StyleGuide() {
       <section>
         <h2>True relative size</h2>
         <p>
-          At {COMPARE_PX_PER_UM} px per µm, next to a red blood cell ({RED_CELL_UM} µm, dashed).
+          At {COMPARE_PX_PER_UM} px per µm, next to a red blood cell ({RED_CELL_ART.diameterUm} µm).
         </p>
         <div className="size-row">
           <figure>
-            <RedCell pxPerUm={COMPARE_PX_PER_UM} dashed />
+            <RedCell pxPerUm={COMPARE_PX_PER_UM} />
             <figcaption>
               Red blood cell
-              <span>{RED_CELL_UM} µm</span>
+              <span>{RED_CELL_ART.diameterUm} µm</span>
             </figcaption>
           </figure>
           {ORDERED.map((icon) => (

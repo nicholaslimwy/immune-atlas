@@ -43,6 +43,8 @@ export const ANATOMY = {
   bone: '#F2ECDF',
   epidermis: '#D9A07E',
   dermis: '#F3D9C6',
+  /** The wall of a vessel seen in section (blood scene); its flattened endothelial nuclei use the red-cell base. */
+  vesselWall: '#E4BDBD',
 }
 
 /** Every colour an icon may use. */
@@ -52,3 +54,6 @@ export const ICON_COLOURS: string[] = [
   RED_CELL.base,
   ...Object.values(FAMILY_COLOURS).flatMap((f) => [f.base, f.tint, f.shade]),
 ]
+
+/** Every colour a scene may use: the icon colours plus anatomy. */
+export const SCENE_COLOURS: string[] = [...ICON_COLOURS, ...Object.values(ANATOMY)]

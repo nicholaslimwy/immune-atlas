@@ -10,6 +10,13 @@ main {
   padding: 2rem;
 }
 
+/* A narrower gutter on phones gives the stage, and so every hotspot, more room. */
+@media (max-width: 600px) {
+  main {
+    padding: 1rem;
+  }
+}
+
 .topbar {
   display: flex;
   align-items: center;
@@ -72,14 +79,6 @@ h1:focus {
   cursor: pointer;
 }
 
-/* A hotspot that is a single shape (the placeholder blood scene) gets a highlight stroke. */
-.hotspot:not(g):hover,
-.hotspot:not(g):focus-visible {
-  stroke: #1a73e8;
-  stroke-width: 5;
-  outline: none;
-}
-
 /* A hotspot group (illustrated scenes) holds art, a leader, a .leader-dot and a .scene-label:
    the label and the dot light up instead, so the art keeps its own strokes. */
 g.hotspot {
@@ -104,6 +103,56 @@ g.hotspot:focus-visible .leader-dot {
   stroke: #1a73e8;
   stroke-width: 6;
   paint-order: stroke;
+}
+
+/* A cell hotspot has no leader: its invisible .hit circle is the tap target (at least 108 scene
+   units, about 46 px on a 375 px phone) and shows as a ring on hover and focus. */
+g.hotspot:is(:hover, :focus-visible) .hit {
+  stroke: #1a73e8;
+}
+
+.scene-label-sub {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* Gentle motion in scenes. The art only marks elements ("flow": a lane tiled twice across the
+   800-unit width, slid one width per loop; "bob": a cell drifting in place) and sets the timing
+   with --flow-s, --bob-s and --bob-delay; the movement itself lives here. */
+.scene .flow {
+  animation: scene-flow var(--flow-s, 80s) linear infinite;
+}
+
+@keyframes scene-flow {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(800px);
+  }
+}
+
+.scene .bob {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: scene-bob var(--bob-s, 7s) ease-in-out var(--bob-delay, 0s) infinite alternate;
+}
+
+@keyframes scene-bob {
+  from {
+    transform: translate(-3px, 2px) rotate(-4deg);
+  }
+  to {
+    transform: translate(3px, -2px) rotate(4deg);
+  }
+}
+
+/* Visitors who ask for reduced motion get still scenes. */
+@media (prefers-reduced-motion: reduce) {
+  .scene .flow,
+  .scene .bob {
+    animation: none;
+  }
 }
 
 .scene-label-soon {

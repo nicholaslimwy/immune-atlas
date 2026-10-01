@@ -4,8 +4,8 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { GENERIC_ICON, ICON_SPECS } from '../src/art/iconSpecs.ts'
-import { ICON_COLOURS } from '../src/art/palette.ts'
+import { BODY_UNITS, GENERIC_ICON, ICON_SPECS, RESERVED_ICONS } from '../src/art/iconSpecs.ts'
+import { ICON_COLOURS, SCENE_COLOURS } from '../src/art/palette.ts'
 import type { Cell } from '../src/types/cell.ts'
 import type { Interaction } from '../src/types/interaction.ts'
 import type { Location } from '../src/types/location.ts'
@@ -91,6 +91,40 @@ for (const [id, file] of cellFiles.ids) {
 
 const locations = locationFiles.valid
 
+// Scenes (public/scenes): drawn to the style guide like icons, palette and anatomy colours only.
+// A scene that places cells declares its scale (data-px-per-um on the root), and every
+// <use href="#icon-..."> must then be drawn at that scale, so cells keep their true relative size.
+const sceneColours = new Set(SCENE_COLOURS.map((c) => c.toUpperCase()))
+const iconSpecOf = (id: string) => RESERVED_ICONS[id] ?? ICON_SPECS[id]
+function checkScene(file: string, svg: string) {
+  if (!/<svg[^>]*\sviewBox="0 0 800 500"/.test(svg)) error(file, 'viewBox must be "0 0 800 500" (the stage shape)')
+  for (const hex of new Set(svg.match(/#[0-9a-fA-F]{3,8}\b/g) ?? [])) {
+    if (!sceneColours.has(hex.toUpperCase())) error(file, `colour ${hex} is not a palette or anatomy token (src/art/palette.ts)`)
+  }
+  if (/gradient|filter|opacity/i.test(svg)) error(file, 'flat style: no gradients, filters or opacity')
+  const scale = Number(svg.match(/<svg[^>]*\sdata-px-per-um="([\d.]+)"/)?.[1])
+  for (const use of svg.match(/<use\b[^>]*>/g) ?? []) {
+    const id = use.match(/\shref="#icon-([^"]+)"/)?.[1]
+    if (!id) continue
+    const spec = iconSpecOf(id)
+    if (!spec) {
+      error(file, `<use href="#icon-${id}">: no icon "${id}" in src/icons`)
+      continue
+    }
+    if (!scale) {
+      error(file, `<use href="#icon-${id}">: the root <svg> needs data-px-per-um to place cells`)
+      continue
+    }
+    const want = (spec.diameterUm * scale * 100) / BODY_UNITS
+    for (const dim of ['width', 'height']) {
+      const got = Number(use.match(new RegExp(`\\s${dim}="([\\d.]+)"`))?.[1])
+      if (Math.abs(got - want) > 0.5) {
+        error(file, `<use href="#icon-${id}">: ${dim} ${got || 'missing'}, expected ${want.toFixed(1)} at ${scale} px/µm`)
+      }
+    }
+  }
+}
+
 // Locations: one tree, real scenes, hotspots that exist in the scene and point somewhere real.
 const roots = [...locations.values()].filter((l) => l.data.parent === null)
 if (locations.size && !locationFiles.broken && roots.length !== 1) {
@@ -131,6 +165,7 @@ for (const { file, data: loc } of locations.values()) {
   const scenePath = join(root, 'public', loc.scene)
   const svg = existsSync(scenePath) ? readFileSync(scenePath, 'utf8') : undefined
   if (svg === undefined) error(file, `scene: public/${loc.scene} does not exist`)
+  else checkScene(`public/${loc.scene}`, svg)
 
   loc.hotspots.forEach(({ region, target }, i) => {
     if (!isLocation(target) && !isCell(target)) {
@@ -179,7 +214,8 @@ for (const { file, data: ix } of interactionFiles.valid.values()) {
 }
 
 // Icons (src/icons/<cell id>.svg): one per cell, drawn to the style guide, palette colours only.
-// generic.svg is the placeholder for cells without an icon; its name is reserved.
+// Reserved names are icons that are not cells: generic.svg (the placeholder for cells without an
+// icon) and red-blood-cell.svg (background art).
 const iconDir = join(root, 'src', 'icons')
 const iconNames = existsSync(iconDir) ? readdirSync(iconDir).filter((n) => n.endsWith('.svg')).sort() : []
 const palette = new Set(ICON_COLOURS.map((c) => c.toUpperCase()))
@@ -187,8 +223,8 @@ for (const name of iconNames) {
   const file = `src/icons/${name}`
   const id = name.slice(0, -'.svg'.length)
   const svg = readFileSync(join(iconDir, name), 'utf8')
-  if (id === GENERIC_ICON) {
-    if (isCell(id)) error(file, `"${id}" is reserved for the generic icon; rename the cell`)
+  if (RESERVED_ICONS[id]) {
+    if (isCell(id)) error(file, `"${id}" is a reserved icon name, not a cell id; rename the cell`)
   } else {
     if (!isCell(id)) error(file, `no cell "${id}" (icon file names are cell ids)`)
     if (!ICON_SPECS[id]) error(file, `no entry for "${id}" in src/art/iconSpecs.ts`)
@@ -200,6 +236,9 @@ for (const name of iconNames) {
   if (/gradient|filter|opacity/i.test(svg)) error(file, 'flat style: no gradients, filters or opacity')
 }
 if (!iconNames.includes(`${GENERIC_ICON}.svg`)) error(`src/icons/${GENERIC_ICON}.svg`, 'missing: the generic icon for cells without one')
+for (const id of Object.keys(RESERVED_ICONS)) {
+  if (!iconNames.includes(`${id}.svg`)) error('src/art/iconSpecs.ts', `reserved icon "${id}" has no file src/icons/${id}.svg`)
+}
 for (const id of Object.keys(ICON_SPECS)) {
   if (!iconNames.includes(`${id}.svg`)) error('src/art/iconSpecs.ts', `"${id}" has no icon file src/icons/${id}.svg`)
 }

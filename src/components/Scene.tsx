@@ -29,15 +29,20 @@ export default function Scene({ location, svg }: { location: Location; svg: stri
       el.classList.toggle('hotspot-soon', stub)
       const label = el.querySelector('.scene-label')
       if (label) {
-        label.textContent = name
-        if (stub) {
+        // A name with a gloss, "NK cell (natural killer cell)", puts the gloss on a smaller second line.
+        const glossed = name.match(/^(.*?) \((.*)\)$/)
+        const gloss = glossed?.[2]
+        label.textContent = glossed?.[1] ?? name
+        const line = (className: string, text: string) => {
           const tag = document.createElementNS(SVG_NS, 'tspan')
-          tag.setAttribute('class', 'scene-label-soon')
+          tag.setAttribute('class', className)
           tag.setAttribute('x', label.getAttribute('x') ?? '0')
           tag.setAttribute('dy', '1.1em')
-          tag.textContent = 'coming soon'
+          tag.textContent = text
           label.append(tag)
         }
+        if (gloss) line('scene-label-sub', gloss)
+        if (stub) line('scene-label-soon', 'coming soon')
       }
     }
   }, [svg, location])

@@ -4,27 +4,27 @@
   "parent": "body",
   "slug": "blood",
   "scene": "scenes/peripheral-blood.svg",
-  "summary": "Placeholder (Phase 2). Circulating blood; each shape opens that cell's profile.",
+  "summary": "Blood carries immune cells between the bone marrow, where most are made, and the tissues and lymphoid organs where they work. The cells are drawn at true relative size, but a real vessel holds far more red cells: in human blood there are roughly 700 red cells and 35 platelets for every white cell. Pick a cell to open its profile.",
   "hotspots": [
     { "region": "neutrophil", "target": "neutrophil" },
     { "region": "eosinophil", "target": "eosinophil" },
-    { "region": "basophil", "target": "basophil" },
     { "region": "monocyte", "target": "monocyte" },
+    { "region": "basophil", "target": "basophil" },
     { "region": "platelet", "target": "platelet" },
     { "region": "nk-cell", "target": "nk-cell" },
-    { "region": "naive-cd4-t", "target": "naive-cd4-t" },
     { "region": "cytotoxic-cd8-t", "target": "cytotoxic-cd8-t" },
+    { "region": "naive-cd4-t", "target": "naive-cd4-t" },
     { "region": "naive-b", "target": "naive-b" }
   ],
   "residents": [
     { "cell": "neutrophil" },
     { "cell": "eosinophil" },
-    { "cell": "basophil" },
     { "cell": "monocyte" },
+    { "cell": "basophil" },
     { "cell": "platelet" },
     { "cell": "nk-cell" },
-    { "cell": "naive-cd4-t" },
     { "cell": "cytotoxic-cd8-t" },
+    { "cell": "naive-cd4-t" },
     { "cell": "naive-b" }
   ]
 }

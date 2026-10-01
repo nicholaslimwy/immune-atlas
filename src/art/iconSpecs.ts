@@ -55,5 +55,19 @@ export const GENERIC_SPEC: IconSpec = {
   cue: 'Plain body, small round nucleus and a dashed membrane, in the cell family colours.',
 }
 
+/** File name (src/icons/red-blood-cell.svg) of the red blood cell: background art, not a cell record. */
+export const RED_CELL_ICON = 'red-blood-cell'
+
+export const RED_CELL_SPEC: IconSpec = {
+  diameterUm: 7.5,
+  cue: 'Background art: a disc with a pale centre (the biconcave dip), no nucleus and no outline, so it stays behind the white cells. Tilt it in a scene by squashing it.',
+}
+
+/** Icon files that are not cells. Their names are reserved: no cell may use them. */
+export const RESERVED_ICONS: Record<string, IconSpec> = {
+  [GENERIC_ICON]: GENERIC_SPEC,
+  [RED_CELL_ICON]: RED_CELL_SPEC,
+}
+
 /** Every icon's cell body is 80 of its 100 viewBox units across; the rest is room for protrusions. */
 export const BODY_UNITS = 80
