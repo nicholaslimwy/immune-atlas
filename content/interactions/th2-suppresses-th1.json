@@ -1,0 +1,8 @@
+{
+  "id": "th2-suppresses-th1",
+  "source": "th2",
+  "target": "th1",
+  "type": "suppresses",
+  "via": ["il-4"],
+  "description": "IL-4 from Th2 cells steers newly activated CD4 T cells away from the Th1 fate, so worm-type and allergy-type responses tend to exclude Th1 responses. Shown mainly in mouse experiments."
+}

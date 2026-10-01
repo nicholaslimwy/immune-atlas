@@ -20,9 +20,13 @@
     { "cell": "naive-b", "note": "Enters from the blood and waits in a B-cell follicle for its antigen." },
     { "cell": "follicular-dendritic-cell", "note": "Stromal cell of the follicles that holds intact antigen on its surface for B cells to sample." },
     { "cell": "tfh", "note": "Moves from the T-cell zone to the edge of the follicle and into germinal centres, where it helps B cells." },
-    { "cell": "germinal-centre-b", "note": "Found in germinal centres, which form in follicles during an immune response." },
+    { "cell": "germinal-centre-b", "note": "Divides and mutates its antibody genes in germinal centres, which form in follicles during an immune response; those whose antibody binds best are selected." },
+    { "cell": "memory-b", "note": "Rests in follicles between responses and, if the antigen returns, divides quickly and becomes a plasma cell; it keeps moving between nodes through blood and lymph." },
     { "cell": "naive-cd4-t", "note": "Enters from the blood through high endothelial venules and scans dendritic cells in the T-cell zone." },
+    { "cell": "th1", "note": "Develops in the T-cell zone when a dendritic cell presents antigen with IL-12, then leaves in the efferent lymph for infected tissue." },
+    { "cell": "th2", "note": "Develops in the T-cell zone when a dendritic cell presents antigen and IL-4 is around, then leaves in the efferent lymph; which T cells help B cells switch to IgE is debated." },
+    { "cell": "th17", "note": "Develops in the T-cell zone when a dendritic cell presents antigen with IL-6 and TGF-β or IL-1β, then leaves in the efferent lymph for skin and mucosal surfaces." },
     { "cell": "cytotoxic-cd8-t", "note": "Enters from the blood through high endothelial venules and scans dendritic cells in the T-cell zone." },
-    { "cell": "plasma-cell", "note": "Many settle in the medullary cords and release antibody into the lymph leaving the node." }
+    { "cell": "plasma-cell", "note": "Many settle in the medullary cords and release antibody into the lymph leaving the node; others travel on to the bone marrow." }
   ]
 }

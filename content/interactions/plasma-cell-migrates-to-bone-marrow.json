@@ -1,0 +1,8 @@
+{
+  "id": "plasma-cell-migrates-to-bone-marrow",
+  "source": "plasma-cell",
+  "target": "bone-marrow",
+  "type": "migrates-to",
+  "via": ["cxcl12"],
+  "description": "Some plasma cells made in lymph nodes and spleen travel through the blood to the bone marrow, following CXCL12 through their receptor CXCR4. There, with survival signals such as IL-6 and APRIL, they can live for years and keep antibody levels up. Shown mainly in mice; others stay in the node medulla or move to mucosal tissue and live for days to weeks."
+}

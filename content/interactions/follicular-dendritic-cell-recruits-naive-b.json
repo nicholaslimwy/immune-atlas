@@ -4,5 +4,6 @@
   "target": "naive-b",
   "type": "recruits",
   "via": ["cxcl13"],
+  "where": ["lymph-node"],
   "description": "Follicular dendritic cells and other follicle stromal cells make CXCL13, which draws naive B cells into the B-cell follicles of lymph nodes and spleen."
 }

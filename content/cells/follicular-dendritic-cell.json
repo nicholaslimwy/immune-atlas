@@ -1,12 +1,34 @@
 {
   "id": "follicular-dendritic-cell",
   "name": "Follicular dendritic cell",
+  "cellOntologyId": "CL:0000442",
   "arm": "stromal",
   "lineage": "stromal",
   "family": "support",
-  "markers": [],
-  "summary": "Stub: profile not written yet.",
-  "functions": [],
-  "sources": [],
-  "status": "stub"
+  "markers": ["CD21 (CR2)", "CD35 (CR1)", "CD32 (FcγRIIB)", "CXCL13 (made by the cell)", "BAFF (made by the cell)", "FDC-M1 (mouse marker)"],
+  "summary": "A stromal cell of B-cell follicles, unrelated to the dendritic cells that activate T cells. Its long, branching processes form a mesh that holds intact antigen, coated with antibody and complement, where B cells can inspect it. It also makes CXCL13 to organise the follicle. In germinal centres it is the surface on which B cells test their antibodies.",
+  "functions": [
+    "Is a stromal cell, not a white blood cell: FDCs do not come from the bone marrow but from precursor cells around blood vessels (shown in mice). They do not process antigen or activate T cells.",
+    "Captures antigen as immune complexes, using complement receptors CR1 and CR2 and the Fc receptor FcγRIIB. B cells and subcapsular sinus macrophages carry the complexes to it from the lymph.",
+    "Keeps the captured antigen on its surface, intact and not digested, for a long time, so that it can be seen by B cells over weeks.",
+    "Makes CXCL13, which draws B cells and Tfh cells into the follicle through their receptor CXCR5, and BAFF, a survival signal for B cells.",
+    "In the germinal centre light zone, offers its antigen to B cells: a B cell pulls it off the FDC surface with its antibody receptor, and the cells that bind best take up the most and so win the most help from Tfh cells.",
+    "Debated: whether antigen kept on FDCs for months is needed to maintain memory B cells and antibody levels. The long retention is well shown, but its function is less certain."
+  ],
+  "abundance": "Not found in blood: FDCs stay in place in the follicles of lymph nodes, spleen, tonsils and gut lymphoid tissue. Exact numbers are hard to give because FDCs are difficult to isolate, but they are a tiny minority of cells in a follicle, outnumbered many times by B cells.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters on B-cell activation, the humoral immune response and lymphoid tissues.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters on lymphocyte activation and the humoral immune response.",
+    "Allen CDC, Cyster JG. Follicular dendritic cell networks of primary follicles and germinal centers: phenotype and function. Semin Immunol. 2008;20(1):14-25.",
+    "Heesters BA, Myers RC, Carroll MC. Follicular dendritic cells: dynamic antigen libraries. Nat Rev Immunol. 2014;14(7):495-504.",
+    "Kranich J, Krautler NJ. How follicular dendritic cells shape the B-cell antigenome. Front Immunol. 2016;7:225.",
+    "Krautler NJ, Kana V, Kranich J, et al. Follicular dendritic cells emerge from ubiquitous perivascular precursors. Cell. 2012;150(1):194-206.",
+    "Phan TG, Grigorova I, Okada T, Cyster JG. Subcapsular encounter and complement-dependent transport of immune complexes by lymph node B cells. Nat Immunol. 2007;8(9):992-1000.",
+    "Suzuki K, Grigorova I, Phan TG, Kelly LM, Cyster JG. Visualizing B cell capture of cognate antigen from follicular dendritic cells. J Exp Med. 2009;206(7):1485-1493.",
+    "Nowosad CR, Spillane KM, Tolar P. Germinal center B cells recognize antigen through a specialized immune synapse architecture. Nat Immunol. 2016;17(7):870-877.",
+    "Ansel KM, Ngo VN, Hyman PL, et al. A chemokine-driven positive feedback loop organizes lymphoid follicles. Nature. 2000;406(6793):309-314.",
+    "Victora GD, Schwickert TA, Fooksman DR, et al. Germinal center dynamics revealed by multiphoton microscopy with a photoactivatable fluorescent reporter. Cell. 2010;143(4):592-605.",
+    "Cell Ontology, CL:0000442 (follicular dendritic cell)."
+  ],
+  "status": "draft"
 }

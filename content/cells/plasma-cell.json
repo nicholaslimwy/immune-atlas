@@ -1,12 +1,38 @@
 {
   "id": "plasma-cell",
   "name": "Plasma cell",
+  "cellOntologyId": "CL:0000786",
   "arm": "adaptive",
   "lineage": "lymphoid",
   "family": "b-cell",
-  "markers": [],
-  "summary": "Stub: profile not written yet.",
-  "functions": [],
-  "sources": [],
-  "status": "stub"
+  "markers": ["CD138 (syndecan-1)", "CD38 (high)", "CD27 (high; human marker)", "BCMA (receptor for APRIL and BAFF)", "No CD20; little CD19 or surface antibody", "BLIMP-1 and XBP1 (inside the cell; master regulators)"],
+  "summary": "An antibody factory: the last stage of a B cell, with an off-centre nucleus and cytoplasm packed with endoplasmic reticulum. It makes thousands of antibody molecules a second. Short-lived plasma cells act for days near the site of a response. Long-lived ones settle in the bone marrow and can secrete antibody for years.",
+  "functions": [
+    "Arises from an activated B cell either straight away, outside the follicle (a first wave of mostly IgM, lasting days), or later from a germinal centre (higher-affinity, class-switched antibody). Dividing precursors, plasmablasts, appear in human blood about a week after infection or vaccination.",
+    "Secretes the soluble form of the antibody its B cell carried: IgM, IgG, IgA or IgE. IgG neutralises toxins and viruses and coats microbes for engulfment, IgA protects mucosal surfaces, and IgE arms mast cells and basophils.",
+    "Settles where it can survive: in the lymph node medulla for days to weeks, in mucosal tissue (for IgA), or in the bone marrow, to which it travels through the blood following CXCL12.",
+    "Is kept alive in bone marrow niches by survival signals such as IL-6, APRIL and BAFF, which it senses through BCMA. Long-lived plasma cells there keep antibody levels up for years, and antibody levels against viruses such as measles and mumps are estimated to last for decades in humans.",
+    "Debated: which cells build the bone marrow niche for long-lived plasma cells (eosinophils, megakaryocytes and stromal cells have all been proposed). Most of this evidence comes from mice.",
+    "Debated: whether long-lived plasma cells truly live for years on their own or are topped up by memory B cells that are stimulated continually without antigen.",
+    "Has lost most of its surface antibody and its MHC class II, so it no longer responds to antigen or presents it. It does not divide once fully mature."
+  ],
+  "abundance": "Very rare in healthy human blood. Plasmablasts rise to a few percent of B cells about a week after infection or vaccination. In human bone marrow, plasma cells are roughly 1% of nucleated cells. Most numbers on long-lived plasma cells come from mice.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters on the humoral immune response.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters on B cell activation and antibody production.",
+    "Nutt SL, Hodgkin PD, Tarlinton DM, Corcoran LM. The generation of antibody-secreting plasma cells. Nat Rev Immunol. 2015;15(3):160-171.",
+    "Slifka MK, Antia R, Whitmire JK, Ahmed R. Humoral immunity due to long-lived plasma cells. Immunity. 1998;8(3):363-372.",
+    "Manz RA, Thiel A, Radbruch A. Lifetime of plasma cells in the bone marrow. Nature. 1997;388(6638):133-134.",
+    "Halliley JL, Tipton CM, Liesveld J, et al. Long-lived plasma cells are contained within the CD19−CD38hiCD138+ subset in human bone marrow. Immunity. 2015;43(1):132-145.",
+    "Amanna IJ, Carlson NE, Slifka MK. Duration of humoral immunity to common viral and vaccine antigens. N Engl J Med. 2007;357(19):1903-1915.",
+    "Bernasconi NL, Traggiai E, Lanzavecchia A. Maintenance of serological memory by polyclonal activation of human memory B cells. Science. 2002;298(5601):2199-2202.",
+    "Wrammert J, Smith K, Miller J, et al. Rapid cloning of high-affinity human monoclonal antibodies against influenza virus. Nature. 2008;453(7195):667-671.",
+    "Chu VT, Fröhlich A, Steinhauser G, et al. Eosinophils are required for the maintenance of plasma cells in the bone marrow. Nat Immunol. 2011;12(2):151-159.",
+    "Winter O, Moser K, Mohr E, et al. Megakaryocytes constitute a functional component of a plasma cell niche in the bone marrow. Blood. 2010;116(11):1867-1875.",
+    "Chu VT, Berek C. The establishment of the plasma cell survival niche in the bone marrow. Immunol Rev. 2013;251(1):177-188.",
+    "Ettinger R, Sims GP, Fairhurst AM, et al. IL-21 induces differentiation of human naive and memory B cells into antibody-secreting plasma cells. J Immunol. 2005;175(12):7867-7879.",
+    "Mestas J, Hughes CCW. Of mice and not men: differences between mouse and human immunology. J Immunol. 2004;172(5):2731-2738.",
+    "Cell Ontology, CL:0000786 (plasma cell)."
+  ],
+  "status": "draft"
 }

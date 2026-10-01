@@ -1,12 +1,40 @@
 {
   "id": "germinal-centre-b",
   "name": "Germinal centre B cell",
+  "cellOntologyId": "CL:0000844",
   "arm": "adaptive",
   "lineage": "lymphoid",
   "family": "b-cell",
-  "markers": [],
-  "summary": "Stub: profile not written yet.",
-  "functions": [],
-  "sources": [],
-  "status": "stub"
+  "markers": ["CD19", "CD20", "BCL6 (inside the cell; master regulator)", "AID (inside the cell; the enzyme that mutates antibody genes)", "CD95 (Fas)", "CD10 (human marker)", "GL7 (mouse marker)", "CXCR4 high in the dark zone; CD83 and CD86 high in the light zone"],
+  "summary": "A B cell that has been activated by antigen and helper T cells and now divides inside a germinal centre. It mutates its antibody genes at random (somatic hypermutation), then tests the new antibody against antigen. Cells whose antibody binds better survive and keep dividing or leave as plasma cells or memory B cells. The rest die.",
+  "functions": [
+    "Starts the germinal centre: a few activated B cells (shown in mice to be a small number of founder clones) move into the middle of a follicle and divide rapidly.",
+    "In the dark zone divides every few hours, and the enzyme AID introduces point mutations into its antibody genes at a rate far above the rest of the genome (somatic hypermutation), producing many slightly different antibodies.",
+    "In the light zone tests its new antibody against antigen held on follicular dendritic cells. Cells that bind badly receive no help and die by apoptosis; cells that bind well take up antigen and show it on MHC class II to Tfh cells.",
+    "Cycles between the two zones many times. The amount of Tfh help it wins sets how many more rounds of division it undergoes, so antibody affinity rises over weeks (affinity maturation). This was worked out mainly in mice.",
+    "Switches antibody class (class-switch recombination), also through AID, from IgM to IgG, IgA or IgE. Cytokines from Tfh cells and others help choose the class.",
+    "Leaves as a plasma cell or a memory B cell. In mice, cells that leave early tend to become memory cells and those that leave late plasma cells.",
+    "Debated: what decides between plasma cell and memory B cell. Higher-affinity cells appear biased toward plasma cells, but lower-affinity cells also become memory cells.",
+    "Debated: how strongly a germinal centre selects the single best clone. In mice, many germinal centres stay diverse and keep lower-affinity clones alongside the best.",
+    "In humans, germinal centres have been sampled from lymph nodes by fine-needle aspiration after vaccination, where they persisted for months. Most of the detailed dynamics come from mice."
+  ],
+  "abundance": "Absent from blood and from resting lymph nodes. A germinal centre forms about a week after immunisation or infection and lasts weeks to months. In human tonsils, which are constantly responding to microbes, germinal centre B cells are a substantial minority of the B cells.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters on the humoral immune response and the dynamics of adaptive immunity.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters on B cell activation and antibody production.",
+    "Victora GD, Nussenzweig MC. Germinal centers. Annu Rev Immunol. 2012;30:429-457.",
+    "Victora GD, Schwickert TA, Fooksman DR, et al. Germinal center dynamics revealed by multiphoton microscopy with a photoactivatable fluorescent reporter. Cell. 2010;143(4):592-605.",
+    "Allen CDC, Okada T, Cyster JG. Germinal-center organization and cellular dynamics. Immunity. 2007;27(2):190-202.",
+    "Allen CDC, Ansel KM, Low C, et al. Germinal center dark and light zone organization is mediated by CXCR4 and CXCR5. Nat Immunol. 2004;5(9):943-952.",
+    "De Silva NS, Klein U. Dynamics of B cells in germinal centres. Nat Rev Immunol. 2015;15(3):137-148.",
+    "Mesin L, Ersching J, Victora GD. Germinal center B cell dynamics. Immunity. 2016;45(3):471-482.",
+    "Gitlin AD, Shulman Z, Nussenzweig MC. Clonal selection in the germinal centre by regulated proliferation and hypermutation. Nature. 2014;509(7502):637-640.",
+    "Tas JMJ, Mesin L, Pasqual G, et al. Visualizing antibody affinity maturation in germinal centers. Science. 2016;351(6277):1048-1054.",
+    "Muramatsu M, Kinoshita K, Fagarasan S, Yamada S, Shinkai Y, Honjo T. Class switch recombination and hypermutation require activation-induced cytidine deaminase (AID), a potential RNA editing enzyme. Cell. 2000;102(5):553-563.",
+    "Weisel FJ, Zuccarino-Catania GV, Chikina M, Shlomchik MJ. A temporal switch in the germinal center determines differential output of memory B and plasma cells. Immunity. 2016;44(1):116-130.",
+    "Cyster JG, Allen CDC. B cell responses: cell interaction dynamics and decisions. Cell. 2019;177(3):524-540.",
+    "Turner JS, O'Halloran JA, Kalaidina E, et al. SARS-CoV-2 mRNA vaccines induce persistent human germinal centre responses. Nature. 2021;596(7870):109-113.",
+    "Cell Ontology, CL:0000844 (germinal center B cell)."
+  ],
+  "status": "draft"
 }

@@ -1,0 +1,9 @@
+{
+  "id": "tfh-helps-germinal-centre-b",
+  "source": "tfh",
+  "target": "germinal-centre-b",
+  "type": "helps",
+  "via": ["cd40l", "il-21", "il-4"],
+  "where": ["germinal-centre"],
+  "description": "In the light zone, germinal centre B cells show peptide to Tfh cells on MHC class II. Those that show the most receive the most help, as CD40L contact and IL-21 and IL-4. The amount of help sets how many more times the B cell divides in the dark zone, and so which antibodies win. Shown mainly in mice."
+}

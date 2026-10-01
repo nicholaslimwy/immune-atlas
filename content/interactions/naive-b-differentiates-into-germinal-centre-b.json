@@ -3,5 +3,6 @@
   "source": "naive-b",
   "target": "germinal-centre-b",
   "type": "differentiates-into",
+  "where": ["lymph-node"],
   "description": "With T-cell help, an activated naive B cell moves into the follicle and starts a germinal centre, where it multiplies and its antibody genes mutate, and B cells with better-binding antibody are selected."
 }

@@ -4,5 +4,6 @@
   "target": "naive-b",
   "type": "helps",
   "via": ["cd40l", "il-21", "il-4"],
+  "where": ["lymph-node"],
   "description": "A Tfh cell that recognises the B cell's peptide gives it help through CD40L and cytokines such as IL-21 and IL-4. Without this help most B cells cannot form a germinal centre or switch antibody class."
 }

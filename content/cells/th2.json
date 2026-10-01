@@ -1,12 +1,42 @@
 {
   "id": "th2",
   "name": "Th2 cell",
+  "cellOntologyId": "CL:0000546",
   "arm": "adaptive",
   "lineage": "lymphoid",
   "family": "t-cell",
-  "markers": [],
-  "summary": "Stub: profile not written yet.",
-  "functions": [],
-  "sources": [],
-  "status": "stub"
+  "markers": ["CD3", "CD4", "CCR4", "CRTH2 (CD294; human marker)", "ST2 (IL-33 receptor; mouse marker)", "GATA3 (inside the cell; master regulator)", "IL-4, IL-5 and IL-13 (made by the cell)", "No CXCR3 or CCR6 (human marker; tells it from Th1 and Th17 in blood)"],
+  "summary": "A helper T cell that organises defence against parasitic worms and other large parasites living outside cells, and that drives allergic inflammation. Steered by IL-4, it makes IL-4, IL-5 and IL-13. These call in eosinophils, make B cells switch to IgE, and trigger mucus and gut contractions that expel parasites.",
+  "functions": [
+    "Develops in the lymph node from a naive CD4 T cell activated by a dendritic cell (in mice, a cDC2 subset) in the presence of IL-4, which switches on STAT6 and the transcription factor GATA3.",
+    "Debated: where the first IL-4 comes from. Basophils, other T cells and the developing Th2 cell itself have all been proposed, and the answer may depend on the type of response.",
+    "Makes IL-5, which recruits and activates eosinophils; IL-4 and IL-13, which with CD40L push B cells to switch to IgE antibody; and IL-13, which acts on epithelium and smooth muscle to cause mucus production and gut and airway contractions (the \"weep and sweep\" of worm expulsion).",
+    "Switches macrophages to an \"alternative\" state with IL-4 and IL-13 that helps repair tissue, wall off worms and limit damage. This is a repair programme, not a bacterial killing one.",
+    "Restrains competing helper cells: IL-4 steers naive CD4 T cells away from becoming Th1 cells (shown mainly in mouse experiments).",
+    "Drives allergy when its target is a harmless antigen such as pollen: IgE-armed mast cells and basophils, eosinophils and mucus then cause asthma or hay fever.",
+    "Debated: how much protection against worms depends on Th2 cells rather than on innate lymphoid cells, which make the same cytokines (IL-5, IL-13) earlier and without antigen recognition.",
+    "Debated: whether the help that makes B cells switch to IgE comes from Th2 cells or from IL-4-making Tfh cells inside follicles. The Tfh route has been shown in mice.",
+    "Leaves the lymph node, enters the blood and is drawn to tissues such as skin and lung by chemokines acting on CCR4."
+  ],
+  "abundance": "A minority of memory CD4 T cells in the blood of healthy adults (CCR4-positive, CXCR3-negative, CCR6-negative), higher in people with allergy or worm infection. Mouse strains differ: BALB/c mice favour Th2 responses, C57BL/6 mice favour Th1.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters on T cell-mediated immunity, allergy and immunity to parasites.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters on differentiation and functions of CD4 T cells and immediate hypersensitivity.",
+    "Zhu J, Yamane H, Paul WE. Differentiation of effector CD4 T cell populations. Annu Rev Immunol. 2010;28:445-489.",
+    "Mosmann TR, Coffman RL. TH1 and TH2 cells: different patterns of lymphokine secretion lead to different functional properties. Annu Rev Immunol. 1989;7:145-173.",
+    "Abbas AK, Murphy KM, Sher A. Functional diversity of helper T lymphocytes. Nature. 1996;383(6603):787-793.",
+    "Zheng W, Flavell RA. The transcription factor GATA-3 is necessary and sufficient for Th2 cytokine gene expression in CD4 T cells. Cell. 1997;89(4):587-596.",
+    "Paul WE, Zhu J. How are TH2-type immune responses initiated and amplified? Nat Rev Immunol. 2010;10(4):225-235.",
+    "Gao Y, Nish SA, Jiang R, et al. Control of T helper 2 responses by transcription factor IRF4-dependent dendritic cells. Immunity. 2013;39(4):722-732.",
+    "Anthony RM, Rutitzky LI, Urban JF Jr, Stadecker MJ, Gause WC. Protective immune mechanisms in helminth infection. Nat Rev Immunol. 2007;7(12):975-987.",
+    "Allen JE, Wynn TA. Evolution of Th2 immunity: a rapid repair response to tissue destructive pathogens. PLoS Pathog. 2011;7(5):e1002003.",
+    "Neill DR, Wong SH, Bellosi A, et al. Nuocytes represent a new innate effector leukocyte that mediates type-2 immunity. Nature. 2010;464(7293):1367-1370.",
+    "Gowthaman U, Chen JS, Zhang B, et al. Identification of a T follicular helper cell subset that drives anaphylactic IgE. Science. 2019;365(6456):eaaw6433.",
+    "Imai T, Nagira M, Takagi S, et al. Selective recruitment of CCR4-bearing Th2 cells toward antigen-presenting cells by the CC chemokines thymus and activation-regulated chemokine and macrophage-derived chemokine. Int Immunol. 1999;11(1):81-88.",
+    "Acosta-Rodriguez EV, Rivino L, Geginat J, et al. Surface phenotype and antigenic specificity of human interleukin 17-producing T helper memory cells. Nat Immunol. 2007;8(6):639-646.",
+    "Heinzel FP, Sadick MD, Holaday BJ, Coffman RL, Locksley RM. Reciprocal expression of interferon gamma or interleukin 4 during the resolution or progression of murine leishmaniasis. J Exp Med. 1989;169(1):59-72.",
+    "Mestas J, Hughes CCW. Of mice and not men: differences between mouse and human immunology. J Immunol. 2004;172(5):2731-2738.",
+    "Cell Ontology, CL:0000546 (T-helper 2 cell)."
+  ],
+  "status": "draft"
 }

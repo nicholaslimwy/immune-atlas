@@ -1,12 +1,41 @@
 {
   "id": "memory-b",
   "name": "Memory B cell",
+  "cellOntologyId": "CL:0000787",
   "arm": "adaptive",
   "lineage": "lymphoid",
   "family": "b-cell",
-  "markers": [],
-  "summary": "Stub: profile not written yet.",
-  "functions": [],
-  "sources": [],
-  "status": "stub"
+  "markers": ["CD19", "CD20", "CD27 (human marker)", "IgM, IgG, IgA or IgE on the surface (its B-cell receptor)", "CD80, PD-L2 (CD273) and CD73 (mouse marker for class-switched memory cells)", "No CD138"],
+  "summary": "A B cell that survives an earlier immune response, long-lived and quiet, ready to act fast if the antigen returns. Its antibody is mutated and often class-switched, so it binds better than a naive B cell's, and it divides sooner. On re-exposure most become plasma cells that make antibody within days.",
+  "functions": [
+    "Is made in two ways: in germinal centres, carrying mutated and usually class-switched antibody, and early, outside them, mostly keeping IgM with few mutations (shown mainly in mice).",
+    "Persists without the antigen: it can survive for years, probably decades in humans, as a resting cell. In humans, memory B cells after smallpox vaccination have been found up to 50 years later.",
+    "On meeting its antigen again, it divides and differentiates faster than a naive B cell. Most become plasma cells within days, which gives the quicker, larger secondary antibody response. It usually needs help from memory CD4 T cells.",
+    "Debated: how many memory B cells re-enter germinal centres on a second exposure. In mice, boosting gives limited re-entry from a restricted set of clones, so most of the response arises from the memory cells directly.",
+    "Is not one cell type in mice: IgM-bearing and IgG-bearing memory cells behave differently on recall, with IgM cells more ready to re-enter germinal centres and IgG cells to become plasma cells quickly.",
+    "Debated: where human CD27-positive IgM memory B cells come from, with one view that they are circulating marginal zone B cells and another that they come from germinal centres.",
+    "Recirculates through blood, spleen and lymph nodes, and some stay in tissue: after influenza in mice, resident memory B cells settle in the lung and need local antigen to form."
+  ],
+  "abundance": "About a third of B cells in adult human blood are memory cells (CD27-positive), rising with age; babies have few. Laboratory mice, kept clean, have few memory B cells until they are immunised.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters on the humoral immune response and the dynamics of adaptive immunity.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters on B cell activation and antibody production.",
+    "Kurosaki T, Kometani K, Ise W. Memory B cells. Nat Rev Immunol. 2015;15(3):149-159.",
+    "Akkaya M, Kwak K, Pierce SK. B cell memory: building two walls of protection against pathogens. Nat Rev Immunol. 2020;20(4):229-238.",
+    "Maruyama M, Lam KP, Rajewsky K. Memory B-cell persistence is independent of persisting immunizing antigen. Nature. 2000;407(6804):636-642.",
+    "Crotty S, Felgner P, Davies H, Glidewell J, Villarreal L, Ahmed R. Cutting edge: long-term B cell memory in humans after smallpox vaccination. J Immunol. 2003;171(10):4969-4973.",
+    "Tangye SG, Avery DT, Deenick EK, Hodgkin PD. Intrinsic differences in the proliferation of naive and memory human B cells as a mechanism for enhanced secondary immune responses. J Immunol. 2003;170(2):686-694.",
+    "Klein U, Rajewsky K, Küppers R. Human immunoglobulin (Ig)M+IgD+ peripheral blood B cells expressing the CD27 cell surface antigen carry somatically mutated variable region genes: CD27 as a general marker for somatically mutated (memory) B cells. J Exp Med. 1998;188(9):1679-1689.",
+    "Weller S, Braun MC, Tan BK, et al. Human blood IgM \"memory\" B cells are circulating splenic marginal zone B cells harboring a prediversified immunoglobulin repertoire. Blood. 2004;104(12):3647-3654.",
+    "Anderson SM, Tomayko MM, Ahuja A, Haberman AM, Shlomchik MJ. New markers for murine memory B cells that define mutated and unmutated subsets. J Exp Med. 2007;204(9):2103-2114.",
+    "Tomayko MM, Steinel NC, Anderson SM, Shlomchik MJ. Cutting edge: hierarchy of maturity of murine memory B cell subsets. J Immunol. 2010;185(12):7146-7150.",
+    "Dogan I, Bertocci B, Vilmont V, et al. Multiple layers of B cell memory with different effector functions. Nat Immunol. 2009;10(12):1292-1299.",
+    "Pape KA, Taylor JJ, Maul RW, Gearhart PJ, Jenkins MK. Different B cell populations mediate early and late memory during an endogenous immune response. Science. 2011;331(6021):1203-1207.",
+    "Taylor JJ, Pape KA, Jenkins MK. A germinal center-independent pathway generates unswitched memory B cells early in the primary response. J Exp Med. 2012;209(3):597-606.",
+    "Mesin L, Schiepers A, Ersching J, et al. Restricted clonality and limited germinal center reentry characterize memory B cell reactivation by boosting. Cell. 2020;180(1):92-106.",
+    "Allie SR, Bradley JE, Mudunuru U, et al. The establishment of resident memory B cells in the lung requires local antigen encounter. Nat Immunol. 2019;20(1):97-108.",
+    "Mestas J, Hughes CCW. Of mice and not men: differences between mouse and human immunology. J Immunol. 2004;172(5):2731-2738.",
+    "Cell Ontology, CL:0000787 (memory B cell)."
+  ],
+  "status": "draft"
 }

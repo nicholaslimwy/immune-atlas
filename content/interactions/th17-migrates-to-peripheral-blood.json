@@ -1,0 +1,7 @@
+{
+  "id": "th17-migrates-to-peripheral-blood",
+  "source": "th17",
+  "target": "peripheral-blood",
+  "type": "migrates-to",
+  "description": "Th17 cells leave the lymph node in the efferent lymph and enter the blood. They are drawn to barrier tissues such as the gut wall, skin and lung by CCR6, which senses CCL20 made by epithelial cells."
+}

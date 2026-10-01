@@ -4,5 +4,6 @@
   "target": "cytotoxic-cd8-t",
   "type": "presents-antigen-to",
   "via": ["mhc-i"],
+  "where": ["lymph-node"],
   "description": "In the lymph node, dendritic cells show viral or tumour peptides on MHC class I to naive CD8 T cells. One type, cDC1, specialises in cross-presentation: putting peptides from engulfed infected cells onto MHC class I."
 }

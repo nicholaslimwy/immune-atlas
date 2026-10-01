@@ -1,0 +1,7 @@
+{
+  "id": "th2-migrates-to-peripheral-blood",
+  "source": "th2",
+  "target": "peripheral-blood",
+  "type": "migrates-to",
+  "description": "Th2 cells leave the lymph node in the efferent lymph and enter the blood. They are then drawn to tissues such as skin and lung by chemokines acting on CCR4, where antigen presented again by local cells reactivates them."
+}

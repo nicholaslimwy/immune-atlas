@@ -1,0 +1,9 @@
+{
+  "id": "germinal-centre-b-presents-antigen-to-tfh",
+  "source": "germinal-centre-b",
+  "target": "tfh",
+  "type": "presents-antigen-to",
+  "via": ["mhc-ii"],
+  "where": ["germinal-centre"],
+  "description": "A light-zone B cell takes up antigen from the surface of a follicular dendritic cell, cuts it into peptides and shows them on MHC class II to a Tfh cell. The more antigen it captures, which means the better its antibody binds, the more peptide it shows and the more help it wins."
+}

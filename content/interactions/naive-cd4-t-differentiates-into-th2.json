@@ -4,5 +4,6 @@
   "target": "th2",
   "type": "differentiates-into",
   "via": ["il-4"],
+  "where": ["lymph-node"],
   "description": "IL-4 steers activated naive CD4 T cells to become Th2 cells, which deal with parasitic worms. Which cell supplies the first IL-4 is still debated; candidates include basophils and the T cells themselves."
 }

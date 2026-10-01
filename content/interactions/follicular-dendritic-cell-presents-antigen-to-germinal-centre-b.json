@@ -1,0 +1,8 @@
+{
+  "id": "follicular-dendritic-cell-presents-antigen-to-germinal-centre-b",
+  "source": "follicular-dendritic-cell",
+  "target": "germinal-centre-b",
+  "type": "presents-antigen-to",
+  "where": ["germinal-centre"],
+  "description": "Follicular dendritic cells hold whole antigen, as complexes with antibody and complement, on long processes in the light zone. B cells pull it off with their antibody receptors, and those that bind best take up the most. FDCs show antigen as it is, not as peptides on MHC."
+}

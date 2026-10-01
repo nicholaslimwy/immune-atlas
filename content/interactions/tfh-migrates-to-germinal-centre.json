@@ -1,0 +1,8 @@
+{
+  "id": "tfh-migrates-to-germinal-centre",
+  "source": "tfh",
+  "target": "germinal-centre",
+  "type": "migrates-to",
+  "via": ["cxcl13"],
+  "description": "Activated CD4 T cells that become Tfh cells lower their CCR7 and raise CXCR5, and follow CXCL13 from the T-cell zone to the border of the follicle. Those that keep meeting B cells showing their antigen move on into the follicle and the germinal centre, where they stay while it lasts."
+}

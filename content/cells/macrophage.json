@@ -1,12 +1,43 @@
 {
   "id": "macrophage",
   "name": "Macrophage",
+  "cellOntologyId": "CL:0000235",
   "arm": "innate",
   "lineage": "myeloid",
   "family": "innate-myeloid",
-  "markers": [],
-  "summary": "Stub: profile not written yet.",
-  "functions": [],
-  "sources": [],
-  "status": "stub"
+  "markers": ["CD68", "CD14 (human marker)", "CD64 (FcγRI)", "CSF1R (CD115)", "CD163 (most tissue macrophages)", "MHC class II (level varies)", "F4/80 (mouse marker)"],
+  "summary": "A large, long-lived phagocyte found in nearly every tissue, often with swallowed debris inside. Resident macrophages clear dead cells and microbes, and each organ has its own type, such as Kupffer cells in the liver. In infection they raise the alarm with cytokines and, once activated by T cells, kill microbes more effectively.",
+  "functions": [
+    "Clears dying cells and debris every day without raising an alarm (efferocytosis); this housekeeping is its commonest job.",
+    "Engulfs microbes through receptors for microbial patterns, antibody and complement, and kills them in its lysosomes with enzymes and reactive oxygen and nitrogen species. Some microbes, such as Mycobacterium tuberculosis, survive inside macrophages.",
+    "Raises the alarm: it releases TNF, IL-1β, IL-6 and chemokines such as CCL2 (and CXCL8 in humans) that call in neutrophils and monocytes and start inflammation.",
+    "Is activated further by IFN-γ from Th1 cells and NK cells, which makes it a stronger killer, or by IL-4 and IL-13 from Th2 cells, which turns it toward repair and anti-parasite work.",
+    "Debated: the \"M1\" and \"M2\" labels for these two states. In tissue, macrophages show a spectrum of states, and the labels come largely from cells treated in culture.",
+    "Passes the immune response on: it shows peptides on MHC class II to effector CD4 T cells, and in lymph nodes subcapsular sinus macrophages catch particles and viruses in the lymph and hand them to B cells, while medullary macrophages clear the lymph before it leaves.",
+    "In germinal centres, tingible body macrophages engulf the many B cells that die after failing selection, which keeps the dead cells from building up.",
+    "Drives repair as well as defence: after engulfing dying neutrophils it switches to releasing growth factors and anti-inflammatory signals. Chronic activation can instead build granulomas or scar tissue.",
+    "Many tissue macrophages are not simply monocyte-derived. Fate-mapping in mice shows that microglia, Kupffer cells and alveolar macrophages arise before birth and renew themselves, whereas gut macrophages are replaced from blood monocytes. Human evidence is thinner."
+  ],
+  "abundance": "Not found in blood; monocytes are their blood precursors. Numbers vary widely by organ: macrophages are among the most common immune cells in the liver, lung, spleen and gut wall. Exact human counts are hard to give because the cells must be taken from tissue, and most figures come from mice.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters on innate immunity, phagocytes and the effector mechanisms of T cell-mediated immunity.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters on innate immunity and effector mechanisms of cell-mediated immunity.",
+    "Gordon S, Taylor PR. Monocyte and macrophage heterogeneity. Nat Rev Immunol. 2005;5(12):953-964.",
+    "Murray PJ, Wynn TA. Protective and pathogenic functions of macrophage subsets. Nat Rev Immunol. 2011;11(11):723-737.",
+    "Murray PJ, Allen JE, Biswas SK, et al. Macrophage activation and polarization: nomenclature and experimental guidelines. Immunity. 2014;41(1):14-20.",
+    "Martinez FO, Gordon S. The M1 and M2 paradigm of macrophage activation: time for reassessment. F1000Prime Rep. 2014;6:13.",
+    "Ginhoux F, Jung S. Monocytes and macrophages: developmental pathways and tissue homeostasis. Nat Rev Immunol. 2014;14(6):392-404.",
+    "Ginhoux F, Guilliams M. Tissue-resident macrophage ontogeny and homeostasis. Immunity. 2016;44(3):439-449.",
+    "Hashimoto D, Chow A, Noizat C, et al. Tissue-resident macrophages self-maintain locally throughout adult life with minimal contribution from circulating monocytes. Immunity. 2013;38(4):792-804.",
+    "Guilliams M, Ginhoux F, Jakubzick C, et al. Dendritic cells, monocytes and macrophages: a unified nomenclature based on ontogeny. Nat Rev Immunol. 2014;14(8):571-578.",
+    "Gray EE, Cyster JG. Lymph node macrophages. J Innate Immun. 2012;4(5-6):424-436.",
+    "Junt T, Moseman EA, Iannacone M, et al. Subcapsular sinus macrophages in lymph nodes clear lymph-borne viruses and present them to antiviral B cells. Nature. 2007;450(7166):110-114.",
+    "Carrasco YR, Batista FD. B cells acquire particulate antigen in a macrophage-rich area at the boundary between the follicle and the subcapsular sinus of the lymph node. Immunity. 2007;27(1):160-171.",
+    "Rahman ZSM, Shao WH, Khan TN, Zhen Y, Cohen PL. Impaired apoptotic cell clearance in the germinal center by Mer-deficient tingible body macrophages leads to enhanced antibody-forming cell and germinal center responses. J Immunol. 2010;185(9):5859-5868.",
+    "Soehnlein O, Lindbom L. Phagocyte partnership during the onset and resolution of inflammation. Nat Rev Immunol. 2010;10(6):427-439.",
+    "Cambier CJ, Falkow S, Ramakrishnan L. Host evasion and exploitation schemes of Mycobacterium tuberculosis. Cell. 2014;159(7):1497-1509.",
+    "Mestas J, Hughes CCW. Of mice and not men: differences between mouse and human immunology. J Immunol. 2004;172(5):2731-2738.",
+    "Cell Ontology, CL:0000235 (macrophage)."
+  ],
+  "status": "draft"
 }

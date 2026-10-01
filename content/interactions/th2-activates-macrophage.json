@@ -1,0 +1,8 @@
+{
+  "id": "th2-activates-macrophage",
+  "source": "th2",
+  "target": "macrophage",
+  "type": "activates",
+  "via": ["il-4", "il-13"],
+  "description": "IL-4 and IL-13 from Th2 cells switch macrophages to an \"alternative\" state that helps repair tissue, wall off worms and limit damage rather than kill bacteria. Whether this is a distinct state rather than one point on a spectrum is debated."
+}

@@ -4,5 +4,6 @@
   "target": "naive-cd4-t",
   "type": "presents-antigen-to",
   "via": ["mhc-ii"],
+  "where": ["lymph-node"],
   "description": "Dendritic cells carry antigen from infected tissue to the T-cell zone of a lymph node and show its peptides on MHC class II. A naive CD4 T cell whose receptor fits, and which also receives co-stimulation from the dendritic cell, is activated."
 }

@@ -1,0 +1,8 @@
+{
+  "id": "conventional-dendritic-cell-migrates-to-lymph-node",
+  "source": "conventional-dendritic-cell",
+  "target": "lymph-node",
+  "type": "migrates-to",
+  "via": ["ccl19-ccl21"],
+  "description": "After picking up antigen and sensing danger in a tissue, a dendritic cell switches on the chemokine receptor CCR7. CCL21 on lymphatic vessels guides it into the afferent lymph, and CCL19 and CCL21 in the node lead it on to the T-cell zone. Shown mainly in mice; in humans, skin dendritic cells have been seen leaving tissue in the same way."
+}

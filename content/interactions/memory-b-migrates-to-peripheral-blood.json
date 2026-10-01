@@ -1,0 +1,7 @@
+{
+  "id": "memory-b-migrates-to-peripheral-blood",
+  "source": "memory-b",
+  "target": "peripheral-blood",
+  "type": "migrates-to",
+  "description": "Memory B cells leave lymphoid organs and recirculate through blood, spleen and lymph nodes instead of staying in one place. In adults about a third of the B cells in blood are memory cells. Some settle in tissue instead, such as the lung after influenza infection in mice."
+}

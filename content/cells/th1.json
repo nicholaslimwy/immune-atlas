@@ -1,12 +1,42 @@
 {
   "id": "th1",
   "name": "Th1 cell",
+  "cellOntologyId": "CL:0000545",
   "arm": "adaptive",
   "lineage": "lymphoid",
   "family": "t-cell",
-  "markers": [],
-  "summary": "Stub: profile not written yet.",
-  "functions": [],
-  "sources": [],
-  "status": "stub"
+  "markers": ["CD3", "CD4", "CXCR3", "CCR5", "IL-12 receptor", "T-bet (inside the cell; master regulator)", "IFN-γ (made by the cell)", "CD40L (once activated)"],
+  "summary": "A helper T cell that directs the defence against microbes living inside cells, such as viruses and Mycobacteria. Steered by IL-12 from dendritic cells, it makes IFN-γ, which makes macrophages kill the microbes they have swallowed, and it helps CD8 T cells. It is the helper arm of cell-mediated immunity.",
+  "functions": [
+    "Develops in the lymph node from a naive CD4 T cell activated by a dendritic cell. IL-12 from dendritic cells and macrophages, and IFN-γ from NK cells and T cells, switch on the transcription factor T-bet, which fixes the Th1 programme.",
+    "Makes IFN-γ as its signature cytokine, together with TNF and IL-2.",
+    "Activates macrophages: IFN-γ and CD40L on contact switch on their killing machinery, so they can destroy microbes that survive inside them, such as Mycobacteria. People with inherited defects in the IL-12 and IFN-γ pathway are very susceptible to these microbes.",
+    "Helps CD8 T cells, partly directly through IL-2 and mostly indirectly by licensing the dendritic cell with CD40L, which improves CD8 T-cell responses and memory.",
+    "Restrains competing helper cells: IFN-γ blocks naive CD4 T cells from becoming Th2 or Th17 cells (shown mainly in mouse experiments).",
+    "Leaves the lymph node in the efferent lymph, enters the blood and is drawn to infected tissue by CXCL9 and CXCL10 acting on CXCR3, where macrophages and dendritic cells present antigen to it again.",
+    "Debated: how stable the Th1 state is. Th1 cells can take on features of other helper subsets, and many researchers now see helper subsets as flexible states rather than fixed lineages.",
+    "Was first defined in mouse T-cell clones, and mouse strains differ: C57BL/6 mice tend toward Th1 responses, BALB/c mice toward Th2. Human cells show the same pattern, but with more overlap."
+  ],
+  "abundance": "A minority of CD4 T cells and one of the larger groups in the memory CD4 T-cell pool of human blood (CXCR3-positive, CCR6-negative); exact proportions depend on how the cells are defined. They are scarce in resting lymph nodes and rise during infection.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters on T cell-mediated immunity.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters on differentiation and functions of CD4 T cells.",
+    "Zhu J, Yamane H, Paul WE. Differentiation of effector CD4 T cell populations. Annu Rev Immunol. 2010;28:445-489.",
+    "Mosmann TR, Coffman RL. TH1 and TH2 cells: different patterns of lymphokine secretion lead to different functional properties. Annu Rev Immunol. 1989;7:145-173.",
+    "Mosmann TR, Cherwinski H, Bond MW, Giedlin MA, Coffman RL. Two types of murine helper T cell clone. I. Definition according to profiles of lymphokine activities and secreted proteins. J Immunol. 1986;136(7):2348-2357.",
+    "Abbas AK, Murphy KM, Sher A. Functional diversity of helper T lymphocytes. Nature. 1996;383(6603):787-793.",
+    "Szabo SJ, Kim ST, Costa GL, Zhang X, Fathman CG, Glimcher LH. A novel transcription factor, T-bet, directs Th1 lineage commitment. Cell. 2000;100(6):655-669.",
+    "Trinchieri G. Interleukin-12 and the regulation of innate resistance and adaptive immunity. Nat Rev Immunol. 2003;3(2):133-146.",
+    "Acosta-Rodriguez EV, Rivino L, Geginat J, et al. Surface phenotype and antigenic specificity of human interleukin 17-producing T helper memory cells. Nat Immunol. 2007;8(6):639-646.",
+    "Groom JR, Luster AD. CXCR3 in T cell function. Exp Cell Res. 2011;317(5):620-631.",
+    "MacMicking J, Xie QW, Nathan C. Nitric oxide and macrophage function. Annu Rev Immunol. 1997;15:323-350.",
+    "Bustamante J, Boisson-Dupuis S, Abel L, Casanova JL. Mendelian susceptibility to mycobacterial disease: genetic, immunological, and clinical features of inborn errors of IFN-γ immunity. Semin Immunol. 2014;26(6):454-470.",
+    "Ridge JP, Di Rosa F, Matzinger P. A conditioned dendritic cell can be a temporal bridge between a CD4+ T-helper and a T-killer cell. Nature. 1998;393(6684):474-478.",
+    "Harrington LE, Hatton RD, Mangan PR, et al. Interleukin 17-producing CD4+ effector T cells develop via a lineage distinct from the T helper type 1 and 2 lineages. Nat Immunol. 2005;6(11):1123-1132.",
+    "Park H, Li Z, Yang XO, et al. A distinct lineage of CD4 T cells regulates tissue inflammation by producing interleukin 17. Nat Immunol. 2005;6(11):1133-1141.",
+    "O'Shea JJ, Paul WE. Mechanisms underlying lineage commitment and plasticity of helper CD4+ T cells. Science. 2010;327(5969):1098-1102.",
+    "Mestas J, Hughes CCW. Of mice and not men: differences between mouse and human immunology. J Immunol. 2004;172(5):2731-2738.",
+    "Cell Ontology, CL:0000545 (T-helper 1 cell)."
+  ],
+  "status": "draft"
 }

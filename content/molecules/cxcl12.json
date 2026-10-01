@@ -2,5 +2,5 @@
   "id": "cxcl12",
   "name": "CXCL12 (SDF-1)",
   "kind": "chemokine",
-  "summary": "A chemokine made by stromal and endothelial cells in the bone marrow. It binds CXCR4 on haematopoietic stem cells and holds them in their niches. G-CSF lowers marrow CXCL12, and drugs that block CXCR4 release stem cells into the blood."
+  "summary": "A chemokine made by stromal and endothelial cells in the bone marrow. It binds CXCR4 on haematopoietic stem cells and holds them in their niches. G-CSF lowers marrow CXCL12, and drugs that block CXCR4 release stem cells into the blood. Plasma cells also follow it into the marrow, and it is made in the dark zone of germinal centres."
 }

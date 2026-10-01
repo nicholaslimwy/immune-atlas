@@ -1,0 +1,8 @@
+{
+  "id": "germinal-centre-b-differentiates-into-plasma-cell",
+  "source": "germinal-centre-b",
+  "target": "plasma-cell",
+  "type": "differentiates-into",
+  "where": ["germinal-centre"],
+  "description": "Germinal centre B cells that win selection can leave as plasma cells whose antibody binds antigen tightly. In mice, cells leaving late tend to be plasma cells and those leaving early memory cells, but what decides the choice is debated."
+}

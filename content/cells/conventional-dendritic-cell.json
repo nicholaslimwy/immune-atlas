@@ -1,12 +1,39 @@
 {
   "id": "conventional-dendritic-cell",
   "name": "Conventional dendritic cell",
+  "cellOntologyId": "CL:0000990",
   "arm": "innate",
   "lineage": "myeloid",
   "family": "innate-myeloid",
-  "markers": [],
-  "summary": "Stub: profile not written yet.",
-  "functions": [],
-  "sources": [],
-  "status": "stub"
+  "markers": ["MHC class II", "CD11c", "CD80 and CD86 (higher once activated)", "CCR7 (once activated)", "XCR1 (cDC1 subset)", "CD141 (BDCA-3; human marker for cDC1)", "CD1c (BDCA-1; human marker for cDC2)", "CD8α (mouse marker for cDC1 in lymphoid organs)"],
+  "summary": "A professional antigen-presenting cell, recognised by its long branching arms. In tissues it samples its surroundings for antigen. Once it senses danger it matures and travels to a lymph node, where it shows peptides on MHC molecules and gives the co-stimulation naive T cells need. It is the main activator of naive T cells.",
+  "functions": [
+    "Samples its surroundings in tissues such as skin, gut and lung by engulfing fluid and particles, and senses microbes with pattern-recognition receptors such as the Toll-like receptors.",
+    "Matures when it detects danger: it raises MHC molecules and the co-stimulators CD80 and CD86, makes cytokines such as IL-12, and switches on the chemokine receptor CCR7.",
+    "Travels to a lymph node: CCR7 guides it along CCL21 into lymphatic vessels and, in the afferent lymph, to the T-cell zone. Resident dendritic cells that come from the blood collect antigen draining into the node without travelling (shown mainly in mice).",
+    "Presents peptides on MHC class II to naive CD4 T cells and, by cross-presentation, peptides from outside antigens on MHC class I to naive CD8 T cells, together with co-stimulation. Cross-presentation is the speciality of the cDC1 subset.",
+    "Steers the fate of the T cells it activates through its cytokines: IL-12 favours Th1 cells, while other signals favour Th2, Th17, Tfh or regulatory T cells.",
+    "Helps other lymphocytes: it makes IL-12 and holds IL-15 on its surface to activate NK cells, and once licensed by CD40L from a helper T cell it activates CD8 T cells more strongly.",
+    "In its immature, steady-state form it presents self-antigens without co-stimulation, which helps keep T cells tolerant of the body's own tissues (shown mainly in mice).",
+    "Debated: how strictly the two main subsets divide the work (cDC1 for CD8 T cells and Th1, cDC2 for CD4 T cells and Th2 or Th17 responses), and how monocyte-derived dendritic cells that appear in inflammation should be grouped beside them. Single-cell studies keep splitting the human subsets."
+  ],
+  "abundance": "Rare in blood: under 1% of white blood cells in adult humans, with cDC2 outnumbering cDC1 many times over. Most dendritic cells sit in tissues and lymphoid organs, not in blood. In mice they make up roughly 1% of spleen and lymph node cells.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters on antigen presentation to T lymphocytes and T cell-mediated immunity.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters on antigen capture and presentation to lymphocytes and T cell activation.",
+    "Banchereau J, Steinman RM. Dendritic cells and the control of immunity. Nature. 1998;392(6673):245-252.",
+    "Merad M, Sathe P, Helft J, Miller J, Mortha A. The dendritic cell lineage: ontogeny and function of dendritic cells and their subsets in the steady state and the inflamed setting. Annu Rev Immunol. 2013;31:563-604.",
+    "Guilliams M, Ginhoux F, Jakubzick C, et al. Dendritic cells, monocytes and macrophages: a unified nomenclature based on ontogeny. Nat Rev Immunol. 2014;14(8):571-578.",
+    "Villani AC, Satija R, Reynolds G, et al. Single-cell RNA-seq reveals new types of human blood dendritic cells, monocytes, and progenitors. Science. 2017;356(6335):eaah4573.",
+    "Collin M, Bigley V. Human dendritic cell subsets: an update. Immunology. 2018;154(1):3-20.",
+    "Ohl L, Mohaupt M, Czeloth N, et al. CCR7 governs skin dendritic cell migration under inflammatory and steady-state conditions. Immunity. 2004;21(2):279-288.",
+    "Heath WR, Carbone FR. Dendritic cell subsets in primary and secondary T cell responses at body surfaces. Nat Immunol. 2009;10(12):1237-1244.",
+    "Joffre OP, Segura E, Savina A, Amigorena S. Cross-presentation by dendritic cells. Nat Rev Immunol. 2012;12(8):557-569.",
+    "Ridge JP, Di Rosa F, Matzinger P. A conditioned dendritic cell can be a temporal bridge between a CD4+ T-helper and a T-killer cell. Nature. 1998;393(6684):474-478.",
+    "Hawiger D, Inaba K, Dorsett Y, et al. Dendritic cells induce peripheral T cell unresponsiveness under steady state conditions in vivo. J Exp Med. 2001;194(6):769-779.",
+    "Ferlazzo G, Tsang ML, Moretta L, Melioli G, Steinman RM, Munz C. Human dendritic cells activate resting natural killer (NK) cells and are recognized via the NKp30 receptor by activated NK cells. J Exp Med. 2002;195(3):343-351.",
+    "Mestas J, Hughes CCW. Of mice and not men: differences between mouse and human immunology. J Immunol. 2004;172(5):2731-2738.",
+    "Cell Ontology, CL:0000990 (conventional dendritic cell)."
+  ],
+  "status": "draft"
 }

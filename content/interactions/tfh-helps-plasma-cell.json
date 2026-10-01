@@ -1,0 +1,8 @@
+{
+  "id": "tfh-helps-plasma-cell",
+  "source": "tfh",
+  "target": "plasma-cell",
+  "type": "helps",
+  "via": ["il-21"],
+  "description": "IL-21 from Tfh cells pushes activated B cells toward becoming plasma cells, shown with human B cells in culture. Which signals fix this choice inside the germinal centre is debated."
+}

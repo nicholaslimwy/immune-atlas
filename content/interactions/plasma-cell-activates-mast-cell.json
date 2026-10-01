@@ -1,0 +1,8 @@
+{
+  "id": "plasma-cell-activates-mast-cell",
+  "source": "plasma-cell",
+  "target": "mast-cell",
+  "type": "activates",
+  "via": ["ige"],
+  "description": "Plasma cells make IgE, which tissue mast cells capture with their FcεRI receptors. When an allergen or parasite antigen later cross-links that IgE, the mast cell releases histamine and other mediators within minutes."
+}

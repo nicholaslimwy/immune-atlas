@@ -1,0 +1,8 @@
+{
+  "id": "macrophage-phagocytoses-germinal-centre-b",
+  "source": "macrophage",
+  "target": "germinal-centre-b",
+  "type": "phagocytoses",
+  "where": ["germinal-centre"],
+  "description": "Most germinal centre B cells die by apoptosis after failing selection. Macrophages in the germinal centre, called tingible body macrophages for the dark cell fragments inside them, engulf the dead cells. When this clearance is faulty in mice, germinal centre and antibody responses grow abnormally."
+}

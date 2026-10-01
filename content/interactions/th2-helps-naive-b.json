@@ -1,0 +1,8 @@
+{
+  "id": "th2-helps-naive-b",
+  "source": "th2",
+  "target": "naive-b",
+  "type": "helps",
+  "via": ["il-4", "il-13", "cd40l"],
+  "description": "IL-4 and IL-13 from Th2 cells, together with CD40L, push B cells to switch their antibody to IgE. Which T cell gives this help is debated: it may come from Th2 cells outside the follicle or from IL-4-making Tfh cells inside it, the second shown in mice."
+}

@@ -1,0 +1,7 @@
+{
+  "id": "th1-migrates-to-peripheral-blood",
+  "source": "th1",
+  "target": "peripheral-blood",
+  "type": "migrates-to",
+  "description": "After activation in the lymph node, Th1 cells leave through the efferent lymph, a step guided by the lipid S1P, and enter the blood. They are then drawn to infected tissue by CXCL9 and CXCL10 acting on CXCR3, where macrophages and dendritic cells present antigen to them again."
+}

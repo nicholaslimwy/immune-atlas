@@ -1,0 +1,8 @@
+{
+  "id": "th1-activates-macrophage",
+  "source": "th1",
+  "target": "macrophage",
+  "type": "activates",
+  "via": ["ifn-gamma", "cd40l"],
+  "description": "IFN-γ and CD40L from Th1 cells switch on a macrophage's killing machinery, so it can destroy microbes that live inside it, such as Mycobacteria. The activated macrophage also raises its MHC class II and makes more IL-12, which drives more Th1 cells."
+}

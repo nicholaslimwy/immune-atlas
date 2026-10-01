@@ -1,0 +1,7 @@
+{
+  "id": "memory-b-differentiates-into-plasma-cell",
+  "source": "memory-b",
+  "target": "plasma-cell",
+  "type": "differentiates-into",
+  "description": "On meeting its antigen again, a memory B cell divides faster than a naive B cell and mostly becomes a plasma cell within days, which gives the quicker and larger secondary antibody response. It usually needs help from memory CD4 T cells. A minority return to germinal centres, but how many is debated."
+}

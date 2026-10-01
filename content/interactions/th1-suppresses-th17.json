@@ -1,0 +1,8 @@
+{
+  "id": "th1-suppresses-th17",
+  "source": "th1",
+  "target": "th17",
+  "type": "suppresses",
+  "via": ["ifn-gamma"],
+  "description": "IFN-γ from Th1 cells blocks naive CD4 T cells from becoming Th17 cells in mouse experiments, as IL-4 does. Whether this restraint is as firm in humans is less clear."
+}

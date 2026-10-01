@@ -1,0 +1,8 @@
+{
+  "id": "th1-suppresses-th2",
+  "source": "th1",
+  "target": "th2",
+  "type": "suppresses",
+  "via": ["ifn-gamma"],
+  "description": "IFN-γ from Th1 cells blocks naive CD4 T cells from becoming Th2 cells, which helps one type of response win out over the other. This mutual restraint is clear in mouse experiments; human responses overlap more."
+}

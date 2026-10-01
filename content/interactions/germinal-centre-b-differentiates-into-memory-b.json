@@ -1,0 +1,8 @@
+{
+  "id": "germinal-centre-b-differentiates-into-memory-b",
+  "source": "germinal-centre-b",
+  "target": "memory-b",
+  "type": "differentiates-into",
+  "where": ["germinal-centre"],
+  "description": "Other germinal centre B cells leave as memory B cells, which carry mutated antibody and rest until the antigen returns. Memory cells can leave with lower-affinity antibody, and the rules that choose between memory cell and plasma cell are debated."
+}

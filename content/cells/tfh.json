@@ -1,12 +1,43 @@
 {
   "id": "tfh",
   "name": "Tfh cell (T follicular helper cell)",
+  "cellOntologyId": "CL:0002038",
   "arm": "adaptive",
   "lineage": "lymphoid",
   "family": "t-cell",
-  "markers": [],
-  "summary": "Stub: profile not written yet.",
-  "functions": [],
-  "sources": [],
-  "status": "stub"
+  "markers": ["CD3", "CD4", "CXCR5", "PD-1 (CD279)", "ICOS", "BCL6 (inside the cell; master regulator)", "CD40L (CD154)", "IL-21 (made by the cell)"],
+  "summary": "A CD4 helper T cell that specialises in helping B cells. It follows CXCL13 to the edge of the follicle and into germinal centres, where it gives B cells that have caught antigen the CD40L and IL-21 signals they need to survive, divide and mature. Without Tfh cells, antibody responses to most protein antigens are weak.",
+  "functions": [
+    "Arises in the T-cell zone from a naive CD4 T cell that a dendritic cell has activated. IL-6 and ICOS signals, and IL-21, push it toward the Tfh state in mice; in humans IL-12 and activin A are important. It switches on the transcription factor BCL6, which raises CXCR5.",
+    "Moves to the border of the follicle, guided by CXCL13, where it meets activated B cells showing the same antigen on MHC class II. This first contact decides whether the B cell becomes an early plasma cell or joins a germinal centre.",
+    "In the germinal centre light zone it gives B cells CD40L and cytokines (IL-21, IL-4). B cells that show it the most peptide on MHC class II win the most help, which sets how many more times they divide in the dark zone, and so which antibodies win.",
+    "Helps choose the antibody class: IL-4 pushes switching to IgE (and to IgG1 in mice), IFN-γ to IgG subclasses that coat microbes well. IL-21 also pushes B cells toward becoming plasma cells.",
+    "In humans, cells in blood with CXCR5 (circulating Tfh-like cells) rise about a week after vaccination and can be sampled, but they are resting, memory-like cells, not the Tfh found in germinal centres.",
+    "Debated: whether Tfh cells are a separate lineage or a state that any helper T cell can adopt. Their subsets that make IFN-γ, IL-4 or IL-17 resemble Th1, Th2 and Th17 cells.",
+    "Debated: how well circulating Tfh-like cells in blood reflect the Tfh in lymph nodes, which are far harder to sample in people.",
+    "Shown in mice: a Tfh subset that makes IL-13 and IL-4 drives the IgE antibodies behind severe allergic reactions."
+  ],
+  "abundance": "A minority of CD4 T cells in lymph nodes, higher in tonsils and in lymph nodes making a response. In human blood, roughly 10-20% of CD4 T cells carry CXCR5, but most are resting memory-like cells. Unimmunised laboratory mice have few Tfh cells; they expand in germinal centres after immunisation or infection.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters on T cell-mediated immunity and the humoral immune response.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters on CD4 T cell help and B cell activation.",
+    "Crotty S. T follicular helper cell biology: a decade of discovery and diseases. Immunity. 2019;50(5):1132-1148.",
+    "Crotty S. Follicular helper CD4 T cells (TFH). Annu Rev Immunol. 2011;29:621-663.",
+    "Breitfeld D, Ohl L, Kremmer E, et al. Follicular B helper T cells express CXC chemokine receptor 5, localize to B cell follicles, and support immunoglobulin production. J Exp Med. 2000;192(11):1545-1552.",
+    "Schaerli P, Willimann K, Lang AB, Lipp M, Loetscher P, Moser B. CXC chemokine receptor 5 expression defines follicular homing T cells with B cell helper function. J Exp Med. 2000;192(11):1553-1562.",
+    "Johnston RJ, Poholek AC, DiToro D, et al. Bcl6 and Blimp-1 are reciprocal and antagonistic regulators of T follicular helper cell differentiation. Science. 2009;325(5943):1006-1010.",
+    "Nurieva RI, Chung Y, Martinez GJ, et al. Bcl6 mediates the development of T follicular helper cells. Science. 2009;325(5943):1001-1005.",
+    "Schmitt N, Morita R, Bourdery L, et al. Human dendritic cells induce the differentiation of interleukin-21-producing T follicular helper-like cells through interleukin-12. Immunity. 2009;31(1):158-169.",
+    "Locci M, Wu JE, Arumemi F, et al. Activin A programs the differentiation of human TFH cells. Nat Immunol. 2016;17(8):976-984.",
+    "Victora GD, Schwickert TA, Fooksman DR, et al. Germinal center dynamics revealed by multiphoton microscopy with a photoactivatable fluorescent reporter. Cell. 2010;143(4):592-605.",
+    "Victora GD, Nussenzweig MC. Germinal centers. Annu Rev Immunol. 2012;30:429-457.",
+    "Gitlin AD, Shulman Z, Nussenzweig MC. Clonal selection in the germinal centre by regulated proliferation and hypermutation. Nature. 2014;509(7502):637-640.",
+    "Reinhardt RL, Liang HE, Locksley RM. Cytokine-secreting follicular T cells shape the antibody repertoire. Nat Immunol. 2009;10(4):385-393.",
+    "Ettinger R, Sims GP, Fairhurst AM, et al. IL-21 induces differentiation of human naive and memory B cells into antibody-secreting plasma cells. J Immunol. 2005;175(12):7867-7879.",
+    "Morita R, Schmitt N, Bentebibel SE, et al. Human blood CXCR5+CD4+ T cells are counterparts of T follicular cells and contain specific subsets that differentially support antibody secretion. Immunity. 2011;34(1):108-121.",
+    "Bentebibel SE, Lopez S, Obermoser G, et al. Induction of ICOS+CXCR3+CXCR5+ TH cells correlates with antibody responses to influenza vaccination. Sci Transl Med. 2013;5(176):176ra32.",
+    "Gowthaman U, Chen JS, Zhang B, et al. Identification of a T follicular helper cell subset that drives anaphylactic IgE. Science. 2019;365(6456):eaaw6433.",
+    "Cell Ontology, CL:0002038 (T follicular helper cell)."
+  ],
+  "status": "draft"
 }
