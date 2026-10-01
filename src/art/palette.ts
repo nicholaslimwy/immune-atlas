@@ -46,7 +46,7 @@ export const ANATOMY = {
   /** The wall of a vessel seen in section (blood scene); its flattened endothelial nuclei use the red-cell base. */
   vesselWall: '#E4BDBD',
   /**
-   * Inside a lymph node (and later the spleen's white pulp): warm neutrals of the lymph hue. Follicles
+   * Inside a lymph node and the spleen's white pulp: warm neutrals of the lymph hue. Follicles
    * are the darkest (densely packed B cells), germinal centres the palest, as on a stained section;
    * the T-cell zone and medullary cords sit between. Sinuses use the lymph tint.
    */
@@ -55,6 +55,13 @@ export const ANATOMY = {
   paracortex: '#F4ECDC',
   /** Bone marrow between the vessels: a pale warm ground under the packed developing cells. Fat cells use the figure white. */
   marrow: '#F6ECE8',
+  /**
+   * Spleen. Red pulp cords are the ground, a muted rose packed with red cells (sinus lumens use the
+   * red-cell tint, so they read paler); the marginal zone is a pale band between the red pulp and the
+   * white pulp, which uses the lymph node tokens (follicle, T-cell zone). The capsule uses `spleen`.
+   */
+  redPulp: '#EDCACC',
+  marginalZone: '#F5E6DA',
 }
 
 /** Every colour an icon may use. */

@@ -3,8 +3,28 @@
   "name": "Spleen",
   "parent": "body",
   "scene": "scenes/spleen.svg",
-  "summary": "Stub: scene not built yet (Phase 4).",
-  "hotspots": [],
-  "residents": [],
-  "status": "stub"
+  "summary": "The spleen filters the blood. In the red pulp, blood pours out of open-ended vessels into cords packed with red cells, where macrophages remove old cells before the blood squeezes back into the venous sinuses. The white pulp is lymphoid tissue: T cells sheathe a central arteriole, B cells gather in follicles, and the marginal zone around them catches microbes from the blood. Cells are drawn at true size relative to each other but far larger than the tissue. Pick a cell.",
+  "hotspots": [
+    { "region": "naive-b", "target": "naive-b" },
+    { "region": "follicular-dendritic-cell", "target": "follicular-dendritic-cell" },
+    { "region": "naive-cd4-t", "target": "naive-cd4-t" },
+    { "region": "conventional-dendritic-cell", "target": "conventional-dendritic-cell" },
+    { "region": "macrophage", "target": "macrophage" },
+    { "region": "monocyte", "target": "monocyte" },
+    { "region": "neutrophil", "target": "neutrophil" },
+    { "region": "platelet", "target": "platelet" },
+    { "region": "plasma-cell", "target": "plasma-cell" }
+  ],
+  "residents": [
+    { "cell": "naive-b", "note": "Gathers in the follicles of the white pulp. B cells leave the bone marrow immature and finish maturing here. A related set, marginal zone B cells, sits in the marginal zone and answers bacteria in the blood within days, often without T-cell help." },
+    { "cell": "follicular-dendritic-cell", "note": "Holds antigen on its surface inside the follicles, where B cells come to inspect it." },
+    { "cell": "naive-cd4-t", "note": "Waits in the T-cell zone, the sheath of lymphoid tissue around the central arteriole, for a dendritic cell showing its antigen." },
+    { "cell": "cytotoxic-cd8-t", "note": "Waits in the T-cell zone beside the CD4 T cells, where antigen from infections of the blood is shown to it." },
+    { "cell": "conventional-dendritic-cell", "note": "Picks up antigen from the blood in and near the marginal zone and carries it into the T-cell zone to show it to T cells." },
+    { "cell": "macrophage", "note": "Red pulp macrophages swallow old and damaged red cells and recycle their iron. Other macrophages sit in the marginal zone and trap microbes from the blood." },
+    { "cell": "monocyte", "note": "In mice the red pulp holds a large reserve of monocytes that can leave within hours for injured tissue, such as the heart after a heart attack." },
+    { "cell": "neutrophil", "note": "Passes through the red pulp with the blood, and some stay in the cords. Whether neutrophils near the marginal zone help B cells make antibody, as reported in humans, is debated." },
+    { "cell": "platelet", "note": "About a third of the body's platelets are held in the spleen at any time and can be released into the blood." },
+    { "cell": "plasma-cell", "note": "Plasma cells made in the white pulp settle in the red pulp cords, close to the blood, and pour their antibody into it." }
+  ]
 }
