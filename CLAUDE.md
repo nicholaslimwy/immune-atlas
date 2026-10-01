@@ -71,9 +71,10 @@ immune-atlas/
     interactions/        Interaction records
     molecules/           Molecule records
   public/scenes/         SVG scenes referenced by Location.scene
+  scripts/               validate.ts + schema.ts (npm run validate)
   src/
     components/          UI pieces (panel, breadcrumb, hotspot...)
-    engine/              loads content, resolves routes, runs transitions
+    engine/              loads content (content.ts is the only reader of /content), resolves routes, runs transitions
     routes/              route-level views
     types/               TypeScript types for the four schemas
   index.html, vite.config.ts, tsconfig*.json, package.json
@@ -81,14 +82,17 @@ immune-atlas/
 
 Empty folders hold a `.gitkeep` until real files arrive.
 
-## Data model (lock in Phase 2; change rarely)
+## Data model (locked in Phase 2.1; change rarely)
+
+Source of truth: `src/types/{location,cell,interaction,molecule}.ts`. The validator's runtime shapes (`scripts/schema.ts`) are typed against those interfaces, so a field added there without updating the shape fails `tsc`. Run `npm run validate` after every content change.
 
 ```typescript
 // A place you can zoom into
 interface Location {
   id: string;                 // "peripheral-blood"
   name: string;               // "Peripheral blood"
-  parent: string | null;      // "body" (drives zoom-out and breadcrumbs)
+  parent: string | null;      // "body" (drives zoom-out and breadcrumbs); exactly one root has null
+  slug?: string;              // URL segment if it differs from the id: "blood"
   scene: string;              // "scenes/peripheral-blood.svg"
   summary: string;
   hotspots: { region: string; target: string }[]; // SVG element id -> child location or cell
@@ -107,7 +111,9 @@ interface Cell {
   summary: string;            // 2-3 sentences for the panel
   functions: string[];
   abundance?: string;         // e.g. share of circulating white cells
-  sources: string[];          // citations
+  sources: string[];          // citations; may be empty only while status is "stub"
+  status: "stub" | "draft" | "reviewed"; // reviewed = signed off by the reviewer
+  lastReviewed?: string;      // "2026-10-01" (ISO date); required once status is "reviewed"
 }
 
 // Who does what to whom
@@ -130,6 +136,8 @@ interface Molecule {
   summary: string;
 }
 ```
+
+Cell and location ids must not collide (hotspot and interaction targets can be either).
 
 Three rules:
 
@@ -165,7 +173,7 @@ Pick one flat, stylised vector style and never deviate. Rules from the plan:
 - All ids are lowercase-with-hyphens: `peripheral-blood`, `il-12`, `th1`, `germinal-centre-b`.
 - Content file name equals its id: `content/cells/neutrophil.json` has `"id": "neutrophil"`.
 - Interaction ids: `<source>-<type>-<target>`, e.g. `dendritic-cell-presents-antigen-to-naive-cd4-t` (proposed convention, not from the plan).
-- Every id referenced in a hotspot, resident, interaction `source`/`target`/`via`/`where` must exist (the Phase 2 validator checks this).
+- Every id referenced in a hotspot, resident, interaction `source`/`target`/`via`/`where` must exist, and every `hotspots[].region` must be an element id in the scene SVG (`npm run validate` checks this).
 - Scene SVG element ids used by `hotspots[].region` are the same lowercase-with-hyphens style.
 - UK spelling in content (haematopoietic, centre, granulocyte).
 - All wording lives in `/content` JSON from Phase 2 on; never hard-code science text in components.
@@ -209,17 +217,21 @@ Phases 1 and 2 use plain placeholder shapes on purpose.
 | 2026-10-01 | Framer Motion and React Router deferred to Phase 1 to keep the Phase 0 scaffold bare |
 | 2026-10-01 | React Router added (Phase 1.1); one `/body/*` route resolves paths against the Location tree; scenes fetched and inlined at runtime |
 | 2026-10-01 | Framer Motion added (Phase 1.2); zoom direction and origin derived from the two scenes, not from click state, so browser back/forward animate like in-app navigation; Back button goes up one level |
+| 2026-10-01 | Data model locked (Phase 2.1). Cell gains `status` and `lastReviewed`; Location gains optional `slug` (replaces the `SLUGS` table in code); root found as the location with `parent: null` |
+| 2026-10-01 | Validator is a plain Node script (Node 24 runs `.ts` directly), no schema library; warnings (e.g. interaction id convention) do not fail it |
 
 ## Current status and next task
 
-**Status:** Phase 1, session 2 complete (2026-10-01). Framer Motion added. Moving between scenes is now a continuous zoom: the outer scene scales about 1x to 8x around the clicked hotspot while fading out, and the inner scene fades in from 0.85x to 1x. Zooming out plays the same thing in reverse (outer scene arrives at 8x and settles). The direction and zoom point are derived only from the scene left and the scene arrived at (`computeNav` in `src/engine/zoom.ts`), so hotspot clicks, breadcrumbs, the Back button and the browser's back/forward all animate identically, including multi-level jumps (neutrophil to body). `src/components/ZoomStage.tsx` preloads the next scene's SVG before swapping (`src/engine/sceneCache.ts` caches scenes and measures each hotspot's centre by rendering the SVG off-screen), then runs the `AnimatePresence` transition; scenes one click away are prefetched. `Scene.tsx` now receives its SVG as a prop instead of fetching. Back button goes up one level (pushes history; disabled at the body); breadcrumbs (`Breadcrumbs.tsx`) show the Location chain and each earlier crumb is a link. Focus moves to the scene title after a zoom. `prefers-reduced-motion` gets a plain cross-fade. Verified in the browser: body to blood to neutrophil and back via hotspot, Back button, breadcrumb and browser back/forward, with the hotspot temporarily moved off-centre to confirm the zoom origin (restored). `npm run build` and `npm run lint` pass. Nothing committed yet beyond Phase 0.
+**Status:** Phase 1 gate met. Phase 2, session 1 complete (2026-10-01). Data model locked as TypeScript types in `src/types/` (Location, Cell, Interaction, Molecule; Cell has `status` and `lastReviewed`, Location has optional `slug`). `src/engine/content.ts` is the single loader for all four content folders (`getLocation`, `getRoot`, `getChildren`, `getCell`, `getMolecule`, `getInteractionsOf`); components and engine code go through it. The hard-coded `SLUGS` table and the hard-coded root id in `paths.ts` are gone: `peripheral-blood.json` now carries `"slug": "blood"` and the root is the location with `parent: null`. `npm run validate` (`scripts/validate.ts`, shapes in `scripts/schema.ts`) checks each file against its schema (required/optional fields, enums, id format, ISO dates, Cell Ontology id format, unknown fields), file name equals id, unique ids, no cell/location id clash, one root and no parent loops, unique URL segments among siblings, scene file exists, hotspot regions exist in the SVG, and every hotspot/resident/interaction reference resolves (`migrates-to` must target a location, other types a cell). Draft/reviewed cells need sources; reviewed cells need `lastReviewed`. Verified: a deliberately broken copy of the content triggered every check; adding a field to a type without updating its shape fails `tsc`; the site clicks through body, blood, neutrophil and back (hotspot, Back, breadcrumb, browser back, direct URLs) exactly as before. `validate`, `build` and `lint` pass. Cells, interactions and molecules folders are still empty.
+
+**Phase 1, session 2:** complete (2026-10-01). Framer Motion added. Moving between scenes is now a continuous zoom: the outer scene scales about 1x to 8x around the clicked hotspot while fading out, and the inner scene fades in from 0.85x to 1x. Zooming out plays the same thing in reverse (outer scene arrives at 8x and settles). The direction and zoom point are derived only from the scene left and the scene arrived at (`computeNav` in `src/engine/zoom.ts`), so hotspot clicks, breadcrumbs, the Back button and the browser's back/forward all animate identically, including multi-level jumps (neutrophil to body). `src/components/ZoomStage.tsx` preloads the next scene's SVG before swapping (`src/engine/sceneCache.ts` caches scenes and measures each hotspot's centre by rendering the SVG off-screen), then runs the `AnimatePresence` transition; scenes one click away are prefetched. `Scene.tsx` now receives its SVG as a prop instead of fetching. Back button goes up one level (pushes history; disabled at the body); breadcrumbs (`Breadcrumbs.tsx`) show the Location chain and each earlier crumb is a link. Focus moves to the scene title after a zoom. `prefers-reduced-motion` gets a plain cross-fade. Verified in the browser: body to blood to neutrophil and back via hotspot, Back button, breadcrumb and browser back/forward, with the hotspot temporarily moved off-centre to confirm the zoom origin (restored). `npm run build` and `npm run lint` pass. Nothing committed yet beyond Phase 0.
 
 **Session 1:** complete (2026-10-01). React Router added. `/` redirects to `/body`; a single `/body/*` route resolves the path against the Location tree (`src/engine/paths.ts`), so `/body`, `/body/blood` and `/body/blood/neutrophil` all load directly. Scenes are placeholder SVGs in `public/scenes/`, described by `content/locations/{body,peripheral-blood,neutrophil}.json` (Location schema, unchanged). `src/engine/content.ts` loads the JSON with `import.meta.glob`; `src/components/Scene.tsx` fetches the SVG, inlines it, and turns each `hotspots[].region` element into a focusable, labelled button (click, Enter or Space navigates). Unknown URLs show a Not found page. Verified in the browser: vessel on `/body` leads to `/body/blood`, which leads to `/body/blood/neutrophil`; direct URL loads work; no console errors. `npm run build` and `npm run lint` pass. Nothing committed yet beyond Phase 0.
 
 **Temporary / open points for Phase 2:**
 
-- `neutrophil.json` is a stand-in Location so the third URL level exists. Phase 2 replaces it with `content/cells/neutrophil.json` plus the side panel and deletes the file (cells are not locations).
-- URL segment `blood` differs from the id `peripheral-blood`; the mapping lives in `SLUGS` in `src/engine/paths.ts`. Decide whether to keep it there or add a `slug` field to Location.
+- `content/locations/neutrophil.json` is still a stand-in Location so the third URL level works (kept this session because "works exactly as before" ruled out the side panel). Next: create `content/cells/neutrophil.json`, delete the stand-in in the same change (the validator rejects a cell and a location sharing an id), resolve `/body/blood/:cell` to a cell panel over the blood scene, and teach `Scene.tsx` hotspots to target cells (it only looks up locations today) and `paths.ts` to build cell URLs.
+- The dev server already running on port 5173 (started outside the preview tool) once cached a half-written module and served it empty; touching the file fixed it. If the page goes blank with "does not provide an export named", touch the file or restart the server.
 - Hosting must rewrite unknown paths to `index.html` (SPA fallback) or direct URLs will 404 in production.
 - Hotspot hover/focus styling is a stroke only; real hotspot visuals and a plain list view come with the art phase.
 
@@ -230,4 +242,4 @@ Phases 1 and 2 use plain placeholder shapes on purpose.
 - The URL changes immediately on a click but the old scene stays on screen until the new SVG has loaded (instant locally; a slow network would show a short pause).
 - The Browser preview pane throttles animation frames when hidden, so check motion with the pane in front. This machine has reduced motion switched on at OS level, so you will see the cross-fade here unless you turn that off.
 
-**Next task:** Phase 1 gate check, then Phase 2, session 1: schemas as TypeScript types (Location exists; add Cell, Interaction, Molecule), first blood cell files, and a content validator. Gate for Phase 1: click through body to blood and back with working URLs (met).
+**Next task:** Phase 2, session 2: neutrophil becomes a Cell (replacing the stand-in Location) with the side panel at `/body/blood/neutrophil`, plus the first 3-4 blood cell files, their interactions and molecules, and clickable panel links from data. Phase 2 gate: panel links work from data; validator passes.
