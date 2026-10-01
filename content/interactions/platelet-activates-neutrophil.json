@@ -1,0 +1,9 @@
+{
+  "id": "platelet-activates-neutrophil",
+  "source": "platelet",
+  "target": "neutrophil",
+  "type": "activates",
+  "via": ["p-selectin"],
+  "where": ["peripheral-blood"],
+  "description": "Activated platelets stick to neutrophils, partly through P-selectin, and push them to release extracellular traps that catch bacteria in the bloodstream."
+}

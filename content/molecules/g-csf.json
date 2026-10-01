@@ -1,0 +1,6 @@
+{
+  "id": "g-csf",
+  "name": "G-CSF (granulocyte colony-stimulating factor)",
+  "kind": "cytokine",
+  "summary": "A growth factor that drives the bone marrow to make neutrophils and release them into the blood. Its level rises sharply during infection."
+}

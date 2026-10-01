@@ -1,0 +1,7 @@
+{
+  "id": "neutrophil-recruits-monocyte",
+  "source": "neutrophil",
+  "target": "monocyte",
+  "type": "recruits",
+  "description": "Proteins released from neutrophil granules attract monocytes, so a second wave of monocytes follows the first neutrophils into infected tissue, where they become macrophages."
+}

@@ -1,0 +1,6 @@
+{
+  "id": "cxcl8",
+  "name": "CXCL8 (IL-8)",
+  "kind": "chemokine",
+  "summary": "A chemokine made by macrophages, epithelial cells and other cells at sites of infection. It draws neutrophils out of the blood and towards its source. Humans only: mice have no CXCL8 and use the related chemokines CXCL1 and CXCL2 instead."
+}

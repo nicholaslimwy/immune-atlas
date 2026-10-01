@@ -78,3 +78,143 @@ h1:focus {
   stroke-width: 5;
   outline: none;
 }
+
+/* The scene, with the cell panel beside it when one is open; stacked on narrow screens. */
+.workspace.with-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 800px) minmax(280px, 380px);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 1000px) {
+  .workspace.with-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.panel {
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  padding: 1rem 1.25rem;
+  border: 1px solid #c9ced6;
+  border-radius: 8px;
+  background: #fff;
+  line-height: 1.45;
+}
+
+.panel-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.panel h2 {
+  margin: 0;
+}
+
+.panel h2:focus {
+  outline: none;
+}
+
+.panel h3 {
+  margin: 1.25rem 0 0.4rem;
+  font-size: 1rem;
+}
+
+.panel ul,
+.panel ol {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.panel li + li {
+  margin-top: 0.35rem;
+}
+
+.panel-close {
+  font-size: 1.5rem;
+  line-height: 1;
+  text-decoration: none;
+  color: #1f2933;
+}
+
+.panel-meta,
+.ix-meta,
+.panel-foot {
+  color: #52606d;
+  font-size: 0.9rem;
+}
+
+.panel-meta {
+  margin: 0.25rem 0 0;
+}
+
+.soon {
+  font-style: italic;
+}
+
+ul.markers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+ul.markers li {
+  margin: 0;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid #c9ced6;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+ul.interactions {
+  padding: 0;
+  list-style: none;
+}
+
+ul.interactions li + li {
+  margin-top: 0.9rem;
+}
+
+ul.interactions p {
+  margin: 0.15rem 0 0;
+}
+
+.ix-head {
+  font-weight: 600;
+}
+
+.ix-verb {
+  font-weight: 400;
+}
+
+.soon-tag {
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 4px;
+  background: #eef1f4;
+  color: #52606d;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.panel-foot {
+  margin-top: 1.5rem;
+  border-top: 1px solid #e4e7eb;
+}
+
+.panel-foot details {
+  margin-top: 0.75rem;
+}
+
+.panel-foot summary {
+  cursor: pointer;
+}
+
+.panel-foot ol li {
+  margin-top: 0.35rem;
+}

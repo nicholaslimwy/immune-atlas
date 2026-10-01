@@ -4,7 +4,7 @@
   "parent": "body",
   "slug": "blood",
   "scene": "scenes/peripheral-blood.svg",
-  "summary": "Placeholder (Phase 1). Circulating blood; the orange rectangle leads to a neutrophil placeholder.",
+  "summary": "Placeholder (Phase 2). Circulating blood; the orange rectangle opens the neutrophil's profile.",
   "hotspots": [{ "region": "neutrophil", "target": "neutrophil" }],
-  "residents": []
+  "residents": [{ "cell": "neutrophil" }, { "cell": "monocyte" }, { "cell": "platelet" }]
 }

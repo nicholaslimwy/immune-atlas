@@ -1,0 +1,8 @@
+{
+  "id": "th17-recruits-neutrophil",
+  "source": "th17",
+  "target": "neutrophil",
+  "type": "recruits",
+  "via": ["il-17"],
+  "description": "IL-17 from Th17 cells acts on nearby epithelial and stromal cells rather than on neutrophils themselves. Those cells then make CXCL8 and G-CSF, which call neutrophils in and raise their production."
+}

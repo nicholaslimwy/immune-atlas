@@ -1,0 +1,8 @@
+{
+  "id": "haematopoietic-stem-cell-differentiates-into-neutrophil",
+  "source": "haematopoietic-stem-cell",
+  "target": "neutrophil",
+  "type": "differentiates-into",
+  "via": ["g-csf"],
+  "description": "In the bone marrow, haematopoietic stem cells give rise to neutrophils through a series of myeloid progenitors. G-CSF drives the final steps and the release of mature neutrophils into the blood."
+}

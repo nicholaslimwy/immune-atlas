@@ -1,0 +1,7 @@
+{
+  "id": "macrophage-phagocytoses-neutrophil",
+  "source": "macrophage",
+  "target": "neutrophil",
+  "type": "phagocytoses",
+  "description": "Macrophages engulf neutrophils that have died by apoptosis at an infection site. This removes them before they spill harmful contents and switches the macrophage towards ending inflammation."
+}

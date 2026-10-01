@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router'
-import { getLocation } from '../engine/content.ts'
-import { pathFor } from '../engine/paths.ts'
+import { getCell, getLocation } from '../engine/content.ts'
+import { cellPathFor, pathFor } from '../engine/paths.ts'
 import type { Location } from '../types/location.ts'
 
 // The SVG text is preloaded by ZoomStage and inlined here so hotspot regions are real DOM elements.
@@ -16,15 +16,18 @@ export default function Scene({ location, svg }: { location: Location; svg: stri
       if (!el) continue
       el.setAttribute('role', 'button')
       el.setAttribute('tabindex', '0')
-      el.setAttribute('aria-label', getLocation(target)?.name ?? target)
+      el.setAttribute('aria-label', getLocation(target)?.name ?? getCell(target)?.name ?? target)
       el.classList.add('hotspot')
     }
   }, [svg, location])
 
+  // A hotspot zooms into a child location, or opens a cell's panel over this scene.
   const go = (el: Element | null) => {
     const hotspot = location.hotspots.find((h) => h.region === el?.id)
-    const target = hotspot && getLocation(hotspot.target)
-    if (target) navigate(pathFor(target))
+    if (!hotspot) return
+    const child = getLocation(hotspot.target)
+    if (child) navigate(pathFor(child))
+    else if (getCell(hotspot.target)) navigate(cellPathFor(location, hotspot.target))
   }
 
   const hotspotOf = (node: EventTarget) =>

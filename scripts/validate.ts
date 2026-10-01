@@ -131,10 +131,15 @@ for (const { file, data: loc } of locations.values()) {
   })
 }
 
-// Cells: citations and review dates follow the status.
+// Cells: citations, summary length and review dates follow the status.
+const SUMMARY_MAX_WORDS = 60
 for (const { file, data: cell } of cellFiles.valid.values()) {
   if (cell.status !== 'stub' && cell.sources.length === 0) {
     error(file, `sources: a ${cell.status} cell needs at least one citation`)
+  }
+  const words = cell.summary.trim().split(/\s+/).length
+  if (cell.status !== 'stub' && words > SUMMARY_MAX_WORDS) {
+    error(file, `summary: ${words} words; the panel allows ${SUMMARY_MAX_WORDS}`)
   }
   if (cell.status === 'reviewed' && !cell.lastReviewed) {
     error(file, `lastReviewed: required once status is "reviewed"`)

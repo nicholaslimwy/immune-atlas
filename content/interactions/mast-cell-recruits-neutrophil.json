@@ -1,0 +1,8 @@
+{
+  "id": "mast-cell-recruits-neutrophil",
+  "source": "mast-cell",
+  "target": "neutrophil",
+  "type": "recruits",
+  "via": ["tnf"],
+  "description": "Mast cells release ready-made TNF within minutes of sensing bacteria, one of the earliest signals that brings neutrophils into the tissue."
+}

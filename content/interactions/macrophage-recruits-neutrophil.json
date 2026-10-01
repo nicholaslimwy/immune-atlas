@@ -1,0 +1,8 @@
+{
+  "id": "macrophage-recruits-neutrophil",
+  "source": "macrophage",
+  "target": "neutrophil",
+  "type": "recruits",
+  "via": ["cxcl8", "tnf"],
+  "description": "Tissue macrophages that detect microbes release TNF and CXCL8. TNF makes the lining of nearby blood vessels sticky; CXCL8 guides neutrophils out of the blood towards the infection."
+}

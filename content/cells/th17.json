@@ -1,0 +1,11 @@
+{
+  "id": "th17",
+  "name": "Th17 cell",
+  "arm": "adaptive",
+  "lineage": "lymphoid",
+  "markers": [],
+  "summary": "Stub: profile not written yet.",
+  "functions": [],
+  "sources": [],
+  "status": "stub"
+}

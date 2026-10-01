@@ -1,0 +1,31 @@
+{
+  "id": "neutrophil",
+  "name": "Neutrophil",
+  "cellOntologyId": "CL:0000775",
+  "arm": "innate",
+  "lineage": "myeloid",
+  "markers": ["CD15", "CD16", "CD11b", "CD66b (human only)", "Ly6G (mouse only)"],
+  "summary": "The most common white blood cell in human blood, recognised by its nucleus of three to five lobes. Neutrophils usually reach an infection first, leaving blood vessels within hours, and kill bacteria and fungi by engulfing them or trapping them in nets of DNA. They are short-lived, and dead neutrophils make up much of pus.",
+  "functions": [
+    "Leaves the blood where tissue is infected or injured: it rolls along and sticks to the vessel wall, then squeezes between the wall's cells, following chemokines such as CXCL8.",
+    "Engulfs (phagocytoses) microbes, especially those coated with antibody or complement, and kills them inside the cell with granule enzymes and reactive oxygen species (the oxidative burst).",
+    "Releases antimicrobial proteins and enzymes from its granules into the surrounding tissue (degranulation).",
+    "Casts neutrophil extracellular traps (NETs): webs of its own DNA studded with antimicrobial proteins that catch and kill microbes outside the cell.",
+    "Releases chemokines and granule proteins that call in more neutrophils and then monocytes, amplifying inflammation.",
+    "Can damage healthy tissue with the same enzymes and oxidants, so its numbers and lifespan are tightly controlled."
+  ],
+  "abundance": "About 40-70% of circulating white blood cells in adult humans (roughly 2-7.5 × 10⁹ per litre of blood). Laboratory mice differ: neutrophils are only about 10-25% of their blood white cells.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters 2-3.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters 2-4.",
+    "Kolaczkowska E, Kubes P. Neutrophil recruitment and function in health and inflammation. Nat Rev Immunol. 2013;13(3):159-175.",
+    "Brinkmann V, Reichard U, Goosmann C, et al. Neutrophil extracellular traps kill bacteria. Science. 2004;303(5663):1532-1535.",
+    "Mestas J, Hughes CCW. Of mice and not men: differences between mouse and human immunology. J Immunol. 2004;172(5):2731-2738.",
+    "Soehnlein O, Lindbom L. Phagocyte partnership during the onset and resolution of inflammation. Nat Rev Immunol. 2010;10(6):427-439.",
+    "Malaviya R, Ikeda T, Ross E, Abraham SN. Mast cell modulation of neutrophil influx and bacterial clearance at sites of infection through TNF-alpha. Nature. 1996;381(6577):77-80.",
+    "Clark SR, Ma AC, Tavener SA, et al. Platelet TLR4 activates neutrophil extracellular traps to ensnare bacteria in septic blood. Nat Med. 2007;13(4):463-469.",
+    "Korn T, Bettelli E, Oukka M, Kuchroo VK. IL-17 and Th17 cells. Annu Rev Immunol. 2009;27:485-517.",
+    "Cell Ontology, CL:0000775 (neutrophil)."
+  ],
+  "status": "draft"
+}
