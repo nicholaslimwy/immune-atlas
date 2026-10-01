@@ -1,0 +1,8 @@
+{
+  "id": "plasmacytoid-dendritic-cell-migrates-to-spleen",
+  "source": "plasmacytoid-dendritic-cell",
+  "target": "spleen",
+  "type": "migrates-to",
+  "where": ["spleen"],
+  "description": "After developing in the bone marrow, plasmacytoid dendritic cells travel in the blood to lymphoid organs. In mice they settle in the T-cell area of the spleen, and within hours of a viral signal they cluster in the marginal zone and the outer T-cell area. How they enter the spleen is less well studied than how they enter lymph nodes: mice lacking CCR7 have fewer in lymph nodes but normal numbers in the spleen."
+}

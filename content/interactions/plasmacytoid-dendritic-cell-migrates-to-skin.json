@@ -1,0 +1,8 @@
+{
+  "id": "plasmacytoid-dendritic-cell-migrates-to-skin",
+  "source": "plasmacytoid-dendritic-cell",
+  "target": "skin",
+  "type": "migrates-to",
+  "via": ["chemerin"],
+  "description": "Healthy skin holds few, but after a wound plasmacytoid dendritic cells rapidly flow in (seen in mouse and human wounds). Chemerin on skin vessels, seen in inflamed human skin, is one signal that draws them out of the blood. In the wound they sense DNA released by damaged cells and make interferon, which helps drive early inflammation and the closing of the wound."
+}

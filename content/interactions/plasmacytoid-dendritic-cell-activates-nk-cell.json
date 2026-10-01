@@ -4,5 +4,6 @@
   "target": "nk-cell",
   "type": "activates",
   "via": ["type-i-interferon"],
-  "description": "Plasmacytoid dendritic cells make large amounts of type I interferon within hours of sensing a virus, which sharpens NK-cell killing and makes NK cells multiply."
+  "where": ["spleen"],
+  "description": "Plasmacytoid dendritic cells make large amounts of type I interferon within hours of sensing a virus, which sharpens NK-cell killing and makes NK cells multiply. The best evidence is in mice: in the spleen early in cytomegalovirus infection, plasmacytoid cells mature, make interferon and help activate NK cells. When they were removed, NK cells still multiplied, because the virus spread further."
 }

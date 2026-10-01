@@ -1,0 +1,8 @@
+{
+  "id": "plasmacytoid-dendritic-cell-activates-conventional-dendritic-cell",
+  "source": "plasmacytoid-dendritic-cell",
+  "target": "conventional-dendritic-cell",
+  "type": "activates",
+  "via": ["type-i-interferon"],
+  "description": "Type I interferon made in a viral infection acts directly on conventional dendritic cells and helps them mature and cross-prime CD8 T cells (shown in mice). Plasmacytoid cells are one major source of that interferon, but other cells make it too, and how much of the activation comes from plasmacytoid cells in the body is debated."
+}

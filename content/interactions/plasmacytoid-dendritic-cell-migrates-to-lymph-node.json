@@ -1,0 +1,8 @@
+{
+  "id": "plasmacytoid-dendritic-cell-migrates-to-lymph-node",
+  "source": "plasmacytoid-dendritic-cell",
+  "target": "lymph-node",
+  "type": "migrates-to",
+  "via": ["chemerin", "ccl19-ccl21"],
+  "description": "Plasmacytoid dendritic cells enter lymph nodes from the blood by crossing high endothelial venules, more so when the node is inflamed. They roll along the vessel wall using L-selectin, and chemerin on the vessel wall (human cells in culture and tissue) and, in mice, CCR7 reading CCL19 and CCL21 draw them in. Unlike conventional dendritic cells, which arrive in the lymph from tissue, they arrive in the blood."
+}

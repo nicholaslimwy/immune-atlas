@@ -1,0 +1,9 @@
+{
+  "id": "plasmacytoid-dendritic-cell-presents-antigen-to-naive-cd4-t",
+  "source": "plasmacytoid-dendritic-cell",
+  "target": "naive-cd4-t",
+  "type": "presents-antigen-to",
+  "via": ["mhc-ii"],
+  "where": ["lymph-node"],
+  "description": "How well plasmacytoid dendritic cells present antigen to naive CD4 T cells is debated. Human cells matured by virus drive naive CD4 T cells to make IFN-γ and IL-10 in culture, and in mice plasmacytoid cells loaded with antigen primed naive CD4 T cells in lymph nodes but not in the spleen. Some earlier reports of T-cell priming may come from look-alike cells in the same gate, and in mice only plasmacytoid cells of myeloid origin present antigen well."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "plasmacytoid-dendritic-cell-helps-naive-b",
+  "source": "plasmacytoid-dendritic-cell",
+  "target": "naive-b",
+  "type": "helps",
+  "via": ["type-i-interferon", "il-6"],
+  "description": "When a plasmacytoid dendritic cell is stimulated by virus, its interferon turns CD40-activated B cells into plasma blasts and its IL-6 then turns them into antibody-secreting plasma cells. Shown with human cells in culture, where removing plasmacytoid cells from blood cells cut antibody production in response to influenza virus; how much this happens in the body is less clear."
+}

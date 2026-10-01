@@ -25,6 +25,7 @@
     { "cell": "monocyte", "note": "In mice the red pulp holds a large reserve of monocytes that can leave within hours for injured tissue, such as the heart after a heart attack." },
     { "cell": "neutrophil", "note": "Passes through the red pulp with the blood, and some stay in the cords. Whether neutrophils near the marginal zone help B cells make antibody, as reported in humans, is debated." },
     { "cell": "platelet", "note": "About a third of the body's platelets are held in the spleen at any time and can be released into the blood." },
-    { "cell": "plasma-cell", "note": "Plasma cells made in the white pulp settle in the red pulp cords, close to the blood, and pour their antibody into it." }
+    { "cell": "plasma-cell", "note": "Plasma cells made in the white pulp settle in the red pulp cords, close to the blood, and pour their antibody into it." },
+    { "cell": "plasmacytoid-dendritic-cell", "note": "A rare sentinel for viruses in the blood. In mice it sits in the T-cell area of the white pulp, and within hours of a viral signal it makes type I interferon and moves to the marginal zone and the outer T-cell area. Early in cytomegalovirus infection spleen plasmacytoid cells help activate NK cells. Whether they can start CD4 T-cell responses here is doubtful: in one mouse study they primed naive CD4 T cells in lymph nodes but not in the spleen." }
   ]
 }

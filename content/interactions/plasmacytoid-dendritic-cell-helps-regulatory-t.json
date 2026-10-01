@@ -1,0 +1,7 @@
+{
+  "id": "plasmacytoid-dendritic-cell-helps-regulatory-t",
+  "source": "plasmacytoid-dendritic-cell",
+  "target": "regulatory-t",
+  "type": "helps",
+  "description": "Human plasmacytoid dendritic cells activated by CpG DNA can induce naive CD4 T cells to become regulatory T cells that suppress other T cells, and cells that raise ICOS-L induce regulatory T cells that make IL-10. Shown in culture with human cells; whether plasmacytoid cells do this in tissue is not settled."
+}
