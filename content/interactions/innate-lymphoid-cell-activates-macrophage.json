@@ -1,0 +1,8 @@
+{
+  "id": "innate-lymphoid-cell-activates-macrophage",
+  "source": "innate-lymphoid-cell",
+  "target": "macrophage",
+  "type": "activates",
+  "via": ["il-13"],
+  "description": "In mouse visceral fat, IL-13 from group 2 innate lymphoid cells sustains alternatively activated (repair-type) macrophages; removing the ILC2 reduced them. The evidence is from mice."
+}

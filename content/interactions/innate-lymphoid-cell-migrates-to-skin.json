@@ -1,0 +1,8 @@
+{
+  "id": "innate-lymphoid-cell-migrates-to-skin",
+  "source": "innate-lymphoid-cell",
+  "target": "skin",
+  "type": "migrates-to",
+  "where": ["peripheral-blood"],
+  "description": "Circulating human ILCs of all three groups carry the skin-homing marker CLA, and human ILC2 entered skin after allergen challenge, where IL-33 increased their migration. Most ILCs in adult mice are resident and kept up locally, so how much traffic from blood supplies skin in the steady state is not settled."
+}

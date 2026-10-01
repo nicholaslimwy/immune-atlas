@@ -1,0 +1,9 @@
+{
+  "id": "memory-t-migrates-to-bone-marrow",
+  "source": "memory-t",
+  "target": "bone-marrow",
+  "type": "migrates-to",
+  "via": ["il-7"],
+  "where": ["peripheral-blood"],
+  "description": "In mice, most memory CD4 T cells relocate to the bone marrow within about three to eight weeks of an immune response, helped by integrin α2, and rest there beside IL-7-making stromal cells. Human marrow also holds resting memory CD4 T cells, including much of the memory for systemic infections such as measles."
+}

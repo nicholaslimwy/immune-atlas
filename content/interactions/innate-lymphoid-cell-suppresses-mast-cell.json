@@ -1,0 +1,9 @@
+{
+  "id": "innate-lymphoid-cell-suppresses-mast-cell",
+  "source": "innate-lymphoid-cell",
+  "target": "mast-cell",
+  "type": "suppresses",
+  "via": ["il-13"],
+  "where": ["skin"],
+  "description": "In mouse dermis, group 2 innate lymphoid cells sit beside mast cells and constantly make IL-13, which suppressed mast cell function. The effect can swing the other way: when IL-2 treatment expanded activated, IL-5-making ILC2 in mice lacking T and B cells, they developed dermatitis with active mast cells and eosinophils."
+}

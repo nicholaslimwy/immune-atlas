@@ -1,0 +1,7 @@
+{
+  "id": "regulatory-t-suppresses-mast-cell",
+  "source": "regulatory-t",
+  "target": "mast-cell",
+  "type": "suppresses",
+  "description": "A regulatory T cell touches a mast cell: OX40 on the T cell binds OX40L on the mast cell, which blocks IgE-triggered degranulation. Shown with mouse cells, and depleting regulatory T cells made anaphylaxis worse in mice."
+}

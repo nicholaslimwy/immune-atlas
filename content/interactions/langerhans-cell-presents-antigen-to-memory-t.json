@@ -1,0 +1,8 @@
+{
+  "id": "langerhans-cell-presents-antigen-to-memory-t",
+  "source": "langerhans-cell",
+  "target": "memory-t",
+  "type": "presents-antigen-to",
+  "where": ["skin"],
+  "description": "In human skin, Langerhans cells challenged with a pathogen activated and expanded effector memory T cells that live in the skin, so a repeat infection is met by cells that already know it. Shown with the person's own skin cells."
+}

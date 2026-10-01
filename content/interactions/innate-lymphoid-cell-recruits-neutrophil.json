@@ -1,0 +1,8 @@
+{
+  "id": "innate-lymphoid-cell-recruits-neutrophil",
+  "source": "innate-lymphoid-cell",
+  "target": "neutrophil",
+  "type": "recruits",
+  "via": ["il-17"],
+  "description": "Group 3 innate lymphoid cells are an early source of IL-17, the signal that tells epithelial cells to make the chemokines that bring in neutrophils (the same message Th17 cells send). Shown in mice, in skin inflammation and oral Candida infection; in healthy human skin ILC3 are scarcer than T cells."
+}

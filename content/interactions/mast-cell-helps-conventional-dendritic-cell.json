@@ -1,0 +1,9 @@
+{
+  "id": "mast-cell-helps-conventional-dendritic-cell",
+  "source": "mast-cell",
+  "target": "conventional-dendritic-cell",
+  "type": "helps",
+  "via": ["tnf"],
+  "where": ["skin"],
+  "description": "In mouse skin, TNF from mast cells helped dendritic cells leave for the draining lymph node in the first day after a contact allergen; later, dendritic cells moved at or above normal levels without mast cells. Shown in mice lacking mast cells through a Kit mutation, which have other defects, so how much it matters is uncertain."
+}

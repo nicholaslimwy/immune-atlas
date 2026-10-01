@@ -1,0 +1,8 @@
+{
+  "id": "conventional-dendritic-cell-activates-innate-lymphoid-cell",
+  "source": "conventional-dendritic-cell",
+  "target": "innate-lymphoid-cell",
+  "type": "activates",
+  "via": ["il-23"],
+  "description": "In the mouse gut, Notch2-dependent CD11b+ conventional dendritic cells are the essential source of IL-23, which makes group 3 innate lymphoid cells release IL-22 and protects against Citrobacter infection. In cultures of human gut tissue, CD14+ dendritic cells pushed ILC3 toward an ILC1 state, while CD14-negative dendritic cells promoted the reverse."
+}

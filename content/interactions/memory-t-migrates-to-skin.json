@@ -1,0 +1,8 @@
+{
+  "id": "memory-t-migrates-to-skin",
+  "source": "memory-t",
+  "target": "skin",
+  "type": "migrates-to",
+  "where": ["peripheral-blood"],
+  "description": "Memory T cells with the skin-homing marker CLA enter skin from blood: CLA binds E-selectin on dermal vessels, and the receptors CCR4 and CCR10 follow CCL17 and CCL27 made in skin. Some become resident memory cells that stay. In mice, a skin infection filled the whole skin with resident CD8 cells that do not recirculate; in people, skin holds about 2 × 10¹⁰ T cells, nearly twice the number in the blood."
+}

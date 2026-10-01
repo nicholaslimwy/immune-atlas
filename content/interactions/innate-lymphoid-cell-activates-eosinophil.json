@@ -1,0 +1,8 @@
+{
+  "id": "innate-lymphoid-cell-activates-eosinophil",
+  "source": "innate-lymphoid-cell",
+  "target": "eosinophil",
+  "type": "activates",
+  "via": ["il-5"],
+  "description": "In mice, group 2 innate lymphoid cells make IL-5 constantly, which keeps blood IL-5 and eosinophil numbers up. During type 2 inflammation they add IL-13, which makes tissue cells release the eotaxins that draw eosinophils in. In fat tissue their IL-5 also sustains the local eosinophils."
+}

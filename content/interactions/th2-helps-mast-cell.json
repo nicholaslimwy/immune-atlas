@@ -1,0 +1,8 @@
+{
+  "id": "th2-helps-mast-cell",
+  "source": "th2",
+  "target": "mast-cell",
+  "type": "helps",
+  "via": ["il-3", "il-9"],
+  "description": "Th2 cells make IL-9, and T cells are a source of IL-3; in mice both help mast cells multiply in tissue. IL-9 was needed for mast cells to build up in the lungs, and IL-3 contributed to higher mast cell numbers in a worm infection."
+}

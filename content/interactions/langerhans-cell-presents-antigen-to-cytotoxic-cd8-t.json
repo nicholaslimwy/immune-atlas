@@ -1,0 +1,9 @@
+{
+  "id": "langerhans-cell-presents-antigen-to-cytotoxic-cd8-t",
+  "source": "langerhans-cell",
+  "target": "cytotoxic-cd8-t",
+  "type": "presents-antigen-to",
+  "via": ["mhc-i"],
+  "where": ["lymph-node"],
+  "description": "Human Langerhans cells in culture are efficient at priming and cross-priming naive CD8 T cells on MHC class I. Whether they do this in the body is debated: in mice with herpes simplex virus in the epidermis, other dendritic cells (CD8α+ cells, and later work pointed to langerin-positive CD103+ dermal cells) primed the killer T cells instead."
+}

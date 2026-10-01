@@ -1,0 +1,7 @@
+{
+  "id": "memory-t-activates-conventional-dendritic-cell",
+  "source": "memory-t",
+  "target": "conventional-dendritic-cell",
+  "type": "activates",
+  "description": "In mice, when resident memory CD8 T cells meet their antigen again in the female reproductive tract, the cytokines they release make local dendritic cells mature, which sets off a wider immune response around the first site. Shown in mice."
+}

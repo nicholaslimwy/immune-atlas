@@ -1,0 +1,8 @@
+{
+  "id": "mast-cell-helps-naive-b",
+  "source": "mast-cell",
+  "target": "naive-b",
+  "type": "helps",
+  "via": ["il-4", "cd40l"],
+  "description": "Human mast cells carry CD40L; with IL-4 they can give B cells the signals to switch to making IgE. Shown with human mast cell lines and freshly isolated lung mast cells in culture; how much this happens in the body is not clear."
+}

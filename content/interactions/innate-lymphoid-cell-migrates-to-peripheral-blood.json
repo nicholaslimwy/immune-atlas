@@ -1,0 +1,7 @@
+{
+  "id": "innate-lymphoid-cell-migrates-to-peripheral-blood",
+  "source": "innate-lymphoid-cell",
+  "target": "peripheral-blood",
+  "type": "migrates-to",
+  "description": "In mice, ILC2 activated by IL-25 or worm infection leave the gut lining through lymph vessels into the blood, guided by sphingosine 1-phosphate, and reach the lung, where they help defence and repair. Most other ILCs stay in their tissue."
+}

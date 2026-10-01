@@ -1,0 +1,9 @@
+{
+  "id": "haematopoietic-stem-cell-differentiates-into-innate-lymphoid-cell",
+  "source": "haematopoietic-stem-cell",
+  "target": "innate-lymphoid-cell",
+  "type": "differentiates-into",
+  "via": ["il-7"],
+  "where": ["bone-marrow"],
+  "description": "Haematopoietic stem cells give rise to lymphoid progenitors and then to ILC precursors. ILCs need signals through the IL-7 receptor to develop. Some precursors leave the marrow: human blood carries ILC precursors that can make every ILC type and finish developing in tissues."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "monocyte-differentiates-into-langerhans-cell",
+  "source": "monocyte",
+  "target": "langerhans-cell",
+  "type": "differentiates-into",
+  "via": ["tgf-beta"],
+  "where": ["skin"],
+  "description": "Most Langerhans cells arise before birth and renew themselves in the epidermis. When inflammation or ultraviolet light empties it, blood monocytes settle in the epidermis and become Langerhans cells: in mice, a first, short-lived wave from Gr-1-high monocytes is followed by cells from steady-state bone marrow precursors. TGF-β1 is needed for Langerhans cell development. In people, donor blood cells refilled the epidermis after a bone marrow transplant."
+}

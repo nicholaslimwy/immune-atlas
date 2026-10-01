@@ -1,0 +1,9 @@
+{
+  "id": "langerhans-cell-migrates-to-lymph-node",
+  "source": "langerhans-cell",
+  "target": "lymph-node",
+  "type": "migrates-to",
+  "via": ["ccl19-ccl21"],
+  "where": ["skin"],
+  "description": "After a danger signal (TNF and IL-1β from damaged skin), a Langerhans cell loosens its grip on the keratinocytes, enters a dermal lymph vessel and travels to the draining lymph node. It needs the chemokine receptor CCR7 for the entry, and CCL19 and CCL21 are on the lymph vessels and in the node. Mouse tracking shows Langerhans cells arrive later than dermal dendritic cells; in people, TNF injected into skin reduced epidermal Langerhans cells, and human skin explants release them through dermal lymph vessels."
+}

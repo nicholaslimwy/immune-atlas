@@ -1,0 +1,8 @@
+{
+  "id": "innate-lymphoid-cell-migrates-to-lymph-node",
+  "source": "innate-lymphoid-cell",
+  "target": "lymph-node",
+  "type": "migrates-to",
+  "via": ["ccl19-ccl21"],
+  "description": "In mice, ILCs travel constantly from the gut to the draining mesenteric lymph nodes. For lymphoid-tissue-inducer-like ILC3, this needs CCR7, whose ligands CCL19 and CCL21 line the lymph vessels and lymph node; other ILCs use different routes."
+}

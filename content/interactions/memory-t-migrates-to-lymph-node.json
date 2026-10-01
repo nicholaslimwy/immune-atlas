@@ -1,0 +1,9 @@
+{
+  "id": "memory-t-migrates-to-lymph-node",
+  "source": "memory-t",
+  "target": "lymph-node",
+  "type": "migrates-to",
+  "via": ["ccl19-ccl21"],
+  "where": ["peripheral-blood"],
+  "description": "Central memory T cells carry CCR7 and L-selectin, so they recirculate from blood into lymph nodes and wait in the T-cell zone for antigen shown by dendritic cells. Effector memory cells lack CCR7 and go to inflamed tissue instead. In mice, memory cells restimulated in skin or mucosa also gave rise to resident memory cells in the draining lymph node."
+}

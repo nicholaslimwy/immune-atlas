@@ -1,0 +1,8 @@
+{
+  "id": "innate-lymphoid-cell-helps-th2",
+  "source": "innate-lymphoid-cell",
+  "target": "th2",
+  "type": "helps",
+  "via": ["mhc-ii", "il-2"],
+  "description": "In mice, group 2 innate lymphoid cells carry MHC class II and present antigen to CD4 T cells. IL-2 from the T cells makes ILC2 divide and make IL-13, and the exchange supports Th2 responses and worm expulsion."
+}

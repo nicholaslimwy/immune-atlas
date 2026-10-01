@@ -5,5 +5,5 @@
   "type": "differentiates-into",
   "via": ["scf"],
   "where": ["bone-marrow"],
-  "description": "Haematopoietic stem cells give rise to mast cell progenitors in the bone marrow. Unlike most blood cells, these leave in the blood before they are mature and finish developing in tissues such as skin and gut, driven by stem cell factor."
+  "description": "Haematopoietic stem cells give rise to mast cell progenitors in the bone marrow. Unlike most blood cells, these leave in the blood before they are mature and finish developing in tissues such as skin and gut, driven by stem cell factor. Mouse fate-mapping adds a caveat: most adult skin and other connective-tissue mast cells come from embryonic precursors and keep themselves going without the bone marrow, so stem cells supply mainly the mucosal ones there."
 }

@@ -1,0 +1,9 @@
+{
+  "id": "mast-cell-migrates-to-skin",
+  "source": "mast-cell",
+  "target": "skin",
+  "type": "migrates-to",
+  "via": ["scf"],
+  "where": ["bone-marrow"],
+  "description": "Mast cell progenitors made in the bone marrow circulate in the blood and finish maturing in tissues, where stem cell factor keeps them going; only the progenitor travels, not the mature cell. How much this supplies skin differs by species. In mice, fate-mapping shows that adult skin mast cells arise mostly from embryonic precursors and keep themselves going without the bone marrow. In people, progenitors that give rise to mast cells in culture have been identified, but their entry into skin has not been followed."
+}

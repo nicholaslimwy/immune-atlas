@@ -1,0 +1,8 @@
+{
+  "id": "langerhans-cell-helps-regulatory-t",
+  "source": "langerhans-cell",
+  "target": "regulatory-t",
+  "type": "helps",
+  "where": ["skin"],
+  "description": "In healthy human skin, tested with the person's own skin cells, resting Langerhans cells selectively activate the skin's resident regulatory T cells and make them divide, helping to keep the skin tolerant. When a pathogen is present, the same Langerhans cells instead activate effector memory T cells and limit the regulatory T cells' activation."
+}

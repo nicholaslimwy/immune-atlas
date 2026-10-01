@@ -1,0 +1,9 @@
+{
+  "id": "langerhans-cell-presents-antigen-to-naive-cd4-t",
+  "source": "langerhans-cell",
+  "target": "naive-cd4-t",
+  "type": "presents-antigen-to",
+  "via": ["mhc-ii"],
+  "where": ["lymph-node"],
+  "description": "In the lymph node a Langerhans cell shows antigen on MHC class II to naive CD4 T cells. The helper type that results depends on species and test: in mice, Langerhans cells were needed for Th17 cells against Candida skin infection, while human Langerhans cells in culture preferentially induced CD4 T cells that make Th2 cytokines. They are not needed for every response; in one mouse model, contact allergy still developed without them."
+}

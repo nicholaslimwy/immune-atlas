@@ -1,0 +1,7 @@
+{
+  "id": "memory-t-activates-nk-cell",
+  "source": "memory-t",
+  "target": "nk-cell",
+  "type": "activates",
+  "description": "In mice, resident memory CD8 T cells that meet their antigen again in the female reproductive tract release cytokines that activate local NK cells, helping give protection against an unrelated virus. Shown in mice; the skin version of this alarm switches on antiviral genes in the surrounding tissue."
+}
