@@ -1,0 +1,6 @@
+{
+  "id": "ige",
+  "name": "IgE (immunoglobulin E)",
+  "kind": "antibody",
+  "summary": "The rarest antibody class in blood. Most IgE sits on mast cells and basophils, held by the receptor FcεRI; when an allergen or parasite antigen cross-links it, those cells release histamine. It drives allergy and defence against parasitic worms."
+}

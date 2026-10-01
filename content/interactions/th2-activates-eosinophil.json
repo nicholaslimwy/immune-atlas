@@ -1,0 +1,10 @@
+{
+  "id": "th2-activates-eosinophil",
+  "source": "th2",
+  "target": "eosinophil",
+  "type": "activates",
+  "via": [
+    "il-5"
+  ],
+  "description": "IL-5 from Th2 cells boosts eosinophil production in the bone marrow, releases them into the blood and keeps them alive and primed in tissue. Group 2 innate lymphoid cells are another major source of IL-5. IL-4 and IL-13 from Th2 cells make tissue cells release eotaxins, which draw eosinophils in."
+}

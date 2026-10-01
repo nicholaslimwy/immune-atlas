@@ -1,0 +1,6 @@
+{
+  "id": "m-csf",
+  "name": "M-CSF (macrophage colony-stimulating factor, CSF-1)",
+  "kind": "cytokine",
+  "summary": "A growth factor made by many tissue cells. It supports the production and survival of monocytes and drives them to become macrophages."
+}

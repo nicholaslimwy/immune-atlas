@@ -1,0 +1,10 @@
+{
+  "id": "mast-cell-recruits-eosinophil",
+  "source": "mast-cell",
+  "target": "eosinophil",
+  "type": "recruits",
+  "via": [
+    "prostaglandin-d2"
+  ],
+  "description": "Activated mast cells make prostaglandin D2, which draws eosinophils into allergic tissue through the receptor CRTH2 (also called DP2)."
+}

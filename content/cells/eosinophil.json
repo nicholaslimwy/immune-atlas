@@ -1,0 +1,32 @@
+{
+  "id": "eosinophil",
+  "name": "Eosinophil",
+  "cellOntologyId": "CL:0000771",
+  "arm": "innate",
+  "lineage": "myeloid",
+  "markers": ["CD11b", "CCR3 (CD193)", "IL-5 receptor α (CD125)", "Siglec-8 (human only)", "Siglec-F (mouse only)"],
+  "summary": "Recognised by a two-lobed nucleus and large granules that stain bright red-orange with the dye eosin. Eosinophils spend less than a day in the blood before settling in tissues, mostly the gut lining. They attack parasitic worms too large to engulf by releasing toxic granule proteins onto them, and they drive allergic inflammation such as asthma.",
+  "functions": [
+    "Leaves the blood following eotaxins (CCL11 and related chemokines), which it senses through its receptor CCR3. At allergic or worm-infected sites, IL-4 and IL-13 make local tissue cells produce these eotaxins.",
+    "Binds parasites coated with antibody (mainly IgG and IgA) and releases toxic granule proteins onto them, such as major basic protein, eosinophil peroxidase and eosinophil cationic protein.",
+    "Releases lipid mediators (such as leukotriene C4) and cytokines (such as IL-4 and IL-13) that keep allergic, type 2 inflammation going.",
+    "In asthma and other allergic diseases, its granule proteins damage the airway lining and other tissues. Antibodies that block IL-5 lower eosinophil numbers and cut asthma attacks in many patients with severe eosinophilic asthma.",
+    "Debated: how much eosinophils actually protect against worms. Mice lacking eosinophils clear some parasites normally and others poorly, and the human evidence is mostly indirect. Mouse eosinophils also release their granules far less readily than human ones, so mouse studies may understate their effects.",
+    "Has quieter roles in healthy tissue, for example in the gut lining and in fat tissue. These come mostly from mouse studies and are still debated."
+  ],
+  "abundance": "About 1-4% of circulating white blood cells in healthy adult humans (up to about 0.5 × 10⁹ per litre of blood), rising sharply in allergy and worm infections. Most of the body's eosinophils are in tissues, not blood.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters 1, 10 and 14.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters 2 and 20.",
+    "Rosenberg HF, Dyer KD, Foster PS. Eosinophils: changing perspectives in health and disease. Nat Rev Immunol. 2013;13(1):9-22.",
+    "Klion AD, Ackerman SJ, Bochner BS. Contributions of eosinophils to human health and disease. Annu Rev Pathol. 2020;15:179-209.",
+    "Lee JJ, Jacobsen EA, Ochkur SI, et al. Human versus mouse eosinophils: \"that which we call an eosinophil, by any other name would stain as red\". J Allergy Clin Immunol. 2012;130(3):572-584.",
+    "Lee JJ, Jacobsen EA, McGarry MP, Schleimer RP, Lee NA. Eosinophils in health and disease: the LIAR hypothesis. Clin Exp Allergy. 2010;40(4):563-575.",
+    "Huang L, Appleton JA. Eosinophils in helminth infection: defenders and dupes. Trends Parasitol. 2016;32(10):798-807.",
+    "Nussbaum JC, Van Dyken SJ, von Moltke J, et al. Type 2 innate lymphoid cells control eosinophil homeostasis. Nature. 2013;502(7470):245-248.",
+    "Hirai H, Tanaka K, Yoshie O, et al. Prostaglandin D2 selectively induces chemotaxis in T helper type 2 cells, eosinophils, and basophils via seven-transmembrane receptor CRTH2. J Exp Med. 2001;193(2):255-261.",
+    "Ortega HG, Liu MC, Pavord ID, et al. Mepolizumab treatment in patients with severe eosinophilic asthma. N Engl J Med. 2014;371(13):1198-1207.",
+    "Cell Ontology, CL:0000771 (eosinophil)."
+  ],
+  "status": "draft"
+}

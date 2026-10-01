@@ -1,0 +1,10 @@
+{
+  "id": "monocyte-differentiates-into-macrophage",
+  "source": "monocyte",
+  "target": "macrophage",
+  "type": "differentiates-into",
+  "via": [
+    "m-csf"
+  ],
+  "description": "Monocytes that enter tissue turn into macrophages, driven by M-CSF and local signals. They supply most macrophages at inflamed sites and keep replacing them in the gut and skin, while many other tissue macrophages descend from cells laid down before birth (shown mostly in mice)."
+}

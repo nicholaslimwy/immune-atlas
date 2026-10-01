@@ -1,0 +1,10 @@
+{
+  "id": "plasma-cell-activates-basophil",
+  "source": "plasma-cell",
+  "target": "basophil",
+  "type": "activates",
+  "via": [
+    "ige"
+  ],
+  "description": "Plasma cells make IgE, which basophils capture with their FcεRI receptors. When an allergen or parasite antigen later cross-links that IgE, the basophil releases histamine within minutes."
+}

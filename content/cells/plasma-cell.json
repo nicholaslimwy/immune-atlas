@@ -1,0 +1,11 @@
+{
+  "id": "plasma-cell",
+  "name": "Plasma cell",
+  "arm": "adaptive",
+  "lineage": "lymphoid",
+  "markers": [],
+  "summary": "Stub: profile not written yet.",
+  "functions": [],
+  "sources": [],
+  "status": "stub"
+}

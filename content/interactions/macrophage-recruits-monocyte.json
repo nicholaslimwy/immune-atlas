@@ -1,0 +1,10 @@
+{
+  "id": "macrophage-recruits-monocyte",
+  "source": "macrophage",
+  "target": "monocyte",
+  "type": "recruits",
+  "via": [
+    "ccl2"
+  ],
+  "description": "Macrophages and other tissue cells that sense infection release CCL2, which pulls classical monocytes out of the blood through their receptor CCR2."
+}

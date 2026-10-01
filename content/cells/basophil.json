@@ -1,0 +1,32 @@
+{
+  "id": "basophil",
+  "name": "Basophil",
+  "cellOntologyId": "CL:0000767",
+  "arm": "innate",
+  "lineage": "myeloid",
+  "markers": ["FcεRIα (high-affinity IgE receptor)", "CD123 (IL-3 receptor α)", "CCR3 (CD193)", "CD203c (human only)", "CD49b (used to identify mouse basophils)"],
+  "summary": "The rarest white blood cell, under 1% of those in blood. Dense dark purple granules usually hide its lobed nucleus. Basophils carry IgE antibodies on their surface; when an allergen binds that IgE, they release histamine within minutes. They are also an early source of IL-4, which steers immune responses towards allergy and anti-parasite defence.",
+  "functions": [
+    "Holds IgE on its surface through the high-affinity receptor FcεRI. When an allergen or parasite antigen cross-links that IgE, it releases histamine and other granule contents within minutes (degranulation). It can also be triggered without IgE, for example by the complement fragment C5a.",
+    "Makes lipid mediators such as leukotriene C4 after activation, which narrow the airways and make blood vessels leaky.",
+    "Produces IL-4 and IL-13 quickly after activation, which help T cells become and stay Th2 cells and push B cells to switch to making IgE.",
+    "Leaves the blood into allergic tissue such as skin and airways hours after exposure, contributing to the late phase of allergic reactions. In mice it is needed for resistance to repeated tick feeding and helps expel some parasitic worms.",
+    "Shares much with mast cells (the IgE receptor, histamine), but matures in the bone marrow and circulates in the blood, while mast cells finish maturing in tissues and stay there.",
+    "Debated: whether basophils present antigen to naive T cells and so start Th2 responses. Mouse studies in 2009 suggested they do; later work found dendritic cells were needed, and human basophils carry little MHC class II."
+  ],
+  "abundance": "Under 1% of circulating white blood cells in adult humans (roughly 0.01-0.1 × 10⁹ per litre of blood). They live only a few days and are normally rare in healthy tissue.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters 1, 10 and 14.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters 2 and 20.",
+    "Falcone FH, Haas H, Gibbs BF. The human basophil: a new appreciation of its role in immune responses. Blood. 2000;96(13):4028-4038.",
+    "Voehringer D. Protective and pathological roles of mast cells and basophils. Nat Rev Immunol. 2013;13(5):362-375.",
+    "Karasuyama H, Miyake K, Yoshikawa S, Yamanishi Y. Multifaceted roles of basophils in health and disease. J Allergy Clin Immunol. 2018;142(2):370-380.",
+    "Min B, Prout M, Hu-Li J, et al. Basophils produce IL-4 and accumulate in tissues after infection with a Th2-inducing parasite. J Exp Med. 2004;200(4):507-517.",
+    "Wada T, Ishiwata K, Koseki H, et al. Selective ablation of basophils in mice reveals their nonredundant role in acquired immunity against ticks. J Clin Invest. 2010;120(8):2867-2875.",
+    "Sokol CL, Chu NQ, Yu S, et al. Basophils function as antigen-presenting cells for an allergen-induced T helper type 2 response. Nat Immunol. 2009;10(7):713-720.",
+    "Hammad H, Plantinga M, Deswarte K, et al. Inflammatory dendritic cells, not basophils, are necessary and sufficient for induction of Th2 immunity to inhaled house dust mite allergen. J Exp Med. 2010;207(10):2097-2111.",
+    "Hirai H, Tanaka K, Yoshie O, et al. Prostaglandin D2 selectively induces chemotaxis in T helper type 2 cells, eosinophils, and basophils via seven-transmembrane receptor CRTH2. J Exp Med. 2001;193(2):255-261.",
+    "Cell Ontology, CL:0000767 (basophil)."
+  ],
+  "status": "draft"
+}

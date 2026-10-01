@@ -1,0 +1,10 @@
+{
+  "id": "haematopoietic-stem-cell-differentiates-into-eosinophil",
+  "source": "haematopoietic-stem-cell",
+  "target": "eosinophil",
+  "type": "differentiates-into",
+  "via": [
+    "il-5"
+  ],
+  "description": "In the bone marrow, haematopoietic stem cells give rise to eosinophils through a series of myeloid progenitors. IL-5 drives the final steps and their release into the blood, which is why eosinophil numbers climb when IL-5 is high."
+}

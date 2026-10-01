@@ -1,0 +1,10 @@
+{
+  "id": "basophil-helps-th2",
+  "source": "basophil",
+  "target": "th2",
+  "type": "helps",
+  "via": [
+    "il-4"
+  ],
+  "description": "IL-4 from basophils helps activated CD4 T cells become Th2 cells and boosts cytokine release by existing Th2 cells. Shown mainly in mice; how much Th2 responses depend on basophils, rather than on other IL-4 sources, is debated."
+}

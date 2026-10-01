@@ -1,0 +1,13 @@
+{
+  "id": "platelet-activates-monocyte",
+  "source": "platelet",
+  "target": "monocyte",
+  "type": "activates",
+  "via": [
+    "p-selectin"
+  ],
+  "where": [
+    "peripheral-blood"
+  ],
+  "description": "Activated platelets bind monocytes through P-selectin, forming platelet-monocyte clumps in the blood. The contact pushes monocytes to make inflammatory cytokines and tissue factor, linking clotting with inflammation."
+}

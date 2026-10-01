@@ -1,0 +1,10 @@
+{
+  "id": "mast-cell-recruits-basophil",
+  "source": "mast-cell",
+  "target": "basophil",
+  "type": "recruits",
+  "via": [
+    "prostaglandin-d2"
+  ],
+  "description": "Prostaglandin D2 from activated mast cells also attracts basophils through CRTH2, so basophils gather in allergic tissue in the hours after mast cells first react."
+}

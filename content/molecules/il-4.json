@@ -1,0 +1,6 @@
+{
+  "id": "il-4",
+  "name": "IL-4",
+  "kind": "cytokine",
+  "summary": "A cytokine made by Th2 cells, follicular helper T cells, basophils and mast cells. It steers newly activated CD4 T cells to become Th2 cells and B cells to switch to making IgE."
+}

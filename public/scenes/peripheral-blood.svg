@@ -6,4 +6,12 @@
   <rect x="600" y="350" width="120" height="70" rx="30" fill="#C0392B" opacity="0.6"/>
   <rect id="neutrophil" x="330" y="190" width="140" height="120" rx="20" fill="#E4572E" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
   <text x="400" y="257" font-size="20" text-anchor="middle" fill="#1F2933" font-family="system-ui, sans-serif" pointer-events="none">Neutrophil</text>
+  <rect id="eosinophil" x="70" y="185" width="130" height="115" rx="20" fill="#E4572E" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
+  <text x="135" y="249" font-size="20" text-anchor="middle" fill="#1F2933" font-family="system-ui, sans-serif" pointer-events="none">Eosinophil</text>
+  <rect id="basophil" x="320" y="40" width="125" height="110" rx="20" fill="#E4572E" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
+  <text x="382" y="101" font-size="20" text-anchor="middle" fill="#1F2933" font-family="system-ui, sans-serif" pointer-events="none">Basophil</text>
+  <rect id="monocyte" x="560" y="205" width="170" height="140" rx="20" fill="#E4572E" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
+  <text x="645" y="282" font-size="20" text-anchor="middle" fill="#1F2933" font-family="system-ui, sans-serif" pointer-events="none">Monocyte</text>
+  <rect id="platelet" x="355" y="375" width="90" height="50" rx="25" fill="#8A8F98" stroke="#1F2933" stroke-width="2" stroke-linejoin="round"/>
+  <text x="400" y="450" font-size="18" text-anchor="middle" fill="#1F2933" font-family="system-ui, sans-serif" pointer-events="none">Platelet</text>
 </svg>

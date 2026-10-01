@@ -1,11 +1,33 @@
 {
   "id": "monocyte",
   "name": "Monocyte",
+  "cellOntologyId": "CL:0000576",
   "arm": "innate",
   "lineage": "myeloid",
-  "markers": [],
-  "summary": "Stub: profile not written yet.",
-  "functions": [],
-  "sources": [],
-  "status": "stub"
+  "markers": ["CD14", "CD16 (intermediate and non-classical subsets)", "CD11b", "CCR2 (classical subset)", "CX3CR1", "HLA-DR (human MHC class II)", "Ly6C (mouse only)"],
+  "summary": "The largest white blood cell, with a big kidney- or horseshoe-shaped nucleus. Monocytes circulate for one to several days, then leave the blood, especially where tissue is inflamed, and turn into macrophages or dendritic-like cells. Most rush to infections; a smaller subset crawls along the inside of blood vessels, checking their lining.",
+  "functions": [
+    "Leaves the blood into infected or injured tissue, arriving after the first neutrophils. Classical monocytes follow the chemokine CCL2 through their receptor CCR2, which they also need to leave the bone marrow.",
+    "Turns into a macrophage once in tissue, driven by M-CSF and local signals. In inflamed tissue it can instead become a dendritic-like cell that takes up antigen and shows it to T cells.",
+    "Engulfs microbes and dead cells and releases inflammatory cytokines such as TNF, IL-1β and IL-6, even before it changes into a macrophage.",
+    "Patrolling (non-classical) monocytes crawl along the inside of blood vessels, clearing damaged lining cells and calling in neutrophils when they find trouble. This was shown mainly in mice.",
+    "Humans have three blood subsets: classical (high CD14, no CD16; about 85-90%), intermediate, and non-classical (high CD16). Mice have two, Ly6C-high and Ly6C-low, which match the classical and non-classical types; the intermediate subset has no clear mouse counterpart.",
+    "Revised view: monocytes were long thought to be the source of all tissue macrophages. Many, such as those in the brain, liver and lung, were in fact laid down before birth and renew themselves; monocytes keep replacing macrophages in the gut and skin. This comes mostly from mouse fate-mapping; the human picture is less complete."
+  ],
+  "abundance": "About 2-10% of circulating white blood cells in adult humans (roughly 0.2-0.8 × 10⁹ per litre of blood), most of them classical monocytes. Classical monocytes stay in the blood for about a day, non-classical ones for about a week.",
+  "sources": [
+    "Murphy K, Weaver C, Berg LJ. Janeway's Immunobiology. 10th ed. New York: W. W. Norton; 2022. Chapters 1 and 3.",
+    "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Philadelphia: Elsevier; 2022. Chapters 2 and 4.",
+    "Ziegler-Heitbrock L, Ancuta P, Crowe S, et al. Nomenclature of monocytes and dendritic cells in blood. Blood. 2010;116(16):e74-e80.",
+    "Guilliams M, Mildner A, Yona S. Developmental and functional heterogeneity of monocytes. Immunity. 2018;49(4):595-613.",
+    "Patel AA, Zhang Y, Fullerton JN, et al. The fate and lifespan of human monocyte subsets in steady state and systemic inflammation. J Exp Med. 2017;214(7):1913-1923.",
+    "Ginhoux F, Jung S. Monocytes and macrophages: developmental pathways and tissue homeostasis. Nat Rev Immunol. 2014;14(6):392-404.",
+    "Serbina NV, Pamer EG. Monocyte emigration from bone marrow during bacterial infection requires signals mediated by chemokine receptor CCR2. Nat Immunol. 2006;7(3):311-317.",
+    "Auffray C, Fogg D, Garfa M, et al. Monitoring of blood vessels and tissues by a population of monocytes with patrolling behavior. Science. 2007;317(5838):666-670.",
+    "Carlin LM, Stamatiades EG, Auffray C, et al. Nr4a1-dependent Ly6Clow monocytes monitor endothelial cells and orchestrate their disposal. Cell. 2013;153(2):362-375.",
+    "Soehnlein O, Lindbom L. Phagocyte partnership during the onset and resolution of inflammation. Nat Rev Immunol. 2010;10(6):427-439.",
+    "Koupenova M, Clancy L, Corkrey HA, Freedman JE. Circulating platelets as mediators of immunity, inflammation, and thrombosis. Circ Res. 2018;122(2):337-351.",
+    "Cell Ontology, CL:0000576 (monocyte)."
+  ],
+  "status": "draft"
 }
