@@ -10,7 +10,8 @@ import type { Cell } from '../src/types/cell.ts'
 import type { Interaction } from '../src/types/interaction.ts'
 import type { Location } from '../src/types/location.ts'
 import type { Molecule } from '../src/types/molecule.ts'
-import { cellShape, interactionShape, locationShape, moleculeShape, objectOf, type Shape } from './schema.ts'
+import type { Tour } from '../src/types/tour.ts'
+import { cellShape, interactionShape, locationShape, moleculeShape, objectOf, tourShape, type Shape } from './schema.ts'
 
 const root = process.argv[2] ? resolve(process.argv[2]) : fileURLToPath(new URL('..', import.meta.url))
 
@@ -78,10 +79,12 @@ const locationFiles = load<Location>('locations', locationShape)
 const cellFiles = load<Cell>('cells', cellShape)
 const interactionFiles = load<Interaction>('interactions', interactionShape)
 const moleculeFiles = load<Molecule>('molecules', moleculeShape)
+const tourFiles = load<Tour>('tours', tourShape)
 
 const isLocation = (id: string) => locationFiles.ids.has(id)
 const isCell = (id: string) => cellFiles.ids.has(id)
 const isMolecule = (id: string) => moleculeFiles.ids.has(id)
+const isInteraction = (id: string) => interactionFiles.ids.has(id)
 
 // Hotspot and interaction targets may be a cell or a location, so the two must not share ids.
 for (const [id, file] of cellFiles.ids) {
@@ -213,6 +216,35 @@ for (const { file, data: ix } of interactionFiles.valid.values()) {
   if (ix.id !== expected) warn(file, `id: convention is "${expected}"`)
 }
 
+// Tours: every step shows a built scene, and what it zooms to and highlights must be in that scene.
+for (const { file, data: tour } of tourFiles.valid.values()) {
+  if (!tour.steps.length) error(file, 'steps: a tour needs at least one step')
+  tour.steps.forEach((step, i) => {
+    const at = `steps[${i}]`
+    const loc = locations.get(step.location)?.data
+    if (!loc) {
+      if (!isLocation(step.location)) error(file, `${at}.location: no location "${step.location}"`)
+      return
+    }
+    if (loc.status === 'stub') {
+      error(file, `${at}.location: "${loc.id}" is a stub and has no scene to show`)
+      return
+    }
+    if (step.focus !== undefined && !loc.hotspots.some((h) => h.region === step.focus || h.target === step.focus)) {
+      error(file, `${at}.focus: "${step.focus}" is not a hotspot region or target in ${loc.id}`)
+    }
+    step.highlight.forEach((c, j) => {
+      if (!isCell(c)) error(file, `${at}.highlight[${j}]: no cell "${c}"`)
+      else if (!loc.hotspots.some((h) => h.target === c)) {
+        error(file, `${at}.highlight[${j}]: "${c}" has no hotspot in ${loc.id}, so it cannot be highlighted there`)
+      }
+    })
+    step.interactions.forEach((ix, j) => {
+      if (!isInteraction(ix)) error(file, `${at}.interactions[${j}]: no interaction "${ix}"`)
+    })
+  })
+}
+
 // Icons (src/icons/<cell id>.svg): one per cell, drawn to the style guide, palette colours only.
 // Reserved names are icons that are not cells: generic.svg (the placeholder for cells without an
 // icon) and red-blood-cell.svg (background art).
@@ -250,7 +282,8 @@ for (const [file, messages] of [...problems].sort(([a], [b]) => a.localeCompare(
 
 const summary =
   `${locationFiles.valid.size} locations, ${cellFiles.valid.size} cells, ` +
-  `${interactionFiles.valid.size} interactions, ${moleculeFiles.valid.size} molecules, ${iconNames.length} icons`
+  `${interactionFiles.valid.size} interactions, ${moleculeFiles.valid.size} molecules, ${tourFiles.valid.size} tours, ` +
+  `${iconNames.length} icons`
 if (errorCount) {
   console.log(`\nContent invalid: ${errorCount} error(s), ${warningCount} warning(s) across ${problems.size} file(s).`)
   process.exit(1)

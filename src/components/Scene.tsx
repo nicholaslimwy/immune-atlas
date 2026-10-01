@@ -6,8 +6,17 @@ import type { Location } from '../types/location.ts'
 
 const SVG_NS = 'http://www.w3.org/2000/svg'
 
+interface Props {
+  location: Location
+  svg: string
+  /** Cell ids whose hotspots a tour step highlights. */
+  highlight?: readonly string[]
+  /** The hotspot target a tour step points at. */
+  focus?: string
+}
+
 // The SVG text is preloaded by ZoomStage and inlined here so hotspot regions are real DOM elements.
-export default function Scene({ location, svg }: { location: Location; svg: string }) {
+export default function Scene({ location, svg, highlight, focus }: Props) {
   const navigate = useNavigate()
   const containerRef = useRef<HTMLDivElement>(null)
   // A place that is not built yet, picked from this scene: shown as a notice instead of zooming.
@@ -46,6 +55,15 @@ export default function Scene({ location, svg }: { location: Location; svg: stri
       }
     }
   }, [svg, location])
+
+  // A tour step marks the cells it is about and the hotspot it points at; free exploration clears both.
+  useEffect(() => {
+    for (const { region, target } of location.hotspots) {
+      const el = containerRef.current?.querySelector(`[id="${region}"]`)
+      el?.classList.toggle('tour-highlight', highlight?.includes(target) ?? false)
+      el?.classList.toggle('tour-focus', target === focus)
+    }
+  }, [svg, location, highlight, focus])
 
   // A hotspot zooms into a child location, or opens a cell's panel over this scene.
   // Anything else clicked (empty scene, or a built place) clears the notice.

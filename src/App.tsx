@@ -10,7 +10,9 @@ export default function App() {
       <IconSprite />
       <Routes>
         <Route path="/" element={<Navigate to="/body" replace />} />
+        {/* One element for both, so exiting a tour keeps the stage (and its scene) mounted. */}
         <Route path="/body/*" element={<SceneRoute />} />
+        <Route path="/tours/*" element={<SceneRoute />} />
         <Route path="/styleguide" element={<StyleGuide />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

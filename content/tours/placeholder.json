@@ -1,0 +1,30 @@
+{
+  "id": "placeholder",
+  "title": "Placeholder tour",
+  "steps": [
+    {
+      "location": "body",
+      "focus": "skin",
+      "caption": "Placeholder step 1. A tour starts on the whole body and points at the place the story begins: here, the skin.",
+      "highlight": [],
+      "interactions": []
+    },
+    {
+      "location": "skin",
+      "focus": "neutrophil",
+      "caption": "Placeholder step 2. The tour zooms into the skin and toward the cut. The highlighted cells are the ones this step is about, and the interactions listed below are the records it illustrates.",
+      "highlight": ["neutrophil", "macrophage", "mast-cell"],
+      "interactions": ["macrophage-recruits-neutrophil", "mast-cell-recruits-neutrophil"]
+    },
+    {
+      "location": "lymph-node",
+      "focus": "conventional-dendritic-cell",
+      "caption": "Placeholder step 3. The tour moves sideways to the lymph node, where a dendritic cell from the skin meets T cells.",
+      "highlight": ["conventional-dendritic-cell", "naive-cd4-t"],
+      "interactions": [
+        "conventional-dendritic-cell-migrates-to-lymph-node",
+        "conventional-dendritic-cell-presents-antigen-to-naive-cd4-t"
+      ]
+    }
+  ]
+}

@@ -1,9 +1,10 @@
-// Runtime checks for the four content schemas. Each shape is typed against its interface in
+// Runtime checks for the content schemas. Each shape is typed against its interface in
 // src/types, so adding, removing or retyping a field there fails `tsc` until the shape matches.
 import { CELL_ARMS, CELL_FAMILIES, CELL_LINEAGES, CELL_STATUSES, type Cell } from '../src/types/cell.ts'
 import { INTERACTION_TYPES, type Interaction } from '../src/types/interaction.ts'
 import { LOCATION_STATUSES, type Location } from '../src/types/location.ts'
 import { MOLECULE_KINDS, type Molecule } from '../src/types/molecule.ts'
+import type { Tour, TourStep } from '../src/types/tour.ts'
 
 /** Pushes a message for each problem with `value`. `_type` only ties the check to a TS type. */
 export interface Check<T> {
@@ -137,4 +138,18 @@ export const moleculeShape: Shape<Molecule> = {
   name: req(text),
   kind: req(oneOf(MOLECULE_KINDS)),
   summary: req(text),
+}
+
+const tourStepShape: Shape<TourStep> = {
+  location: req(id),
+  focus: opt(id),
+  caption: req(text),
+  highlight: req(arrayOf(id)),
+  interactions: req(arrayOf(id)),
+}
+
+export const tourShape: Shape<Tour> = {
+  id: req(id),
+  title: req(text),
+  steps: req(arrayOf(objectOf(tourStepShape))),
 }

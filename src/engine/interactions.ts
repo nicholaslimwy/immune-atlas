@@ -1,5 +1,5 @@
 import type { Interaction } from '../types/interaction.ts'
-import { getCell, getInteractionsOf, getLocation, getMolecule } from './content.ts'
+import { getCell, getInteraction, getInteractionsOf, getLocation, getMolecule } from './content.ts'
 
 type Type = Interaction['type']
 
@@ -28,6 +28,34 @@ export interface InteractionLink {
   via: string[]
   /** Location names, in the record's order. */
   where: string[]
+}
+
+const nameOf = (id: string) => getCell(id)?.name ?? getLocation(id)?.name ?? id
+
+/** One interaction told from the source's side, "Macrophage recruits neutrophil", for a tour step. */
+export interface InteractionLine {
+  id: string
+  source: string
+  /** Lower case, to sit mid-sentence: "recruits". */
+  verb: string
+  target: string
+  description: string
+  via: string[]
+  where: string[]
+}
+
+export function interactionLine(id: string): InteractionLine | undefined {
+  const ix = getInteraction(id)
+  if (!ix) return undefined
+  return {
+    id,
+    source: nameOf(ix.source),
+    verb: VERBS[ix.type].active.toLowerCase(),
+    target: nameOf(ix.target),
+    description: ix.description,
+    via: (ix.via ?? []).map((m) => getMolecule(m)?.name ?? m),
+    where: (ix.where ?? []).map((l) => getLocation(l)?.name ?? l),
+  }
 }
 
 /** Every interaction that involves `cellId`, phrased from its side, sorted by the other end's name. */

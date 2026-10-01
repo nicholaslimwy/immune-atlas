@@ -503,3 +503,123 @@ ul.interactions p {
   height: 0.75rem;
   border-radius: 50%;
 }
+
+/* Guided tours (/tours/<id>/<step>). The frame layer zooms a scene toward a step's focus hotspot. */
+.frame-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.tour-badge {
+  margin: 0;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  background: #1f2933;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+/* Highlighted cells get a thick ink ring (solid, so it never reads as the placeholder icon's dashed
+   membrane) and a bold label: the cue is shape, not colour. */
+g.tour-highlight .hit {
+  stroke: #1f2933;
+  stroke-width: 3;
+}
+
+g.tour-highlight .scene-label,
+g.tour-focus .scene-label {
+  font-weight: 700;
+}
+
+g.tour-focus .leader-dot {
+  r: 5px;
+}
+
+.tour-progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.tour-progress .panel-meta {
+  margin: 0;
+}
+
+.panel .tour-progress ol {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.panel .tour-progress li + li {
+  margin-top: 0;
+}
+
+.tour-progress a {
+  display: block;
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 2px solid #1f2933;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.tour-progress a.done {
+  background: #9aa5b1;
+}
+
+.tour-progress a.current {
+  background: #1f2933;
+}
+
+.tour-caption {
+  font-size: 1.05rem;
+}
+
+.tour-ring {
+  display: inline-block;
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 3px solid #1f2933;
+  border-radius: 50%;
+  vertical-align: -0.1rem;
+}
+
+.tour-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.tour-controls button,
+.tour-exit {
+  font: inherit;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid #1f2933;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.tour-controls button.primary {
+  background: #1f2933;
+  color: #fff;
+}
+
+.tour-controls button[aria-disabled='true'] {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.tour-exit {
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+.tour-keys {
+  margin-top: 0.5rem;
+}
