@@ -3,6 +3,7 @@ import IconSprite from './components/IconSprite.tsx'
 import SearchBox from './components/SearchBox.tsx'
 import GlossaryEntry from './routes/GlossaryEntry.tsx'
 import GlossaryIndex from './routes/GlossaryIndex.tsx'
+import Network from './routes/Network.tsx'
 import NotFound from './routes/NotFound.tsx'
 import SceneRoute from './routes/SceneRoute.tsx'
 import StyleGuide from './routes/StyleGuide.tsx'
@@ -19,6 +20,9 @@ export default function App() {
           <NavLink to="/glossary" className="site-link">
             Glossary
           </NavLink>
+          <NavLink to="/network" className="site-link">
+            Network
+          </NavLink>
         </nav>
         <SearchBox />
       </header>
@@ -29,6 +33,7 @@ export default function App() {
         <Route path="/tours/*" element={<SceneRoute />} />
         <Route path="/glossary" element={<GlossaryIndex />} />
         <Route path="/glossary/:id" element={<GlossaryEntry />} />
+        <Route path="/network" element={<Network />} />
         <Route path="/styleguide" element={<StyleGuide />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

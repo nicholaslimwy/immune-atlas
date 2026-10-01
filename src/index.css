@@ -901,8 +901,15 @@ main[data-tour] {
 
 @media (max-width: 600px) {
   .site-header {
+    flex-wrap: wrap;
     padding: 0.5rem 1rem;
-    gap: 0.6rem;
+    gap: 0.4rem 0.6rem;
+  }
+
+  /* With three links in the nav the box would be left a sliver, so it takes its own row. */
+  .search {
+    flex-basis: 100%;
+    max-width: none;
   }
 
   .search-results {
@@ -1045,5 +1052,161 @@ main.glossary {
   .site-nav {
     gap: 0.75rem;
     font-size: 0.9rem;
+  }
+}
+
+/* /network: legend and filter, the Cytoscape canvas beside the selected interaction, and the list view. */
+main.network {
+  max-width: 72rem;
+}
+
+.network-views,
+.network-legend ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.network-views {
+  margin-bottom: 1rem;
+}
+
+.network-views button,
+.network-legend button,
+.network-zoom button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.25rem;
+  font: inherit;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid #1f2933;
+  border-radius: 6px;
+  background: #fff;
+  color: #1f2933;
+  cursor: pointer;
+}
+
+.network-legend button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.network-views button[aria-pressed='true'],
+.network-legend button[aria-pressed='true'] {
+  background: #1f2933;
+  color: #fff;
+}
+
+.network-legend button[aria-pressed='true'] .panel-meta {
+  color: #e4e7eb;
+}
+
+/* A white chip behind the sample line keeps every colour readable on the dark pressed button. */
+.network-legend button[aria-pressed='true'] .swatch {
+  background: #fff;
+  border-radius: 3px;
+}
+
+.network-legend h2 {
+  margin: 0 0 0.1rem;
+  font-size: 1.05rem;
+}
+
+.network-legend p {
+  margin: 0 0 0.5rem;
+}
+
+.network-count {
+  margin: 0.75rem 0;
+}
+
+.swatch {
+  flex: none;
+  vertical-align: middle;
+}
+
+.network-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20rem;
+  gap: 1rem;
+  align-items: start;
+}
+
+.network-graph {
+  position: relative;
+  min-width: 0;
+}
+
+.network-canvas {
+  height: min(72vh, 680px);
+  min-height: 360px;
+  border: 1px solid #c9ced6;
+  border-radius: 6px;
+  background: #eef1f4;
+  /* The canvas takes every touch, so a two-finger pinch zooms the graph, not the page. */
+  touch-action: none;
+}
+
+.network-zoom {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  gap: 0.3rem;
+}
+
+.network-zoom button {
+  min-width: 2.25rem;
+  justify-content: center;
+}
+
+.network-detail {
+  padding: 0.75rem 1rem;
+  border: 1px solid #c9ced6;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.network-detail > :first-child {
+  margin-top: 0;
+}
+
+.network-loading {
+  margin: 0;
+  padding: 2rem 0;
+}
+
+.network-list-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1.5rem 0 0.25rem;
+  font-size: 1.15rem;
+}
+
+@media (max-width: 1000px) {
+  .network-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .network-legend button {
+    gap: 0.3rem;
+    padding: 0.1rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .network-legend .swatch {
+    width: 30px;
+    height: auto;
+  }
+
+  .network-legend p {
+    display: none;
   }
 }
