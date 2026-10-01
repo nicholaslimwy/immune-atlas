@@ -3,6 +3,7 @@
   "name": "Macrophage",
   "arm": "innate",
   "lineage": "myeloid",
+  "family": "innate-myeloid",
   "markers": [],
   "summary": "Stub: profile not written yet.",
   "functions": [],

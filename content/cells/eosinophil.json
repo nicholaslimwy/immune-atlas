@@ -4,6 +4,7 @@
   "cellOntologyId": "CL:0000771",
   "arm": "innate",
   "lineage": "myeloid",
+  "family": "innate-myeloid",
   "markers": ["CD11b", "CCR3 (CD193)", "IL-5 receptor α (CD125)", "Siglec-8 (human only)", "Siglec-F (mouse only)"],
   "summary": "Recognised by a two-lobed nucleus and large granules that stain bright red-orange with the dye eosin. Eosinophils spend less than a day in the blood before settling in tissues, mostly the gut lining. They attack parasitic worms too large to engulf by releasing toxic granule proteins onto them, and they drive allergic inflammation such as asthma.",
   "functions": [

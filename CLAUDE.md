@@ -73,9 +73,11 @@ immune-atlas/
   public/scenes/         SVG scenes referenced by Location.scene
   scripts/               validate.ts + schema.ts (npm run validate)
   src/
-    components/          UI pieces (panel, breadcrumb, hotspot...)
+    art/                 style tokens (palette.ts), icon specs (iconSpecs.ts), icon loader (icons.ts)
+    icons/               one SVG per cell icon, file name = cell id
+    components/          UI pieces (panel, breadcrumb, hotspot, icon sprite...)
     engine/              loads content (content.ts is the only reader of /content), resolves routes, runs transitions
-    routes/              route-level views
+    routes/              route-level views (scenes, /styleguide)
     types/               TypeScript types for the four schemas
   index.html, vite.config.ts, tsconfig*.json, package.json
 ```
@@ -106,6 +108,7 @@ interface Cell {
   cellOntologyId?: string;    // "CL:0000775" (links to the standard Cell Ontology)
   arm: "innate" | "adaptive" | "innate-like" | "stromal";
   lineage: "myeloid" | "lymphoid" | "stromal" | "other";
+  family: "innate-myeloid" | "innate-lymphoid" | "t-cell" | "b-cell" | "support"; // colour family (style guide)
   parent?: string;            // "granulocyte" (builds the blood-cell family tree)
   markers: string[];          // ["CD15", "CD16", "CD66b"]
   summary: string;            // 2-3 sentences for the panel, 60 words max
@@ -145,28 +148,50 @@ Three rules:
 2. **Interactions are records of their own.** A cell's panel lists every interaction where it is source or target. One record updates two panels and, later, the network view.
 3. **Movement is an interaction.** A dendritic cell carrying antigen to a lymph node is `migrates-to` pointing at a location. Tours and "bigger picture" views are built from these.
 
-## Style guide
+## Style guide (locked in Phase 3.1)
 
-Pick one flat, stylised vector style and never deviate. Rules from the plan:
+One flat, stylised vector style, never deviated from. Live reference: `/styleguide` (palette, rules, the icons at true relative size, at blood-scene scale, enlarged, and a greyscale toggle). Tokens in code: `src/art/palette.ts`; `npm run validate` rejects icon colours that are not tokens.
+
+**From the plan:**
 
 - One SVG symbol per cell type, drawn once and reused in every scene. A neutrophil looks identical in blood, bone marrow and a wound.
 - Anchor each icon on the feature a student recognises under a microscope: neutrophil = multi-lobed nucleus; eosinophil = two-lobed nucleus, red-orange granules; basophil = dense dark purple granules hiding the nucleus; monocyte = large, kidney-shaped nucleus; lymphocyte = round nucleus filling almost the whole cell; plasma cell = off-centre nucleus, lots of cytoplasm; dendritic cell = long branching arms; macrophage = large, irregular, often with engulfed debris.
 - Keep relative sizes roughly true (monocyte clearly bigger than lymphocyte; red cells fill the blood background).
-- Colour by family: warm reds/oranges = innate myeloid; purple = innate lymphoid; blue = T cells; green = B cells; grey = support cells. Used in scenes, panels, network view and legend. Colour never carries meaning alone: pair with a label or shape.
+- Colour by family, used in scenes, panels, network view and legend. Colour never carries meaning alone: pair with a label or shape.
 - About 10 hotspots per scene at most; hotspots are focusable, labelled buttons; offer a plain list view of each scene.
 
-**Provisional values (not in the plan; proposed in Phase 0, to be locked in Phase 3 after trial icons):**
+**Palette.** A cell's family is its `family` field. Tint fills the cytoplasm, base the nucleus (and legend swatches, panel accents), shade the granules, receptors and chromatin.
 
-| Token | Value |
+| Family (`family`) | Tint | Base | Shade | Cells |
+| --- | --- | --- | --- | --- |
+| Innate myeloid (`innate-myeloid`) | `#FBD9CC` | `#E4572E` | `#A8341A` | neutrophil, eosinophil, basophil, mast cell, monocyte, macrophage, cDC, pDC, Langerhans cell |
+| Innate lymphoid (`innate-lymphoid`) | `#E6D8F0` | `#8E5BB5` | `#5E3580` | NK cell, ILCs |
+| T cells (`t-cell`) | `#D3E2F4` | `#2F6DB5` | `#1D4680` | all eight T cells |
+| B cells (`b-cell`) | `#D3ECDD` | `#3E9B63` | `#25633D` | naive B, germinal centre B, plasma cell, memory B |
+| Support (`support`) | `#E3E5E8` | `#8A8F98` | `#5A5F68` | haematopoietic stem cell, platelet, FDC, thymic epithelial cell |
+
+Ink `#1F2933`: membrane and nucleus outlines, label text. Red blood cells are background art, not a family: tint `#F6D6D6`, base `#D98C8C` (muted so they never compete with myeloid orange; the blood scene background is the red-cell tint).
+
+**Icon geometry.**
+
+- File: `src/icons/<cell id>.svg`, a standalone `<svg viewBox="0 0 100 100">`, plus an entry in `src/art/iconSpecs.ts` (drawn diameter and cue). The validator checks both exist, the viewBox, and the colours.
+- Cell body: centred at (50, 50), diameter 80 units. The outer 10 units hold only protrusions (receptors, arms, pseudopods); keep them inside the box (the symbol clips).
+- Outlines: membrane and nucleus in ink, `stroke-width="2"` with `vector-effect="non-scaling-stroke"`, so every outline is 2 px on screen whatever size the cell is drawn. Round joins and caps.
+- Detail (granules, chromatin, receptors): flat shapes in the family shade (neutrophil granules: base), no outline. Receptor glyphs may be drawn as round-capped strokes in viewBox units, which scale with the cell.
+- Flat only: no gradients, filters, shadows or opacity (validator checks).
+- Draw order: protrusions, membrane, granules, nucleus, chromatin, so protrusion stems tuck under the membrane.
+
+**Relative size.** The 80-unit body stands for the cell's real diameter (`diameterUm` in `iconSpecs.ts`: typical blood-smear size). Within one scene every cell is drawn at the same px per µm, so `box px = diameterUm x pxPerUm x 100 / 80` (`iconPx` in `src/art/icons.ts`). Blood scene: 7 px per µm (red cell and lymphocyte 7.5 µm = 66 px box, neutrophil 12 µm = 105 px). Other scenes pick their own scale and use it for all their cells.
+
+| Icon | Drawn diameter |
 | --- | --- |
-| Icon viewBox | `0 0 100 100` |
-| Stroke width | 2 (in viewBox units), round joins and caps |
-| Innate myeloid | `#E4572E` (orange-red) |
-| Innate lymphoid | `#8E5BB5` (purple) |
-| T cell | `#2F6DB5` (blue) |
-| B cell | `#3E9B63` (green) |
-| Support / stromal | `#8A8F98` (grey) |
-| Outline | `#1F2933` |
+| Red blood cell (reference) | 7.5 µm |
+| Naive B, naive CD4 T | 7.5 µm |
+| Neutrophil | 12 µm |
+
+**Look-alike cells.** B and T cells look the same under a microscope, so every B-cell icon carries Y-shaped B-cell receptors (membrane antibody) and every T-cell icon blunt two-chain T-cell receptors (two parallel short bars), five per cell, evenly spaced, in the family shade. The plasma cell, which has little surface antibody, shows secreted Ys beside it instead. T-cell subsets (Th1, Treg...) keep the same body and receptor and differ by label; a subset badge, if ever needed, is decided in the session that draws them. The shape cue reads at blood-scene scale on desktop; on a phone the stage shrinks and the label carries the distinction.
+
+**Using icons.** `IconSprite` (mounted once in `App.tsx`) turns every icon into `<symbol id="icon-<cell id>">`; anything in the page, including an inlined scene SVG, places one with `<use href="#icon-<cell id>">`. The `icon-` prefix keeps symbol ids apart from scene element ids. In React use `<CellIcon cell="..." pxPerUm={...} />`.
 
 ## Naming rules
 
@@ -228,10 +253,18 @@ Phases 1 and 2 use plain placeholder shapes on purpose.
 | 2026-10-01 | Debated science is flagged in the text itself ("Debated:" at the start of a function or interaction sentence); species differences are flagged inline ("(human only)", "(mouse only)", "shown mainly in mice"). No schema field for either |
 | 2026-10-01 | Debated-flag style unified (Phase 2.5): every debated point is its own function item starting "Debated:"; interaction descriptions keep in-sentence wording. Marker species labels reduced to "(human/mouse only)" and "(human/mouse marker)" |
 | 2026-10-01 | Interaction records go in only when they touch a draft cell, so their citations have a draft cell's `sources` to sit in; stub-to-stub records wait for Phase 4 |
+| 2026-10-01 | Cell gains a required `family` field (`innate-myeloid`, `innate-lymphoid`, `t-cell`, `b-cell`, `support`) that sets its colour (Phase 3.1); `arm` and `lineage` stay as they were |
+| 2026-10-01 | Style tokens locked (Phase 3.1): the five Phase 0 base colours plus a tint and a shade per family; red cells get their own muted pair |
+| 2026-10-01 | Outlines use `vector-effect="non-scaling-stroke"` (2 px on screen at any size) instead of 2 viewBox units, because true relative sizes make icons render from ~20 px to 150+ px |
+| 2026-10-01 | Icon geometry: 100-unit box, 80-unit body = the cell's real diameter, one px-per-µm scale per scene (blood: 7) |
+| 2026-10-01 | B vs T cue: Y-shaped receptors on every B-cell icon, blunt two-chain receptors on every T-cell icon |
+| 2026-10-01 | Icons are one SVG file per cell in `src/icons`, bundled into a sprite of `<symbol id="icon-<cell id>">`; the validator checks file name, spec, viewBox, palette and flat style |
 
 ## Current status and next task
 
-**Status:** Phase 2, session 5 complete (2026-10-01): interaction web for the nine blood cells. Reviewed all 41 interaction records and added 11, each touching at least one draft blood cell so its citation has a draft cell to sit in (52 in total): conventional dendritic cell activates NK cell (IL-15, IL-12); plasma cell activates NK cell (IgG, ADCC); regulatory T suppresses cytotoxic CD8 T (CTLA-4); haematopoietic stem cell `differentiates-into` NK cell (IL-15), naive B (IL-7; flagged essential in mice but not humans), naive CD4 T and cytotoxic CD8 T (IL-7, via the thymus); monocyte recruits neutrophil (patrolling monocytes, mice, `where: ["peripheral-blood"]`); macrophage phagocytoses platelet; basophil helps naive B (IL-4, CD40L; IgE switching, human cells in culture); macrophage presents antigen to naive B (subcapsular sinus, intact antigen, mainly mice). One fix: `naive-cd4-t-differentiates-into-th1` now lists IFN-γ in `via`, as its description already said. Three new molecules (IL-15, IL-7, IgG); every `via` id resolves. Ten citations for the new records were added to the `sources` of the draft cells they touch (NK, naive B, naive CD4 T, cytotoxic CD8 T, neutrophil, platelet, basophil). Records between two stubs (Th1 activates macrophage, Tfh helps germinal centre B, germinal centre B to plasma and memory B, FDC holds antigen for germinal centre B, memory B to plasma cell, plasma cell IgE arms mast cell, Th2 activates macrophage) are deferred to Phase 4, when those cells get profiles and sources. `where` could only be filled for the blood record; the rest wait for their locations (see open points). Cell files were then reviewed for errors, inconsistent terms and uncited claims (`docs/cell-review-2026-10-01.md`, with the user's decision on each item). Applied: CD203c relabelled as a basophil marker; KLRG1 redefined as a marker of cells that have divided many times (cited to Voehringer 2002); platelet "can only be studied" softened; eosinophil fat-tissue role removed; basophil worm expulsion cited to Janeway; "white blood cells" throughout; "monocyte-derived dendritic cell" replaces "dendritic-like cell"; marker species labels and debated flags unified (two new naming rules). Kept as they were: the CD8 T summary's "almost every cell in the body" and the naive B "one unique antibody". Verified in the browser: every blood panel lists its new partners with via molecules and stub tags; the sideways link naive B to basophil works and the breadcrumb follows; no console errors. `validate` (2 locations, 24 cells, 52 interactions, 29 molecules, 0 warnings), `build` and `lint` pass. Phase 2 gate passes.
+**Status:** Phase 3, session 1 complete (2026-10-01): style guide and three trial icons. Cell has a new required `family` field (all 24 cell files set; `scripts/schema.ts` checks it), which settles the colour-by-family rule. The style guide in this file is now locked (see "Style guide"): palette with tint/base/shade per family in `src/art/palette.ts`, 100-unit icon box with an 80-unit body standing for the real diameter, non-scaling 2 px ink outlines, flat fills only, one px-per-µm per scene (blood: 7), receptor cue for B vs T. Icons drawn: `src/icons/neutrophil.svg` (four lobes in a chain joined by thin necks, fine sparse granules), `naive-b.svg` (round nucleus filling most of the cell, five Y-shaped receptors), `naive-cd4-t.svg` (same body, five blunt two-chain receptors); sizes and cues in `src/art/iconSpecs.ts`. `IconSprite` (mounted in `App.tsx`) exposes them as `<symbol id="icon-<cell id>">`, `CellIcon` draws one at a given px per µm, and `getCells()` was added to `content.ts`. `/styleguide` (`src/routes/StyleGuide.tsx`) shows the palette with each family's cells (from content), the rules, the icons side by side at 12 px/µm next to a dashed red-cell reference and a 10 µm bar, the icons at blood-scene scale among red cells, the icons enlarged with their cue, and a greyscale toggle. Validator now also checks icons (file name is a cell id, spec exists, viewBox, palette-only colours, no gradients/filters/opacity); a scratch copy with an off-palette hex, an opacity attribute and a stray icon each failed as expected. **Self-critique in the Browser pane, and what changed:** (1) first draft's receptors were too small at scene scale for B and T to be told apart, so there are now five bolder, longer receptors and the blood scale went from 6 to 7 px/µm; (2) the first neutrophil had four round, separate lobes that read as four nuclei, so the lobes now sit closer in a chain with visible necks; (3) its granules clustered on one side and were spread out; (4) white hex labels on the orange and grey swatches had poor contrast, so labels moved below the colour blocks. Still weak, for the next art session to judge: the neutrophil necks look a little mechanical (ball-and-stick); its granules use the base orange, so the eosinophil must have clearly bigger, denser granules to stay distinct; at phone width the receptor cue is only a few pixels and the label does the work; the red-cell disc on the page is a stand-in, not yet a drawn icon. Verified: greyscale keeps B and T distinct by shape; no horizontal scroll at 375 px; `/body` to blood to `/body/blood/naive-b` still works with the sprite mounted; no new console errors. `validate` (2 locations, 24 cells, 52 interactions, 29 molecules, 3 icons, 0 warnings), `build` and `lint` pass.
+
+**Phase 2, session 5:** complete (2026-10-01): interaction web for the nine blood cells. Reviewed all 41 interaction records and added 11, each touching at least one draft blood cell so its citation has a draft cell to sit in (52 in total): conventional dendritic cell activates NK cell (IL-15, IL-12); plasma cell activates NK cell (IgG, ADCC); regulatory T suppresses cytotoxic CD8 T (CTLA-4); haematopoietic stem cell `differentiates-into` NK cell (IL-15), naive B (IL-7; flagged essential in mice but not humans), naive CD4 T and cytotoxic CD8 T (IL-7, via the thymus); monocyte recruits neutrophil (patrolling monocytes, mice, `where: ["peripheral-blood"]`); macrophage phagocytoses platelet; basophil helps naive B (IL-4, CD40L; IgE switching, human cells in culture); macrophage presents antigen to naive B (subcapsular sinus, intact antigen, mainly mice). One fix: `naive-cd4-t-differentiates-into-th1` now lists IFN-γ in `via`, as its description already said. Three new molecules (IL-15, IL-7, IgG); every `via` id resolves. Ten citations for the new records were added to the `sources` of the draft cells they touch (NK, naive B, naive CD4 T, cytotoxic CD8 T, neutrophil, platelet, basophil). Records between two stubs (Th1 activates macrophage, Tfh helps germinal centre B, germinal centre B to plasma and memory B, FDC holds antigen for germinal centre B, memory B to plasma cell, plasma cell IgE arms mast cell, Th2 activates macrophage) are deferred to Phase 4, when those cells get profiles and sources. `where` could only be filled for the blood record; the rest wait for their locations (see open points). Cell files were then reviewed for errors, inconsistent terms and uncited claims (`docs/cell-review-2026-10-01.md`, with the user's decision on each item). Applied: CD203c relabelled as a basophil marker; KLRG1 redefined as a marker of cells that have divided many times (cited to Voehringer 2002); platelet "can only be studied" softened; eosinophil fat-tissue role removed; basophil worm expulsion cited to Janeway; "white blood cells" throughout; "monocyte-derived dendritic cell" replaces "dendritic-like cell"; marker species labels and debated flags unified (two new naming rules). Kept as they were: the CD8 T summary's "almost every cell in the body" and the naive B "one unique antibody". Verified in the browser: every blood panel lists its new partners with via molecules and stub tags; the sideways link naive B to basophil works and the breadcrumb follows; no console errors. `validate` (2 locations, 24 cells, 52 interactions, 29 molecules, 0 warnings), `build` and `lint` pass. Phase 2 gate passes.
 
 **Phase 2, session 3 (lymphocytes):** complete (2026-10-01), done as two parallel sessions. **Lymphocytes:** NK cell, naive B, naive CD4 T and cytotoxic CD8 T are full draft profiles matching the neutrophil (Cell Ontology ids CL:0000623, CL:0000788, CL:0000895, CL:0000794; summaries of 56-59 words; six functions; abundance with human vs mouse figures; 11-13 citations each; `status: "draft"`, not reviewed). Debated points are flagged inside the sentence ("still debated", "is debated"): NK cells vs ILC1s and NK "memory"; human B-1 cells; whether memory T cells pass through an effector stage; how fixed helper fates are; the first source of IL-4 for Th2; TGF-β's role in human Th17. Species differences are flagged inline: CD56 (human NK only), KIR vs Ly49, NK1.1 and DX5; CD27 as a memory B marker (human only), B220, mouse blood richer in B cells; CD45RA vs CD44 for naive T cells; naive T cells kept up by the thymus in mice but by peripheral division in adult humans; lab mice have few memory T cells; CD8α on a mouse-only dendritic cell subset; MHC class II on activated human but not mouse T cells; IL-12 driving human Tfh; induced regulatory T cells hard to identify in humans; mouse-only evidence for NK help to Th1 and early germinal-centre-independent memory B cells. 22 new interactions (41 in total), 13 new molecules (IFN-γ, IL-12, IL-18, type I interferons, IL-2, IL-6, IL-21, TGF-β, CXCL13, MHC class I, MHC class II, CD40L, CTLA-4) and 9 new stubs (conventional and plasmacytoid dendritic cell, follicular dendritic cell, Th1, Tfh, regulatory T, memory T, germinal centre B, memory B); the existing Th2, plasma cell and IL-4 were reused. Blood scene has four more placeholder hotspots in family colours with near-round corners (NK purple, T cells blue, B green, white labels), each a resident too. Verified in the browser: all nine blood hotspots are labelled buttons; each new one opens its panel at `/body/blood/<cell>` with the expected links (stub partners tagged); the sideways link naive CD4 T to NK cell works and the breadcrumb follows; no console errors. `validate` (2 locations, 24 cells, 41 interactions, 26 molecules, 0 warnings), `build` and `lint` pass. The 13 lymphocyte cell files went into the other session's commit `dba8b03` (marked WIP); everything else is in the following commit.
 
@@ -252,14 +285,13 @@ Phases 1 and 2 use plain placeholder shapes on purpose.
 - Monocyte profile says "monocyte-derived dendritic cell" in full. Avoid the abbreviation "mDC", which usually means myeloid (conventional) dendritic cell in human blood; "moDC" is the usual short form.
 - NK cells and cytotoxic CD8 T cells kill infected and cancer cells, but no cell id stands for "an infected cell", so there are no `kills` records yet; killing lives in `functions`. Decide whether to add a non-immune target cell or leave it there.
 - `cytotoxic-cd8-t` also covers the naive CD8 stage (the v1 list has no naive CD8 T cell), and `memory-t` is one cell for CD4 and CD8 memory.
-- `plasmacytoid-dendritic-cell` has `lineage: "myeloid"` to match the content map's grouping, but mouse studies suggest many come from lymphoid progenitors. Revisit with the family question below.
+- `plasmacytoid-dendritic-cell` has `lineage: "myeloid"` and `family: "innate-myeloid"` to match the content map's grouping, but mouse studies suggest many come from lymphoid progenitors. The reviewer may want to revisit.
 - `th1-helps-cytotoxic-cd8-t` simplifies: much CD4 help reaches CD8 T cells indirectly, by licensing the dendritic cell (the description says so).
 - Not yet recorded because the locations do not exist: naive lymphocytes and dendritic cells `migrates-to` lymph node; `where: ["lymph-node"]` on the antigen-presentation, Tfh help and differentiation records, and on the session 5 records cDC activates NK cell and macrophage presents antigen to naive B; `where: ["bone-marrow"]` on haematopoietic stem cell to NK cell and naive B, `["bone-marrow", "thymus"]` on haematopoietic stem cell to naive CD4 T and cytotoxic CD8 T; `where: ["spleen"]` on macrophage phagocytoses platelet (the liver is not a v1 location).
 - `plasma-cell-activates-basophil` uses `activates` for "makes the IgE that arms basophils"; the type enum has no closer verb. Same will apply to mast cells.
 - Not yet recorded because the locations do not exist: monocyte `migrates-to` inflamed tissue, eosinophil `migrates-to` the gut, and `where: ["bone-marrow"]` on the four new `differentiates-into` records.
 - Interactions have no `sources` field, so their citations sit in the `sources` of the draft cell(s) each record touches for now. Decide in a schema session whether Interaction gets its own `sources` (one record feeds two panels, so the citation belongs on the record).
-- Colour by family cannot be derived from the Cell schema: T cells and B cells are both `adaptive` + `lymphoid`. Phase 3 needs a rule or a field (e.g. `family`) before the legend and panel colours.
-- `arm: "stromal"` is used for the support group (haematopoietic stem cell with `lineage: "other"`, platelet with `lineage: "myeloid"`), though neither is stromal. Revisit with the family question above.
+- `arm: "stromal"` is used for the support group (haematopoietic stem cell with `lineage: "other"`, platelet with `lineage: "myeloid"`), though neither is stromal. Colour no longer depends on it (`family: "support"` does that), so `arm` could now be corrected in a schema session.
 - Neutrophil `parent: "granulocyte"` is left out: no granulocyte cell exists and the validator does not check `parent`. Decide whether family-tree parents are real cells.
 - Not yet recorded because the locations do not exist: neutrophil `migrates-to` inflamed skin, and `where: ["bone-marrow"]` on haematopoietic stem cell `differentiates-into` neutrophil. Add in Phase 4.
 - Molecule names in the panel are plain text; glossary tooltips are Phase 6.
@@ -274,4 +306,4 @@ Phases 1 and 2 use plain placeholder shapes on purpose.
 - The URL changes immediately on a click but the old scene stays on screen until the new SVG has loaded (instant locally; a slow network would show a short pause).
 - The Browser preview pane throttles animation frames when hidden, so check motion with the pane in front (a hidden pane leaves fades frozen part-way and screenshots look washed out). This machine has reduced motion switched on at OS level, so you will see the cross-fade here unless you turn that off.
 
-**Next task:** Phase 2 gate is met for blood: nine draft profiles (neutrophil, eosinophil, basophil, monocyte, platelet, NK cell, naive B, naive CD4 T, cytotoxic CD8 T), 52 interactions, panel links work from data, validator passes. Next is Phase 3, session 1: decide the colour-by-family rule (see open points), then the style guide plus 3 trial icons. Send the nine drafts to the immunology reviewer in parallel.
+**Next task:** Phase 3, session 2: draw the remaining blood-cell icons (eosinophil, basophil, monocyte, platelet, NK cell, cytotoxic CD8 T) and a red blood cell (not a cell record, so it needs a home outside `src/icons` or a wider validator rule), matching the style guide and the two attached trial icons (naive B and neutrophil are the references). Then the body scene with hotspots and the illustrated blood scene. Send the nine draft profiles to the immunology reviewer in parallel.

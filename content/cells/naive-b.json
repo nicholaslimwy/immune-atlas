@@ -4,6 +4,7 @@
   "cellOntologyId": "CL:0000788",
   "arm": "adaptive",
   "lineage": "lymphoid",
+  "family": "b-cell",
   "markers": ["CD19", "CD20", "IgM and IgD (its surface antibody, the B-cell receptor)", "CD21", "CD23", "No CD27 (human marker; in humans CD27 marks memory B cells)", "B220 (CD45R; mouse marker)"],
   "summary": "A B cell that has left the bone marrow but not yet met its antigen. It carries one unique antibody on its surface as its receptor, and circulates between blood, lymph nodes and spleen. If it finds its antigen and gets help from T cells, it can become an antibody-secreting plasma cell or a long-lived memory B cell.",
   "functions": [

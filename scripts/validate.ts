@@ -4,6 +4,8 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { ICON_SPECS } from '../src/art/iconSpecs.ts'
+import { ICON_COLOURS } from '../src/art/palette.ts'
 import type { Cell } from '../src/types/cell.ts'
 import type { Interaction } from '../src/types/interaction.ts'
 import type { Location } from '../src/types/location.ts'
@@ -164,6 +166,26 @@ for (const { file, data: ix } of interactionFiles.valid.values()) {
   if (ix.id !== expected) warn(file, `id: convention is "${expected}"`)
 }
 
+// Icons (src/icons/<cell id>.svg): one per cell, drawn to the style guide, palette colours only.
+const iconDir = join(root, 'src', 'icons')
+const iconNames = existsSync(iconDir) ? readdirSync(iconDir).filter((n) => n.endsWith('.svg')).sort() : []
+const palette = new Set(ICON_COLOURS.map((c) => c.toUpperCase()))
+for (const name of iconNames) {
+  const file = `src/icons/${name}`
+  const id = name.slice(0, -'.svg'.length)
+  const svg = readFileSync(join(iconDir, name), 'utf8')
+  if (!isCell(id)) error(file, `no cell "${id}" (icon file names are cell ids)`)
+  if (!ICON_SPECS[id]) error(file, `no entry for "${id}" in src/art/iconSpecs.ts`)
+  if (!/<svg[^>]*\sviewBox="0 0 100 100"/.test(svg)) error(file, 'viewBox must be "0 0 100 100"')
+  for (const hex of new Set(svg.match(/#[0-9a-fA-F]{3,8}\b/g) ?? [])) {
+    if (!palette.has(hex.toUpperCase())) error(file, `colour ${hex} is not a palette token (src/art/palette.ts)`)
+  }
+  if (/gradient|filter|opacity/i.test(svg)) error(file, 'flat style: no gradients, filters or opacity')
+}
+for (const id of Object.keys(ICON_SPECS)) {
+  if (!iconNames.includes(`${id}.svg`)) error('src/art/iconSpecs.ts', `"${id}" has no icon file src/icons/${id}.svg`)
+}
+
 for (const [file, messages] of [...problems].sort(([a], [b]) => a.localeCompare(b))) {
   console.log(`\n${file}`)
   for (const m of messages) console.log(`  ${m}`)
@@ -171,7 +193,7 @@ for (const [file, messages] of [...problems].sort(([a], [b]) => a.localeCompare(
 
 const summary =
   `${locationFiles.valid.size} locations, ${cellFiles.valid.size} cells, ` +
-  `${interactionFiles.valid.size} interactions, ${moleculeFiles.valid.size} molecules`
+  `${interactionFiles.valid.size} interactions, ${moleculeFiles.valid.size} molecules, ${iconNames.length} icons`
 if (errorCount) {
   console.log(`\nContent invalid: ${errorCount} error(s), ${warningCount} warning(s) across ${problems.size} file(s).`)
   process.exit(1)

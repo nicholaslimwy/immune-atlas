@@ -1,6 +1,6 @@
 // Runtime checks for the four content schemas. Each shape is typed against its interface in
 // src/types, so adding, removing or retyping a field there fails `tsc` until the shape matches.
-import { CELL_ARMS, CELL_LINEAGES, CELL_STATUSES, type Cell } from '../src/types/cell.ts'
+import { CELL_ARMS, CELL_FAMILIES, CELL_LINEAGES, CELL_STATUSES, type Cell } from '../src/types/cell.ts'
 import { INTERACTION_TYPES, type Interaction } from '../src/types/interaction.ts'
 import type { Location } from '../src/types/location.ts'
 import { MOLECULE_KINDS, type Molecule } from '../src/types/molecule.ts'
@@ -110,6 +110,7 @@ export const cellShape: Shape<Cell> = {
   }),
   arm: req(oneOf(CELL_ARMS)),
   lineage: req(oneOf(CELL_LINEAGES)),
+  family: req(oneOf(CELL_FAMILIES)),
   parent: opt(id),
   markers: req(arrayOf(text)),
   summary: req(text),

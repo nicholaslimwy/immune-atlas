@@ -218,3 +218,170 @@ ul.interactions p {
 .panel-foot ol li {
   margin-top: 0.35rem;
 }
+
+/* Style guide (/styleguide) */
+.styleguide {
+  max-width: 1100px;
+  line-height: 1.45;
+}
+
+.styleguide.grey {
+  filter: grayscale(1);
+}
+
+.styleguide section {
+  margin-top: 2.5rem;
+}
+
+.styleguide .lede {
+  max-width: 60ch;
+}
+
+.grey-toggle {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+.families {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 1rem;
+}
+
+.family {
+  padding: 0.75rem;
+  border: 1px solid #c9ced6;
+  border-radius: 8px;
+}
+
+.family h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+}
+
+.swatch-colour {
+  height: 3rem;
+  margin-bottom: 0.25rem;
+  border: 1px solid rgb(31 41 51 / 0.15);
+  border-radius: 4px;
+}
+
+.members {
+  margin: 0.5rem 0 0;
+  color: #52606d;
+  font-size: 0.85rem;
+}
+
+.rules {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.5rem 1.25rem;
+  max-width: 75ch;
+}
+
+.rules dt {
+  font-weight: 600;
+}
+
+.rules dd {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .rules {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rules dd {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.size-row,
+.scene-row,
+.detail-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 1.5rem;
+}
+
+.styleguide figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.styleguide figcaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.styleguide figcaption span {
+  color: #52606d;
+  font-size: 0.85rem;
+}
+
+.scale-bar {
+  margin-top: 1rem;
+  padding-top: 0.2rem;
+  border-top: 3px solid #1f2933;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.scene-row {
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.scene-row figcaption {
+  font-size: 0.8rem;
+}
+
+.detail-row {
+  align-items: start;
+}
+
+.detail {
+  width: 220px;
+}
+
+.detail figcaption {
+  gap: 0.25rem;
+}
+
+.detail code {
+  font-size: 0.8rem;
+}
+
+.family-tag {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.family-tag .dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+}

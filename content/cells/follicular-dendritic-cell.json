@@ -3,6 +3,7 @@
   "name": "Follicular dendritic cell",
   "arm": "stromal",
   "lineage": "stromal",
+  "family": "support",
   "markers": [],
   "summary": "Stub: profile not written yet.",
   "functions": [],

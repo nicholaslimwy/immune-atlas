@@ -4,6 +4,7 @@
   "cellOntologyId": "CL:0000775",
   "arm": "innate",
   "lineage": "myeloid",
+  "family": "innate-myeloid",
   "markers": ["CD15", "CD16", "CD11b", "CD66b (human only)", "Ly6G (mouse only)"],
   "summary": "The most common white blood cell in human blood, recognised by its nucleus of three to five lobes. Neutrophils usually reach an infection first, leaving blood vessels within hours, and kill bacteria and fungi by engulfing them or trapping them in nets of DNA. They are short-lived, and dead neutrophils make up much of pus.",
   "functions": [

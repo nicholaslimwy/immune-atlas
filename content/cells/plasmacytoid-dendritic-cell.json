@@ -3,6 +3,7 @@
   "name": "Plasmacytoid dendritic cell",
   "arm": "innate",
   "lineage": "myeloid",
+  "family": "innate-myeloid",
   "markers": [],
   "summary": "Stub: profile not written yet.",
   "functions": [],

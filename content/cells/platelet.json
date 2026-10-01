@@ -4,6 +4,7 @@
   "cellOntologyId": "CL:0000233",
   "arm": "stromal",
   "lineage": "myeloid",
+  "family": "support",
   "markers": ["CD41 (integrin αIIb)", "CD61 (integrin β3)", "CD42b (GPIbα, binds von Willebrand factor)", "CD62P (P-selectin; on the surface only once activated)"],
   "summary": "Small fragments of cytoplasm without a nucleus, pinched off into the blood by giant bone marrow cells called megakaryocytes. Platelets plug damaged vessels and start clotting, but they also sense microbes, grab bacteria, and push neutrophils and monocytes into action. Each circulates for about a week to ten days before the spleen and liver remove it.",
   "functions": [

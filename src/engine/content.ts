@@ -37,6 +37,10 @@ export function getCell(id: string): Cell | undefined {
   return cells.get(id)
 }
 
+export function getCells(): Cell[] {
+  return [...cells.values()]
+}
+
 export function getMolecule(id: string): Molecule | undefined {
   return molecules.get(id)
 }

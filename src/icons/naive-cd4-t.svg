@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Naive CD4 T cell. Cue: lymphocyte (round nucleus filling most of the cell) with blunt two-chain T-cell receptors on the surface. -->
+  <g fill="none" stroke="#1D4680" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path transform="rotate(18 50 50)" d="M47 11 V2.4 M53 11 V2.4"/>
+    <path transform="rotate(90 50 50)" d="M47 11 V2.4 M53 11 V2.4"/>
+    <path transform="rotate(162 50 50)" d="M47 11 V2.4 M53 11 V2.4"/>
+    <path transform="rotate(234 50 50)" d="M47 11 V2.4 M53 11 V2.4"/>
+    <path transform="rotate(306 50 50)" d="M47 11 V2.4 M53 11 V2.4"/>
+  </g>
+  <circle cx="50" cy="50" r="40" fill="#D3E2F4" stroke="#1F2933" stroke-width="2" vector-effect="non-scaling-stroke"/>
+  <circle cx="52" cy="48" r="32" fill="#2F6DB5" stroke="#1F2933" stroke-width="2" vector-effect="non-scaling-stroke"/>
+  <g fill="#1D4680">
+    <path d="M30 40 q3 -6 9 -9 q-1 5 -5 8 q-2 2 -4 1 z"/>
+    <path d="M71 61 q-2 6 -8 9 q0 -5 4 -8 q2 -2 4 -1 z"/>
+    <ellipse cx="57" cy="36" rx="3.5" ry="2.2" transform="rotate(20 57 36)"/>
+    <ellipse cx="45" cy="60" rx="3" ry="2" transform="rotate(-15 45 60)"/>
+  </g>
+</svg>

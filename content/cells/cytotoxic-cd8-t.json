@@ -4,6 +4,7 @@
   "cellOntologyId": "CL:0000794",
   "arm": "adaptive",
   "lineage": "lymphoid",
+  "family": "t-cell",
   "markers": ["CD3", "CD8 (in mice also on a dendritic cell subset; not in humans)", "Perforin and granzyme B (in its granules, once activated)", "CD45RO (human marker, once activated)", "CD44 high (mouse marker, once activated)", "KLRG1 (on killer cells that have divided many times and can divide little further)"],
   "summary": "A T cell that kills infected and cancerous cells. Its receptor recognises a peptide held on MHC class I, which almost every cell in the body displays, so it can check nearly any cell for a virus hiding inside. After a dendritic cell activates it in a lymph node, it multiplies enormously and travels to the infected tissue to kill.",
   "functions": [

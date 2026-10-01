@@ -3,6 +3,7 @@
   "name": "Memory T cell",
   "arm": "adaptive",
   "lineage": "lymphoid",
+  "family": "t-cell",
   "markers": [],
   "summary": "Stub: profile not written yet.",
   "functions": [],

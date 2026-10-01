@@ -4,6 +4,7 @@
   "cellOntologyId": "CL:0000895",
   "arm": "adaptive",
   "lineage": "lymphoid",
+  "family": "t-cell",
   "markers": ["CD3", "CD4", "CD45RA (human marker)", "CD44 low (mouse marker)", "CCR7", "CD62L", "CD28"],
   "summary": "A helper T cell that has left the thymus but not yet met its antigen: a peptide held on MHC class II by antigen-presenting cells. It circulates between blood and lymph nodes looking for it. When a dendritic cell presents that peptide, it multiplies and specialises, becoming a Th1, Th2, Th17, Tfh or regulatory T cell.",
   "functions": [

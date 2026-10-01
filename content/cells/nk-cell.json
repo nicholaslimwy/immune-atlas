@@ -4,6 +4,7 @@
   "cellOntologyId": "CL:0000623",
   "arm": "innate",
   "lineage": "lymphoid",
+  "family": "innate-lymphoid",
   "markers": ["CD56 (human only)", "CD16", "NKp46 (CD335)", "NKG2D", "No CD3 (tells it apart from T cells)", "NK1.1 (mouse only; some strains)", "CD49b (DX5; mouse marker)"],
   "summary": "A large lymphocyte of the innate immune system that kills virus-infected and cancerous cells without needing to have met them before. It checks other cells for signs of stress and for a healthy level of MHC class I, which viruses and tumours often remove. NK cells also release IFN-γ, which helps macrophages and T cells fight infection.",
   "functions": [

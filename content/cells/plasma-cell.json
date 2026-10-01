@@ -3,6 +3,7 @@
   "name": "Plasma cell",
   "arm": "adaptive",
   "lineage": "lymphoid",
+  "family": "b-cell",
   "markers": [],
   "summary": "Stub: profile not written yet.",
   "functions": [],

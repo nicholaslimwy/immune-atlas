@@ -1,6 +1,8 @@
 // A cell type, independent of where it is found. Mirrors the Cell schema in CLAUDE.md.
 export const CELL_ARMS = ['innate', 'adaptive', 'innate-like', 'stromal'] as const
 export const CELL_LINEAGES = ['myeloid', 'lymphoid', 'stromal', 'other'] as const
+/** Colour family: sets the icon, legend and panel colour (see the style guide in CLAUDE.md). */
+export const CELL_FAMILIES = ['innate-myeloid', 'innate-lymphoid', 't-cell', 'b-cell', 'support'] as const
 export const CELL_STATUSES = ['stub', 'draft', 'reviewed'] as const
 
 export interface Cell {
@@ -10,6 +12,7 @@ export interface Cell {
   cellOntologyId?: string
   arm: (typeof CELL_ARMS)[number]
   lineage: (typeof CELL_LINEAGES)[number]
+  family: (typeof CELL_FAMILIES)[number]
   /** Family-tree parent, e.g. "granulocyte". */
   parent?: string
   markers: string[]

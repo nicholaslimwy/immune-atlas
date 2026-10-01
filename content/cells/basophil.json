@@ -4,6 +4,7 @@
   "cellOntologyId": "CL:0000767",
   "arm": "innate",
   "lineage": "myeloid",
+  "family": "innate-myeloid",
   "markers": ["FcεRIα (high-affinity IgE receptor)", "CD123 (IL-3 receptor α)", "CCR3 (CD193)", "CD203c (basophil marker)", "CD49b (mouse marker)"],
   "summary": "The rarest white blood cell, under 1% of those in blood. Dense dark purple granules usually hide its lobed nucleus. Basophils carry IgE antibodies on their surface; when an allergen binds that IgE, they release histamine within minutes. They are also an early source of IL-4, which steers immune responses towards allergy and anti-parasite defence.",
   "functions": [

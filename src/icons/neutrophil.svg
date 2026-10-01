@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Neutrophil. Cue: one nucleus of four lobes in a chain, joined by thin necks; fine, sparse granules. -->
+  <circle cx="50" cy="50" r="40" fill="#FBD9CC" stroke="#1F2933" stroke-width="2" vector-effect="non-scaling-stroke"/>
+  <g fill="#E4572E">
+    <circle cx="35" cy="22" r="1.3"/>
+    <circle cx="50" cy="17" r="1.3"/>
+    <circle cx="64" cy="21" r="1.3"/>
+    <circle cx="77" cy="28" r="1.3"/>
+    <circle cx="22" cy="30" r="1.3"/>
+    <circle cx="48" cy="34" r="1.3"/>
+    <circle cx="56" cy="44" r="1.3"/>
+    <circle cx="84" cy="52" r="1.3"/>
+    <circle cx="80" cy="66" r="1.3"/>
+    <circle cx="72" cy="79" r="1.3"/>
+    <circle cx="58" cy="83" r="1.3"/>
+    <circle cx="42" cy="82" r="1.3"/>
+    <circle cx="27" cy="75" r="1.3"/>
+    <circle cx="17" cy="60" r="1.3"/>
+    <circle cx="15" cy="45" r="1.3"/>
+    <circle cx="46" cy="49" r="1.3"/>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="30,44 40,63 61,64 69,43" stroke="#1F2933" stroke-width="5.5"/>
+    <polyline points="30,44 40,63 61,64 69,43" stroke="#E4572E" stroke-width="3"/>
+  </g>
+  <g fill="#E4572E" stroke="#1F2933" stroke-width="2">
+    <ellipse cx="30" cy="44" rx="8.5" ry="10.5" transform="rotate(15 30 44)" vector-effect="non-scaling-stroke"/>
+    <ellipse cx="40" cy="63" rx="9.5" ry="8.5" transform="rotate(-10 40 63)" vector-effect="non-scaling-stroke"/>
+    <ellipse cx="61" cy="64" rx="9" ry="9.5" transform="rotate(-20 61 64)" vector-effect="non-scaling-stroke"/>
+    <ellipse cx="69" cy="43" rx="9" ry="10" transform="rotate(20 69 43)" vector-effect="non-scaling-stroke"/>
+  </g>
+</svg>
