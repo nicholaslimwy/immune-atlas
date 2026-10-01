@@ -1,0 +1,13 @@
+{
+  "id": "thymic-epithelial-cell-presents-antigen-to-naive-cd4-t",
+  "source": "thymic-epithelial-cell",
+  "target": "naive-cd4-t",
+  "type": "presents-antigen-to",
+  "via": [
+    "mhc-ii"
+  ],
+  "where": [
+    "thymus"
+  ],
+  "description": "Cortical epithelial cells show self-peptides on MHC class II to developing T cells. Those whose receptor binds with the right strength survive and commit to the CD4 line, and leave the thymus as naive CD4 T cells; medullary epithelial cells then remove those that react too strongly. Most developing cells bind nothing and die. Selection acts on the developing cell, before it has the name naive CD4 T cell."
+}

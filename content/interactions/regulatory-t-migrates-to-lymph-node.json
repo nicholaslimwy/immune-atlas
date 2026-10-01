@@ -1,0 +1,10 @@
+{
+  "id": "regulatory-t-migrates-to-lymph-node",
+  "source": "regulatory-t",
+  "target": "lymph-node",
+  "type": "migrates-to",
+  "via": [
+    "ccl19-ccl21"
+  ],
+  "description": "Many regulatory T cells recirculate through lymph nodes, entering from the blood and following CCL19 and CCL21 to the T-cell zone, where they meet dendritic cells and share IL-2. In mice, regulatory T cells that use CCR7 this way form a different group from those that stay in tissues."
+}

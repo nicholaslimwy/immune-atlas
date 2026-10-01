@@ -1,0 +1,10 @@
+{
+  "id": "regulatory-t-suppresses-conventional-dendritic-cell",
+  "source": "regulatory-t",
+  "target": "conventional-dendritic-cell",
+  "type": "suppresses",
+  "via": [
+    "ctla-4"
+  ],
+  "description": "CTLA-4 on regulatory T cells pulls CD80 and CD86 off dendritic cells by trans-endocytosis, leaving them poor at co-stimulating naive T cells. In mice, regulatory T cells also make stable contacts with dendritic cells that keep other T cells from touching them."
+}

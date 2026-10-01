@@ -1,0 +1,10 @@
+{
+  "id": "conventional-dendritic-cell-phagocytoses-thymic-epithelial-cell",
+  "source": "conventional-dendritic-cell",
+  "target": "thymic-epithelial-cell",
+  "type": "phagocytoses",
+  "where": [
+    "thymus"
+  ],
+  "description": "Dendritic cells in the medulla take up proteins and fragments from medullary epithelial cells, including AIRE-controlled self-proteins, and present them to developing T cells, widening the range of self-antigens each is tested against. Whether this is true engulfment of dying epithelial cells or uptake of released material is not settled. Shown mainly in mice."
+}

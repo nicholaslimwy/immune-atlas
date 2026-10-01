@@ -1,0 +1,7 @@
+{
+  "id": "regulatory-t-suppresses-th2",
+  "source": "regulatory-t",
+  "target": "th2",
+  "type": "suppresses",
+  "description": "Regulatory T cells that use the transcription factor IRF4 hold back Th2 responses. In mice that lack IRF4 in their regulatory T cells, Th2 responses selectively run out of control."
+}

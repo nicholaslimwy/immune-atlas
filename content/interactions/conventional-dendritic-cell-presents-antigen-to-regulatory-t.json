@@ -1,0 +1,13 @@
+{
+  "id": "conventional-dendritic-cell-presents-antigen-to-regulatory-t",
+  "source": "conventional-dendritic-cell",
+  "target": "regulatory-t",
+  "type": "presents-antigen-to",
+  "via": [
+    "mhc-ii"
+  ],
+  "where": [
+    "thymus"
+  ],
+  "description": "In the thymus, dendritic cells, some carrying self-proteins taken from medullary epithelial cells, present self-peptide on MHC class II to CD4 developing T cells and help turn some into regulatory T cells. Mouse experiments show they contribute alongside the epithelial cells; in human thymus tissue, dendritic cells conditioned by TSLP from Hassall's corpuscles induced regulatory T cells in culture."
+}

@@ -1,0 +1,7 @@
+{
+  "id": "regulatory-t-migrates-to-skin",
+  "source": "regulatory-t",
+  "target": "skin",
+  "type": "migrates-to",
+  "description": "Regulatory T cells settle in healthy skin: almost all those in normal human skin have an activated memory phenotype and, in steady state, do not move on. In mice, regulatory T cells that met their antigen in skin stay there and respond faster later. How they find skin is less clear than for lymph nodes."
+}

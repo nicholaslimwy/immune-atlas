@@ -1,0 +1,13 @@
+{
+  "id": "thymic-epithelial-cell-presents-antigen-to-cytotoxic-cd8-t",
+  "source": "thymic-epithelial-cell",
+  "target": "cytotoxic-cd8-t",
+  "type": "presents-antigen-to",
+  "via": [
+    "mhc-i"
+  ],
+  "where": [
+    "thymus"
+  ],
+  "description": "Cortical epithelial cells show self-peptides on MHC class I to developing T cells. Those whose receptor binds with the right strength commit to the CD8 line and, after the medulla's checks, leave as naive CD8 T cells. Cortical cells make these peptides with a thymus-specific proteasome (shown mainly in mice). Selection acts on the developing cell, before it is a cytotoxic CD8 T cell."
+}

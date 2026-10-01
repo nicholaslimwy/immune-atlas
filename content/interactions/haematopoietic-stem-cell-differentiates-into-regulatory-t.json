@@ -1,0 +1,14 @@
+{
+  "id": "haematopoietic-stem-cell-differentiates-into-regulatory-t",
+  "source": "haematopoietic-stem-cell",
+  "target": "regulatory-t",
+  "type": "differentiates-into",
+  "via": [
+    "il-2"
+  ],
+  "where": [
+    "bone-marrow",
+    "thymus"
+  ],
+  "description": "Progenitors from haematopoietic stem cells go to the thymus. There, CD4 developing T cells that bind self-peptide fairly strongly, and receive IL-2, switch on FOXP3 and become regulatory T cells rather than dying. Most regulatory T cells come this way; the rest are induced later from naive CD4 T cells."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "thymic-epithelial-cell-presents-antigen-to-regulatory-t",
+  "source": "thymic-epithelial-cell",
+  "target": "regulatory-t",
+  "type": "presents-antigen-to",
+  "via": [
+    "mhc-ii"
+  ],
+  "where": [
+    "thymus"
+  ],
+  "description": "Medullary epithelial cells, many of them making AIRE-controlled self-proteins, show peptides on MHC class II to CD4 developing T cells. Those that bind fairly strongly can switch on FOXP3 and become regulatory T cells instead of dying. Mouse experiments show the medulla is needed for this; dendritic cells share the work."
+}

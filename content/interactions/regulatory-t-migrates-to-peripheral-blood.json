@@ -1,0 +1,10 @@
+{
+  "id": "regulatory-t-migrates-to-peripheral-blood",
+  "source": "regulatory-t",
+  "target": "peripheral-blood",
+  "type": "migrates-to",
+  "where": [
+    "thymus"
+  ],
+  "description": "Regulatory T cells made in the thymus leave through vessels at the corticomedullary junction, like other new T cells, and circulate in blood and lymph to lymph nodes and tissues. Some mature regulatory T cells later return to the thymus, in mice and, in the same study, in people, where they hold back the IL-2-dependent making of new ones."
+}

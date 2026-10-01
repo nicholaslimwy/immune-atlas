@@ -1,0 +1,7 @@
+{
+  "id": "regulatory-t-suppresses-th1",
+  "source": "regulatory-t",
+  "target": "th1",
+  "type": "suppresses",
+  "description": "Regulatory T cells restrain Th1 cells and the inflammation they drive. In mice, regulatory T cells that switch on the Th1 master gene T-bet in response to IFN-γ gather at sites of Th1 inflammation, and need T-bet to survive and work well there. They also compete for IL-2 and trim CD80 and CD86 on dendritic cells, as for other T cells."
+}

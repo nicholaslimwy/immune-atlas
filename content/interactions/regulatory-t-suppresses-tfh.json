@@ -1,0 +1,13 @@
+{
+  "id": "regulatory-t-suppresses-tfh",
+  "source": "regulatory-t",
+  "target": "tfh",
+  "type": "suppresses",
+  "via": [
+    "ctla-4"
+  ],
+  "where": [
+    "germinal-centre"
+  ],
+  "description": "A subset of regulatory T cells carrying CXCR5 and BCL6, follicular regulatory T cells, enters the germinal centre and in mice limits Tfh cells and B cells, using CTLA-4 among other tools. How far they restrain the germinal centre, rather than also supporting it (for example through IL-10), is debated."
+}

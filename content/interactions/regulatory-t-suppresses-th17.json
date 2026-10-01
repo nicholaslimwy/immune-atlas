@@ -1,0 +1,10 @@
+{
+  "id": "regulatory-t-suppresses-th17",
+  "source": "regulatory-t",
+  "target": "th17",
+  "type": "suppresses",
+  "via": [
+    "il-10"
+  ],
+  "description": "Regulatory T cells that use the transcription factor STAT3, and respond to IL-10, control Th17 cells. Mice whose regulatory T cells lack either develop Th17-driven inflammation of the gut. This evidence is from mice."
+}
