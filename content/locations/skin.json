@@ -3,8 +3,28 @@
   "name": "Skin",
   "parent": "body",
   "scene": "scenes/skin.svg",
-  "summary": "Stub: scene not built yet (Phase 4).",
-  "hotspots": [],
-  "residents": [],
-  "status": "stub"
+  "summary": "Skin is the body's largest barrier. Its outer layer, the epidermis, is built of keratinocytes that flatten and die into a tough surface coat; Langerhans cells and memory T cells live among them. The dermis below holds blood capillaries, lymph vessels and resident macrophages, mast cells and dendritic cells. This view shows a fresh cut, drawn roughly to scale and about a quarter of a millimetre across: platelets plug it while the first white cells arrive. Pick a cell.",
+  "hotspots": [
+    { "region": "langerhans-cell", "target": "langerhans-cell" },
+    { "region": "memory-t", "target": "memory-t" },
+    { "region": "platelet", "target": "platelet" },
+    { "region": "neutrophil", "target": "neutrophil" },
+    { "region": "th17", "target": "th17" },
+    { "region": "monocyte", "target": "monocyte" },
+    { "region": "macrophage", "target": "macrophage" },
+    { "region": "mast-cell", "target": "mast-cell" },
+    { "region": "conventional-dendritic-cell", "target": "conventional-dendritic-cell" }
+  ],
+  "residents": [
+    { "cell": "langerhans-cell", "note": "Sits among the keratinocytes of the epidermis, reaching long arms between them toward the surface to sample what gets in. Carrying what it has picked up, it can travel through lymph vessels to the nearest lymph node. How much it starts immune responses, rather than keeping them in check, is debated." },
+    { "cell": "memory-t", "note": "Resident memory T cells stay in the skin after an infection has cleared, many of them CD8 T cells in the epidermis, ready to respond at once if the same microbe comes back." },
+    { "cell": "platelet", "note": "Platelets leaking from cut vessels stick to the exposed collagen, clump together and, with fibrin, plug the wound within minutes. They also release signals that call in white cells." },
+    { "cell": "neutrophil", "note": "Absent from healthy skin. Within hours of a cut, neutrophils leave the blood through small venules near the wound and crawl toward it, where they swallow and kill bacteria." },
+    { "cell": "th17", "note": "Th17 cells in the skin make IL-17 and IL-22, which call in neutrophils and make keratinocytes produce antimicrobial proteins." },
+    { "cell": "monocyte", "note": "Leaves the blood after the first neutrophils and turns into macrophages that clear the debris and help the wound heal." },
+    { "cell": "macrophage", "note": "Dermal macrophages stay put, swallowing microbes and debris that get through and sending signals that call in neutrophils." },
+    { "cell": "mast-cell", "note": "Sits beside small blood vessels in the dermis. Injury or microbes make it release histamine and other mediators within minutes, making nearby vessels leaky and calling in other cells." },
+    { "cell": "conventional-dendritic-cell", "note": "Dermal dendritic cells pick up antigen in the dermis, then squeeze into lymph vessels and travel to the nearest lymph node to show it to T cells." },
+    { "cell": "plasmacytoid-dendritic-cell", "note": "Absent from healthy skin, but flows into fresh wounds and makes type I interferons that help the skin heal (seen in mouse and human wounds)." }
+  ]
 }
