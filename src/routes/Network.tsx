@@ -1,165 +1,132 @@
-import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
-import { Link, useNavigate, useNavigationType, useSearchParams } from 'react-router'
-import { EDGE_STYLES, type EdgeStyle } from '../art/networkStyles.ts'
+import { lazy, type ReactNode, Suspense, useEffect, useMemo, useState } from 'react'
+import { Link, useNavigate, useSearchParams } from 'react-router'
+import { EDGE_STYLES, FAMILY_SHAPES, PLACE_STYLE } from '../art/networkStyles.ts'
+import { FAMILY_COLOURS } from '../art/palette.ts'
+import MoleculeText from '../components/MoleculeText.tsx'
 import PageTopbar from '../components/PageTopbar.tsx'
+import { getInteraction, getLocation, getMolecule } from '../engine/content.ts'
+import { mentionAnnotator } from '../engine/glossary.ts'
 import { typeLabel } from '../engine/interactions.ts'
-import { buildNetwork, interactionCounts, isInteractionType, type NetEdge, type NetNode } from '../engine/network.ts'
-import { glossaryPathFor } from '../engine/paths.ts'
+import type { TextPart } from '../engine/mentions.ts'
+import {
+  getNetwork,
+  type InteractionType,
+  isInteractionType,
+  type NetEdge,
+  type NetNode,
+  typeCounts,
+  visiblePart,
+} from '../engine/network.ts'
+import { entityPath, glossaryPathFor } from '../engine/paths.ts'
 import { INTERACTION_TYPES } from '../types/interaction.ts'
+import type { Cell } from '../types/cell.ts'
 
 const NetworkGraph = lazy(() => import('../components/NetworkGraph.tsx'))
 
-/** A cell or place name that links into the scenes; plain text for a stub place. */
-function NodeLink({ node }: { node: NetNode }) {
-  return node.path ? <Link to={node.path}>{node.name}</Link> : <>{node.name}</>
+/** One record ready to show: both ends, the description cut up for molecule tooltips, molecules and places. */
+interface Row {
+  edge: NetEdge
+  source: NetNode
+  target: NetNode
+  description: TextPart[]
+  via: { id: string; name: string }[]
+  where: { id: string; name: string; path?: string }[]
 }
 
-/** The arrowheads approximate Cytoscape's shapes, drawn at the end of a 44 px legend line. */
-function ArrowHead({ arrow, colour }: { arrow: EdgeStyle['arrow']; colour: string }) {
-  const solid = { fill: colour, stroke: colour }
-  switch (arrow) {
-    case 'tee':
-      return <line x1="38" y1="1" x2="38" y2="13" stroke={colour} strokeWidth="3" />
-    case 'diamond':
-      return <polygon points="34,7 39,2 44,7 39,12" {...solid} />
-    case 'vee':
-      return <polyline points="34,1 43,7 34,13" fill="none" stroke={colour} strokeWidth="2" />
-    case 'chevron':
-      return <path d="M32,2 L38,7 L32,12 M38,2 L44,7 L38,12" fill="none" stroke={colour} strokeWidth="2" />
-    case 'triangle-cross':
-      return (
-        <>
-          <polygon points="34,1 44,7 34,13" {...solid} />
-          <line x1="38" y1="1" x2="38" y2="13" stroke="#fff" strokeWidth="1.5" />
-        </>
-      )
-    case 'circle-triangle':
-      return (
-        <>
-          <circle cx="36" cy="7" r="3.5" {...solid} />
-          <polygon points="38,1 44,7 38,13" {...solid} />
-        </>
-      )
-    case 'triangle-backcurve':
-      return <path d="M33,1 L44,7 L33,13 Q37,7 33,1 Z" {...solid} />
-    default:
-      return <polygon points="34,1 44,7 34,13" {...solid} />
-  }
-}
-
-/** A sample of an interaction type's line, so the legend shows the pattern and arrowhead as well as the colour. */
-function Swatch({ type }: { type: NetEdge['type'] }) {
-  const s = EDGE_STYLES[type]
-  const dash = s.line === 'dashed' ? '7 4' : s.line === 'dotted' ? '1.5 4' : undefined
-  return (
-    <svg className="swatch" width="44" height="14" viewBox="0 0 44 14" aria-hidden="true" focusable="false">
-      <line
-        x1="2"
-        y1="7"
-        x2="34"
-        y2="7"
-        stroke={s.colour}
-        strokeWidth={s.width}
-        strokeDasharray={dash}
-        strokeLinecap={s.line === 'dotted' ? 'round' : 'butt'}
-      />
-      <ArrowHead arrow={s.arrow} colour={s.colour} />
-    </svg>
-  )
-}
-
-/** What one interaction record says: its two ends, description, molecules and places. */
-function EdgeDetail({ edge }: { edge: NetEdge }) {
-  return (
-    <>
-      <p className="ix-head">
-        <NodeLink node={edge.source} /> <span className="ix-verb">{typeLabel(edge.type).toLowerCase()}</span>{' '}
-        <NodeLink node={edge.target} />
-      </p>
-      <p>{edge.description}</p>
-      {edge.via.length > 0 && (
-        <p className="ix-meta">
-          Via:{' '}
-          {edge.via.map((m, i) => (
-            <span key={m.id}>
-              {i > 0 && ', '}
-              <Link to={glossaryPathFor(m.id)}>{m.name}</Link>
-            </span>
-          ))}
-        </p>
-      )}
-      {edge.where.length > 0 && <p className="ix-meta">In {edge.where.map((w) => w.name).join(', ')}</p>}
-    </>
-  )
-}
-
-/** /network: the whole interaction web as a graph, with the same records as a plain list. */
+/** /network: every interaction record as a graph (or a plain list), filtered to one type at a time. */
 export default function Network() {
+  const net = getNetwork()
+  const nodeById = useMemo(() => new Map(net.nodes.map((n) => [n.id, n])), [net])
+  const counts = useMemo(() => typeCounts(net.edges), [net])
   const [params, setParams] = useSearchParams()
   const navigate = useNavigate()
-  const arrivedByClick = useNavigationType() === 'PUSH'
-  const headingRef = useRef<HTMLHeadingElement>(null)
   const typeParam = params.get('type')
-  const type = isInteractionType(typeParam) ? typeParam : undefined
+  const type = isInteractionType(typeParam) && counts[typeParam] > 0 ? typeParam : null
   const view = params.get('view') === 'list' ? 'list' : 'graph'
-  const [selected, setSelected] = useState<string | null>(null)
+  const [chosen, setChosen] = useState<string | null>(null)
+  const [hovered, setHovered] = useState<NetNode | null>(null)
+  const shown = visiblePart(net, type)
+  // A chosen edge of another type is forgotten when the filter hides it.
+  const selectedEdge = chosen && shown.edges.some((e) => e.id === chosen) ? chosen : null
 
-  const network = useMemo(() => buildNetwork(type), [type])
-  const counts = useMemo(() => interactionCounts(), [])
-  const total = INTERACTION_TYPES.reduce((n, t) => n + counts[t], 0)
-  const edge = selected ? network.edges.find((e) => e.id === selected) : undefined
-  const cellCount = network.nodes.filter((n) => n.kind === 'cell').length
-  const placeCount = network.nodes.length - cellCount
-
-  // Arriving from the header link moves focus to the title; a direct page load does not.
+  // Escape closes the chosen interaction (a molecule popover inside it stops Escape first and closes alone).
   useEffect(() => {
-    if (arrivedByClick) headingRef.current?.focus()
-  }, [arrivedByClick])
-
-  // The view and the filter live in the URL (?view=list&type=kills), so a link keeps them.
-  const update = (changes: Record<string, string | null>) => {
-    const next = new URLSearchParams(params)
-    for (const [k, v] of Object.entries(changes)) {
-      if (v === null) next.delete(k)
-      else next.set(k, v)
+    if (!selectedEdge) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setChosen(null)
     }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [selectedEdge])
+
+  const setParam = (key: 'type' | 'view', value: string | null) => {
+    const next = new URLSearchParams(params)
+    if (value) next.set(key, value)
+    else next.delete(key)
     setParams(next, { replace: true })
   }
-  const chooseType = (t: string | null) => {
-    setSelected(null)
-    update({ type: t })
-  }
 
-  const listed = INTERACTION_TYPES.filter((t) => network.edges.some((e) => e.type === t))
+  // One annotator per screen, called here in reading order, so each molecule's first mention gets the tooltip.
+  const annotate = mentionAnnotator()
+  const toRow = (edge: NetEdge): Row => {
+    const ix = getInteraction(edge.id)!
+    return {
+      edge,
+      source: nodeById.get(edge.source)!,
+      target: nodeById.get(edge.target)!,
+      description: annotate(ix.description),
+      via: (ix.via ?? []).map((id) => ({ id, name: getMolecule(id)?.name ?? id })),
+      where: (ix.where ?? []).map((id) => ({ id, name: getLocation(id)?.name ?? id, path: entityPath(id) })),
+    }
+  }
+  const chosenRow = view === 'graph' && selectedEdge ? toRow(net.edges.find((e) => e.id === selectedEdge)!) : null
+  const listGroups =
+    view === 'list'
+      ? INTERACTION_TYPES.filter((t) => (type ? t === type : counts[t] > 0)).map((t) => ({
+          type: t,
+          rows: shown.edges
+            .filter((e) => e.type === t)
+            .sort(
+              (a, b) =>
+                nodeById.get(a.source)!.name.localeCompare(nodeById.get(b.source)!.name) ||
+                nodeById.get(a.target)!.name.localeCompare(nodeById.get(b.target)!.name),
+            )
+            .map(toRow),
+        }))
+      : []
+
+  const hoveredCount = hovered
+    ? shown.edges.filter((e) => e.source === hovered.id || e.target === hovered.id).length
+    : 0
 
   return (
     <main className="network">
       <PageTopbar trail={[{ label: 'Network' }]} />
-      <h1 tabIndex={-1} ref={headingRef}>
-        Interaction network
-      </h1>
-      <p>
-        Every recorded interaction between cells ({total} in all). Each node is a cell, shaped and coloured by its family;
-        a place appears where a cell moves to it. Select a node to open that cell in its scene, or a line to read what it
-        records.
+      <h1>Interaction network</h1>
+      <p className="network-lede">
+        Every recorded interaction between the atlas's cells, and the places cells move to. Innate cells are on the left,
+        adaptive cells on the right, support cells and places down the middle. Choose a type to see one kind of
+        interaction at a time.
       </p>
 
-      <div role="group" aria-label="View" className="network-views">
-        <button type="button" aria-pressed={view === 'graph'} onClick={() => update({ view: null })}>
+      <div className="network-view" role="group" aria-label="View">
+        <button type="button" aria-pressed={view === 'graph'} onClick={() => setParam('view', null)}>
           Graph
         </button>
-        <button type="button" aria-pressed={view === 'list'} onClick={() => update({ view: 'list' })}>
+        <button type="button" aria-pressed={view === 'list'} onClick={() => setParam('view', 'list')}>
           List
         </button>
       </div>
 
-      <section aria-labelledby="network-legend-title" className="network-legend">
-        <h2 id="network-legend-title">Interaction types</h2>
-        <p className="panel-meta">Choose one to show only that type.</p>
+      <section className="network-legend" aria-labelledby="network-types">
+        <h2 id="network-types">Interaction types</h2>
+        <p className="panel-meta network-legend-help">Each type has its own colour, line and arrowhead. Choose one to show only that type.</p>
         <ul>
           <li>
-            <button type="button" aria-pressed={!type} onClick={() => chooseType(null)}>
-              All types <span className="panel-meta">({total})</span>
+            <button type="button" aria-pressed={type === null} onClick={() => setParam('type', null)}>
+              <span className="network-sample" aria-hidden="true" />
+              <span>All types</span>
+              <span className="network-count">{net.edges.length}</span>
             </button>
           </li>
           {INTERACTION_TYPES.map((t) => (
@@ -168,66 +135,197 @@ export default function Network() {
                 type="button"
                 aria-pressed={type === t}
                 disabled={counts[t] === 0}
-                title={counts[t] === 0 ? 'None recorded yet' : undefined}
-                onClick={() => chooseType(type === t ? null : t)}
+                onClick={() => setParam('type', type === t ? null : t)}
               >
-                <Swatch type={t} /> {typeLabel(t)} <span className="panel-meta">({counts[t]})</span>
+                <EdgeSample type={t} />
+                <span>{typeLabel(t)}</span>
+                <span className="network-count">{counts[t] === 0 ? 'none recorded yet' : counts[t]}</span>
               </button>
             </li>
           ))}
         </ul>
       </section>
 
-      <p role="status" className="panel-meta network-count">
-        Showing {network.edges.length} {network.edges.length === 1 ? 'interaction' : 'interactions'} between {cellCount}{' '}
-        cells{placeCount > 0 && ` and ${placeCount} ${placeCount === 1 ? 'place' : 'places'}`}.
+      <p className="network-status" aria-live="polite">
+        Showing {shown.edges.length} {shown.edges.length === 1 ? 'interaction' : 'interactions'}
+        {type && <> of type “{typeLabel(type).toLowerCase()}”</>} between {shown.cells} cells
+        {shown.places > 0 && ` and ${shown.places} ${shown.places === 1 ? 'place' : 'places'}`}.
       </p>
 
       {view === 'graph' ? (
-        <div className="network-layout">
-          <Suspense fallback={<p className="network-loading">Loading the graph…</p>}>
-            <NetworkGraph
-              network={network}
-              selectedEdge={selected}
-              onNodeTap={(id) => {
-                const path = network.nodes.find((n) => n.id === id)?.path
-                if (path) navigate(path)
-              }}
-              onEdgeTap={setSelected}
-            />
-          </Suspense>
-          <aside className="network-detail" aria-live="polite" aria-label="Selected interaction">
-            {edge ? (
-              <EdgeDetail edge={edge} />
+        <div className="network-workspace">
+          <div>
+            <NodeKey />
+            <Suspense fallback={<p className="network-loading">Loading the graph…</p>}>
+              <NetworkGraph
+                network={net}
+                type={type}
+                selectedEdge={selectedEdge}
+                onSelectEdge={setChosen}
+                onOpenNode={(node) => navigate(node.path)}
+                onHoverNode={setHovered}
+              />
+            </Suspense>
+          </div>
+          <aside className={`network-side${chosenRow ? ' has-edge' : ''}`} aria-label="Selected interaction">
+            {chosenRow ? (
+              <>
+                <div className="panel-head">
+                  <h2>{typeLabel(chosenRow.edge.type)}</h2>
+                  <button type="button" className="network-close" aria-label="Close" onClick={() => setChosen(null)}>
+                    ×
+                  </button>
+                </div>
+                <RowBody row={chosenRow} />
+              </>
+            ) : hovered ? (
+              <>
+                <h2>{hovered.name}</h2>
+                <p className="panel-meta">
+                  {hovered.family ? FAMILY_COLOURS[hovered.family].label : 'Place'} · {hoveredCount}{' '}
+                  {hoveredCount === 1 ? 'interaction' : 'interactions'} shown
+                </p>
+                <p>Click to open {hovered.kind === 'cell' ? 'its panel' : 'its scene'}.</p>
+              </>
             ) : (
               <p className="panel-meta">
-                Select a line to see the interaction it records. Drag to move; scroll or pinch to zoom. Prefer text? Use
-                the List view.
+                Tap or click a line to read that interaction. Tap or click a cell to open its panel in its home scene,
+                or a place to zoom to it. On a phone, pinch to zoom in.
               </p>
             )}
           </aside>
         </div>
       ) : (
         <div className="network-list">
-          {listed.map((t) => {
-            const rows = network.edges.filter((e) => e.type === t)
-            return (
-              <section key={t} aria-labelledby={`network-list-${t}`}>
-                <h2 id={`network-list-${t}`} className="network-list-heading">
-                  <Swatch type={t} /> {typeLabel(t)} <span className="panel-meta">({rows.length})</span>
-                </h2>
-                <ul className="interactions">
-                  {rows.map((e) => (
-                    <li key={e.id}>
-                      <EdgeDetail edge={e} />
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )
-          })}
+          {listGroups.map((g) => (
+            <section key={g.type} aria-labelledby={`network-list-${g.type}`}>
+              <h2 id={`network-list-${g.type}`}>
+                <EdgeSample type={g.type} /> {typeLabel(g.type)} <span className="network-count">{g.rows.length}</span>
+              </h2>
+              <ul>
+                {g.rows.map((row) => (
+                  <li key={row.edge.id}>
+                    <RowBody row={row} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
         </div>
       )}
     </main>
+  )
+}
+
+/** "Macrophage recruits Neutrophil", the description, and the molecules and places involved. */
+function RowBody({ row }: { row: Row }) {
+  return (
+    <>
+      <p className="ix-head">
+        <Link to={row.source.path}>{row.source.name}</Link>{' '}
+        <span className="ix-verb">{typeLabel(row.edge.type).toLowerCase()}</span>{' '}
+        <Link to={row.target.path}>{row.target.name}</Link>
+      </p>
+      <p>
+        <MoleculeText parts={row.description} />
+      </p>
+      {row.via.length > 0 && (
+        <p className="ix-meta">
+          Via:{' '}
+          {row.via.map((m, i) => (
+            <span key={m.id}>
+              {i > 0 && ', '}
+              <Link to={glossaryPathFor(m.id)}>{m.name}</Link>
+            </span>
+          ))}
+        </p>
+      )}
+      {row.where.length > 0 && (
+        <p className="ix-meta">
+          Where:{' '}
+          {row.where.map((l, i) => (
+            <span key={l.id}>
+              {i > 0 && ', '}
+              {l.path ? <Link to={l.path}>{l.name}</Link> : l.name}
+            </span>
+          ))}
+        </p>
+      )}
+    </>
+  )
+}
+
+/** A short line in a type's colour and pattern, ending in a drawing of its arrowhead (as Cytoscape draws it). */
+function EdgeSample({ type }: { type: InteractionType }) {
+  const s = EDGE_STYLES[type]
+  const c = s.colour
+  const end = 38
+  const heads: Record<typeof s.arrow, ReactNode> = {
+    triangle: <path d={`M${end - 8},2 L${end},6 L${end - 8},10 Z`} fill={c} />,
+    vee: <path d={`M${end - 8},1.5 L${end},6 L${end - 8},10.5 L${end - 5},6 Z`} fill={c} />,
+    diamond: <path d={`M${end - 10},6 L${end - 5},2 L${end},6 L${end - 5},10 Z`} fill={c} />,
+    'triangle-cross': (
+      <>
+        <path d={`M${end - 7},2 L${end},6 L${end - 7},10 Z`} fill={c} />
+        <path d={`M${end - 11},1.5 L${end - 11},10.5`} stroke={c} strokeWidth="2" />
+      </>
+    ),
+    circle: <circle cx={end - 4} cy="6" r="4" fill={c} />,
+    chevron: <path d={`M${end - 7},1.5 L${end},6 L${end - 7},10.5`} fill="none" stroke={c} strokeWidth="2.5" />,
+    tee: <path d={`M${end - 1.5},1 L${end - 1.5},11`} stroke={c} strokeWidth="3" />,
+    'triangle-backcurve': <path d={`M${end - 9},1.5 L${end},6 L${end - 9},10.5 Q${end - 5},6 ${end - 9},1.5 Z`} fill={c} />,
+    square: <rect x={end - 7} y="2.5" width="7" height="7" fill={c} />,
+  }
+  const lineEnd = s.arrow === 'tee' ? end - 2 : end - 6
+  return (
+    <svg className="network-sample" viewBox="0 0 40 12" width="40" height="12" aria-hidden="true">
+      <line
+        x1="2"
+        y1="6"
+        x2={lineEnd}
+        y2="6"
+        stroke={c}
+        strokeWidth={s.width}
+        strokeDasharray={s.dash.length ? s.dash.join(' ') : undefined}
+        strokeLinecap="round"
+      />
+      {heads[s.arrow]}
+    </svg>
+  )
+}
+
+/** Which shape and colour is which family, and how a place is drawn. */
+function NodeKey() {
+  const families = Object.keys(FAMILY_COLOURS) as Cell['family'][]
+  return (
+    <ul className="network-key" aria-label="Node shapes">
+      {families.map((f) => (
+        <li key={f}>
+          <NodeShape shape={FAMILY_SHAPES[f]} fill={FAMILY_COLOURS[f].tint} stroke={FAMILY_COLOURS[f].base} />
+          {FAMILY_COLOURS[f].label}
+        </li>
+      ))}
+      <li>
+        <NodeShape shape={PLACE_STYLE.shape} fill={PLACE_STYLE.fill} stroke={PLACE_STYLE.border} />
+        Place
+      </li>
+    </ul>
+  )
+}
+
+function NodeShape({ shape, fill, stroke }: { shape: string; fill: string; stroke: string }) {
+  const props = { fill, stroke, strokeWidth: 1.5, strokeLinejoin: 'round' as const }
+  const drawn: Record<string, ReactNode> = {
+    ellipse: <circle cx="9" cy="9" r="7" {...props} />,
+    'round-diamond': <path d="M9,1.5 L16.5,9 L9,16.5 L1.5,9 Z" {...props} strokeWidth={2} />,
+    'round-rectangle': <rect x="2" y="2" width="14" height="14" rx="3.5" {...props} />,
+    hexagon: <path d="M5,2.5 L13,2.5 L17,9 L13,15.5 L5,15.5 L1,9 Z" {...props} />,
+    'round-triangle': <path d="M9,2 L16.5,15.5 L1.5,15.5 Z" {...props} strokeWidth={2} />,
+    barrel: <path d="M2,5 Q2,3.5 5,3.5 L13,3.5 Q16,3.5 16,5 L16,13 Q16,14.5 13,14.5 L5,14.5 Q2,14.5 2,13 Z" {...props} />,
+  }
+  return (
+    <svg viewBox="0 0 18 18" width="18" height="18" aria-hidden="true">
+      {drawn[shape]}
+    </svg>
   )
 }

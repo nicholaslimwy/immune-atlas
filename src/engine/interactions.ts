@@ -16,8 +16,10 @@ const VERBS: Record<Type, { active: string; passive: string }> = {
   'migrates-to': { active: 'Moves to', passive: 'Receives' },
 }
 
-/** The type as a verb phrase from the source's side ("Engulfs"), for legends and headings. */
-export const typeLabel = (type: Type) => VERBS[type].active
+/** A type's name seen from the source, "Engulfs", for legends and list headings. */
+export function typeLabel(type: Type): string {
+  return VERBS[type].active
+}
 
 /** One row of a cell's "Interacts with" list, seen from that cell's side. */
 export interface InteractionLink {
