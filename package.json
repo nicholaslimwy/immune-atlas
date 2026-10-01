@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:lan": "vite --host --port 5174 --strictPort",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",

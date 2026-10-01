@@ -60,3 +60,7 @@ export function getInteractionsOf(id: string): Interaction[] {
 export function getTour(id: string): Tour | undefined {
   return tours.get(id)
 }
+
+export function getTours(): Tour[] {
+  return [...tours.values()]
+}

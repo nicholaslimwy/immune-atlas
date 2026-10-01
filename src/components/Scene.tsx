@@ -13,10 +13,17 @@ interface Props {
   highlight?: readonly string[]
   /** The hotspot target a tour step points at. */
   focus?: string
+  /** Font size, in scene units, for highlighted labels (a tour makes them bigger on a small screen). */
+  labelSize?: number
 }
 
+/** Scenes are authored 800 units wide; a grown label must stay this far inside their edge. */
+const SCENE_W = 800
+const EDGE = 4
+const LABEL_BASE = 15
+
 // The SVG text is preloaded by ZoomStage and inlined here so hotspot regions are real DOM elements.
-export default function Scene({ location, svg, highlight, focus }: Props) {
+export default function Scene({ location, svg, highlight, focus, labelSize }: Props) {
   const navigate = useNavigate()
   const containerRef = useRef<HTMLDivElement>(null)
   // A place that is not built yet, picked from this scene: shown as a notice instead of zooming.
@@ -62,8 +69,28 @@ export default function Scene({ location, svg, highlight, focus }: Props) {
       const el = containerRef.current?.querySelector(`[id="${region}"]`)
       el?.classList.toggle('tour-highlight', highlight?.includes(target) ?? false)
       el?.classList.toggle('tour-focus', target === focus)
+      // A highlighted label grows to labelSize, then shrinks back until it fits inside the scene's
+      // edges (a label near the margin would otherwise be cut off).
+      const label = el?.querySelector<SVGTextElement>('.scene-label')
+      if (!label) continue
+      label.style.removeProperty('font-size')
+      if (!highlight?.includes(target) || !labelSize || labelSize <= LABEL_BASE) continue
+      label.style.fontSize = `${labelSize}px`
+      const box = label.getBBox()
+      const anchor = label.getAttribute('text-anchor')
+      const room =
+        anchor === 'middle'
+          ? 2 * Math.min(box.x + box.width / 2 - EDGE, SCENE_W - EDGE - (box.x + box.width / 2))
+          : anchor === 'end'
+            ? box.x + box.width - EDGE
+            : SCENE_W - EDGE - box.x
+      if (box.width > room) {
+        const fitted = Math.max(LABEL_BASE, (labelSize * room) / box.width)
+        if (fitted > LABEL_BASE) label.style.fontSize = `${fitted}px`
+        else label.style.removeProperty('font-size')
+      }
     }
-  }, [svg, location, highlight, focus])
+  }, [svg, location, highlight, focus, labelSize])
 
   // A hotspot zooms into a child location, or opens a cell's panel over this scene.
   // Anything else clicked (empty scene, or a built place) clears the notice.

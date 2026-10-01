@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion, type Transition, type Variants } from 'framer-motion'
 import { getLocation } from '../engine/content.ts'
 import { loadScene } from '../engine/sceneCache.ts'
@@ -10,6 +10,10 @@ import Scene from './Scene.tsx'
 const ZOOM = 8
 /** How small an inner scene starts before settling to 1x. */
 const SMALL = 0.85
+/** Scene labels are 15 units; a tour grows a highlighted label until it reads at this many screen px... */
+const LABEL_PX = 10
+/** ...but never beyond this many units, so a long name cannot swallow its neighbours. */
+const LABEL_MAX = 20
 
 interface Custom extends ZoomNav {
   reduced: boolean
@@ -76,6 +80,17 @@ export default function ZoomStage({ location, focus, highlight = NONE, cut = fal
   const reduced = useReducedMotion() ?? false
   const [state, setState] = useState<{ shown: Shown; nav: ZoomNav } | null>(null)
   const [error, setError] = useState<string>()
+  const stageRef = useRef<HTMLDivElement>(null)
+  const [stageWidth, setStageWidth] = useState(800)
+
+  // The stage is 800 scene units wide at 1x. Measuring it lets a tour size highlighted labels for the screen.
+  useEffect(() => {
+    const el = stageRef.current
+    if (!el) return
+    const watch = new ResizeObserver(([entry]) => setStageWidth(entry.contentRect.width))
+    watch.observe(el)
+    return () => watch.disconnect()
+  }, [])
 
   useEffect(() => {
     let current = true
@@ -123,8 +138,11 @@ export default function ZoomStage({ location, focus, highlight = NONE, cut = fal
   const shownHighlight = state?.shown.location.id === location.id ? highlight : NONE
   const shownFocus = state?.shown.location.id === location.id ? focus : undefined
 
+  const unitsPerPx = 800 / (stageWidth * (frame?.scale ?? 1))
+  const labelSize = Math.min(LABEL_MAX, Math.max(15, LABEL_PX * unitsPerPx))
+
   return (
-    <div className="stage">
+    <div className="stage" ref={stageRef}>
       {error && <p role="alert">Could not load scene ({error})</p>}
       <AnimatePresence initial={false} custom={custom}>
         {state && frame && (
@@ -149,6 +167,7 @@ export default function ZoomStage({ location, focus, highlight = NONE, cut = fal
                 svg={state.shown.scene.svg}
                 highlight={shownHighlight}
                 focus={shownFocus}
+                labelSize={labelSize}
               />
             </motion.div>
           </motion.div>

@@ -1,14 +1,17 @@
-import { useEffect, useRef } from 'react'
-import { Navigate, useLocation, useNavigate } from 'react-router'
+import { useEffect, useRef, type PointerEvent } from 'react'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router'
 import Breadcrumbs from '../components/Breadcrumbs.tsx'
 import CellPanel from '../components/CellPanel.tsx'
 import TourPanel from '../components/TourPanel.tsx'
 import ZoomStage from '../components/ZoomStage.tsx'
-import { getLocation } from '../engine/content.ts'
+import { getLocation, getTours } from '../engine/content.ts'
 import { pathFor, resolvePath } from '../engine/paths.ts'
 import { loadScene } from '../engine/sceneCache.ts'
 import { focusHotspot, resolveTourPath, stepLocation, tourStepPath } from '../engine/tours.ts'
 import NotFound from './NotFound.tsx'
+
+/** How far a finger must travel sideways, in CSS px, to count as a swipe. */
+const SWIPE_MIN = 50
 
 /**
  * Free exploration (/body/...) and guided tours (/tours/<id>/<step>) share this one view, so the
@@ -22,8 +25,12 @@ export default function SceneRoute() {
   const tour = tourMatch?.tour
   const index = tourMatch?.index
   const step = tour && index !== undefined ? tour.steps[index] : undefined
+  // The end screen (index == step count) stays in the last step's scene, with nothing marked.
+  const ended = !!tour && index === tour.steps.length
+  const inTour = !!tour && index !== undefined
   const resolved = tourMatch ? undefined : resolvePath(pathname)
-  const loc = step ? stepLocation(step) : resolved?.location
+  const lastStep = tour?.steps[tour.steps.length - 1]
+  const loc = step ? stepLocation(step) : ended && lastStep ? stepLocation(lastStep) : resolved?.location
   const cell = resolved?.cell
   const headingRef = useRef<HTMLHeadingElement>(null)
   const panelHeadingRef = useRef<HTMLHeadingElement>(null)
@@ -37,10 +44,11 @@ export default function SceneRoute() {
   useEffect(() => {
     if (shownView.current === view) return
     shownView.current = view
-    if (!step) (panelHeadingRef.current ?? headingRef.current)?.focus()
-  }, [view, step])
+    if (!inTour) (panelHeadingRef.current ?? headingRef.current)?.focus()
+  }, [view, inTour])
 
-  // Steps move with the arrow keys too (not while typing, and not with a modifier held).
+  // Steps move with the arrow keys too (not while typing, and not with a modifier held). One step
+  // past the last is the end screen.
   const stepCount = tour?.steps.length ?? 0
   const goStep = (i: number) => tour && navigate(tourStepPath(tour, i))
   useEffect(() => {
@@ -48,9 +56,9 @@ export default function SceneRoute() {
     const onKey = (e: KeyboardEvent) => {
       if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
       const t = e.target as HTMLElement | null
-      if (t?.closest('input, textarea, select, [contenteditable]')) return
+      if (t?.closest?.('input, textarea, select, [contenteditable]')) return
       const next = e.key === 'ArrowRight' ? index + 1 : e.key === 'ArrowLeft' ? index - 1 : -1
-      if (next < 0 || next >= stepCount) return
+      if (next < 0 || next > stepCount) return
       e.preventDefault()
       navigate(tourStepPath(tour, next))
     }
@@ -65,16 +73,41 @@ export default function SceneRoute() {
     if (next) loadScene(next).catch(() => {})
   }, [nextStep])
 
+  // Swiping moves between steps on a touch screen: left for next, right for back. Mouse drags are ignored.
+  // The page allows vertical scrolling and pinch-zoom only in a tour (touch-action in the CSS), so the
+  // browser keeps those gestures and the swipe arrives as a plain pointer sequence.
+  const swipeStart = useRef<{ x: number; y: number } | null>(null)
+  const swipe = {
+    onPointerDown: (e: PointerEvent<HTMLElement>) => {
+      swipeStart.current = e.pointerType === 'mouse' ? null : { x: e.clientX, y: e.clientY }
+    },
+    onPointerCancel: () => {
+      swipeStart.current = null
+    },
+    onPointerUp: (e: PointerEvent<HTMLElement>) => {
+      const from = swipeStart.current
+      swipeStart.current = null
+      if (!from || index === undefined) return
+      const dx = e.clientX - from.x
+      const dy = e.clientY - from.y
+      if (Math.abs(dx) < SWIPE_MIN || Math.abs(dx) < 1.5 * Math.abs(dy)) return
+      const next = index + (dx < 0 ? 1 : -1)
+      if (next >= 0 && next <= stepCount) goStep(next)
+    },
+  }
+
   if (tour && index === undefined) return <Navigate to={tourStepPath(tour, 0)} replace />
   if (!loc) return <NotFound />
   // Back goes up one level: from a cell panel to its scene, from a scene to its parent.
   const up = cell ? loc : loc.parent ? getLocation(loc.parent) : undefined
   const exit = () => navigate(pathFor(loc))
+  // A visitor on the whole-body view can start any tour from here.
+  const tours = !inTour && !cell && !loc.parent ? getTours() : []
 
   return (
-    <main>
+    <main {...(inTour ? { ...swipe, 'data-tour': '' } : {})}>
       <div className="topbar">
-        {step ? (
+        {inTour ? (
           <p className="tour-badge">Guided tour</p>
         ) : (
           // Back always zooms out (or closes the panel); the browser's own back button
@@ -85,24 +118,33 @@ export default function SceneRoute() {
         )}
         <Breadcrumbs location={loc} cell={cell} />
       </div>
-      <h1 tabIndex={-1} ref={headingRef}>
+      <h1 tabIndex={-1} ref={headingRef} className={inTour ? 'tour-h1' : undefined}>
         {loc.name}
       </h1>
-      {!step && <p>{loc.summary}</p>}
-      <div className={cell || step ? 'workspace with-panel' : 'workspace'}>
+      {!inTour && <p>{loc.summary}</p>}
+      {tours.map((t) => (
+        <p key={t.id} className="tour-entry">
+          <Link to={tourStepPath(t, 0)} className="tour-start">
+            Take the tour: {t.title}
+          </Link>
+          <span className="panel-meta">{t.steps.length} steps</span>
+        </p>
+      ))}
+      <div className={cell || inTour ? 'workspace with-panel' : 'workspace'}>
         <ZoomStage
           location={loc}
           focus={step && focusHotspot(loc, step)?.target}
           highlight={step?.highlight}
-          cut={!!step}
+          cut={inTour}
         />
-        {tour && step && index !== undefined ? (
+        {tour && inTour && index !== undefined ? (
           <TourPanel
             tour={tour}
             index={index}
             onBack={() => goStep(index - 1)}
             onNext={() => goStep(index + 1)}
             onExit={exit}
+            onRestart={() => goStep(0)}
           />
         ) : (
           cell && <CellPanel cell={cell} location={loc} headingRef={panelHeadingRef} />

@@ -623,3 +623,137 @@ g.tour-focus .leader-dot {
 .tour-keys {
   margin-top: 0.5rem;
 }
+
+/* The way in: a prominent link on the whole-body view. */
+.tour-entry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin: 0 0 1rem;
+}
+
+.tour-start {
+  display: inline-block;
+  padding: 0.55rem 1.1rem;
+  border-radius: 6px;
+  background: #1f2933;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.tour-start:hover,
+.tour-start:focus-visible {
+  background: #1a73e8;
+}
+
+.tour-entry .panel-meta {
+  margin: 0;
+}
+
+.tour-explore {
+  display: block;
+  width: 100%;
+  margin-top: 0.75rem;
+  font: inherit;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid #1f2933;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* Stacked layout (phones, small tablets): the stage stays at the top of the screen while the caption
+   and the list of interactions scroll beneath it, and Back and Next sit in a bar fixed to the bottom,
+   so the highlighted cell and the controls are always on screen. The panel stops being its own scroller. */
+@media (max-width: 1000px) {
+  main[data-tour] {
+    padding-bottom: 5rem;
+  }
+
+  .workspace[data-tour] .stage,
+  main[data-tour] .stage {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    box-shadow: 0 0 0 6px #fff;
+  }
+
+  main[data-tour] .tour-panel {
+    max-height: none;
+    overflow: visible;
+  }
+
+  main[data-tour] .tour-controls {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+    margin: 0;
+    padding: 0.6rem max(1rem, calc((100% - 800px) / 2)) calc(0.6rem + env(safe-area-inset-bottom));
+    background: #fff;
+    border-top: 1px solid #c9ced6;
+  }
+
+  main[data-tour] .tour-controls button {
+    min-height: 2.75rem;
+    min-width: 6rem;
+  }
+}
+
+/* Phones: less chrome above the caption, so more of it shows without scrolling. */
+@media (max-width: 600px) {
+  main[data-tour] .topbar {
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  main[data-tour] .crumbs {
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+  }
+
+  main[data-tour] .crumbs li {
+    white-space: nowrap;
+  }
+
+  main[data-tour] .crumbs li + li::before {
+    margin: 0 0.3rem;
+  }
+
+  .tour-h1 {
+    margin: 0.4rem 0;
+    font-size: 1.4rem;
+  }
+
+  main[data-tour] .with-panel {
+    gap: 0.75rem;
+  }
+
+  .tour-panel {
+    padding: 0.75rem 1rem;
+  }
+
+  .tour-panel .panel-head h2 {
+    font-size: 1.05rem;
+  }
+}
+
+/* A tour page keeps only vertical scrolling and pinch-zoom for the browser; sideways swipes change step. */
+main[data-tour] {
+  touch-action: pan-y pinch-zoom;
+}
+
+.tour-progress .panel-meta {
+  white-space: nowrap;
+}
+
+/* A short screen (a phone on its side): the stage would fill it, so it scrolls with the page instead. */
+@media (max-height: 520px) {
+  main[data-tour] .stage {
+    position: static;
+    box-shadow: none;
+  }
+}
