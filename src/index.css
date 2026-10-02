@@ -206,6 +206,128 @@ g.hotspot:focus-visible .hit {
   animation-play-state: paused;
 }
 
+/* Flow along a network (body scene): a .stream path repeats its vessel with white dots every 14 units
+   (stroke-dasharray in the art) and the dots slide along it, in the direction the path is drawn. Blood
+   goes quickly round its loop, lymph slowly one way. Reduced motion: no dots at all, so the lines read solid. */
+.scene .stream {
+  animation: scene-stream var(--stream-s, 1.4s) linear infinite;
+}
+
+.scene .stream-lymph {
+  --stream-s: 4.2s;
+}
+
+@keyframes scene-stream {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene .stream {
+    display: none;
+  }
+}
+
+.motion-paused .scene .stream {
+  animation-play-state: paused;
+}
+
+/* The Show toggle under a networked scene hides the other network (hidden, so its hotspots leave the tab order too). */
+.scene [data-network] {
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
+}
+
+.workspace[data-show='blood'] .scene [data-network='lymph'],
+.workspace[data-show='lymph'] .scene [data-network='blood'] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene [data-network] {
+    transition: none;
+  }
+}
+
+/* On a phone the body scene is drawn at under half size: the network lines (scene units) get a little
+   thicker so the paler lymph still reads, and the node beads a lighter outline so they are not just ink. */
+@media (max-width: 600px) {
+  .scene .blood-line {
+    stroke-width: 3.6;
+  }
+
+  .scene .blood-casing {
+    stroke-width: 5.4;
+  }
+
+  .scene .lymph-line {
+    stroke-width: 2.8;
+  }
+
+  .scene .lymph-fork {
+    stroke-width: 1.6;
+  }
+
+  .scene .bead {
+    stroke-width: 1.25;
+  }
+}
+
+/* Legend and Show toggle, then the caption, under the stage. */
+.scene-networks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  max-width: 800px;
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.network-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.network-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.network-sample {
+  flex: none;
+}
+
+/* A hidden network's key entry is struck through (text, not colour, says it is off). */
+.network-legend .network-off span {
+  color: #52606d;
+  text-decoration: line-through;
+}
+
+.network-show {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scene-caption {
+  max-width: 800px;
+  margin: 0.5rem 0 0;
+  font-weight: 600;
+}
+
 .motion-toggle {
   display: block;
   margin-top: 0.75rem;
@@ -265,17 +387,42 @@ g.hotspot-soon .leader-dot {
   cursor: pointer;
 }
 
-/* The scene, with the cell panel beside it when one is open; stacked on narrow screens. */
+/* The scene, with the cell panel beside it when one is open; stacked on narrow screens. The stage is
+   centred in the page, or the stage and panel together when a panel is open; the start padding glides
+   between the two, so opening a panel slides the scene across instead of jumping. */
+.workspace {
+  padding-inline-start: max(0px, calc((100% - 800px) / 2));
+  transition: padding-inline-start 0.4s ease;
+}
+
 .workspace.with-panel {
   display: grid;
   grid-template-columns: minmax(0, 800px) minmax(280px, 380px);
   gap: 1.5rem;
   align-items: start;
+  padding-inline-start: max(0px, calc((100% - 800px - 1.5rem - 380px) / 2));
 }
 
 @media (max-width: 1000px) {
+  .workspace,
+  .workspace.with-panel {
+    padding-inline-start: 0;
+  }
+
   .workspace.with-panel {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .workspace > .stage,
+  .workspace > .scene-networks,
+  .workspace > .scene-caption {
+    margin-inline: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workspace {
+    transition: none;
   }
 }
 

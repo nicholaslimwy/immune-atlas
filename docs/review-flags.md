@@ -89,3 +89,38 @@ Interaction records, cell profiles and their citations were checked as described
 - Six new entries in `sources`, three papers (Lämmermann 2013 on the neutrophil; Nimmerjahn 2008 on the neutrophil, macrophage and plasma cell; Lu 2018 on the macrophage and plasma cell). Interactions have no `sources` field, so the citations sit with the cells.
 - `scripts/validate.ts` now rejects a tour caption of more than 40 words.
 - `content/tours/placeholder.json` is deleted.
+
+# Review flags: body scene, blood and lymph networks
+
+Written 2026-10-02 (branch `body-two-networks`). The whole-body scene (`public/scenes/body.svg`, generated, then checked by eye) now draws the blood vessels and the lymphatic system as two networks, with a Show toggle (Both / Blood / Lymph), a legend and the caption "Immune cells travel through both the blood and the lymphatic system." Nothing here has been reviewed, and nothing in the drawing is cited (Location has no `sources`). "Left" and "right" below are the figure's own sides.
+
+## Blood
+
+1. **Only the body circuit.** The heart is drawn as a single pump: arteries leave it, loop out to the head, arms and legs, and veins bring the blood back. The lungs and the pulmonary circulation (right heart to lungs to left heart) are not drawn, so the picture skips the half of every circuit that goes through the lungs.
+2. **One artery and one vein per limb.** Each arm, leg and side of the head has a single artery-vein pair that turns round at the hand, foot or top of the head. That U-turn stands for whole capillary beds; real limbs have many arteries and veins, deep and superficial. Arteries and veins share one colour; only the direction of the moving dots tells them apart (and it is hidden for visitors who ask for reduced motion).
+3. **Great vessels simplified.** The aortic arch, its branches, the brachiocephalic veins and the superior vena cava are mostly hidden behind the thymus; the vessels there are not anatomically placed. The neck was widened a little so the carotid arteries, jugular veins and neck lymph vessels fit side by side.
+4. **The spleen's vein goes straight back.** The splenic vein is drawn returning to the inferior vena cava. In fact it joins the portal vein and the blood passes through the liver first; the liver and gut are not drawn.
+5. **Bone marrow is in the thigh bones only**, each with one nutrient artery and vein. Adult red marrow is mostly in flat bones (pelvis, sternum, vertebrae, skull), as already flagged for Phase 3.3.
+6. **The thymus is drawn with no vessels of its own.** It sits in front of the great vessels; the blood that brings T-cell precursors in and takes mature T cells out is not shown as a branch.
+7. **Speeds are illustrative.** The dots go round a limb loop in about 40 seconds and move about three times faster in blood than in lymph. Real blood takes about a minute for a full circuit at rest, and lymph flow is far slower and irregular.
+
+## Lymphatic system
+
+8. **Starts in four places only.** Lymph vessels are drawn beginning as small forks (blind-ended capillaries) in the hands, feet, head and gut. In reality lymph forms in almost every tissue.
+9. **Four node clusters**: neck, armpits, groin and abdomen, two to three beads each. The body has several hundred nodes; other groups (in the chest, behind the knee, at the elbow, along the aorta and in the gut wall) are not drawn. The abdominal cluster stands for the mesenteric and para-aortic nodes together.
+10. **Leg lymph is drawn on the outer side of the thigh**, for room beside the femur and the blood vessels. The main superficial lymph vessels of the leg run on the inner side, with the great saphenous vein. Arm lymph is drawn on the inner side of the arm, which is right.
+11. **Thoracic duct simplified.** It is drawn from a junction between the inferior vena cava and the aorta (no cisterna chyli sac) straight up behind the heart and thymus to the left venous angle. In fact it starts at the cisterna chyli behind the aorta, runs up on the right of the aorta and crosses to the left in the upper chest. The right lymphatic duct is not drawn as a separate vessel: the right-side lines simply end at the right venous angle, and on the left the neck and arm lines end at the angle rather than joining the duct.
+12. **Where lymph meets blood.** All lymph lines end at the venous angles, the junctions of the subclavian and internal jugular veins at the base of the neck, near the collarbones (really just behind the sternoclavicular joints). Small lymphatic-venous connections elsewhere (for example inside some nodes) are left out.
+13. **Lymph nodes are drawn on lymph lines only.** Every node also has its own artery and vein, and most lymphocytes enter a node from the blood through high endothelial venules, not from the lymph. The caption's point (immune cells use both networks) depends on this, but the body scene does not draw it; the lymph node scene does not draw blood vessels either (already listed under Phase 4 lymph node A).
+
+## Organs that connect to the blood, not the lymph
+
+14. **Spleen**: drawn with no lymph vessels. It has no afferent lymph vessels (it filters blood, not lymph), but it does have some efferent lymph vessels, which are sparse in humans and are left out.
+15. **Bone marrow**: drawn with no lymph vessels, the classical view. Recent work in mice reports lymphatic vessels in bone; this was not checked against a source and is not drawn.
+16. **Thymus**: drawn with no lymph vessels. Like the spleen it has no afferent lymph vessels; it does have efferent lymph vessels, which are left out.
+
+## Other changes that need a look
+
+- New stub location `lymph-vessels` ("Lymph vessels", coming soon): the lymph lines are its hotspot. The lymph nodes hotspot is the beads, and the blood vessels hotspot is every blood line plus the heart; its leader now points at the right shoulder vessels, so the zoom into peripheral blood starts there, not at the heart.
+- The body location has a new `caption` field (one line under the stage) and a rewritten `description`. The legend text ("a loop from the heart and back", "one way, back to the blood") is site text in `src/components/SceneNetworks.tsx`.
+- Infection tour step 9 (epilogue, whole body) now shows both networks; its caption was not changed.

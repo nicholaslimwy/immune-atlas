@@ -36,7 +36,7 @@ export const ANATOMY = {
   stage: '#EEF1F4',
   /** The body silhouette. */
   figure: '#FFFFFF',
-  /** Lymph nodes and lymphatic vessels (base); thymus (tint). */
+  /** Lymph nodes and lymph vessel walls in tissue scenes (base); thymus (tint). */
   lymphTint: '#F4E7B8',
   lymphBase: '#C9A13B',
   spleen: '#B0606E',
@@ -62,6 +62,12 @@ export const ANATOMY = {
    */
   redPulp: '#EDCACC',
   marginalZone: '#F5E6DA',
+  /**
+   * Body scene networks. Blood vessels: solid, darker lines (4.8:1 on the white figure). Lymph vessels:
+   * thinner, paler lines (3.1:1) with the nodes in lymph base as beads on them. Both stay off the family hues.
+   */
+  bloodVessel: '#B5545C',
+  lymphVessel: '#B08E2C',
 }
 
 /** Every colour an icon may use. */

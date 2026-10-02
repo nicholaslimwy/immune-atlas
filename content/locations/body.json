@@ -4,14 +4,16 @@
   "parent": null,
   "scene": "scenes/body.svg",
   "summary": "Pick a place to zoom into: the blood, the organs where immune cells develop (bone marrow, thymus) or meet invaders (lymph nodes, spleen), or the skin, the barrier where many infections begin.",
-  "description": "A front view of a human figure in outline. Six labelled markers sit on it: lymph nodes at the neck, armpits and groin; the thymus in the upper chest; blood vessels and the heart; the spleen on the left of the abdomen; skin on the forearm; and bone marrow in both thigh bones.",
+  "description": "A front view of a human figure with two networks. Blood vessels loop from the heart to the head, arms and legs and back, and supply the spleen and both thigh bones. Lymph vessels, thinner and paler, start in the tissues, pass through lymph nodes in the neck, armpits, groin and abdomen, and join the veins near the collarbones. The thymus sits above the heart.",
+  "caption": "Immune cells travel through both the blood and the lymphatic system.",
   "hotspots": [
-    { "region": "blood-vessels", "target": "peripheral-blood" },
+    { "region": "lymph-vessels", "target": "lymph-vessels" },
     { "region": "lymph-nodes", "target": "lymph-node" },
-    { "region": "bone-marrow", "target": "bone-marrow" },
+    { "region": "blood-vessels", "target": "peripheral-blood" },
     { "region": "thymus", "target": "thymus" },
     { "region": "spleen", "target": "spleen" },
-    { "region": "skin", "target": "skin" }
+    { "region": "skin", "target": "skin" },
+    { "region": "bone-marrow", "target": "bone-marrow" }
   ],
   "residents": []
 }

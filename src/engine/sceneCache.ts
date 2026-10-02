@@ -4,6 +4,8 @@ export interface LoadedScene {
   svg: string
   /** Hotspot centres as fractions (0-1) of the scene box, keyed by the hotspot's target id. */
   centres: Record<string, { x: number; y: number }>
+  /** The networks the art marks with data-network (the body scene: blood, lymph), in first-seen order. */
+  networks: string[]
 }
 
 // Scenes are authored at this size so one fixed stage aspect ratio fits them all.
@@ -21,12 +23,14 @@ export function loadScene(loc: Location): Promise<LoadedScene> {
         if (!res.ok) throw new Error(`${loc.scene}: HTTP ${res.status}`)
         return res.text()
       })
-      .then((svg) => ({ svg, centres: measureHotspots(svg, loc) }))
+      .then((svg) => ({ svg, centres: measureHotspots(svg, loc), networks: networksIn(svg) }))
     hit.catch(() => cache.delete(loc.id)) // allow a retry after a failure
     cache.set(loc.id, hit)
   }
   return hit
 }
+
+const networksIn = (svg: string) => [...new Set([...svg.matchAll(/\sdata-network="([^"]+)"/g)].map((m) => m[1]))]
 
 // Render the SVG off-screen at stage size so the zoom can aim at each hotspot,
 // transforms and all, whatever the final art looks like.

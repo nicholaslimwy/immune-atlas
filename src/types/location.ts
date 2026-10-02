@@ -13,6 +13,8 @@ export interface Location {
   summary: string
   /** What the scene shows, in a sentence or two, for people who cannot see it (read by screen readers). Required once the scene is built. */
   description?: string
+  /** One line shown under the scene, for every visitor: the point the picture makes. */
+  caption?: string
   /** SVG element id -> child location or cell id. */
   hotspots: { region: string; target: string }[]
   /** Which cells appear here, and what they do here. */

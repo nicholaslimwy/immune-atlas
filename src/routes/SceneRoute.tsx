@@ -1,9 +1,10 @@
-import { useEffect, useRef, type PointerEvent } from 'react'
+import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import { Link, Navigate, useLocation, useNavigate, useNavigationType } from 'react-router'
 import Breadcrumbs from '../components/Breadcrumbs.tsx'
 import CellPanel from '../components/CellPanel.tsx'
 import MotionToggle from '../components/MotionToggle.tsx'
 import SceneList from '../components/SceneList.tsx'
+import SceneNetworks, { type NetworkShow } from '../components/SceneNetworks.tsx'
 import TourPanel from '../components/TourPanel.tsx'
 import { useDocumentTitle } from '../components/useDocumentTitle.ts'
 import ZoomStage from '../components/ZoomStage.tsx'
@@ -11,6 +12,7 @@ import { getLocation, getTours } from '../engine/content.ts'
 import { pathFor, resolvePath } from '../engine/paths.ts'
 import { loadScene } from '../engine/sceneCache.ts'
 import { focusHotspot, resolveTourPath, stepLocation, tourStepPath } from '../engine/tours.ts'
+import type { Location } from '../types/location.ts'
 import NotFound from './NotFound.tsx'
 
 /** How far a finger must travel sideways, in CSS px, to count as a swipe. */
@@ -36,6 +38,9 @@ export default function SceneRoute() {
   const loc = step ? stepLocation(step) : ended && lastStep ? stepLocation(lastStep) : resolved?.location
   const cell = resolved?.cell
   const headingRef = useRef<HTMLHeadingElement>(null)
+  // Which networks a scene drawn with them (the whole body) shows; kept while the visitor moves around.
+  const [show, setShow] = useState<NetworkShow>('all')
+  const networks = useSceneNetworks(loc)
   const panelHeadingRef = useRef<HTMLHeadingElement>(null)
 
   // The hotspot or link that was clicked may disappear, so move focus to the new title:
@@ -147,6 +152,8 @@ export default function SceneRoute() {
   const exit = () => navigate(pathFor(loc))
   // A visitor on the whole-body view can start any tour from here.
   const tours = !inTour && !cell && !loc.parent ? getTours() : []
+  // The network key and the caption sit under the stage when nothing is beside it; a tour shows everything.
+  const underStage = !inTour && !cell
 
   return (
     <main id="main" {...(inTour ? { ...swipe, 'data-tour': '' } : {})}>
@@ -174,13 +181,15 @@ export default function SceneRoute() {
           <span className="panel-meta">{t.steps.length} steps</span>
         </p>
       ))}
-      <div className={cell || inTour ? 'workspace with-panel' : 'workspace'}>
+      <div className={cell || inTour ? 'workspace with-panel' : 'workspace'} data-show={inTour ? undefined : show}>
         <ZoomStage
           location={loc}
           focus={step && focusHotspot(loc, step)?.target}
           highlight={step?.highlight}
           cut={inTour}
         />
+        {underStage && <SceneNetworks networks={networks} show={show} onShow={setShow} />}
+        {underStage && loc.caption && <p className="scene-caption">{loc.caption}</p>}
         {tour && inTour && index !== undefined ? (
           <TourPanel
             tour={tour}
@@ -198,4 +207,23 @@ export default function SceneRoute() {
       <MotionToggle />
     </main>
   )
+}
+
+/** The networks drawn in `loc`'s scene (data-network in its SVG), once the scene has loaded. */
+function useSceneNetworks(loc: Location | undefined): string[] {
+  const [found, setFound] = useState<{ id: string; networks: string[] }>()
+  useEffect(() => {
+    if (!loc) return
+    let current = true
+    loadScene(loc).then(
+      (scene) => {
+        if (current) setFound({ id: loc.id, networks: scene.networks })
+      },
+      () => {},
+    )
+    return () => {
+      current = false
+    }
+  }, [loc])
+  return found && found.id === loc?.id ? found.networks : []
 }

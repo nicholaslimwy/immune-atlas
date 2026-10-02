@@ -15,6 +15,10 @@ import { cellShape, interactionShape, locationShape, moleculeShape, objectOf, to
 
 /** Longest scene description, in words. */
 const DESCRIPTION_MAX_WORDS = 65
+/** Longest scene caption, in words: it is one line under the stage. */
+const SCENE_CAPTION_MAX_WORDS = 20
+/** The networks a scene may mark with data-network; the Show toggle under the stage knows these. */
+const SCENE_NETWORKS = ['blood', 'lymph']
 
 const root = process.argv[2] ? resolve(process.argv[2]) : fileURLToPath(new URL('..', import.meta.url))
 
@@ -108,6 +112,9 @@ function checkScene(file: string, svg: string) {
     if (!sceneColours.has(hex.toUpperCase())) error(file, `colour ${hex} is not a palette or anatomy token (src/art/palette.ts)`)
   }
   if (/gradient|filter|opacity/i.test(svg)) error(file, 'flat style: no gradients, filters or opacity')
+  for (const net of new Set([...svg.matchAll(/\sdata-network="([^"]*)"/g)].map((m) => m[1]))) {
+    if (!SCENE_NETWORKS.includes(net)) error(file, `data-network="${net}": expected one of ${SCENE_NETWORKS.join(', ')}`)
+  }
   const scale = Number(svg.match(/<svg[^>]*\sdata-px-per-um="([\d.]+)"/)?.[1])
   for (const use of svg.match(/<use\b[^>]*>/g) ?? []) {
     const id = use.match(/\shref="#icon-([^"]+)"/)?.[1]
@@ -173,6 +180,10 @@ for (const { file, data: loc } of locations.values()) {
   if (descWords === 0) error(file, `description: a built scene needs a text description for screen readers`)
   else if (descWords > DESCRIPTION_MAX_WORDS) {
     error(file, `description: ${descWords} words; keep it to ${DESCRIPTION_MAX_WORDS} so it reads in one breath`)
+  }
+  const captionWords = loc.caption?.trim().split(/\s+/).length ?? 0
+  if (captionWords > SCENE_CAPTION_MAX_WORDS) {
+    error(file, `caption: ${captionWords} words; it is one line under the scene, keep it to ${SCENE_CAPTION_MAX_WORDS}`)
   }
 
   const scenePath = join(root, 'public', loc.scene)
