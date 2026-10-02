@@ -49,6 +49,12 @@ export default function SearchBox() {
     setQuery('')
     setOpen(false)
     inputRef.current?.blur()
+    // Choosing the page you are already on changes nothing, so the page's own focus rules never run: put focus on its title here.
+    if (result.entry.path === window.location.pathname) {
+      const title = document.getElementById('cell-panel-title') ?? document.querySelector<HTMLElement>('main h1')
+      title?.setAttribute('tabindex', '-1')
+      title?.focus()
+    }
     navigate(result.entry.path)
   }
 

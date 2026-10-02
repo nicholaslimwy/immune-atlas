@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link, useNavigationType, useParams } from 'react-router'
 import { getMolecule } from '../engine/content.ts'
 import GlossaryTopbar from '../components/GlossaryTopbar.tsx'
+import { useDocumentTitle } from '../components/useDocumentTitle.ts'
 import MoleculeText from '../components/MoleculeText.tsx'
 import { KIND_LABELS, mentionAnnotator } from '../engine/glossary.ts'
 import { usesOfMolecule, type MoleculeUse } from '../engine/interactions.ts'
@@ -20,6 +21,7 @@ export default function GlossaryEntry() {
   const arrivedByClick = useNavigationType() === 'PUSH'
   const headingRef = useRef<HTMLHeadingElement>(null)
   const molecule = id ? getMolecule(id) : undefined
+  useDocumentTitle(molecule ? `${molecule.name}: glossary` : 'Not found')
 
   // Arriving from a search result or a link moves focus to the title; a direct page load does not.
   useEffect(() => {
@@ -32,7 +34,7 @@ export default function GlossaryEntry() {
   const mark = mentionAnnotator([molecule.id])
 
   return (
-    <main className="glossary">
+    <main id="main" className="glossary">
       <GlossaryTopbar entry={molecule.name} />
       <h1 tabIndex={-1} ref={headingRef}>
         {molecule.name}

@@ -4,6 +4,7 @@ import { EDGE_STYLES, FAMILY_SHAPES, PLACE_STYLE } from '../art/networkStyles.ts
 import { FAMILY_COLOURS } from '../art/palette.ts'
 import MoleculeText from '../components/MoleculeText.tsx'
 import { useArmFilter } from '../components/armFilterState.ts'
+import { useDocumentTitle } from '../components/useDocumentTitle.ts'
 import PageTopbar from '../components/PageTopbar.tsx'
 import { getInteraction, getLocation, getMolecule } from '../engine/content.ts'
 import { mentionAnnotator } from '../engine/glossary.ts'
@@ -37,6 +38,7 @@ interface Row {
 
 /** /network: every interaction record as a graph (or a plain list), filtered to one type at a time. */
 export default function Network() {
+  useDocumentTitle('Interaction network')
   const net = getNetwork()
   const nodeById = useMemo(() => new Map(net.nodes.map((n) => [n.id, n])), [net])
   const counts = useMemo(() => typeCounts(net.edges), [net])
@@ -103,7 +105,7 @@ export default function Network() {
     : 0
 
   return (
-    <main className="network">
+    <main id="main" className="network">
       <PageTopbar trail={[{ label: 'Network' }]} />
       <h1>Interaction network</h1>
       <p className="network-lede">

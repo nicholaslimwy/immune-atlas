@@ -11,11 +11,12 @@ export default function ArmFilterBar() {
   if (inTour) return null
   const arms = getArms()
   return (
-    <div className="filter-bar">
+    // A labelled region, so the bar is a landmark a screen reader can jump to (and nothing sits outside one).
+    <section className="filter-bar" aria-labelledby="filter-label">
       <span className="filter-label" id="filter-label">
         Highlight
       </span>
-      <div className="filter-group" role="group" aria-labelledby="filter-label">
+      <div className="filter-group">
         <button type="button" aria-pressed={arm === null} onClick={() => setArm(null)}>
           All
         </button>
@@ -30,6 +31,6 @@ export default function ArmFilterBar() {
           ? `Highlighting ${ARM_LABELS[arm].toLowerCase()} cells: ${countArm(arm)} of ${getCells().length}. Other cells are dimmed.`
           : 'Highlighting all cells.'}
       </p>
-    </div>
+    </section>
   )
 }

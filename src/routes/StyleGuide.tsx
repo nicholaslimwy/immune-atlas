@@ -4,6 +4,7 @@ import { familyVars, GENERIC, ICONS, iconPx, iconRef, RED_CELL_ART } from '../ar
 import { BODY_UNITS } from '../art/iconSpecs.ts'
 import { ANATOMY, FAMILY_COLOURS, INK, RED_CELL } from '../art/palette.ts'
 import CellIcon from '../components/CellIcon.tsx'
+import { useDocumentTitle } from '../components/useDocumentTitle.ts'
 import { getCell, getCells } from '../engine/content.ts'
 import { CELL_FAMILIES } from '../types/cell.ts'
 
@@ -40,11 +41,12 @@ function Swatch({ hex, role }: { hex: string; role: string }) {
 }
 
 export default function StyleGuide() {
+  useDocumentTitle('Style guide')
   const [grey, setGrey] = useState(false)
   const cells = getCells()
 
   return (
-    <main className={grey ? 'styleguide grey' : 'styleguide'}>
+    <main id="main" className={grey ? 'styleguide grey' : 'styleguide'}>
       <p>
         <Link to="/body">← Back to the atlas</Link>
       </p>

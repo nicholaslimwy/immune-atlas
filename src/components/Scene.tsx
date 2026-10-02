@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useIsPresent } from 'framer-motion'
 import { useNavigate } from 'react-router'
 import { matchesArm } from '../engine/armFilter.ts'
 import { getCell, getLocation } from '../engine/content.ts'
@@ -28,6 +29,9 @@ const LABEL_BASE = 15
 export default function Scene({ location, svg, highlight, focus, labelSize }: Props) {
   const navigate = useNavigate()
   const { arm } = useArmFilter()
+  // The scene that is zooming away stays in the page for a moment: keep it out of the tab order and reading order.
+  const present = useIsPresent()
+  const descId = `scene-desc-${location.id}`
   const containerRef = useRef<HTMLDivElement>(null)
   // A place that is not built yet, picked from this scene: shown as a notice instead of zooming.
   const [soon, setSoon] = useState<Location>()
@@ -35,6 +39,10 @@ export default function Scene({ location, svg, highlight, focus, labelSize }: Pr
   // Make each hotspot region a focusable, labelled button, and fill its label (if the art has one)
   // with the target's name, so names live only in /content.
   useEffect(() => {
+    // The picture as a whole: a named group that points at the written description.
+    const root = containerRef.current?.querySelector('svg')
+    root?.setAttribute('aria-label', `${location.name} scene`)
+    if (location.description) root?.setAttribute('aria-describedby', descId)
     for (const { region, target } of location.hotspots) {
       const el = containerRef.current?.querySelector(`[id="${region}"]`)
       if (!el) continue
@@ -64,7 +72,7 @@ export default function Scene({ location, svg, highlight, focus, labelSize }: Pr
         if (stub) line('scene-label-soon', 'coming soon')
       }
     }
-  }, [svg, location])
+  }, [svg, location, descId])
 
   // The arm filter dims cells outside the chosen arm: hotspot cells, and the unlabelled copies of
   // cell icons that fill a scene (a hotspot's own art is dimmed with its group). Places stay as they are.
@@ -86,7 +94,17 @@ export default function Scene({ location, svg, highlight, focus, labelSize }: Pr
   useEffect(() => {
     for (const { region, target } of location.hotspots) {
       const el = containerRef.current?.querySelector(`[id="${region}"]`)
-      el?.classList.toggle('tour-highlight', highlight?.includes(target) ?? false)
+      const highlighted = highlight?.includes(target) ?? false
+      el?.classList.toggle('tour-highlight', highlighted)
+      // What the button does, read after its name: the kind of thing it is and what Enter will do.
+      const place = getLocation(target)
+      const what =
+        place?.status === 'stub'
+          ? 'Place. This scene is coming soon.'
+          : place
+            ? 'Place. Press Enter to zoom in.'
+            : 'Cell. Press Enter to open its profile.'
+      el?.setAttribute('aria-description', highlighted ? `${what} Highlighted in this step.` : what)
       el?.classList.toggle('tour-focus', target === focus)
       // A highlighted label grows to labelSize, then shrinks back until it fits inside the scene's
       // edges (a label near the margin would otherwise be cut off).
@@ -127,9 +145,15 @@ export default function Scene({ location, svg, highlight, focus, labelSize }: Pr
 
   return (
     <>
+      {location.description && (
+        <p id={descId} className="visually-hidden">
+          {location.description}
+        </p>
+      )}
       <div
         ref={containerRef}
         className="scene"
+        inert={!present}
         onClick={(e) => go(hotspotOf(e.target))}
         onKeyDown={(e) => {
           if (e.key === 'Escape') setSoon(undefined)

@@ -40,9 +40,26 @@ main {
 
 .crumbs {
   display: flex;
+  flex-wrap: wrap;
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+/* Long trails (Whole body > Lymph node > Germinal centre > a cell) wrap rather than push the page sideways;
+   each crumb is at least 24 px tall, the smallest touch target WCAG 2.2 allows. */
+.topbar nav {
+  min-width: 0;
+}
+
+.crumbs li {
+  overflow-wrap: anywhere;
+}
+
+.crumbs a,
+.crumbs [aria-current] {
+  display: inline-block;
+  line-height: 1.5rem;
 }
 
 .crumbs li + li::before {
@@ -111,6 +128,13 @@ g.hotspot:is(:hover, :focus-visible) .hit {
   stroke: #1a73e8;
 }
 
+/* Keyboard focus is the one state that must be seen on every background: a darker, thicker ring (at least
+   3:1 against the epidermis, the palest-contrast backdrop in the scenes). */
+g.hotspot:focus-visible .hit {
+  stroke: #0842a0;
+  stroke-width: 3;
+}
+
 /* The arm filter dims cells outside the chosen arm. Hovering or focusing one brings it back so its label reads. */
 .scene .filter-dim {
   opacity: 0.3;
@@ -169,6 +193,29 @@ g.hotspot:is(:hover, :focus-visible) .hit {
   .scene .bob {
     animation: none;
   }
+}
+
+/* The pause button (MotionToggle) freezes the same elements where they stand. */
+.motion-paused .scene .flow,
+.motion-paused .scene .bob {
+  animation-play-state: paused;
+}
+
+.motion-toggle {
+  display: block;
+  margin-top: 0.75rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid #1f2933;
+  border-radius: 6px;
+  background: #fff;
+  color: #1f2933;
+  font: inherit;
+  cursor: pointer;
+}
+
+.motion-toggle[aria-pressed='true'] {
+  background: #1f2933;
+  color: #fff;
 }
 
 .scene-label-soon {
@@ -553,6 +600,7 @@ g.tour-focus .leader-dot {
 
 .tour-progress {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -565,7 +613,7 @@ g.tour-focus .leader-dot {
 
 .panel .tour-progress ol {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.1rem;
   padding: 0;
   list-style: none;
 }
@@ -574,20 +622,30 @@ g.tour-focus .leader-dot {
   margin-top: 0;
 }
 
+/* The link is a 1.5rem (24 px) target; the dot inside it is drawn by ::before. */
 .tour-progress a {
+  position: relative;
   display: block;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+}
+
+.tour-progress a::before {
+  content: '';
+  position: absolute;
+  inset: 0.35rem;
+  box-sizing: border-box;
   border: 2px solid #1f2933;
   border-radius: 50%;
   background: #fff;
 }
 
-.tour-progress a.done {
+.tour-progress a.done::before {
   background: #9aa5b1;
 }
 
-.tour-progress a.current {
+.tour-progress a.current::before {
   background: #1f2933;
 }
 
@@ -1413,4 +1471,50 @@ main.network {
     flex-basis: 100%;
     max-width: none;
   }
+}
+
+/* Skip link: the first thing Tab reaches, hidden until it has focus. */
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.5rem 0.9rem;
+  border: 2px solid #1f2933;
+  border-radius: 6px;
+  background: #fff;
+  color: #1f2933;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+/* Plain list of everything a scene's hotspots open (below the stage): the way in without aiming at the art. */
+.scene-list {
+  max-width: 800px;
+  margin-top: 0.75rem;
+}
+
+.scene-list summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.scene-list ul {
+  columns: 2 14rem;
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.scene-list li {
+  margin: 0.25rem 0;
+  break-inside: avoid;
+}
+
+.scene-list-kind {
+  display: block;
+  color: #52606d;
+  font-size: 0.85rem;
 }

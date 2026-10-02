@@ -13,6 +13,9 @@ import type { Molecule } from '../src/types/molecule.ts'
 import type { Tour } from '../src/types/tour.ts'
 import { cellShape, interactionShape, locationShape, moleculeShape, objectOf, tourShape, type Shape } from './schema.ts'
 
+/** Longest scene description, in words. */
+const DESCRIPTION_MAX_WORDS = 65
+
 const root = process.argv[2] ? resolve(process.argv[2]) : fileURLToPath(new URL('..', import.meta.url))
 
 // file -> messages, each prefixed "error" or "warning"
@@ -163,6 +166,13 @@ for (const { file, data: loc } of locations.values()) {
     if (loc.hotspots.length) error(file, `hotspots: a stub has no scene to hold them; leave empty`)
     if (loc.residents.length) error(file, `residents: add them when the scene is built; leave empty`)
     continue
+  }
+
+  // A built scene needs text for people who cannot see it: what is drawn and where, in a few sentences.
+  const descWords = loc.description?.trim().split(/\s+/).filter(Boolean).length ?? 0
+  if (descWords === 0) error(file, `description: a built scene needs a text description for screen readers`)
+  else if (descWords > DESCRIPTION_MAX_WORDS) {
+    error(file, `description: ${descWords} words; keep it to ${DESCRIPTION_MAX_WORDS} so it reads in one breath`)
   }
 
   const scenePath = join(root, 'public', loc.scene)

@@ -97,6 +97,7 @@ export const locationShape: Shape<Location> = {
   slug: opt(id),
   scene: req(text),
   summary: req(text),
+  description: opt(text),
   hotspots: req(arrayOf(objectOf<Location['hotspots'][number]>({ region: req(id), target: req(id) }))),
   residents: req(arrayOf(objectOf<Location['residents'][number]>({ cell: req(id), note: opt(text) }))),
   status: opt(oneOf(LOCATION_STATUSES)),

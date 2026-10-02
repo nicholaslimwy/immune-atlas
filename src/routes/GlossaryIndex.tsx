@@ -1,15 +1,17 @@
 import { Link } from 'react-router'
 import GlossaryTopbar from '../components/GlossaryTopbar.tsx'
+import { useDocumentTitle } from '../components/useDocumentTitle.ts'
 import { glossaryGroups } from '../engine/glossary.ts'
 import { entityPath, glossaryPathFor } from '../engine/paths.ts'
 
 /** /glossary: every molecule, grouped by kind and A to Z, each with the cells it acts between. */
 export default function GlossaryIndex() {
+  useDocumentTitle('Glossary')
   const groups = glossaryGroups()
   const total = groups.reduce((n, g) => n + g.items.length, 0)
 
   return (
-    <main className="glossary">
+    <main id="main" className="glossary">
       <GlossaryTopbar />
       <h1>Glossary</h1>
       <p>

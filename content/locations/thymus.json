@@ -4,6 +4,7 @@
   "parent": "body",
   "scene": "scenes/thymus.svg",
   "summary": "The thymus is where T cells are made. Progenitors arrive from the bone marrow through blood vessels at the junction between cortex and medulla. In the cortex they multiply and are tested: only those whose receptor can recognise self-MHC survive, and most die. Survivors move to the medulla, where cells that react strongly to the body's own proteins are removed or become regulatory T cells. The rest leave as naive T cells. The dashed arrow traces that route. The thymus is largest in childhood and shrinks with age. Pick a cell.",
+  "description": "The outer edge of one thymus lobule in section. The capsule runs along the top. The cortex, packed with developing T cells, lies under it, and the paler medulla lies below that, with a Hassall's corpuscle. A dashed arrow traces a developing T cell from the junction vessels, out to the capsule and back into the medulla. Seven cells are labelled.",
   "hotspots": [
     { "region": "thymic-epithelial-cell", "target": "thymic-epithelial-cell" },
     { "region": "macrophage", "target": "macrophage" },

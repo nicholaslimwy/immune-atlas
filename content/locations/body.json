@@ -4,6 +4,7 @@
   "parent": null,
   "scene": "scenes/body.svg",
   "summary": "Pick a place to zoom into: the blood, the organs where immune cells develop (bone marrow, thymus) or meet invaders (lymph nodes, spleen), or the skin, the barrier where many infections begin.",
+  "description": "A front view of a human figure in outline. Six labelled markers sit on it: lymph nodes at the neck, armpits and groin; the thymus in the upper chest; blood vessels and the heart; the spleen on the left of the abdomen; skin on the forearm; and bone marrow in both thigh bones.",
   "hotspots": [
     { "region": "blood-vessels", "target": "peripheral-blood" },
     { "region": "lymph-nodes", "target": "lymph-node" },

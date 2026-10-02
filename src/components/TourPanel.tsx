@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { getCell } from '../engine/content.ts'
+import { getCell, getLocation } from '../engine/content.ts'
 import { mentionAnnotator } from '../engine/glossary.ts'
 import { interactionLine } from '../engine/interactions.ts'
 import { tourStepPath } from '../engine/tours.ts'
@@ -63,9 +63,15 @@ export default function TourPanel({ tour, index, onBack, onNext, onExit, onResta
       {/* Announced when the step changes, so the controls can keep focus. */}
       <div aria-live="polite">
         {step ? (
-          <p className="tour-caption">
-            <MoleculeText parts={caption!} />
-          </p>
+          <>
+            {/* Spoken first, so a screen reader hears which scene the step is in, as well as the caption. */}
+            <p className="visually-hidden">
+              Step {index + 1} of {tour.steps.length}, {getLocation(step.location)?.name}.
+            </p>
+            <p className="tour-caption">
+              <MoleculeText parts={caption!} />
+            </p>
+          </>
         ) : (
           <div className="tour-end">
             <p className="tour-caption">

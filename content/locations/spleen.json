@@ -4,6 +4,7 @@
   "parent": "body",
   "scene": "scenes/spleen.svg",
   "summary": "The spleen filters the blood. In the red pulp, blood pours out of open-ended vessels into cords packed with red cells, where macrophages remove old cells before the blood squeezes back into the venous sinuses. The white pulp is lymphoid tissue: T cells sheathe a central arteriole, B cells gather in follicles, and the marginal zone around them catches microbes from the blood. Cells are drawn at true size relative to each other but far larger than the tissue. Pick a cell.",
+  "description": "A patch of spleen under its capsule. On the left is one white pulp nodule: a B-cell follicle on a T-cell zone around a central arteriole, wrapped in the marginal zone. On the right is red pulp, packed with red cells, between two venous sinuses. Nine cells are labelled.",
   "hotspots": [
     { "region": "naive-b", "target": "naive-b" },
     { "region": "follicular-dendritic-cell", "target": "follicular-dendritic-cell" },

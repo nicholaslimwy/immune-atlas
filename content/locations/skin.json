@@ -4,6 +4,7 @@
   "parent": "body",
   "scene": "scenes/skin.svg",
   "summary": "Skin is the body's largest barrier. Its outer layer, the epidermis, is built of keratinocytes that flatten and die into a tough surface coat; Langerhans cells and memory T cells live among them. The dermis below holds blood capillaries, lymph vessels and resident macrophages, mast cells and dendritic cells. This view shows a fresh cut, drawn roughly to scale and about a quarter of a millimetre across: platelets plug it while the first white cells arrive. Pick a cell.",
+  "description": "A section through skin with a fresh cut. The epidermis, built of keratinocytes, lies on top and the dermis below. A V-shaped cut runs down through the epidermis, plugged by a clot and with bacteria in it. A capillary crosses the dermis under the cut, and a lymph vessel starts at the lower right. Nine cells are labelled.",
   "hotspots": [
     { "region": "langerhans-cell", "target": "langerhans-cell" },
     { "region": "memory-t", "target": "memory-t" },

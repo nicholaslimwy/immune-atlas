@@ -4,6 +4,7 @@
   "parent": "body",
   "scene": "scenes/lymph-node.svg",
   "summary": "Lymph nodes sit along the lymph vessels and filter the fluid draining from the tissues. Dendritic cells arrive in the lymph carrying antigen; naive T and B cells arrive from the blood and wait in their own zones. When one meets its antigen it multiplies, and the response leaves in the outgoing lymph. Cells are drawn at true size relative to each other but far larger than the node. Pick a cell, or zoom into the germinal centre.",
+  "description": "A lymph node cut through its middle, kidney-shaped, with its exit on the right. Rounded B-cell follicles sit under the capsule, one at the top holding a germinal centre. A T-cell zone fills the middle and the medulla lies by the exit. Lymph vessels enter on the left and one leaves on the right. Seven cells and the germinal centre are labelled.",
   "hotspots": [
     { "region": "macrophage", "target": "macrophage" },
     { "region": "naive-b", "target": "naive-b" },

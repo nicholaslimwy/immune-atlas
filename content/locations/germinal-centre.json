@@ -4,6 +4,7 @@
   "parent": "lymph-node",
   "scene": "scenes/germinal-centre.svg",
   "summary": "A germinal centre forms inside a B-cell follicle a few days into an immune response. In the dark zone, B cells that have met their antigen divide fast and mutate their antibody genes; in the light zone they test the new antibody against antigen held by follicular dendritic cells, and the best binders win help from Tfh cells. The winners leave as plasma cells or memory B cells.",
+  "description": "One germinal centre inside a B-cell follicle, as a large oval. The dark zone, packed with dividing B cells, is on the left; the light zone, with follicular dendritic cells and helper T cells, is on the right. A ring of resting B cells surrounds it, and arrows on the right show memory B cells and plasma cells leaving. Seven cells are labelled.",
   "hotspots": [
     { "region": "naive-b", "target": "naive-b" },
     { "region": "germinal-centre-b", "target": "germinal-centre-b" },

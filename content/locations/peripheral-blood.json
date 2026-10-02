@@ -5,6 +5,7 @@
   "slug": "blood",
   "scene": "scenes/peripheral-blood.svg",
   "summary": "Blood carries immune cells between the bone marrow, where most are made, and the tissues and lymphoid organs where they work. The cells are drawn at true relative size, but a real vessel holds far more red cells: in human blood there are roughly 700 red cells and 35 platelets for every white cell. Pick a cell to open its profile.",
+  "description": "A small blood vessel cut lengthwise, with red cells flowing left to right through it. Eight white cells and a platelet float among them, each drawn at its true size compared with the red cells, with a name beside it.",
   "hotspots": [
     { "region": "neutrophil", "target": "neutrophil" },
     { "region": "eosinophil", "target": "eosinophil" },

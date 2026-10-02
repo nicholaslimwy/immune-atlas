@@ -2,7 +2,10 @@ import { useEffect, useRef, type PointerEvent } from 'react'
 import { Link, Navigate, useLocation, useNavigate, useNavigationType } from 'react-router'
 import Breadcrumbs from '../components/Breadcrumbs.tsx'
 import CellPanel from '../components/CellPanel.tsx'
+import MotionToggle from '../components/MotionToggle.tsx'
+import SceneList from '../components/SceneList.tsx'
 import TourPanel from '../components/TourPanel.tsx'
+import { useDocumentTitle } from '../components/useDocumentTitle.ts'
 import ZoomStage from '../components/ZoomStage.tsx'
 import { getLocation, getTours } from '../engine/content.ts'
 import { pathFor, resolvePath } from '../engine/paths.ts'
@@ -39,13 +42,24 @@ export default function SceneRoute() {
   // the panel's when a cell is open, otherwise the scene's. Comparing with the previous view
   // (not a "first render" flag) keeps a direct page load, and StrictMode's re-run, from stealing focus.
   // In a tour the Next and Back buttons stay put, so focus stays on them and the caption is announced.
+  // Closing a panel (Escape, the × or Back) returns focus to the hotspot that opened it, so a keyboard
+  // user carries on from where they were instead of from the top of the page.
   const view = `${loc?.id}/${cell?.id ?? ''}`
-  const shownView = useRef(view)
+  const shownView = useRef({ view, loc: loc?.id, cell: cell?.id })
   useEffect(() => {
-    if (shownView.current === view) return
-    shownView.current = view
-    if (!inTour) (panelHeadingRef.current ?? headingRef.current)?.focus()
-  }, [view, inTour])
+    const prev = shownView.current
+    shownView.current = { view, loc: loc?.id, cell: cell?.id }
+    if (prev.view === view || inTour) return
+    if (prev.cell && !cell && prev.loc === loc?.id) {
+      const region = loc?.hotspots.find((h) => h.target === prev.cell)?.region
+      const hotspot = region ? document.getElementById(region) : null
+      if (hotspot instanceof SVGElement) {
+        hotspot.focus()
+        return
+      }
+    }
+    ;(panelHeadingRef.current ?? headingRef.current)?.focus()
+  }, [view, inTour, loc, cell])
 
   // Read once, at mount: whether this view was reached by a click from another page.
   const arrivedByClick = useRef(useNavigationType() === 'PUSH')
@@ -53,10 +67,23 @@ export default function SceneRoute() {
   // Entering a tour from outside it (the entry link, a search result) removes the control that was used, so
   // focus goes to the tour's title. A direct load of a step URL does not steal focus.
   const wasInTour = useRef(inTour)
+  // Leaving it (Exit tour, Explore freely) unmounts the button that was pressed, so focus goes to the scene title.
   useEffect(() => {
-    if (inTour && !wasInTour.current) headingRef.current?.focus()
+    if (inTour !== wasInTour.current) headingRef.current?.focus()
     wasInTour.current = inTour
   }, [inTour])
+
+  useDocumentTitle(
+    !loc
+      ? 'Not found'
+      : tour && index !== undefined
+        ? ended
+          ? `${tour.title}: tour complete`
+          : `${tour.title}: step ${index + 1} of ${tour.steps.length}`
+        : cell
+          ? `${cell.name} in ${loc.name}`
+          : loc.name,
+  )
 
   // Arriving from another page by a click (a search result chosen on a glossary entry) mounts this view
   // fresh, with the old page's focus gone: land on the title. A direct page load (not PUSH) does not.
@@ -122,7 +149,7 @@ export default function SceneRoute() {
   const tours = !inTour && !cell && !loc.parent ? getTours() : []
 
   return (
-    <main {...(inTour ? { ...swipe, 'data-tour': '' } : {})}>
+    <main id="main" {...(inTour ? { ...swipe, 'data-tour': '' } : {})}>
       <div className="topbar">
         {inTour ? (
           <p className="tour-badge">Guided tour</p>
@@ -167,6 +194,8 @@ export default function SceneRoute() {
           cell && <CellPanel cell={cell} location={loc} headingRef={panelHeadingRef} />
         )}
       </div>
+      {!inTour && <SceneList location={loc} />}
+      <MotionToggle />
     </main>
   )
 }

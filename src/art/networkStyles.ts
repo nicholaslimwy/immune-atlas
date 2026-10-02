@@ -19,7 +19,8 @@ export const FAMILY_SHAPES: Record<Cell['family'], Css.NodeShape> = {
 export const PLACE_STYLE: { shape: Css.NodeShape; fill: string; border: string } = { shape: 'barrel', fill: ANATOMY.follicle, border: ANATOMY.lymphBase }
 
 export interface EdgeStyle {
-  /** Okabe-Ito colours (safe for the common colour-vision deficiencies), plus ink. */
+  /** Okabe-Ito hues (safe for the common colour-vision deficiencies), plus ink. Orange, sky blue and pink are darkened
+   *  from the published values so every line reaches 3:1 against the white canvas (WCAG 1.4.11). */
   colour: string
   /** Cytoscape line-dash-pattern; empty for a solid line. */
   dash: number[]
@@ -32,9 +33,9 @@ export const EDGE_STYLES: Record<Interaction['type'], EdgeStyle> = {
   'presents-antigen-to': { colour: '#0072B2', dash: [7, 4], arrow: 'vee', width: 2 },
   helps: { colour: '#009E73', dash: [], arrow: 'diamond', width: 2 },
   kills: { colour: INK, dash: [], arrow: 'triangle-cross', width: 3 },
-  phagocytoses: { colour: '#CC79A7', dash: [1, 4], arrow: 'circle', width: 2.5 },
-  recruits: { colour: '#E69F00', dash: [8, 3, 2, 3], arrow: 'chevron', width: 2 },
+  phagocytoses: { colour: '#C0618F', dash: [1, 4], arrow: 'circle', width: 2.5 },
+  recruits: { colour: '#B87A00', dash: [8, 3, 2, 3], arrow: 'chevron', width: 2 },
   suppresses: { colour: INK, dash: [], arrow: 'tee', width: 2 },
   'differentiates-into': { colour: '#8A8F98', dash: [13, 4], arrow: 'triangle-backcurve', width: 2 },
-  'migrates-to': { colour: '#56B4E9', dash: [2, 6], arrow: 'square', width: 2.5 },
+  'migrates-to': { colour: '#1E88C7', dash: [2, 6], arrow: 'square', width: 2.5 },
 }

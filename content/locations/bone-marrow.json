@@ -4,6 +4,7 @@
   "parent": "body",
   "scene": "scenes/bone-marrow.svg",
   "summary": "Red bone marrow fills the spaces inside bones and makes nearly every blood cell, hundreds of billions a day in an adult. Haematopoietic stem cells rest in niches beside blood vessels, many close to the bone surface. Their offspring divide and mature in the spaces between the sinusoids, wide thin-walled vessels that finished cells squeeze through to reach the blood. Drawn roughly to scale: this view is about a quarter of a millimetre across. Pick a cell.",
+  "description": "A patch of bone marrow beside the inner surface of a bone, which runs along the top. A blood vessel leaves the bone and joins a wide sinusoid across the middle. The stem cell niche sits by the bone and vessel; developing blood cells, a megakaryocyte and fat cells fill the spaces between. Nine cells are labelled.",
   "hotspots": [
     { "region": "haematopoietic-stem-cell", "target": "haematopoietic-stem-cell" },
     { "region": "plasma-cell", "target": "plasma-cell" },

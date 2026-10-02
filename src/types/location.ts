@@ -11,6 +11,8 @@ export interface Location {
   /** Path under public/, e.g. "scenes/peripheral-blood.svg". A stub's scene is planned, not drawn yet. */
   scene: string
   summary: string
+  /** What the scene shows, in a sentence or two, for people who cannot see it (read by screen readers). Required once the scene is built. */
+  description?: string
   /** SVG element id -> child location or cell id. */
   hotspots: { region: string; target: string }[]
   /** Which cells appear here, and what they do here. */
