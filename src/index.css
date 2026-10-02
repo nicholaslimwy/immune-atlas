@@ -10,6 +10,11 @@ main {
   padding: 2rem;
 }
 
+/* Stands in for a page that is still being fetched, so the layout does not jump when it arrives. */
+main.page-loading {
+  min-height: 70vh;
+}
+
 /* A narrower gutter on phones gives the stage, and so every hotspot, more room. */
 @media (max-width: 600px) {
   main {

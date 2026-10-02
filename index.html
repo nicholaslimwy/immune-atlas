@@ -5,6 +5,18 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Immune System Atlas</title>
+    <script>
+      // The front page shows the whole-body scene, which is otherwise only requested once the app has
+      // loaded and rendered. Start fetching it now; the app's own request picks up the same response.
+      if (/\/(body\/?)?$/.test(location.pathname)) {
+        var link = document.createElement('link')
+        link.rel = 'preload'
+        link.as = 'fetch'
+        link.crossOrigin = 'anonymous'
+        link.href = '%BASE_URL%scenes/body.svg'
+        document.head.appendChild(link)
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

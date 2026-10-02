@@ -1,7 +1,12 @@
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import { useNavigate } from 'react-router'
 import { useArmFilter } from './armFilterState.ts'
-import { MIN_QUERY_LENGTH, search, type SearchKind } from '../engine/search.ts'
+import type { SearchKind } from '../engine/search.ts'
+
+// The search engine (Fuse.js and the index) is a separate chunk, fetched the first time the box is used.
+type SearchEngine = typeof import('../engine/search.ts')
+let engineLoad: Promise<SearchEngine> | undefined
+const loadEngine = () => (engineLoad ??= import('../engine/search.ts'))
 
 const KIND_LABELS: Record<SearchKind, string> = {
   cell: 'Cell',
@@ -27,9 +32,14 @@ export default function SearchBox() {
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(0)
+  const [engine, setEngine] = useState<SearchEngine | null>(null)
 
-  const results = useMemo(() => search(query, undefined, arm), [query, arm])
-  const searching = query.trim().length >= MIN_QUERY_LENGTH
+  const warmUp = () => {
+    if (!engine) loadEngine().then(setEngine)
+  }
+
+  const results = useMemo(() => (engine ? engine.search(query, undefined, arm) : []), [engine, query, arm])
+  const searching = !!engine && query.trim().length >= engine.MIN_QUERY_LENGTH
   const showList = open && searching
 
   useEffect(() => {
@@ -115,7 +125,11 @@ export default function SearchBox() {
           setActive(0)
           setOpen(true)
         }}
-        onFocus={() => setOpen(true)}
+        onFocus={() => {
+          warmUp()
+          setOpen(true)
+        }}
+        onPointerEnter={warmUp}
         onKeyDown={onKeyDown}
       />
       <kbd className="search-key" aria-hidden="true">

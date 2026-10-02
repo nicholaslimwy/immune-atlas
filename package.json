@@ -12,7 +12,9 @@
     "validate": "node scripts/validate.ts",
     "a11y": "node scripts/a11y.ts",
     "a11y:keys": "node scripts/keyboard.ts",
-    "a11y:contrast": "node scripts/contrast.ts"
+    "a11y:contrast": "node scripts/contrast.ts",
+    "perf": "node scripts/perf.ts",
+    "compare": "node scripts/compare-builds.ts"
   },
   "dependencies": {
     "cytoscape": "^3.34.3",
@@ -29,6 +31,7 @@
     "@vitejs/plugin-react": "^6.1.1",
     "axe-core": "^4.13.0",
     "oxlint": "^1.81.0",
+    "svgo": "^4.1.0",
     "typescript": "~6.0.2",
     "vite": "^8.3.0"
   }

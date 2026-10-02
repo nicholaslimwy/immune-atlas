@@ -1,21 +1,33 @@
-import { useEffect, useRef } from 'react'
+import { lazy, Suspense, useEffect, useRef } from 'react'
 import { MotionConfig } from 'framer-motion'
 import { Link, Navigate, NavLink, Route, Routes, useLocation } from 'react-router'
 import ArmFilterBar from './components/ArmFilterBar.tsx'
 import IconSprite from './components/IconSprite.tsx'
 import SearchBox from './components/SearchBox.tsx'
-import GlossaryEntry from './routes/GlossaryEntry.tsx'
-import GlossaryIndex from './routes/GlossaryIndex.tsx'
-import Network from './routes/Network.tsx'
 import NotFound from './routes/NotFound.tsx'
 import SceneRoute from './routes/SceneRoute.tsx'
-import StyleGuide from './routes/StyleGuide.tsx'
 
-/** Moves keyboard focus to the page's title: what "skip to content" and a change of page both need. */
+// Everything outside the scenes is fetched when the visitor goes there, not on the first page load.
+const GlossaryEntry = lazy(() => import('./routes/GlossaryEntry.tsx'))
+const GlossaryIndex = lazy(() => import('./routes/GlossaryIndex.tsx'))
+const Network = lazy(() => import('./routes/Network.tsx'))
+const StyleGuide = lazy(() => import('./routes/StyleGuide.tsx'))
+
+/**
+ * Moves keyboard focus to the page's title: what "skip to content" and a change of page both need.
+ * A page that is still being fetched has no title yet, so wait (briefly) for it to appear.
+ */
 function focusTitle() {
-  const title = document.querySelector<HTMLElement>('main h1')
-  title?.setAttribute('tabindex', '-1')
-  title?.focus()
+  const focus = () => {
+    const title = document.querySelector<HTMLElement>('main h1')
+    title?.setAttribute('tabindex', '-1')
+    title?.focus()
+    return !!title
+  }
+  if (focus()) return
+  const watch = new MutationObserver(() => focus() && watch.disconnect())
+  watch.observe(document.body, { childList: true, subtree: true })
+  setTimeout(() => watch.disconnect(), 5000)
 }
 
 /**
@@ -65,6 +77,7 @@ export default function App() {
         <SearchBox />
       </header>
       <ArmFilterBar />
+      <Suspense fallback={<main className="page-loading" aria-busy="true" />}>
       <Routes>
         <Route path="/" element={<Navigate to="/body" replace />} />
         {/* One element for both, so exiting a tour keeps the stage (and its scene) mounted. */}
@@ -76,6 +89,7 @@ export default function App() {
         <Route path="/styleguide" element={<StyleGuide />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </Suspense>
     </MotionConfig>
   )
 }
