@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useRef } from 'react'
-import { MotionConfig } from 'framer-motion'
+import { domAnimation, LazyMotion, MotionConfig } from 'framer-motion'
 import { Link, Navigate, NavLink, Route, Routes, useLocation } from 'react-router'
 import ArmFilterBar from './components/ArmFilterBar.tsx'
 import IconSprite from './components/IconSprite.tsx'
@@ -49,47 +49,49 @@ function MoveFocusOnNavigate() {
 export default function App() {
   return (
     // Visitors who ask for reduced motion get no movement from Framer Motion; fades stay.
-    <MotionConfig reducedMotion="user">
-      <a
-        href="#main"
-        className="skip-link"
-        onClick={(e) => {
-          e.preventDefault()
-          focusTitle()
-        }}
-      >
-        Skip to main content
-      </a>
-      <MoveFocusOnNavigate />
-      <IconSprite />
-      <header className="site-header">
-        <nav className="site-nav" aria-label="Site">
-          <Link to="/body" className="site-title">
-            Immune System Atlas
-          </Link>
-          <NavLink to="/glossary" className="site-link">
-            Glossary
-          </NavLink>
-          <NavLink to="/network" className="site-link">
-            Network
-          </NavLink>
-        </nav>
-        <SearchBox />
-      </header>
-      <ArmFilterBar />
-      <Suspense fallback={<main className="page-loading" aria-busy="true" />}>
-      <Routes>
-        <Route path="/" element={<Navigate to="/body" replace />} />
-        {/* One element for both, so exiting a tour keeps the stage (and its scene) mounted. */}
-        <Route path="/body/*" element={<SceneRoute />} />
-        <Route path="/tours/*" element={<SceneRoute />} />
-        <Route path="/glossary" element={<GlossaryIndex />} />
-        <Route path="/glossary/:id" element={<GlossaryEntry />} />
-        <Route path="/network" element={<Network />} />
-        <Route path="/styleguide" element={<StyleGuide />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      </Suspense>
-    </MotionConfig>
+    <LazyMotion features={domAnimation} strict>
+      <MotionConfig reducedMotion="user">
+        <a
+          href="#main"
+          className="skip-link"
+          onClick={(e) => {
+            e.preventDefault()
+            focusTitle()
+          }}
+        >
+          Skip to main content
+        </a>
+        <MoveFocusOnNavigate />
+        <IconSprite />
+        <header className="site-header">
+          <nav className="site-nav" aria-label="Site">
+            <Link to="/body" className="site-title">
+              Immune System Atlas
+            </Link>
+            <NavLink to="/glossary" className="site-link">
+              Glossary
+            </NavLink>
+            <NavLink to="/network" className="site-link">
+              Network
+            </NavLink>
+          </nav>
+          <SearchBox />
+        </header>
+        <ArmFilterBar />
+        <Suspense fallback={<main className="page-loading" aria-busy="true" />}>
+        <Routes>
+          <Route path="/" element={<Navigate to="/body" replace />} />
+          {/* One element for both, so exiting a tour keeps the stage (and its scene) mounted. */}
+          <Route path="/body/*" element={<SceneRoute />} />
+          <Route path="/tours/*" element={<SceneRoute />} />
+          <Route path="/glossary" element={<GlossaryIndex />} />
+          <Route path="/glossary/:id" element={<GlossaryEntry />} />
+          <Route path="/network" element={<Network />} />
+          <Route path="/styleguide" element={<StyleGuide />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        </Suspense>
+      </MotionConfig>
+    </LazyMotion>
   )
 }

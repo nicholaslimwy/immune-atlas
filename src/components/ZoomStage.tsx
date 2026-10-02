@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion, useReducedMotion, type Transition, type Variants } from 'framer-motion'
+import { AnimatePresence, m, useReducedMotion, type Transition, type Variants } from 'framer-motion'
 import { getLocation } from '../engine/content.ts'
 import { loadScene } from '../engine/sceneCache.ts'
 import { CENTRE, computeNav, frameAround, sameFrame, type Shown, type ZoomNav } from '../engine/zoom.ts'
@@ -146,7 +146,7 @@ export default function ZoomStage({ location, focus, highlight = NONE, cut = fal
       {error && <p role="alert">Could not load scene ({error})</p>}
       <AnimatePresence initial={false} custom={custom}>
         {state && frame && (
-          <motion.div
+          <m.div
             key={state.shown.location.id}
             className="zoom-layer"
             custom={custom}
@@ -155,7 +155,7 @@ export default function ZoomStage({ location, focus, highlight = NONE, cut = fal
             animate="center"
             exit="exit"
           >
-            <motion.div
+            <m.div
               className="frame-layer"
               style={{ originX: 0, originY: 0 }}
               initial={false}
@@ -169,8 +169,8 @@ export default function ZoomStage({ location, focus, highlight = NONE, cut = fal
                 focus={shownFocus}
                 labelSize={labelSize}
               />
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

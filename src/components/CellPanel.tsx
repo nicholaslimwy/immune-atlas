@@ -1,6 +1,6 @@
 import type { Ref } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { getLocation } from '../engine/content.ts'
 import { mentionAnnotator } from '../engine/glossary.ts'
 import { interactionLinksOf, type InteractionLink } from '../engine/interactions.ts'
@@ -47,7 +47,7 @@ export default function CellPanel({ cell, location, headingRef }: Props) {
   }
 
   return (
-    <motion.aside
+    <m.aside
       key={cell.id}
       className="panel"
       aria-labelledby="cell-panel-title"
@@ -169,6 +169,6 @@ export default function CellPanel({ cell, location, headingRef }: Props) {
           </p>
         </footer>
       )}
-    </motion.aside>
+    </m.aside>
   )
 }

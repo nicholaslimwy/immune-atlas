@@ -35,7 +35,54 @@ function svgo(): Plugin {
   }
 }
 
+/**
+ * Pages that load their own chunks (App.tsx lazy routes, the network graph) would otherwise request them
+ * only after the app has started and rendered. For a visit that begins on one of those URLs, preload the
+ * chunks from a tiny inline script, so they download alongside the main bundle instead of after it.
+ */
+function preloadRoutes(): Plugin {
+  const ROUTES: Record<string, string[]> = {
+    network: ['src/routes/Network.tsx', 'src/components/NetworkGraph.tsx'],
+    glossary: ['src/routes/GlossaryIndex.tsx', 'src/routes/GlossaryEntry.tsx'],
+  }
+  let base = '/'
+  return {
+    name: 'atlas-preload-routes',
+    apply: 'build',
+    configResolved(config) {
+      base = config.base
+    },
+    transformIndexHtml: {
+      order: 'post',
+      handler(_html, ctx) {
+        const bundle = ctx.bundle ?? {}
+        const chunks = Object.values(bundle).filter((c) => c.type === 'chunk')
+        const byName = new Map(chunks.map((c) => [c.fileName, c]))
+        const table: Record<string, string[]> = {}
+        for (const [route, sources] of Object.entries(ROUTES)) {
+          const files = new Set<string>()
+          const add = (name: string) => {
+            const chunk = byName.get(name)
+            if (!chunk || chunk.isEntry || files.has(name)) return
+            files.add(name)
+            chunk.imports.forEach(add)
+          }
+          for (const source of sources) {
+            const chunk = chunks.find((c) => c.facadeModuleId?.replaceAll('\\', '/').endsWith(source))
+            if (chunk) add(chunk.fileName)
+          }
+          table[route] = [...files]
+        }
+        const code =
+          `var t=${JSON.stringify(table)},b=${JSON.stringify(base)},r=location.pathname.slice(b.length).split('/')[0];` +
+          `(t[r]||[]).forEach(function(f){var l=document.createElement('link');l.rel='modulepreload';l.href=b+f;document.head.appendChild(l)})`
+        return [{ tag: 'script', children: code, injectTo: 'head' }]
+      },
+    },
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), svgo()],
+  plugins: [react(), svgo(), preloadRoutes()],
 })
