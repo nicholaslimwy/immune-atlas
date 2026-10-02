@@ -14,7 +14,8 @@
     "a11y:keys": "node scripts/keyboard.ts",
     "a11y:contrast": "node scripts/contrast.ts",
     "perf": "node scripts/perf.ts",
-    "compare": "node scripts/compare-builds.ts"
+    "compare": "node scripts/compare-builds.ts",
+    "check:deploy": "node scripts/check-deploy.ts"
   },
   "dependencies": {
     "cytoscape": "^3.34.3",

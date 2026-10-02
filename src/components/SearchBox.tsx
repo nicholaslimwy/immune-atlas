@@ -1,5 +1,5 @@
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import { useArmFilter } from './armFilterState.ts'
 import type { SearchKind } from '../engine/search.ts'
 
@@ -26,6 +26,8 @@ const isTyping = (target: EventTarget | null) =>
  */
 export default function SearchBox() {
   const navigate = useNavigate()
+  // The path inside the app (without the GitHub Pages folder), comparable with a result's path.
+  const location = useLocation()
   const { arm } = useArmFilter()
   const inputRef = useRef<HTMLInputElement>(null)
   const listId = useId()
@@ -60,7 +62,7 @@ export default function SearchBox() {
     setOpen(false)
     inputRef.current?.blur()
     // Choosing the page you are already on changes nothing, so the page's own focus rules never run: put focus on its title here.
-    if (result.entry.path === window.location.pathname) {
+    if (result.entry.path === location.pathname) {
       const title = document.getElementById('cell-panel-title') ?? document.querySelector<HTMLElement>('main h1')
       title?.setAttribute('tabindex', '-1')
       title?.focus()

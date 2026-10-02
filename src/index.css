@@ -1158,6 +1158,79 @@ main.glossary {
   scroll-margin-top: 1rem;
 }
 
+/* About page (/about). */
+main.about {
+  max-width: 46rem;
+}
+
+.about-note {
+  margin: 0 0 1.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #1f2933;
+  border-left-width: 6px;
+  border-radius: 6px;
+  background: #f4f6f8;
+}
+
+.about-note h2 {
+  margin: 0 0 0.3rem;
+  font-size: 1.1rem;
+}
+
+.about-note p {
+  margin: 0;
+}
+
+.about-credits h3 {
+  margin: 1.25rem 0 0.3rem;
+  font-size: 1.05rem;
+}
+
+.about-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.about-table th,
+.about-table td {
+  padding: 0.4rem 0.5rem 0.4rem 0;
+  border-top: 1px solid #e4e7eb;
+  text-align: left;
+  vertical-align: top;
+}
+
+/* On a phone each row becomes a small card, every value labelled with its column. */
+@media (max-width: 600px) {
+  .about-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .about-table tr,
+  .about-table td {
+    display: block;
+  }
+
+  .about-table tr {
+    padding: 0.4rem 0;
+    border-top: 1px solid #e4e7eb;
+  }
+
+  .about-table td {
+    padding: 0.1rem 0;
+    border: 0;
+  }
+
+  .about-table td::before {
+    content: attr(data-label) ': ';
+    font-weight: 600;
+  }
+}
+
 /* Site header: the name and the glossary link sit together on the left. */
 .site-nav {
   display: flex;
@@ -1179,6 +1252,24 @@ main.glossary {
   .site-nav {
     gap: 0.75rem;
     font-size: 0.9rem;
+  }
+}
+
+/* The smallest phones cannot fit the name and three links on one line: the name gets its own. */
+@media (max-width: 370px) {
+  .site-nav {
+    flex-wrap: wrap;
+    row-gap: 0.3rem;
+  }
+
+  .site-title {
+    flex-basis: 100%;
+  }
+
+  /* Nor the highlight label and its four buttons, which the group would otherwise clip. */
+  .filter-bar {
+    flex-wrap: wrap;
+    row-gap: 0.3rem;
   }
 }
 

@@ -1,8 +1,9 @@
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
 import react from '@vitejs/plugin-react'
 import { defineConfig, type Plugin } from 'vite'
 import { optimiseSvg } from './scripts/optimise-svg.ts'
+import { appRoutes } from './scripts/routes.ts'
 
 /**
  * Shrinks every SVG that ships with SVGO (settings in scripts/optimise-svg.ts) while leaving the
@@ -44,6 +45,7 @@ function preloadRoutes(): Plugin {
   const ROUTES: Record<string, string[]> = {
     network: ['src/routes/Network.tsx', 'src/components/NetworkGraph.tsx'],
     glossary: ['src/routes/GlossaryIndex.tsx', 'src/routes/GlossaryEntry.tsx'],
+    about: ['src/routes/About.tsx'],
   }
   let base = '/'
   return {
@@ -82,7 +84,48 @@ function preloadRoutes(): Plugin {
   }
 }
 
+/**
+ * A static host has no server code to send every address to the app, so give each address the app answers
+ * (scripts/routes.ts) its own copy of index.html. Each is written twice, as `<path>.html` and
+ * `<path>/index.html`: GitHub Pages serves `/body/blood` from `body/blood.html` (status 200) and, if it
+ * looks for the folder first, redirects to `/body/blood/` and serves its index.html, so either way a deep
+ * link or a refresh opens the app. Any other address gets 404.html, the same app, which shows its Not found
+ * page with a real 404 status.
+ */
+function staticRoutes(): Plugin {
+  let outDir = 'dist'
+  let root = '.'
+  return {
+    name: 'atlas-static-routes',
+    apply: 'build',
+    configResolved(config) {
+      root = config.root
+      outDir = join(config.root, config.build.outDir)
+    },
+    closeBundle() {
+      const html = readFileSync(join(outDir, 'index.html'), 'utf8')
+      const write = (file: string) => {
+        mkdirSync(dirname(file), { recursive: true })
+        writeFileSync(file, html)
+      }
+      for (const route of appRoutes(root)) {
+        write(join(outDir, `${route}.html`))
+        write(join(outDir, route, 'index.html'))
+      }
+      write(join(outDir, '404.html'))
+    },
+  }
+}
+
+/** The folder the site is served from: "/" locally, "/<repository>/" on GitHub Pages (set by the deploy workflow). */
+function basePath(): string {
+  const base = process.env.BASE_PATH?.trim()
+  const folder = base?.replace(/^\/+|\/+$/g, '')
+  return folder ? `/${folder}/` : '/'
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), svgo(), preloadRoutes()],
+  base: basePath(),
+  plugins: [react(), svgo(), preloadRoutes(), staticRoutes()],
 })

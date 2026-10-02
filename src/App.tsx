@@ -8,6 +8,7 @@ import NotFound from './routes/NotFound.tsx'
 import SceneRoute from './routes/SceneRoute.tsx'
 
 // Everything outside the scenes is fetched when the visitor goes there, not on the first page load.
+const About = lazy(() => import('./routes/About.tsx'))
 const GlossaryEntry = lazy(() => import('./routes/GlossaryEntry.tsx'))
 const GlossaryIndex = lazy(() => import('./routes/GlossaryIndex.tsx'))
 const Network = lazy(() => import('./routes/Network.tsx'))
@@ -74,6 +75,9 @@ export default function App() {
             <NavLink to="/network" className="site-link">
               Network
             </NavLink>
+            <NavLink to="/about" className="site-link">
+              About
+            </NavLink>
           </nav>
           <SearchBox />
         </header>
@@ -88,6 +92,7 @@ export default function App() {
           <Route path="/glossary/:id" element={<GlossaryEntry />} />
           <Route path="/network" element={<Network />} />
           <Route path="/styleguide" element={<StyleGuide />} />
+          <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>

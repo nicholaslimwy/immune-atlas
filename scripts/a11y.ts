@@ -35,6 +35,7 @@ for (const id of ids('molecules')) routes.push({ name: `glossary entry ${id}`, p
 routes.push({ name: 'network graph', path: '/network' })
 routes.push({ name: 'network list', path: '/network?view=list' })
 routes.push({ name: 'styleguide', path: '/styleguide' })
+routes.push({ name: 'about', path: '/about' })
 routes.push({ name: 'not found', path: '/nowhere' })
 // Open states.
 routes.push({
