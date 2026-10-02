@@ -5,6 +5,7 @@
 // right, support cells and places down the middle, each family kept together. Positions never depend
 // on the type filter, so a cell stays where the visitor last saw it whichever type is shown.
 import type { Cell } from '../types/cell.ts'
+import type { Arm } from './armFilter.ts'
 import { INTERACTION_TYPES, type Interaction } from '../types/interaction.ts'
 import { getCell, getCells, getInteractions, getLocation } from './content.ts'
 import { entityPath } from './paths.ts'
@@ -24,6 +25,8 @@ export interface NetNode {
   /** The name without its bracketed gloss, for the graph: "NK cell", not "NK cell (natural killer cell)". */
   label: string
   family?: Cell['family']
+  /** The cell's arm, which the arm filter compares against. */
+  arm?: Arm
   column: Column
   /** Where a tap goes: the cell's panel in its home scene, or the place's scene. */
   path: string
@@ -64,6 +67,7 @@ export function getNetwork(): Network {
     name: cell.name,
     label: shortName(cell.name),
     family: cell.family,
+    arm: cell.arm,
     column: columnOf(cell.family),
     path: entityPath(cell.id)!,
   }))

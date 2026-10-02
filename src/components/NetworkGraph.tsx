@@ -4,12 +4,15 @@ import cytoscape, { type Core, type Css, type EventObject, type StylesheetJson }
 import { useEffect, useRef } from 'react'
 import { EDGE_STYLES, FAMILY_SHAPES, PLACE_STYLE } from '../art/networkStyles.ts'
 import { FAMILY_COLOURS, INK } from '../art/palette.ts'
+import type { Arm } from '../engine/armFilter.ts'
 import { type InteractionType, type LayoutMode, layoutNetwork, type NetNode, type Network } from '../engine/network.ts'
 
 export interface NetworkGraphProps {
   network: Network
   /** Show only this type's edges (and fade the cells it does not touch); null shows every type. */
   type: InteractionType | null
+  /** Dim the cells outside this arm (and the interactions that touch none of its cells); null dims nothing. */
+  arm: Arm | null
   selectedEdge: string | null
   onSelectEdge: (id: string | null) => void
   onOpenNode: (node: NetNode) => void
@@ -94,6 +97,8 @@ function stylesheet(): StylesheetJson {
     ...types,
     { selector: '.hidden', style: { display: 'none' } },
     { selector: 'node.faded', style: { opacity: 0.3 } },
+    { selector: 'node.off', style: { opacity: 0.3 } },
+    { selector: 'edge.off', style: { opacity: 0.12 } },
     { selector: '.dim', style: { opacity: 0.1 } },
     { selector: 'edge.lit', style: { opacity: 1, 'z-index': 5 } },
     { selector: 'node.lit', style: { 'border-color': INK, 'font-weight': 'bold' } },
@@ -105,7 +110,7 @@ function stylesheet(): StylesheetJson {
 const isMouse = (e: EventObject) => e.originalEvent instanceof MouseEvent && !(e.originalEvent instanceof TouchEvent)
 
 export default function NetworkGraph(props: NetworkGraphProps) {
-  const { network, type, selectedEdge } = props
+  const { network, type, arm, selectedEdge } = props
   const boxRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLDivElement>(null)
   const cyRef = useRef<Core | null>(null)
@@ -126,7 +131,7 @@ export default function NetworkGraph(props: NetworkGraphProps) {
       elements: [
         ...network.nodes.map((n) => ({
           group: 'nodes' as const,
-          data: { id: n.id, label: n.label, kind: n.kind, family: n.family ?? '' },
+          data: { id: n.id, label: n.label, kind: n.kind, family: n.family ?? '', arm: n.arm ?? '' },
         })),
         ...network.edges.map((e) => ({
           group: 'edges' as const,
@@ -293,6 +298,20 @@ export default function NetworkGraph(props: NetworkGraphProps) {
       cy.nodes().not(shown.connectedNodes()).addClass('faded')
     })
   }, [type])
+
+  // The arm filter: cells outside the arm fade, and so do interactions with no cell of the arm at
+  // either end (a place counts for neither side). Independent of the type filter; nothing moves.
+  useEffect(() => {
+    const cy = cyRef.current
+    if (!cy) return
+    cy.batch(() => {
+      cy.elements().removeClass('off')
+      if (!arm) return
+      const inArm = cy.nodes(`[arm = "${arm}"]`)
+      cy.nodes('[kind = "cell"]').not(inArm).addClass('off')
+      cy.edges().not(inArm.connectedEdges()).addClass('off')
+    })
+  }, [arm, network])
 
   // The chosen edge is drawn thick, with its two ends outlined.
   useEffect(() => {

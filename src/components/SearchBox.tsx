@@ -1,5 +1,6 @@
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import { useNavigate } from 'react-router'
+import { useArmFilter } from './armFilterState.ts'
 import { MIN_QUERY_LENGTH, search, type SearchKind } from '../engine/search.ts'
 
 const KIND_LABELS: Record<SearchKind, string> = {
@@ -20,13 +21,14 @@ const isTyping = (target: EventTarget | null) =>
  */
 export default function SearchBox() {
   const navigate = useNavigate()
+  const { arm } = useArmFilter()
   const inputRef = useRef<HTMLInputElement>(null)
   const listId = useId()
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(0)
 
-  const results = useMemo(() => search(query), [query])
+  const results = useMemo(() => search(query, undefined, arm), [query, arm])
   const searching = query.trim().length >= MIN_QUERY_LENGTH
   const showList = open && searching
 

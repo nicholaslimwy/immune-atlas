@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
+import { matchesArm } from '../engine/armFilter.ts'
 import { getCell, getLocation } from '../engine/content.ts'
 import { cellPathFor, pathFor } from '../engine/paths.ts'
 import type { Location } from '../types/location.ts'
+import { useArmFilter } from './armFilterState.ts'
 
 const SVG_NS = 'http://www.w3.org/2000/svg'
 
@@ -25,6 +27,7 @@ const LABEL_BASE = 15
 // The SVG text is preloaded by ZoomStage and inlined here so hotspot regions are real DOM elements.
 export default function Scene({ location, svg, highlight, focus, labelSize }: Props) {
   const navigate = useNavigate()
+  const { arm } = useArmFilter()
   const containerRef = useRef<HTMLDivElement>(null)
   // A place that is not built yet, picked from this scene: shown as a notice instead of zooming.
   const [soon, setSoon] = useState<Location>()
@@ -62,6 +65,22 @@ export default function Scene({ location, svg, highlight, focus, labelSize }: Pr
       }
     }
   }, [svg, location])
+
+  // The arm filter dims cells outside the chosen arm: hotspot cells, and the unlabelled copies of
+  // cell icons that fill a scene (a hotspot's own art is dimmed with its group). Places stay as they are.
+  useEffect(() => {
+    const root = containerRef.current
+    if (!root) return
+    for (const { region, target } of location.hotspots) {
+      const dim = !!getCell(target) && !matchesArm(arm, target)
+      root.querySelector(`[id="${region}"]`)?.classList.toggle('filter-dim', dim)
+    }
+    for (const use of root.querySelectorAll('use')) {
+      if (use.closest('.hotspot')) continue
+      const id = use.getAttribute('href')?.match(/^#icon-(.+)$/)?.[1]
+      use.classList.toggle('filter-dim', !!id && !!getCell(id) && !matchesArm(arm, id))
+    }
+  }, [svg, location, arm])
 
   // A tour step marks the cells it is about and the hotspot it points at; free exploration clears both.
   useEffect(() => {

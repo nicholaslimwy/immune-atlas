@@ -1,4 +1,5 @@
 import { Link, Navigate, NavLink, Route, Routes } from 'react-router'
+import ArmFilterBar from './components/ArmFilterBar.tsx'
 import IconSprite from './components/IconSprite.tsx'
 import SearchBox from './components/SearchBox.tsx'
 import GlossaryEntry from './routes/GlossaryEntry.tsx'
@@ -26,6 +27,7 @@ export default function App() {
         </nav>
         <SearchBox />
       </header>
+      <ArmFilterBar />
       <Routes>
         <Route path="/" element={<Navigate to="/body" replace />} />
         {/* One element for both, so exiting a tour keeps the stage (and its scene) mounted. */}

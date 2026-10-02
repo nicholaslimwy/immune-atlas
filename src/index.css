@@ -111,6 +111,22 @@ g.hotspot:is(:hover, :focus-visible) .hit {
   stroke: #1a73e8;
 }
 
+/* The arm filter dims cells outside the chosen arm. Hovering or focusing one brings it back so its label reads. */
+.scene .filter-dim {
+  opacity: 0.3;
+  transition: opacity 0.2s;
+}
+
+.scene g.hotspot.filter-dim:is(:hover, :focus-visible) {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene .filter-dim {
+    transition: none;
+  }
+}
+
 .scene-label-sub {
   font-size: 13px;
   font-weight: 400;
@@ -758,6 +774,61 @@ main[data-tour] {
   }
 }
 
+/* "Highlight" bar under the header: the arm filter. */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 2rem;
+  border-bottom: 1px solid #c9ced6;
+  background: #f7f8fa;
+}
+
+.filter-label {
+  font-size: 0.9rem;
+  color: #4a525c;
+}
+
+.filter-group {
+  display: inline-flex;
+  border: 1px solid #1f2933;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.filter-group button {
+  font: inherit;
+  padding: 0.25rem 0.9rem;
+  border: 0;
+  background: #fff;
+  cursor: pointer;
+}
+
+.filter-group button + button {
+  border-left: 1px solid #1f2933;
+}
+
+.filter-group button[aria-pressed='true'] {
+  background: #1f2933;
+  color: #fff;
+}
+
+.filter-group button:focus-visible {
+  outline: 2px solid #1a73e8;
+  outline-offset: -3px;
+}
+
+@media (max-width: 600px) {
+  .filter-bar {
+    padding: 0.4rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .filter-group button {
+    padding: 0.3rem 0.65rem;
+  }
+}
+
 /* Site header: the name on the left, search on the right, on every page. */
 .site-header {
   position: relative;
@@ -1132,6 +1203,10 @@ main.network {
 
 .network-legend button:disabled .network-sample {
   opacity: 0.5;
+}
+
+.network-list li.is-off {
+  opacity: 0.7;
 }
 
 .network-count {

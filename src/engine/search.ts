@@ -5,6 +5,7 @@
 // Fuse's own score mixes the weights of every field, so it is not used to rank: each proposal is
 // checked and ranked by word-level edit distance instead, which drops accidental matches.
 import Fuse from 'fuse.js'
+import type { Arm } from './armFilter.ts'
 import { getCellHome, getCells, getLocation, getLocations, getMolecules, getTours } from './content.ts'
 import { cellPathFor, glossaryPathFor, pathFor } from './paths.ts'
 import { tourStepPath } from './tours.ts'
@@ -32,6 +33,8 @@ export interface SearchEntry {
   context: string
   /** Where choosing the result goes. */
   path: string
+  /** A cell's arm, for the arm filter; absent on molecules, places and tours. */
+  arm?: Arm
   fields: Field[]
   // The same text as plain arrays, for Fuse.
   names: string[]
@@ -92,7 +95,7 @@ export function markerKeys(marker: string): string[] {
 }
 
 function makeEntry(
-  base: Pick<SearchEntry, 'kind' | 'id' | 'name' | 'context' | 'path'>,
+  base: Pick<SearchEntry, 'kind' | 'id' | 'name' | 'context' | 'path' | 'arm'>,
   aliases: string[] = [],
   markers: string[] = [],
 ): SearchEntry {
@@ -127,7 +130,7 @@ export function buildEntries(): SearchEntry[] {
     const home = getCellHome(cell)
     entries.push(
       makeEntry(
-        { kind: 'cell', id: cell.id, name: cell.name, context: `Opens in ${home.name}`, path: cellPathFor(home, cell.id) },
+        { kind: 'cell', id: cell.id, name: cell.name, context: `Opens in ${home.name}`, path: cellPathFor(home, cell.id), arm: cell.arm },
         cell.aliases,
         cell.markers,
       ),
@@ -289,7 +292,12 @@ export const MIN_QUERY_LENGTH = 2
 /** A typo needs room to hide in: below this, only exact, word, word-start and substring hits count. */
 const FUZZY_MIN_LENGTH = 4
 
-export function search(query: string, limit = 20): SearchResult[] {
+/**
+ * Results for a query, best first. With an arm filter on, cells of that arm come first (each group
+ * keeps its own order), so a search for "CD4" under "Innate" lists the innate cells that carry CD4
+ * before the T cells. Everything else still shows, just later.
+ */
+export function search(query: string, limit = 20, arm: Arm | null = null): SearchResult[] {
   const q: Query = { squashed: squash(query), words: wordsOf(query) }
   if (q.squashed.length < MIN_QUERY_LENGTH) return []
   const { entries, fuse } = index()
@@ -305,8 +313,9 @@ export function search(query: string, limit = 20): SearchResult[] {
       if (rank !== undefined) found.set(r.item.key, { entry: r.item, rank })
     }
   }
+  const matches = (e: SearchEntry) => arm !== null && e.arm === arm
   return [...found.values()]
-    .sort((a, b) => a.rank - b.rank || a.entry.name.length - b.entry.name.length || a.entry.name.localeCompare(b.entry.name))
+    .sort((a, b) => Number(matches(b.entry)) - Number(matches(a.entry)) || a.rank - b.rank || a.entry.name.length - b.entry.name.length || a.entry.name.localeCompare(b.entry.name))
     .slice(0, limit)
     .map(({ entry, hint }) => ({ entry, hint }))
 }

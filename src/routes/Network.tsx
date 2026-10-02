@@ -3,6 +3,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router'
 import { EDGE_STYLES, FAMILY_SHAPES, PLACE_STYLE } from '../art/networkStyles.ts'
 import { FAMILY_COLOURS } from '../art/palette.ts'
 import MoleculeText from '../components/MoleculeText.tsx'
+import { useArmFilter } from '../components/armFilterState.ts'
 import PageTopbar from '../components/PageTopbar.tsx'
 import { getInteraction, getLocation, getMolecule } from '../engine/content.ts'
 import { mentionAnnotator } from '../engine/glossary.ts'
@@ -19,6 +20,7 @@ import {
 } from '../engine/network.ts'
 import { entityPath, glossaryPathFor } from '../engine/paths.ts'
 import { INTERACTION_TYPES } from '../types/interaction.ts'
+import type { Arm } from '../engine/armFilter.ts'
 import type { Cell } from '../types/cell.ts'
 
 const NetworkGraph = lazy(() => import('../components/NetworkGraph.tsx'))
@@ -43,6 +45,7 @@ export default function Network() {
   const typeParam = params.get('type')
   const type = isInteractionType(typeParam) && counts[typeParam] > 0 ? typeParam : null
   const view = params.get('view') === 'list' ? 'list' : 'graph'
+  const { arm } = useArmFilter()
   const [chosen, setChosen] = useState<string | null>(null)
   const [hovered, setHovered] = useState<NetNode | null>(null)
   const shown = visiblePart(net, type)
@@ -160,6 +163,7 @@ export default function Network() {
               <NetworkGraph
                 network={net}
                 type={type}
+                arm={arm}
                 selectedEdge={selectedEdge}
                 onSelectEdge={setChosen}
                 onOpenNode={(node) => navigate(node.path)}
@@ -204,7 +208,7 @@ export default function Network() {
               </h2>
               <ul>
                 {g.rows.map((row) => (
-                  <li key={row.edge.id}>
+                  <li key={row.edge.id} className={arm && !touchesArm(row, arm) ? 'is-off' : undefined}>
                     <RowBody row={row} />
                   </li>
                 ))}
@@ -216,6 +220,9 @@ export default function Network() {
     </main>
   )
 }
+
+/** True when either end of the record is a cell of this arm. */
+const touchesArm = (row: Row, arm: Arm) => row.source.arm === arm || row.target.arm === arm
 
 /** "Macrophage recruits Neutrophil", the description, and the molecules and places involved. */
 function RowBody({ row }: { row: Row }) {
