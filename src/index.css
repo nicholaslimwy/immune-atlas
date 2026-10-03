@@ -413,9 +413,12 @@ g.hotspot-soon .leader-dot {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* width: 100% (capped by each one's max-width): with auto margins and no width, a grid item shrinks to
+     its content, and the stage has none (its layers are absolute), so beside a panel it collapsed to 0. */
   .workspace > .stage,
   .workspace > .scene-networks,
   .workspace > .scene-caption {
+    width: 100%;
     margin-inline: auto;
   }
 }
