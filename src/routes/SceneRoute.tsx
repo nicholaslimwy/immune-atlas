@@ -218,7 +218,14 @@ export default function SceneRoute() {
         </p>
       ))}
       <div className={open || inTour ? 'workspace with-panel' : 'workspace'} data-show={inTour ? undefined : show}>
-        <ZoomStage location={loc} focus={focus} highlight={step?.highlight} arrows={arrows} cut={inTour} />
+        <ZoomStage
+          location={loc}
+          focus={focus}
+          highlight={step?.highlight}
+          arrows={arrows}
+          cut={inTour}
+          processStep={story?.kind === 'process' && step && index !== undefined ? { id: story.id, step: index + 1 } : undefined}
+        />
         {underStage && <SceneNetworks networks={networks} show={show} onShow={setShow} />}
         {underStage && loc.caption && <p className="scene-caption">{loc.caption}</p>}
         {story && inTour && index !== undefined ? (

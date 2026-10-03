@@ -10,12 +10,15 @@ import type { Cell } from '../src/types/cell.ts'
 import type { Interaction } from '../src/types/interaction.ts'
 import type { Location } from '../src/types/location.ts'
 import type { Molecule } from '../src/types/molecule.ts'
+import type { SceneLoop } from '../src/types/loop.ts'
 import type { Process } from '../src/types/process.ts'
 import type { Tour } from '../src/types/tour.ts'
+import { buildTimeline, routeSeconds } from '../src/engine/loop.ts'
 import {
   cellShape,
   interactionShape,
   locationShape,
+  loopShape,
   moleculeShape,
   objectOf,
   processShape,
@@ -100,6 +103,7 @@ const interactionFiles = load<Interaction>('interactions', interactionShape)
 const moleculeFiles = load<Molecule>('molecules', moleculeShape)
 const tourFiles = load<Tour>('tours', tourShape)
 const processFiles = load<Process>('processes', processShape)
+const loopFiles = load<SceneLoop>('loops', loopShape)
 
 const isLocation = (id: string) => locationFiles.ids.has(id)
 const isCell = (id: string) => cellFiles.ids.has(id)
@@ -403,6 +407,130 @@ for (const { file, data: process } of processFiles.valid.values()) {
   })
 }
 
+// Scene loops: a looping animation in one built scene. Its places sit on the stage, every stop names a
+// place and a phase, every actor's rounds add up to the same length (so the loop joins up), and a
+// process it follows is told in the same scene.
+const LOOP_LEVELS = 4
+const SPEED_MAX_WORDS = 3
+const SPEED_NOTE_MAX_WORDS = 8
+const loopScenes = new Map<string, string>() // location -> loop file
+for (const { file, data: loop } of loopFiles.valid.values()) {
+  const loc = locations.get(loop.location)?.data
+  if (!loc) {
+    if (!isLocation(loop.location)) error(file, `location: no location "${loop.location}"`)
+    continue
+  }
+  if (loc.status === 'stub') {
+    error(file, `location: "${loc.id}" is a stub and has no scene to play in`)
+    continue
+  }
+  const other = loopScenes.get(loc.id)
+  if (other) error(file, `location: ${other} already plays in "${loc.id}"; a scene has one loop`)
+  loopScenes.set(loc.id, file)
+  const svgPath = join(root, 'public', loc.scene)
+  const svg = existsSync(svgPath) ? readFileSync(svgPath, 'utf8') : ''
+  const marks = svg.match(new RegExp(`\\sdata-loop="${loop.id}"`, 'g'))?.length ?? 0
+  if (marks !== 1) error(file, `public/${loc.scene} needs exactly one <g data-loop="${loop.id}"> to draw in (found ${marks})`)
+
+  if (!isCell(loop.look)) error(file, `look: no cell "${loop.look}"`)
+  else if (!loc.residents.some((r) => r.cell === loop.look)) warn(file, `look: "${loop.look}" is not a resident of ${loc.id}`)
+  if (loop.signal !== undefined && !isCell(loop.signal)) error(file, `signal: no cell "${loop.signal}"`)
+  const words = (s?: string) => s?.trim().split(/\s+/).length ?? 0
+  if (words(loop.speed) > SPEED_MAX_WORDS) error(file, `speed: ${words(loop.speed)} words; it is a small label, keep it to ${SPEED_MAX_WORDS}`)
+  if (words(loop.speedNote) > SPEED_NOTE_MAX_WORDS) error(file, `speedNote: ${words(loop.speedNote)} words; keep it to ${SPEED_NOTE_MAX_WORDS}`)
+
+  for (const [name, [x, y]] of Object.entries(loop.places)) {
+    if (x < 0 || x > 800 || y < 0 || y > 500) error(file, `places.${name}: [${x}, ${y}] is off the 800 x 500 stage`)
+  }
+  const isPlace = (name: string) => name in loop.places
+
+  const phaseIds = new Set<string>()
+  const process = loop.process === undefined ? undefined : processFiles.valid.get(loop.process)?.data
+  if (loop.process !== undefined && !process) error(file, `process: no process "${loop.process}"`)
+  if (process && process.location !== loc.id) error(file, `process: "${process.id}" is told in ${process.location}, not ${loc.id}`)
+  loop.phases.forEach((phase, i) => {
+    if (phaseIds.has(phase.id)) error(file, `phases[${i}].id: "${phase.id}" is used twice`)
+    phaseIds.add(phase.id)
+    phase.steps.forEach((n, j) => {
+      if (!process) error(file, `phases[${i}].steps[${j}]: steps need a process`)
+      else if (!Number.isInteger(n) || n < 1 || n > process.steps.length) {
+        error(file, `phases[${i}].steps[${j}]: ${n} is not a step of ${process.id} (1 to ${process.steps.length})`)
+      }
+    })
+  })
+
+  // Slots a route uses ("$home"), so an actor that plays it can be checked for binding them all.
+  const slotsOf = new Map<string, Set<string>>()
+  for (const [name, stops] of Object.entries(loop.routes)) {
+    const slots = new Set<string>()
+    if (!stops.length) error(file, `routes.${name}: a route needs at least one stop`)
+    if (stops[0]?.move) error(file, `routes.${name}[0]: the first stop cannot move (the cell starts there)`)
+    stops.forEach((stop, i) => {
+      const at = `routes.${name}[${i}]`
+      for (const [field, ref] of [['at', stop.at], ['face', stop.face]] as const) {
+        if (ref === undefined) continue
+        if (ref.startsWith('$')) slots.add(ref.slice(1))
+        else if (!isPlace(ref)) error(file, `${at}.${field}: no place "${ref}"`)
+      }
+      if (!phaseIds.has(stop.phase)) error(file, `${at}.phase: no phase "${stop.phase}"`)
+      if ((stop.move ?? 0) < 0 || (stop.stay ?? 0) < 0) error(file, `${at}: move and stay cannot be negative`)
+      if (!stop.move && !stop.stay) error(file, `${at}: needs a move or a stay (seconds)`)
+      if ((stop.do === 'die' || stop.do === 'leave') && !stop.move) error(file, `${at}.do: "${stop.do}" happens on a move`)
+      if ((stop.do === 'divide' || stop.do === 'take' || stop.do === 'help') && !stop.stay) {
+        error(file, `${at}.do: "${stop.do}" happens during a stay`)
+      }
+    })
+    slotsOf.set(name, slots)
+  }
+
+  const bound = (where: string, route: string, slots: Record<string, string>) => {
+    if (!(route in loop.routes)) {
+      error(file, `${where}: no route "${route}"`)
+      return false
+    }
+    for (const slot of slotsOf.get(route) ?? []) {
+      if (!(slot in slots)) error(file, `${where}: route "${route}" needs slot "${slot}"`)
+    }
+    for (const [slot, place] of Object.entries(slots)) {
+      if (!isPlace(place)) error(file, `${where}.slots.${slot}: no place "${place}"`)
+    }
+    return true
+  }
+  const level = (where: string, n: number) => {
+    if (!Number.isInteger(n) || n < 0 || n >= LOOP_LEVELS) error(file, `${where}.level: ${n}; levels are 0 to ${LOOP_LEVELS - 1}`)
+  }
+
+  if (!loop.actors.length) error(file, 'actors: a loop needs at least one actor')
+  const lengths = loop.actors.map((actor, i) => {
+    if (!actor.rounds.length) error(file, `actors[${i}].rounds: an actor needs at least one round`)
+    const ok = actor.rounds.map((r, j) => {
+      level(`actors[${i}].rounds[${j}]`, r.level)
+      return bound(`actors[${i}].rounds[${j}]`, r.route, actor.slots)
+    })
+    return ok.every(Boolean) && actor.rounds.length ? buildTimeline(loop, actor.rounds, actor.slots).duration : undefined
+  })
+  const first = lengths.find((n) => n !== undefined)
+  lengths.forEach((n, i) => {
+    if (n !== undefined && first !== undefined && Math.abs(n - first) > 0.01) {
+      error(file, `actors[${i}]: its rounds last ${n.toFixed(2)} s, the first actor's ${first.toFixed(2)} s; they must match for the loop to join up`)
+    }
+  })
+
+  loop.still.cells.forEach((cell, i) => {
+    const where = `still.cells[${i}]`
+    level(where, cell.level)
+    if (bound(where, cell.route, cell.slots)) {
+      const len = routeSeconds(loop.routes[cell.route])
+      if (cell.time < 0 || cell.time >= len) error(file, `${where}.time: ${cell.time} s is outside route "${cell.route}" (0 to ${len} s)`)
+    }
+  })
+  loop.still.arrows.forEach((arrow, i) => {
+    if (!isPlace(arrow.from)) error(file, `still.arrows[${i}].from: no place "${arrow.from}"`)
+    if (!isPlace(arrow.to)) error(file, `still.arrows[${i}].to: no place "${arrow.to}"`)
+    if (!phaseIds.has(arrow.phase)) error(file, `still.arrows[${i}].phase: no phase "${arrow.phase}"`)
+  })
+}
+
 // Icons (src/icons/<cell id>.svg): one per cell, drawn to the style guide, palette colours only.
 // Reserved names are icons that are not cells: generic.svg (the placeholder for cells without an
 // icon) and red-blood-cell.svg (background art).
@@ -441,7 +569,7 @@ for (const [file, messages] of [...problems].sort(([a], [b]) => a.localeCompare(
 const summary =
   `${locationFiles.valid.size} locations, ${cellFiles.valid.size} cells, ` +
   `${interactionFiles.valid.size} interactions, ${moleculeFiles.valid.size} molecules, ${tourFiles.valid.size} tours, ` +
-  `${processFiles.valid.size} processes, ` +
+  `${processFiles.valid.size} processes, ${loopFiles.valid.size} loops, ` +
   `${iconNames.length} icons`
 if (errorCount) {
   console.log(`\nContent invalid: ${errorCount} error(s), ${warningCount} warning(s) across ${problems.size} file(s).`)

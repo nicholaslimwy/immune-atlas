@@ -19,7 +19,8 @@ const locations = ids('locations').map((id) => json('locations', id))
 const byId = new Map(locations.map((l) => [l.id, l]))
 const pathOf = (l: any): string => (l.parent ? `${pathOf(byId.get(l.parent))}/${l.slug ?? l.id}` : `/${l.slug ?? l.id}`)
 const built = locations.filter((l) => l.status !== 'stub')
-const routes: { name: string; path: string; before?: string }[] = []
+// motion: run with reduced motion off (every other route runs with it on), for what only moving scenes show.
+const routes: { name: string; path: string; before?: string; motion?: boolean }[] = []
 for (const l of built) routes.push({ name: `scene ${l.id}`, path: pathOf(l) })
 for (const id of ids('cells')) {
   const home = built.find((l) => l.residents.some((r: any) => r.cell === id) && l.hotspots.some((h: any) => h.target === id))
@@ -47,6 +48,13 @@ routes.push({
   before: `(() => { const i = document.querySelector('.search-input'); i.focus(); })()`,
 })
 routes.push({ name: 'highlight filter: innate', path: '/body/lymph-node', before: `localStorage.setItem('immune-atlas:arm-filter', 'innate'); location.reload()` })
+// A scene loop's Pause/Play button and Sped up label are only there with motion on.
+for (const id of ids('loops')) {
+  const loop = json('loops', id)
+  const at = built.find((l) => l.id === loop.location)
+  if (at) routes.push({ name: `loop ${id} with motion`, path: pathOf(at), motion: true })
+  if (loop.process) routes.push({ name: `loop ${id} with motion, process step 2`, path: `/processes/${loop.process}/2`, motion: true })
+}
 
 // A11Y_ONLY=<regex> limits the run to routes whose name matches (for rechecking a fix).
 const only = process.env.A11Y_ONLY ? new RegExp(process.env.A11Y_ONLY, 'i') : undefined
@@ -63,6 +71,7 @@ const run = async (b: Browser, label: string) => {
   let failures = 0
   for (const r of routes) {
     await b.eval(`localStorage.removeItem('immune-atlas:arm-filter')`).catch(() => {})
+    if (r.motion) await b.setMedia([{ name: 'prefers-reduced-motion', value: 'no-preference' }])
     await b.goto(base + r.path, 1600)
     if (r.name === 'search results') {
       await b.key('/')
@@ -83,6 +92,7 @@ const run = async (b: Browser, label: string) => {
       const shorten = (n) => ({ target: n.target.map(String), summary: (n.failureSummary || '').split('\\n').slice(0, 3).join(' ').slice(0, 220) })
       return { violations: r.violations.map(v => ({ id: v.id, impact: v.impact, help: v.help, nodes: v.nodes.slice(0, 4).map(shorten) })), incomplete: r.incomplete.length }
     })()`)
+    if (r.motion) await b.setMedia([{ name: 'prefers-reduced-motion', value: 'reduce' }])
     // Reflow (WCAG 1.4.10): at 320 CSS px wide nothing may need sideways scrolling.
     const overflow = await b.eval<string[]>(`(() => {
       const w = document.documentElement.clientWidth

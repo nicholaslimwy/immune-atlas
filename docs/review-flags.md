@@ -163,3 +163,34 @@ Captions and region text carry no citations of their own (Process and Location h
 - Dark zone and light zone regions rewritten (summaries of 44 and 54 words; four and five "What happens here" points).
 - The four new citations and Allen 2004 were matched on Europe PMC (authors, journal, year, volume, issue, pages) and their abstracts read; the full papers were not.
 - `content/processes/placeholder.json` is deleted.
+
+# Review flags: germinal centre, affinity maturation loop
+
+For the immunology reviewer. Covers the looping animation in the germinal centre scene (`content/loops/affinity-maturation.json`, drawn by `src/components/SceneLoop.tsx`), its still diagram under reduced motion, and the scene edits that came with it. Written 2026-10-03 on branch `processes`. Nothing here has been reviewed. The loop carries no citations of its own (no `sources` field); it shows what the process captions and the dark and light zone regions already say, and every point below is a drawing choice, not a new claim, unless it says otherwise.
+
+## What it shows
+
+Ten B cells, each playing three rounds of 12 seconds (a 36-second loop), started 1.2 seconds apart so no two are at the same point of a round. One round: divide in the dark zone (3 s), move to the light zone (2.4 s), take antigen from a follicular dendritic cell (1.8 s), move to a Tfh cell and wait for help (2.4 s), then return to the dark zone, die and be swallowed by the macrophage, or leave as a plasma cell or memory B cell (2.4 s). Over one loop: 15 returns, 11 deaths, 2 plasma cells and 2 memory B cells. While a "See how it works" step is open, cells in the matching part of the loop are ringed and the rest fade back: step 2 division; 3 moving to the light zone; 4 taking antigen; 5 Tfh help; 6 returning and dying; 7 returning and leaving. Step 1 highlights nothing.
+
+## Simplifications
+
+1. **Sped up, with no number.** The label says "Sped up: a real round takes hours". A round in mice takes hours (mouse imaging, Victora 2010, already cited for the process); the animation gives no figure, so none needs checking, but "hours" itself is from the process's own sources, not a new one.
+2. **One division per round.** Each cell divides once in the dark zone; real cells divide several times per visit, more after more help (process step 6 says so). Only one daughter is followed; the other drifts off and fades into the crowd of dark-zone cells. That fade is not death (dying cells look different: shrunken, receptors gone, nucleus in pieces).
+3. **Mutation as receptor shape.** Every daughter shows a new receptor shape, one of four: bent short arms (poor fit), a plain Y, a Y with knobs, a Y with inward hooks (best grip). Real affinity changes in small steps and most mutations are neutral or harmful; four shapes stand for "worse or better". The two daughters of a division always differ. At phone size the shapes are a pixel or two and do not read; the cell colour never changes.
+4. **Better grip, more antigen, more help.** A cell takes as many antigen pieces (0 to 3) as its receptor level; only a cell holding antigen gets help. This draws the light-zone rule in the captions (more antigen captured, more help) as a count. Some cells that took one piece still die without help, to show competition, not just a threshold.
+5. **Antigen as beads.** The follicular dendritic cell processes now carry small ink beads (antigen held on their surface); the moving pieces are the same beads. They are not to scale and do not show antibody or complement on the antigen.
+6. **Help as two dots.** Tfh help is drawn as two small blue dots crossing into the B cell. CD40L is a surface molecule, not a released one, and peptide shown on MHC class II is not drawn; the dots stand for "a signal from the Tfh cell", in the Tfh colour.
+7. **Where cells die.** Dying cells travel from the light zone across the midline to the one labelled macrophage, in the dark zone, and disappear under it. Real tingible body macrophages sit in both zones and clear dying cells near where they die; cells with damaged receptors also die in the dark zone (dark zone region text), which the loop does not show (a level-0 cell still crosses to the light zone and dies there).
+8. **How many die.** 11 of the 26 rounds that do not end in exit end in death. The light zone region says that in mice up to half of all germinal centre B cells die every six hours; the loop keeps roughly that share but makes no claim about the rate.
+9. **Exits.** Exiting cells leave from the light zone along the scene's exit arrows and fade out beside the labelled memory B cell or plasma cell; they keep the germinal centre B cell look until they fade. Plasma cells leave with the best receptor shape, memory B cells with the second best: this follows the mouse picture that memory B cells leave earlier and with lower affinity than plasma cells (Weisel 2016 is cited in flag 17 above; I did not check a source for affinity at exit). The reviewer may prefer both at the best shape.
+10. **Two Tfh cells.** Cells meet either the labelled Tfh cell or the unlabelled one near the midline; each contact lasts about a second.
+11. **Fixed paths.** Cells glide along gentle curves between fixed spots (curving up when they cross to the light zone and down when they come back, like the process arrows). Real cells crawl along the follicular dendritic cell network and do not keep to lanes.
+12. **The look of the moving cells.** They are the generic placeholder body in B-cell colours plus five B-cell receptors (no germinal centre B cell icon exists yet). The scene's other germinal centre B cells, including the labelled one, are placeholders without receptors, so the moving ones look a little different from the still ones until the icon is drawn.
+13. **Fewer still cells.** 11 of the 22 decorative germinal centre B cells were removed, so the moving ones have room and the dark zone is still the more crowded half.
+14. **The still diagram** (reduced motion) shows one cell per stage: a cell just divided (two daughters), one holding antigen at a follicular dendritic cell, one getting help at the Tfh cell, one dying on its way to the macrophage, joined by thin arrows (to the light zone, to the Tfh cell, back to the dark zone, to the macrophage). Leaving is shown by the scene's own exit arrows.
+
+## Changes made in this session that need a look
+
+- New content type `content/loops/` (schema in `CLAUDE.md`); the germinal centre has the only loop.
+- `public/scenes/germinal-centre.svg`: antigen beads on the follicular dendritic cell processes, 11 decorative germinal centre B cells removed, and an empty `<g data-loop>` layer under the labels.
+- The germinal centre scene `description` now mentions the moving cells (and the still diagram), and no longer says how many cells are labelled.

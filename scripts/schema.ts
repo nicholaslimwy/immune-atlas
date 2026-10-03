@@ -3,6 +3,17 @@
 import { CELL_ARMS, CELL_FAMILIES, CELL_LINEAGES, CELL_STATUSES, type Cell } from '../src/types/cell.ts'
 import { INTERACTION_TYPES, type Interaction } from '../src/types/interaction.ts'
 import { LOCATION_STATUSES, type Location, type Region } from '../src/types/location.ts'
+import {
+  LOOP_EFFECTS,
+  LOOP_MARKS,
+  type LoopActor,
+  type LoopPhase,
+  type LoopRound,
+  type LoopStillArrow,
+  type LoopStillCell,
+  type LoopStop,
+  type SceneLoop,
+} from '../src/types/loop.ts'
 import { MOLECULE_KINDS, type Molecule } from '../src/types/molecule.ts'
 import type { Process, ProcessArrow, ProcessStep } from '../src/types/process.ts'
 import type { Tour, TourStep } from '../src/types/tour.ts'
@@ -187,4 +198,84 @@ export const processShape: Shape<Process> = {
   title: req(text),
   location: req(id),
   steps: req(arrayOf(objectOf(processStepShape))),
+}
+
+const num: Check<number> = (v, path, errors) => {
+  if (typeof v !== 'number' || !Number.isFinite(v)) errors.push(`${path}: expected a number, got ${describe(v)}`)
+}
+
+const recordOf =
+  <T>(check: Check<T>): Check<Record<string, T>> =>
+  (v, path, errors) => {
+    if (typeof v !== 'object' || v === null || Array.isArray(v)) errors.push(`${path}: expected an object, got ${describe(v)}`)
+    else for (const [key, item] of Object.entries(v)) check(item, `${path}.${key}`, errors)
+  }
+
+/** [x, y] in scene units. */
+const point: Check<[number, number]> = (v, path, errors) => {
+  if (!Array.isArray(v) || v.length !== 2 || v.some((n) => typeof n !== 'number' || !Number.isFinite(n))) {
+    errors.push(`${path}: expected [x, y], got ${JSON.stringify(v)}`)
+  }
+}
+
+const loopStopShape: Shape<LoopStop> = {
+  at: req(text),
+  phase: req(id),
+  move: opt(num),
+  stay: opt(num),
+  bow: opt(num),
+  do: opt(oneOf(LOOP_EFFECTS)),
+  face: opt(text),
+}
+
+const loopPhaseShape: Shape<LoopPhase> = {
+  id: req(id),
+  name: req(text),
+  steps: req(arrayOf(num)),
+}
+
+const loopRoundShape: Shape<LoopRound> = {
+  route: req(id),
+  level: req(num),
+}
+
+const loopActorShape: Shape<LoopActor> = {
+  start: req(num),
+  slots: req(recordOf(id)),
+  rounds: req(arrayOf(objectOf(loopRoundShape))),
+}
+
+const loopStillCellShape: Shape<LoopStillCell> = {
+  route: req(id),
+  level: req(num),
+  time: req(num),
+  slots: req(recordOf(id)),
+}
+
+const loopStillArrowShape: Shape<LoopStillArrow> = {
+  from: req(id),
+  to: req(id),
+  phase: req(id),
+  bow: opt(num),
+}
+
+export const loopShape: Shape<SceneLoop> = {
+  id: req(id),
+  location: req(id),
+  process: opt(id),
+  look: req(id),
+  signal: opt(id),
+  marks: opt(oneOf(LOOP_MARKS)),
+  speed: req(text),
+  speedNote: opt(text),
+  places: req(recordOf(point)),
+  phases: req(arrayOf(objectOf(loopPhaseShape))),
+  routes: req(recordOf(arrayOf(objectOf(loopStopShape)))),
+  actors: req(arrayOf(objectOf(loopActorShape))),
+  still: req(
+    objectOf<SceneLoop['still']>({
+      cells: req(arrayOf(objectOf(loopStillCellShape))),
+      arrows: req(arrayOf(objectOf(loopStillArrowShape))),
+    }),
+  ),
 }

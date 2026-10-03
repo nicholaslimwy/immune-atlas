@@ -1000,6 +1000,110 @@ g.scene-region.tour-focus .region-area {
   animation-play-state: paused;
 }
 
+/* Scene loops (SceneLoop.tsx): cells drawn into the scene's <g data-loop>, and a Pause/Play button with a
+   "Sped up" label in the stage's bottom-left corner (in the zoom layer, so they fade with the scene but do
+   not zoom with a step's framing). The loop's own frames are written by script, so only highlighting is here. */
+.loop-ui {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0.5rem;
+  pointer-events: none;
+}
+
+.loop-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  pointer-events: auto;
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.loop-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 28px;
+  padding: 0.2rem 0.65rem;
+  font: inherit;
+  border: 1px solid #1f2933;
+  border-radius: 999px;
+  background: #fff;
+  color: #1f2933;
+  cursor: pointer;
+}
+
+.loop-play:hover {
+  background: #eef1f4;
+}
+
+.loop-play:focus-visible {
+  outline: 3px solid #0842a0;
+  outline-offset: 2px;
+}
+
+.loop-speed {
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #1f2933;
+  font-style: italic;
+}
+
+/* While a process step is open, cells in other phases fade back and those in its phases get an ink ring. */
+.loop-actor,
+.loop-arrow {
+  transition: opacity 0.3s;
+}
+
+.loop-actor.loop-dim,
+.loop-arrow.loop-dim {
+  opacity: 0.3;
+}
+
+/* The still diagram's arrows (reduced motion): thinner than a step's movement arrows, same ink on white. */
+.loop-arrow path {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.loop-arrow-casing {
+  stroke: #fff;
+  stroke-width: 6;
+}
+
+.loop-arrow-line {
+  stroke: #1f2933;
+  stroke-width: 2.5;
+}
+
+.loop-arrow-on .loop-arrow-line {
+  stroke-width: 3.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loop-actor,
+  .loop-arrow {
+    transition: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .loop-ui {
+    padding: 0.3rem;
+  }
+
+  .loop-controls {
+    font-size: 0.75rem;
+  }
+
+  .loop-play {
+    min-height: 26px;
+    padding: 0.1rem 0.5rem;
+  }
+}
+
 /* The key beside "Arrows show movement" in the step panel: a short ink arrow. */
 .story-arrow-key {
   display: inline-block;

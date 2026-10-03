@@ -99,7 +99,8 @@ export default function Scene({ location, svg, highlight, focus, labelSize }: Pr
       root.querySelector(`[id="${region}"]`)?.classList.toggle('filter-dim', dim)
     }
     for (const use of root.querySelectorAll('use')) {
-      if (use.closest('.hotspot')) continue
+      // A hotspot's art is dimmed with its group; a scene loop (SceneLoop) dims its own cells.
+      if (use.closest('.hotspot, [data-loop]')) continue
       const id = use.getAttribute('href')?.match(/^#icon-(.+)$/)?.[1]
       use.classList.toggle('filter-dim', !!id && !!getCell(id) && !matchesArm(arm, id))
     }

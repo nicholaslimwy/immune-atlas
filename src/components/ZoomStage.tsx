@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m, useReducedMotion, type Transition, type Variants } from 'framer-motion'
-import { getLocation } from '../engine/content.ts'
+import { getLocation, getLoopIn } from '../engine/content.ts'
 import { loadScene } from '../engine/sceneCache.ts'
 import { CENTRE, computeNav, frameAround, sameFrame, type Shown, type ZoomNav } from '../engine/zoom.ts'
 import type { Location } from '../types/location.ts'
 import Scene from './Scene.tsx'
+import SceneLoop from './SceneLoop.tsx'
 import StoryArrows, { type ArrowEnds } from './StoryArrows.tsx'
 
 /** How far the outer scene scales toward the hotspot (and arrives from when zooming out). */
@@ -70,6 +71,8 @@ interface Props {
   arrows?: readonly ArrowEnds[]
   /** Under reduced motion, cut between scenes and frames instead of fading (tours). */
   cut?: boolean
+  /** The process step open over this scene (process id and 1-based step), so its loop can highlight the matching phases. */
+  processStep?: { id: string; step: number }
 }
 
 const NONE: readonly string[] = []
@@ -80,7 +83,7 @@ const NO_ARROWS: readonly ArrowEnds[] = []
  * old one stays on screen until the new one can fade in; both are then ready to aim at the hotspot.
  * Inside each scene a second layer frames the focus hotspot, if any, so a tour can point at it.
  */
-export default function ZoomStage({ location, focus, highlight = NONE, arrows = NO_ARROWS, cut = false }: Props) {
+export default function ZoomStage({ location, focus, highlight = NONE, arrows = NO_ARROWS, cut = false, processStep }: Props) {
   const reduced = useReducedMotion() ?? false
   const [state, setState] = useState<{ shown: Shown; nav: ZoomNav } | null>(null)
   const [error, setError] = useState<string>()
@@ -142,6 +145,10 @@ export default function ZoomStage({ location, focus, highlight = NONE, arrows = 
   const shownHighlight = state?.shown.location.id === location.id ? highlight : NONE
   const shownFocus = state?.shown.location.id === location.id ? focus : undefined
   const shownArrows = state?.shown.location.id === location.id ? arrows : NO_ARROWS
+  // A scene with a loop plays it in its zoom layer; the step it highlights belongs to the scene it was meant for.
+  const loop = state ? getLoopIn(state.shown.location.id) : undefined
+  const loopStep =
+    loop && state?.shown.location.id === location.id && processStep && processStep.id === loop.process ? processStep.step : undefined
 
   const unitsPerPx = 800 / (stageWidth * (frame?.scale ?? 1))
   const labelSize = Math.min(LABEL_MAX, Math.max(15, LABEL_PX * unitsPerPx))
@@ -176,6 +183,7 @@ export default function ZoomStage({ location, focus, highlight = NONE, arrows = 
               />
               {shownArrows.length > 0 && <StoryArrows arrows={shownArrows} centres={state.shown.scene.centres} />}
             </m.div>
+            {loop && <SceneLoop loop={loop} step={loopStep} compact={stageWidth < 560} />}
           </m.div>
         )}
       </AnimatePresence>

@@ -3,6 +3,7 @@
 import type { Cell } from '../types/cell.ts'
 import type { Interaction } from '../types/interaction.ts'
 import type { Location } from '../types/location.ts'
+import type { SceneLoop } from '../types/loop.ts'
 import type { Molecule } from '../types/molecule.ts'
 import type { Process } from '../types/process.ts'
 import type { Tour } from '../types/tour.ts'
@@ -14,6 +15,7 @@ const glob = {
   molecules: import.meta.glob<Molecule>('../../content/molecules/*.json', { eager: true, import: 'default' }),
   tours: import.meta.glob<Tour>('../../content/tours/*.json', { eager: true, import: 'default' }),
   processes: import.meta.glob<Process>('../../content/processes/*.json', { eager: true, import: 'default' }),
+  loops: import.meta.glob<SceneLoop>('../../content/loops/*.json', { eager: true, import: 'default' }),
 }
 
 const byId = <T extends { id: string }>(files: Record<string, T>) =>
@@ -25,6 +27,7 @@ const interactions = byId(glob.interactions)
 const molecules = byId(glob.molecules)
 const tours = byId(glob.tours)
 const processes = byId(glob.processes)
+const loops = byId(glob.loops)
 
 export function getLocation(id: string): Location | undefined {
   return locations.get(id)
@@ -79,6 +82,11 @@ export function getProcess(id: string): Process | undefined {
 /** The processes told in `locationId`'s scene (its "See how it works" buttons), by title. */
 export function getProcessesIn(locationId: string): Process[] {
   return [...processes.values()].filter((p) => p.location === locationId).sort((a, b) => a.title.localeCompare(b.title))
+}
+
+/** The looping animation drawn in `locationId`'s scene, if it has one (the validator allows one per scene). */
+export function getLoopIn(locationId: string): SceneLoop | undefined {
+  return [...loops.values()].find((l) => l.location === locationId)
 }
 
 export function getLocations(): Location[] {
