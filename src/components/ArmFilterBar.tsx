@@ -6,8 +6,8 @@ import { useArmFilter } from './armFilterState.ts'
 /** "Highlight: All / Innate / Adaptive / Support", under the site header. Buttons come from the arms the content has. */
 export default function ArmFilterBar() {
   const { arm, setArm } = useArmFilter()
-  const inTour = useLocation().pathname.startsWith('/tours')
-  // Tours choose which cells to point at, so the filter is not offered (or applied) there.
+  const inTour = /^\/(tours|processes)(\/|$)/.test(useLocation().pathname)
+  // Tours and processes choose which cells to point at, so the filter is not offered (or applied) there.
   if (inTour) return null
   const arms = getArms()
   return (

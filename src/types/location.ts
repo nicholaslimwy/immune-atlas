@@ -1,6 +1,18 @@
 // A place you can zoom into. Mirrors the Location schema in CLAUDE.md.
 export const LOCATION_STATUSES = ['stub'] as const
 
+/** A labelled area of a scene (the dark zone, the red pulp...): it opens an info panel instead of zooming. */
+export interface Region {
+  /** The id of the area's group in the scene SVG; also its URL segment over the scene. */
+  id: string
+  name: string
+  summary: string
+  /** What happens there, one point per item. */
+  happens: string[]
+  /** Cell ids found there; each must be a resident of the location. */
+  cells: string[]
+}
+
 export interface Location {
   id: string
   name: string
@@ -19,6 +31,8 @@ export interface Location {
   hotspots: { region: string; target: string }[]
   /** Which cells appear here, and what they do here. */
   residents: { cell: string; note?: string }[]
+  /** Labelled areas of the scene that open an info panel (never on a stub). */
+  regions?: Region[]
   /** "stub" = a place in the tree with no scene yet: its hotspot shows "coming soon" instead of zooming.
    *  Absent once the scene is built. */
   status?: (typeof LOCATION_STATUSES)[number]

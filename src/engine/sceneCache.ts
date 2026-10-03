@@ -2,7 +2,8 @@ import type { Location } from '../types/location.ts'
 
 export interface LoadedScene {
   svg: string
-  /** Hotspot centres as fractions (0-1) of the scene box, keyed by the hotspot's target id. */
+  /** Hotspot and region centres as fractions (0-1) of the scene box, keyed by the hotspot's target id
+   *  or the region's id (the validator keeps those apart). */
   centres: Record<string, { x: number; y: number }>
   /** The networks the art marks with data-network (the body scene: blood, lymph), in first-seen order. */
   networks: string[]
@@ -47,13 +48,17 @@ function measureHotspots(svg: string, loc: Location): LoadedScene['centres'] {
   try {
     const box = root?.getBoundingClientRect()
     if (box && box.width > 0) {
-      for (const { region, target } of loc.hotspots) {
+      const places = [
+        ...loc.hotspots.map(({ region, target }) => ({ el: region, key: target })),
+        ...(loc.regions ?? []).map(({ id }) => ({ el: id, key: id })),
+      ]
+      for (const { el: elId, key } of places) {
         // Aim at the hotspot's [data-zoom-anchor] element when it has one (a spread-out region such as
         // the lymph nodes would otherwise zoom into the middle of its bounding box), else the region.
-        const el = host.querySelector(`[id="${region}"]`)
+        const el = host.querySelector(`[id="${elId}"]`)
         const r = (el?.querySelector('[data-zoom-anchor]') ?? el)?.getBoundingClientRect()
         if (!r) continue
-        centres[target] = {
+        centres[key] = {
           x: (r.left + r.width / 2 - box.left) / box.width,
           y: (r.top + r.height / 2 - box.top) / box.height,
         }

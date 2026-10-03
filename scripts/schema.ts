@@ -2,8 +2,9 @@
 // src/types, so adding, removing or retyping a field there fails `tsc` until the shape matches.
 import { CELL_ARMS, CELL_FAMILIES, CELL_LINEAGES, CELL_STATUSES, type Cell } from '../src/types/cell.ts'
 import { INTERACTION_TYPES, type Interaction } from '../src/types/interaction.ts'
-import { LOCATION_STATUSES, type Location } from '../src/types/location.ts'
+import { LOCATION_STATUSES, type Location, type Region } from '../src/types/location.ts'
 import { MOLECULE_KINDS, type Molecule } from '../src/types/molecule.ts'
+import type { Process, ProcessArrow, ProcessStep } from '../src/types/process.ts'
 import type { Tour, TourStep } from '../src/types/tour.ts'
 
 /** Pushes a message for each problem with `value`. `_type` only ties the check to a TS type. */
@@ -90,6 +91,14 @@ export const objectOf =
     }
   }
 
+const regionShape: Shape<Region> = {
+  id: req(id),
+  name: req(text),
+  summary: req(text),
+  happens: req(arrayOf(text)),
+  cells: req(arrayOf(id)),
+}
+
 export const locationShape: Shape<Location> = {
   id: req(id),
   name: req(text),
@@ -101,6 +110,7 @@ export const locationShape: Shape<Location> = {
   caption: opt(text),
   hotspots: req(arrayOf(objectOf<Location['hotspots'][number]>({ region: req(id), target: req(id) }))),
   residents: req(arrayOf(objectOf<Location['residents'][number]>({ cell: req(id), note: opt(text) }))),
+  regions: opt(arrayOf(objectOf(regionShape))),
   status: opt(oneOf(LOCATION_STATUSES)),
 }
 
@@ -157,4 +167,24 @@ export const tourShape: Shape<Tour> = {
   id: req(id),
   title: req(text),
   steps: req(arrayOf(objectOf(tourStepShape))),
+}
+
+const processArrowShape: Shape<ProcessArrow> = {
+  from: req(id),
+  to: req(id),
+}
+
+const processStepShape: Shape<ProcessStep> = {
+  focus: opt(id),
+  caption: req(text),
+  highlight: req(arrayOf(id)),
+  interactions: req(arrayOf(id)),
+  arrows: opt(arrayOf(objectOf(processArrowShape))),
+}
+
+export const processShape: Shape<Process> = {
+  id: req(id),
+  title: req(text),
+  location: req(id),
+  steps: req(arrayOf(objectOf(processStepShape))),
 }

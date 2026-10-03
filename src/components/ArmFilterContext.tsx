@@ -10,8 +10,8 @@ export function ArmFilterProvider({ children }: { children: ReactNode }) {
     setChosen(arm)
     saveArm(arm)
   }, [])
-  // A tour points at specific cells itself, so the filter waits outside it.
-  const inTour = useLocation().pathname.startsWith('/tours')
+  // A tour or process points at specific cells itself, so the filter waits outside it.
+  const inTour = /^\/(tours|processes)(\/|$)/.test(useLocation().pathname)
   const value = useMemo(() => ({ arm: inTour ? null : chosen, chosen, setArm }), [inTour, chosen, setArm])
   return <ArmFilterContext.Provider value={value}>{children}</ArmFilterContext.Provider>
 }

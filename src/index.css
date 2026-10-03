@@ -731,6 +731,7 @@ ul.interactions p {
 .tour-badge {
   margin: 0;
   padding: 0.3rem 0.8rem;
+  white-space: nowrap;
   border-radius: 6px;
   background: #1f2933;
   color: #fff;
@@ -879,6 +880,145 @@ g.tour-focus .leader-dot {
 
 .tour-entry .panel-meta {
   margin: 0;
+}
+
+/* "See how it works": starts a process in this scene. Outlined, so it reads as a sibling of the tour button, not the same thing. */
+.process-start {
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  border: 2px solid #1f2933;
+  border-radius: 6px;
+  background: #fff;
+  color: #1f2933;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.process-start:hover,
+.process-start:focus-visible {
+  border-color: #1a73e8;
+  color: #1a73e8;
+}
+
+/* Regions (Location.regions): a labelled area of a scene. Its invisible .region-area is the tap target;
+   hover and focus outline the whole area, the label lights up like a hotspot's. */
+g.scene-region .region-area {
+  transition: stroke 0.15s;
+}
+
+g.scene-region:hover .region-area {
+  stroke: #1a73e8;
+  stroke-dasharray: 8 6;
+}
+
+g.scene-region:focus-visible .region-area {
+  stroke: #0842a0;
+  stroke-dasharray: none;
+}
+
+/* The area a process step points at: a solid ink outline (shape, not colour) and a bold label. */
+g.scene-region.tour-focus .region-area {
+  stroke: #1f2933;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  g.scene-region .region-area {
+    transition: none;
+  }
+}
+
+.region-cells .soon-tag {
+  margin-left: 0.5rem;
+}
+
+/* Movement in a process step (StoryArrows): ink arrows on a white casing, drawn in the scene's frame so
+   they zoom with it, never in the way of a click. White dots slide along them in the direction of travel;
+   none under reduced motion (the arrowhead still gives the direction), frozen by Pause scene motion. */
+.story-arrows {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.story-arrow {
+  animation: story-arrow-in 0.5s ease-out;
+}
+
+.story-arrow path {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.story-arrow-casing {
+  stroke: #fff;
+  stroke-width: 8;
+}
+
+.story-arrow-line {
+  stroke: #1f2933;
+  stroke-width: 3.5;
+}
+
+.story-arrow-flow {
+  stroke: #fff;
+  stroke-width: 2.4;
+  stroke-dasharray: 0 14;
+  animation: story-arrow-flow 0.9s linear infinite;
+}
+
+@keyframes story-arrow-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+
+@keyframes story-arrow-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-arrow {
+    animation: none;
+  }
+  .story-arrow-flow {
+    display: none;
+  }
+}
+
+.motion-paused .story-arrow-flow {
+  animation-play-state: paused;
+}
+
+/* The key beside "Arrows show movement" in the step panel: a short ink arrow. */
+.story-arrow-key {
+  display: inline-block;
+  position: relative;
+  width: 1.1rem;
+  height: 3px;
+  margin-right: 0.35rem;
+  background: #1f2933;
+  vertical-align: 0.2rem;
+}
+
+.story-arrow-key::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: -4px;
+  border-left: 7px solid #1f2933;
+  border-top: 5.5px solid transparent;
+  border-bottom: 5.5px solid transparent;
 }
 
 .tour-explore {

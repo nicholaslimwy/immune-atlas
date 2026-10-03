@@ -22,5 +22,29 @@
     { "cell": "tfh", "note": "Gives survival and division signals (CD40L, IL-21) to the B cells that show it the most antigen." },
     { "cell": "memory-b", "note": "Leaves the germinal centre to recirculate, ready for a faster response next time." },
     { "cell": "plasma-cell", "note": "Leaves the germinal centre to make high-affinity antibody, in the medulla or in the bone marrow." }
+  ],
+  "regions": [
+    {
+      "id": "dark-zone",
+      "name": "Dark zone",
+      "summary": "The half of the germinal centre packed with dividing B cells. Here they multiply quickly, and their antibody genes pick up mutations, so each new B cell carries a slightly different antibody.",
+      "happens": [
+        "Germinal centre B cells divide rapidly.",
+        "Mutations build up in the genes for the antibody's binding site (somatic hypermutation), so daughter cells bind antigen more or less tightly than their parent.",
+        "B cells are drawn here by CXCL12, made by reticular cells of the dark zone, and later move to the light zone to be tested."
+      ],
+      "cells": ["germinal-centre-b", "macrophage"]
+    },
+    {
+      "id": "light-zone",
+      "name": "Light zone",
+      "summary": "The half of the germinal centre where B cells are tested. Each tries to capture antigen held on follicular dendritic cells and show it to Tfh cells; those that capture the most get the help they need to survive.",
+      "happens": [
+        "B cells capture antigen from the processes of follicular dendritic cells with their mutated receptor.",
+        "Tfh cells give survival and division signals (CD40L, IL-21) to the B cells that present the most antigen.",
+        "Selected B cells return to the dark zone for another round, or leave as plasma cells or memory B cells; the rest die and are swallowed by macrophages."
+      ],
+      "cells": ["germinal-centre-b", "follicular-dendritic-cell", "tfh", "macrophage"]
+    }
   ]
 }

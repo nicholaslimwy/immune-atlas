@@ -4,6 +4,7 @@ import type { Cell } from '../types/cell.ts'
 import type { Interaction } from '../types/interaction.ts'
 import type { Location } from '../types/location.ts'
 import type { Molecule } from '../types/molecule.ts'
+import type { Process } from '../types/process.ts'
 import type { Tour } from '../types/tour.ts'
 
 const glob = {
@@ -12,6 +13,7 @@ const glob = {
   interactions: import.meta.glob<Interaction>('../../content/interactions/*.json', { eager: true, import: 'default' }),
   molecules: import.meta.glob<Molecule>('../../content/molecules/*.json', { eager: true, import: 'default' }),
   tours: import.meta.glob<Tour>('../../content/tours/*.json', { eager: true, import: 'default' }),
+  processes: import.meta.glob<Process>('../../content/processes/*.json', { eager: true, import: 'default' }),
 }
 
 const byId = <T extends { id: string }>(files: Record<string, T>) =>
@@ -22,6 +24,7 @@ const cells = byId(glob.cells)
 const interactions = byId(glob.interactions)
 const molecules = byId(glob.molecules)
 const tours = byId(glob.tours)
+const processes = byId(glob.processes)
 
 export function getLocation(id: string): Location | undefined {
   return locations.get(id)
@@ -67,6 +70,15 @@ export function getTour(id: string): Tour | undefined {
 
 export function getTours(): Tour[] {
   return [...tours.values()]
+}
+
+export function getProcess(id: string): Process | undefined {
+  return processes.get(id)
+}
+
+/** The processes told in `locationId`'s scene (its "See how it works" buttons), by title. */
+export function getProcessesIn(locationId: string): Process[] {
+  return [...processes.values()].filter((p) => p.location === locationId).sort((a, b) => a.title.localeCompare(b.title))
 }
 
 export function getLocations(): Location[] {

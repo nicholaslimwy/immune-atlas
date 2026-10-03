@@ -8,7 +8,7 @@ import Fuse from 'fuse.js'
 import type { Arm } from './armFilter.ts'
 import { getCellHome, getCells, getLocation, getLocations, getMolecules, getTours } from './content.ts'
 import { cellPathFor, glossaryPathFor, pathFor } from './paths.ts'
-import { tourStepPath } from './tours.ts'
+import { tourStepPath } from './stories.ts'
 
 export type SearchKind = 'cell' | 'molecule' | 'place' | 'tour'
 

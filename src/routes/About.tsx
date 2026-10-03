@@ -3,7 +3,7 @@ import PageTopbar from '../components/PageTopbar.tsx'
 import { useDocumentTitle } from '../components/useDocumentTitle.ts'
 import { CREDITS, type Inline } from '../engine/attributions.ts'
 import { getCells, getInteractions, getLocations, getMolecules, getTours } from '../engine/content.ts'
-import { tourStepPath } from '../engine/tours.ts'
+import { tourStepPath } from '../engine/stories.ts'
 
 /** Inline pieces from ATTRIBUTIONS.md: text, `code` and links (external ones open in the same tab). */
 function Pieces({ parts }: { parts: Inline[] }) {

@@ -1,6 +1,6 @@
 // Every address the app answers, read from /content: each scene, every cell panel over every scene
-// (interaction links open any cell over the scene you are in), each tour step and end screen, each
-// glossary entry, and the pages outside the scenes. Used by the build (vite.config.ts) to write one
+// (interaction links open any cell over the scene you are in), each region panel over its own scene,
+// each tour and process step and end screen, each glossary entry, and the pages outside the scenes. Used by the build (vite.config.ts) to write one
 // HTML file per address, so a static host such as GitHub Pages answers a deep link with the app
 // and status 200 instead of "not found". Paths have no base folder and no trailing slash.
 import { readdirSync, readFileSync } from 'node:fs'
@@ -11,6 +11,7 @@ interface LocationFile {
   parent: string | null
   slug?: string
   status?: string
+  regions?: { id: string }[]
 }
 
 export function appRoutes(root: string): string[] {
@@ -33,11 +34,14 @@ export function appRoutes(root: string): string[] {
   for (const l of locations.filter((l) => l.status !== 'stub')) {
     routes.push(pathOf(l))
     for (const cell of cells) routes.push(`${pathOf(l)}/${cell}`)
+    for (const region of l.regions ?? []) routes.push(`${pathOf(l)}/${region.id}`)
   }
-  for (const id of ids('tours')) {
-    const steps = json<{ steps: unknown[] }>('tours', id).steps.length
-    routes.push(`/tours/${id}`, `/tours/${id}/end`)
-    for (let i = 1; i <= steps; i++) routes.push(`/tours/${id}/${i}`)
+  for (const folder of ['tours', 'processes']) {
+    for (const id of ids(folder)) {
+      const steps = json<{ steps: unknown[] }>(folder, id).steps.length
+      routes.push(`/${folder}/${id}`, `/${folder}/${id}/end`)
+      for (let i = 1; i <= steps; i++) routes.push(`/${folder}/${id}/${i}`)
+    }
   }
   routes.push('/glossary', ...ids('molecules').map((id) => `/glossary/${id}`))
   routes.push('/network', '/styleguide', '/about')

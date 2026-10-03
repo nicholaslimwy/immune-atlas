@@ -25,10 +25,13 @@ for (const id of ids('cells')) {
   const home = built.find((l) => l.residents.some((r: any) => r.cell === id) && l.hotspots.some((h: any) => h.target === id))
   if (home) routes.push({ name: `cell ${id}`, path: `${pathOf(home)}/${id}` })
 }
-for (const t of ids('tours')) {
-  const n = json('tours', t).steps.length
-  for (let i = 1; i <= n; i++) routes.push({ name: `tour ${t} step ${i}`, path: `/tours/${t}/${i}` })
-  routes.push({ name: `tour ${t} end`, path: `/tours/${t}/end` })
+for (const l of built) for (const r of l.regions ?? []) routes.push({ name: `region ${l.id}/${r.id}`, path: `${pathOf(l)}/${r.id}` })
+for (const [folder, kind] of [['tours', 'tour'], ['processes', 'process']]) {
+  for (const t of ids(folder)) {
+    const n = json(folder, t).steps.length
+    for (let i = 1; i <= n; i++) routes.push({ name: `${kind} ${t} step ${i}`, path: `/${folder}/${t}/${i}` })
+    routes.push({ name: `${kind} ${t} end`, path: `/${folder}/${t}/end` })
+  }
 }
 routes.push({ name: 'glossary', path: '/glossary' })
 for (const id of ids('molecules')) routes.push({ name: `glossary entry ${id}`, path: `/glossary/${id}` })

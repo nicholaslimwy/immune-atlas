@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import { FAMILY_COLOURS } from '../art/palette.ts'
 import { getCell, getLocation } from '../engine/content.ts'
-import { cellPathFor, pathFor } from '../engine/paths.ts'
+import { cellPathFor, pathFor, regionPathFor } from '../engine/paths.ts'
 import type { Location } from '../types/location.ts'
 
 /**
@@ -10,7 +10,8 @@ import type { Location } from '../types/location.ts'
  * scene's labels are tiny).
  */
 export default function SceneList({ location }: { location: Location }) {
-  const items = location.hotspots.flatMap(({ target }) => {
+  const areas = (location.regions ?? []).map((r) => ({ key: r.id, name: r.name, kind: 'Area', to: regionPathFor(location, r.id), soon: false }))
+  const spots = location.hotspots.flatMap(({ target }) => {
     const place = getLocation(target)
     if (place) {
       return [{ key: target, name: place.name, kind: 'Place', to: place.status === 'stub' ? undefined : pathFor(place), soon: place.status === 'stub' }]
@@ -19,6 +20,7 @@ export default function SceneList({ location }: { location: Location }) {
     if (!cell) return []
     return [{ key: target, name: cell.name, kind: `Cell · ${FAMILY_COLOURS[cell.family].label}`, to: cellPathFor(location, target), soon: false }]
   })
+  const items = [...areas, ...spots]
   if (items.length === 0) return null
   return (
     <details className="scene-list">

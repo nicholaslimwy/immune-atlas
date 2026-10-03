@@ -1,20 +1,22 @@
 import { getCell, getCellHome, getChildren, getLocation, getRoot } from './content.ts'
 import type { Cell } from '../types/cell.ts'
-import type { Location } from '../types/location.ts'
+import type { Location, Region } from '../types/location.ts'
 
 /** A location's URL segment: its `slug` if it has one, otherwise its id. */
 const slugOf = (loc: Location) => loc.slug ?? loc.id
 
-/** What a URL points at: a scene, and optionally a cell whose panel is open over it. */
+/** What a URL points at: a scene, and optionally a cell or one of the scene's regions whose panel is open over it. */
 export interface Resolved {
   location: Location
   cell?: Cell
+  region?: Region
 }
 
 /**
  * Turn a pathname like /body/blood or /body/blood/neutrophil into a scene and an optional cell,
  * or undefined if it matches nothing. A cell can only be the last segment. Any cell may open over
- * any scene, so interaction links can jump sideways without leaving the place you are in.
+ * any scene, so interaction links can jump sideways without leaving the place you are in. A region
+ * (/body/lymph-node/germinal-centre/dark-zone) opens only over its own scene.
  */
 export function resolvePath(pathname: string): Resolved | undefined {
   const segments = pathname.split('/').filter(Boolean)
@@ -29,9 +31,12 @@ export function resolvePath(pathname: string): Resolved | undefined {
       current = child
       continue
     }
-    const cell = getCell(segment)
     const isLast = i === segments.length - 2
-    return cell && isLast ? { location: current, cell } : undefined
+    if (!isLast) return undefined
+    const cell = getCell(segment)
+    if (cell) return { location: current, cell }
+    const region = current.regions?.find((r) => r.id === segment)
+    return region ? { location: current, region } : undefined
   }
   return { location: current }
 }
@@ -50,6 +55,11 @@ export function pathFor(loc: Location): string {
 /** The URL of a cell's panel open over `loc`'s scene. */
 export function cellPathFor(loc: Location, cellId: string): string {
   return `${pathFor(loc)}/${cellId}`
+}
+
+/** The URL of a region's panel open over its scene. */
+export function regionPathFor(loc: Location, regionId: string): string {
+  return `${pathFor(loc)}/${regionId}`
 }
 
 /** The URL of a molecule's glossary entry. */

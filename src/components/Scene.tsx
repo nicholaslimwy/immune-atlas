@@ -3,7 +3,7 @@ import { useIsPresent } from 'framer-motion'
 import { useNavigate } from 'react-router'
 import { matchesArm } from '../engine/armFilter.ts'
 import { getCell, getLocation } from '../engine/content.ts'
-import { cellPathFor, pathFor } from '../engine/paths.ts'
+import { cellPathFor, pathFor, regionPathFor } from '../engine/paths.ts'
 import type { Location } from '../types/location.ts'
 import { useArmFilter } from './armFilterState.ts'
 
@@ -14,7 +14,7 @@ interface Props {
   svg: string
   /** Cell ids whose hotspots a tour step highlights. */
   highlight?: readonly string[]
-  /** The hotspot target a tour step points at. */
+  /** The hotspot target or region id a tour or process step points at. */
   focus?: string
   /** Font size, in scene units, for highlighted labels (a tour makes them bigger on a small screen). */
   labelSize?: number
@@ -24,6 +24,26 @@ interface Props {
 const SCENE_W = 800
 const EDGE = 4
 const LABEL_BASE = 15
+
+/** Fill a hotspot's or region's empty .scene-label (if the art has one) with its name from content. */
+function fillLabel(el: Element, name: string, stub: boolean) {
+  const label = el.querySelector('.scene-label')
+  if (!label) return
+  // A name with a gloss, "NK cell (natural killer cell)", puts the gloss on a smaller second line.
+  const glossed = name.match(/^(.*?) \((.*)\)$/)
+  const gloss = glossed?.[2]
+  label.textContent = glossed?.[1] ?? name
+  const line = (className: string, text: string) => {
+    const tag = document.createElementNS(SVG_NS, 'tspan')
+    tag.setAttribute('class', className)
+    tag.setAttribute('x', label.getAttribute('x') ?? '0')
+    tag.setAttribute('dy', '1.1em')
+    tag.textContent = text
+    label.append(tag)
+  }
+  if (gloss) line('scene-label-sub', gloss)
+  if (stub) line('scene-label-soon', 'coming soon')
+}
 
 // The SVG text is preloaded by ZoomStage and inlined here so hotspot regions are real DOM elements.
 export default function Scene({ location, svg, highlight, focus, labelSize }: Props) {
@@ -54,23 +74,18 @@ export default function Scene({ location, svg, highlight, focus, labelSize }: Pr
       el.setAttribute('aria-label', stub ? `${name} (coming soon)` : name)
       el.classList.add('hotspot')
       el.classList.toggle('hotspot-soon', stub)
-      const label = el.querySelector('.scene-label')
-      if (label) {
-        // A name with a gloss, "NK cell (natural killer cell)", puts the gloss on a smaller second line.
-        const glossed = name.match(/^(.*?) \((.*)\)$/)
-        const gloss = glossed?.[2]
-        label.textContent = glossed?.[1] ?? name
-        const line = (className: string, text: string) => {
-          const tag = document.createElementNS(SVG_NS, 'tspan')
-          tag.setAttribute('class', className)
-          tag.setAttribute('x', label.getAttribute('x') ?? '0')
-          tag.setAttribute('dy', '1.1em')
-          tag.textContent = text
-          label.append(tag)
-        }
-        if (gloss) line('scene-label-sub', gloss)
-        if (stub) line('scene-label-soon', 'coming soon')
-      }
+      fillLabel(el, name, stub)
+    }
+    // A region is a labelled area: a button too, but it opens an info panel over the scene.
+    for (const { id, name } of location.regions ?? []) {
+      const el = containerRef.current?.querySelector(`[id="${id}"]`)
+      if (!el) continue
+      el.setAttribute('role', 'button')
+      el.setAttribute('tabindex', '0')
+      el.setAttribute('aria-label', name)
+      el.setAttribute('aria-description', 'Area. Press Enter to read about it.')
+      el.classList.add('hotspot', 'scene-region')
+      fillLabel(el, name, false)
     }
   }, [svg, location, descId])
 
@@ -92,6 +107,9 @@ export default function Scene({ location, svg, highlight, focus, labelSize }: Pr
 
   // A tour step marks the cells it is about and the hotspot it points at; free exploration clears both.
   useEffect(() => {
+    for (const { id } of location.regions ?? []) {
+      containerRef.current?.querySelector(`[id="${id}"]`)?.classList.toggle('tour-focus', id === focus)
+    }
     for (const { region, target } of location.hotspots) {
       const el = containerRef.current?.querySelector(`[id="${region}"]`)
       const highlighted = highlight?.includes(target) ?? false
@@ -129,9 +147,15 @@ export default function Scene({ location, svg, highlight, focus, labelSize }: Pr
     }
   }, [svg, location, highlight, focus, labelSize])
 
-  // A hotspot zooms into a child location, or opens a cell's panel over this scene.
+  // A hotspot zooms into a child location, or opens a cell's panel over this scene; a region opens its panel.
   // Anything else clicked (empty scene, or a built place) clears the notice.
   const go = (el: Element | null) => {
+    const region = location.regions?.find((r) => r.id === el?.id)
+    if (region) {
+      setSoon(undefined)
+      navigate(regionPathFor(location, region.id))
+      return
+    }
     const hotspot = location.hotspots.find((h) => h.region === el?.id)
     const child = hotspot && getLocation(hotspot.target)
     setSoon(child?.status === 'stub' ? child : undefined)

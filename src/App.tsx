@@ -42,7 +42,7 @@ function MoveFocusOnNavigate() {
   useEffect(() => {
     if (shown.current === pathname) return
     shown.current = pathname
-    if (!/^\/(body|tours)(\/|$)/.test(pathname)) focusTitle()
+    if (!/^\/(body|tours|processes)(\/|$)/.test(pathname)) focusTitle()
   }, [pathname])
   return null
 }
@@ -85,9 +85,10 @@ export default function App() {
         <Suspense fallback={<main className="page-loading" aria-busy="true" />}>
         <Routes>
           <Route path="/" element={<Navigate to="/body" replace />} />
-          {/* One element for both, so exiting a tour keeps the stage (and its scene) mounted. */}
+          {/* One element for all three, so exiting a tour or process keeps the stage (and its scene) mounted. */}
           <Route path="/body/*" element={<SceneRoute />} />
           <Route path="/tours/*" element={<SceneRoute />} />
+          <Route path="/processes/*" element={<SceneRoute />} />
           <Route path="/glossary" element={<GlossaryIndex />} />
           <Route path="/glossary/:id" element={<GlossaryEntry />} />
           <Route path="/network" element={<Network />} />
