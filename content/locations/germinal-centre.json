@@ -27,22 +27,25 @@
     {
       "id": "dark-zone",
       "name": "Dark zone",
-      "summary": "The half of the germinal centre packed with dividing B cells. Here they multiply quickly, and their antibody genes pick up mutations, so each new B cell carries a slightly different antibody.",
+      "summary": "The half of the germinal centre packed with dividing B cells, which is why it looks dark in a stained tissue section. Here B cells multiply quickly while the enzyme AID mutates their antibody genes, so each daughter cell carries a slightly different antibody.",
       "happens": [
-        "Germinal centre B cells divide rapidly.",
-        "Mutations build up in the genes for the antibody's binding site (somatic hypermutation), so daughter cells bind antigen more or less tightly than their parent.",
-        "B cells are drawn here by CXCL12, made by reticular cells of the dark zone, and later move to the light zone to be tested."
+        "Germinal centre B cells divide rapidly, several times before each round of testing.",
+        "AID puts point mutations into the genes for the antibody's binding site (somatic hypermutation), so daughter cells bind antigen more or less tightly than their parent. Many mutations make the antibody worse.",
+        "B cells whose receptor a mutation has damaged die here (shown in mice), and macrophages clear them.",
+        "CXCL12, made by reticular cells of the dark zone, holds dividing B cells here through its receptor CXCR4. After a few divisions they change to the light-zone state, seemingly on an internal timer, and move across to be tested (shown in mice)."
       ],
       "cells": ["germinal-centre-b", "macrophage"]
     },
     {
       "id": "light-zone",
       "name": "Light zone",
-      "summary": "The half of the germinal centre where B cells are tested. Each tries to capture antigen held on follicular dendritic cells and show it to Tfh cells; those that capture the most get the help they need to survive.",
+      "summary": "The paler half of the germinal centre, where B cells are tested. They are less crowded here, among follicular dendritic cells that hold antigen and Tfh cells that give help. Each B cell tries to capture antigen with its mutated receptor and show it to a Tfh cell; those that capture the most survive.",
       "happens": [
-        "B cells capture antigen from the processes of follicular dendritic cells with their mutated receptor.",
-        "Tfh cells give survival and division signals (CD40L, IL-21) to the B cells that present the most antigen.",
-        "Selected B cells return to the dark zone for another round, or leave as plasma cells or memory B cells; the rest die and are swallowed by macrophages."
+        "B cells pull antigen off the long processes of follicular dendritic cells with their mutated receptor; those whose receptor binds best take up the most.",
+        "Each B cell shows peptides from that antigen on MHC class II to Tfh cells, which give CD40L and IL-21 to the cells showing the most.",
+        "Selected B cells return to the dark zone for another round of division and mutation, or leave as plasma cells or memory B cells.",
+        "B cells that win no help die by default (in mice up to half of all germinal centre B cells die every six hours), and macrophages swallow them.",
+        "Little class switching happens here: in mice, most B cells have already switched antibody class before the germinal centre forms."
       ],
       "cells": ["germinal-centre-b", "follicular-dendritic-cell", "tfh", "macrophage"]
     }

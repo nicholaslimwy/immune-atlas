@@ -1,0 +1,10 @@
+{
+  "id": "aid",
+  "name": "AID (activation-induced cytidine deaminase)",
+  "aliases": [
+    "Activation-induced deaminase",
+    "AICDA"
+  ],
+  "kind": "other",
+  "summary": "An enzyme made by activated B cells, above all in germinal centres. It changes cytosines in antibody genes, which starts both the point mutations of somatic hypermutation and the DNA breaks of class switching. People who lack it make almost only IgM, and their antibodies cannot improve."
+}

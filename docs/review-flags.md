@@ -61,7 +61,7 @@ Interaction records, cell profiles and their citations were checked as described
 
 - Records: `naive-b-differentiates-into-germinal-centre-b` (its `where` is `lymph-node`, though it is shown in the germinal centre scene), `tfh-helps-germinal-centre-b`, `germinal-centre-b-differentiates-into-plasma-cell`, `germinal-centre-b-differentiates-into-memory-b`.
 - Debated, and softened only by "can": what decides plasma cell versus memory B, and how strongly the germinal centre selects.
-- "Reward" compresses the light-zone competition (more antigen captured, more help, more rounds of division). Class switching, follicular dendritic cells and the cells that clear dying B cells are in the scene and omitted from the caption.
+- "Reward" compresses the light-zone competition (more antigen captured, more help, more rounds of division). Follicular dendritic cells and the cells that clear dying B cells are in the scene and omitted from the caption. Class switching is not shown; most of it happens before the germinal centre (see the affinity maturation flags below).
 - The germinal centre scene is drawn at 6 px/µm, larger than the lymph node's 4 px/µm; the germinal centre is shown as filling the stage.
 - Evidence for Tfh help in the germinal centre is mainly mouse.
 - A germinal centre takes about a week to form; the caption gives no time.
@@ -124,3 +124,42 @@ Written 2026-10-02 (branch `body-two-networks`). The whole-body scene (`public/s
 - New stub location `lymph-vessels` ("Lymph vessels", coming soon): the lymph lines are its hotspot. The lymph nodes hotspot is the beads, and the blood vessels hotspot is every blood line plus the heart; its leader now points at the right shoulder vessels, so the zoom into peripheral blood starts there, not at the heart.
 - The body location has a new `caption` field (one line under the stage) and a rewritten `description`. The legend text ("a loop from the heart and back", "one way, back to the blood") is site text in `src/components/SceneNetworks.tsx`.
 - Infection tour step 9 (epilogue, whole body) now shows both networks; its caption was not changed.
+
+# Review flags: germinal centre, affinity maturation
+
+For the immunology reviewer. Covers the "See how it works" process `content/processes/affinity-maturation.json` (7 steps, played at `/processes/affinity-maturation/1`), the dark zone and light zone regions in `content/locations/germinal-centre.json`, the new AID molecule, one new interaction record and the profile edits listed at the end. Written 2026-10-03 on branch `processes`. Nothing here has been reviewed.
+
+Captions and region text carry no citations of their own (Process and Location have no `sources` field); the interaction records listed under each step, and the `sources` of the cells they touch, carry them. Processes, regions and molecules have no `status` field either, so they cannot be marked "draft" in the data; treat all of them as draft. The cell profiles touched stay `status: "draft"`.
+
+## Where class switching happens
+
+1. **Mostly before the germinal centre, not inside it.** Roco et al. 2019 (Immunity 51:337) report that class-switch recombination is triggered when the B cell first gets T-cell help, before it becomes a germinal centre B cell or plasmablast, and is much reduced inside germinal centres: most switch events in germinal centre B-cell family trees came before the first hypermutation, and some germinal centres stay mostly IgM. The textbook picture (switching as a germinal centre hallmark) is still common, including in Janeway and Abbas.
+2. **What the atlas now says.** Step 1's caption ends "In mice, most class switching (IgM to IgG) happens before this." The light zone region says "Little class switching happens here: in mice, most B cells have already switched antibody class before the germinal centre forms." The germinal centre B cell's switching function was rewritten to the same effect ("shown in mice").
+3. **Species.** I read the abstract only, which does not name the species, so the text says "in mice" to be safe. If the paper also shows it in human tissue, the label can be dropped or softened.
+4. **Older text.** The infection tour's step 7 flag above listed class switching among things drawn in the germinal centre scene; the scene does not draw switching, so that line was corrected. No caption in the infection tour mentions switching. `tfh-helps-naive-b` ("Without this help most B cells cannot form a germinal centre or switch antibody class") already fits the new picture.
+
+## Whole-process simplifications
+
+5. **One idealised cycle.** A germinal centre holds many B-cell families at once and many stay diverse (a "Debated:" item in the germinal centre B cell profile); the process follows "a B cell" through the cycle as if selection were a clean contest for the single best antibody.
+6. **Mouse evidence.** The cycle (dark zone to light zone and back, help setting how many divisions follow) was worked out mainly by imaging and fate-mapping in mice (Victora 2010, Gitlin 2014). Step 7 says so once; the other captions do not repeat the label (40-word limit). Human germinal centres are known to persist for months after vaccination (Turner 2021), but their dynamics are not measured directly.
+7. **No timings except "every few hours" and "several weeks".** "Divides every few hours" (step 2) is from mouse data and is not labelled in the caption.
+8. **The two zones as two halves.** The scene splits the oval with a straight dashed line. Real zones are irregular, and their orientation (dark zone toward the T-cell zone, light zone toward the capsule) is not drawn.
+9. **Arrows are directions, not paths.** Each arrow runs between the centres of the two halves and passes over cells. Step 7 draws both arrows as a loop; the scene's own exit arrows (to the memory B cell and plasma cell) are part of the drawing, not the process.
+10. **Tfh help is reduced to CD40L and IL-21.** IL-4, ICOS and other signals are in the interaction record (`tfh-helps-germinal-centre-b` lists IL-4), not the caption. Follicular regulatory T cells, which also enter the germinal centre, are left out (`regulatory-t-suppresses-tfh` exists and is not used).
+11. **How a B cell "tests" its receptor.** Step 4 says the better binder pulls off more antigen. Physical pulling forces at the B cell's contact with the follicular dendritic cell (Nowosad 2016, cited on the FDC) are part of how affinity is sensed and are not mentioned.
+12. **Who makes CXCL13 in the light zone.** Step 3 says follicular dendritic cells make it. Allen 2004 shows CXCR5 and CXCL13 steer cells to the light zone; that FDCs are the source rests on the FDC profile's citations (Ansel 2000 for follicles generally), not on a light-zone-specific source I read.
+13. **"Seemingly on an internal timer"** (dark zone region and the new interaction) rests on Bannard 2013, mouse: cells switched from the dark-zone to the light-zone state on schedule even when kept out of the dark zone.
+14. **Death in both zones.** Step 6 and both regions say B cells with weak receptors (light zone, no help) or damaged receptors (dark zone, AID damage) die. That split and "up to half of all germinal centre B cells die every six hours" are from Mayer 2017, in mice.
+15. **Step 1 shortcuts.** The B cells that start the germinal centre get help at the T-cell zone edge of the follicle from T cells that are becoming Tfh cells; the caption calls them Tfh. The ringed naive B cell is a resting mantle cell, ringed to show the mantle, not a founder. Germinal centres take several days to form, which the caption does not say.
+16. **Highlights need a hotspot.** The scene's only labelled germinal centre B cell sits in the dark zone, so steps 4 and 5 (light zone) ring only the follicular dendritic cell and the Tfh cell; the B cells being tested there are unlabelled decoration.
+17. **Plasma cell versus memory B cell.** Step 7 does not say what decides the choice (debated, in both records' text) or that in mice early leavers tend to be memory cells and late leavers plasma cells (Weisel 2016).
+
+## Changes made in this session that need a look
+
+- New molecule `aid` (AID, activation-induced cytidine deaminase; `kind: "other"`). Its summary rests on Muramatsu 2000 and Revy 2000 (people lacking AID: no switching, no hypermutation, giant germinal centres), both now in the germinal centre B cell's `sources`. No interaction carries it in `via` (it works inside the B cell), so its glossary entry says "No interactions recorded yet".
+- New interaction `follicular-dendritic-cell-recruits-germinal-centre-b` (via CXCL13; mouse): movement between the zones. `recruits` is the closest type for "draws cells into a zone". Citations: Allen 2004, Bannard 2013.
+- `macrophage-phagocytoses-germinal-centre-b` now says where and why the B cells die (Mayer 2017).
+- Germinal centre B cell profile: the switching function rewritten (point 2), and the light-zone function gained "In the dark zone, cells whose receptor has been damaged by a mutation die too (shown in mice)." New sources: Roco 2019, Revy 2000, Mayer 2017, Bannard 2013. Macrophage: Mayer 2017. Follicular dendritic cell: Allen 2004, Bannard 2013.
+- Dark zone and light zone regions rewritten (summaries of 44 and 54 words; four and five "What happens here" points).
+- The four new citations and Allen 2004 were matched on Europe PMC (authors, journal, year, volume, issue, pages) and their abstracts read; the full papers were not.
+- `content/processes/placeholder.json` is deleted.

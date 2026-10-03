@@ -1,0 +1,51 @@
+{
+  "id": "affinity-maturation",
+  "title": "Affinity maturation",
+  "location": "germinal-centre",
+  "steps": [
+    {
+      "caption": "B cells that met antigen and got Tfh help at the follicle edge move into its centre and start a germinal centre, pushing resting B cells into the mantle. In mice, most class switching (IgM to IgG) happens before this.",
+      "highlight": ["germinal-centre-b", "naive-b"],
+      "interactions": ["tfh-helps-naive-b", "naive-b-differentiates-into-germinal-centre-b", "tfh-migrates-to-germinal-centre"]
+    },
+    {
+      "focus": "dark-zone",
+      "caption": "In the dark zone, B cells divide every few hours. The enzyme AID makes random point mutations in the genes for the antibody's binding site (somatic hypermutation), so each daughter cell carries a slightly different antibody.",
+      "highlight": ["germinal-centre-b"],
+      "interactions": []
+    },
+    {
+      "caption": "After a few rounds of division, B cells stop dividing and move to the light zone, following the chemokine CXCL13 made by follicular dendritic cells. Later, CXCL12 in the dark zone draws the selected ones back.",
+      "highlight": ["germinal-centre-b"],
+      "interactions": ["follicular-dendritic-cell-recruits-germinal-centre-b"],
+      "arrows": [{ "from": "dark-zone", "to": "light-zone" }]
+    },
+    {
+      "focus": "light-zone",
+      "caption": "In the light zone, each B cell tests its mutated receptor by grabbing antigen held whole on the long processes of follicular dendritic cells. The better its receptor binds, the more antigen it pulls off and takes inside.",
+      "highlight": ["follicular-dendritic-cell"],
+      "interactions": ["follicular-dendritic-cell-presents-antigen-to-germinal-centre-b"]
+    },
+    {
+      "focus": "light-zone",
+      "caption": "B cells then compete for help from Tfh cells. Each cuts its captured antigen into peptides and shows them on MHC class II. Cells showing the most peptide win the most CD40L and IL-21, the signals to survive and divide.",
+      "highlight": ["tfh"],
+      "interactions": ["germinal-centre-b-presents-antigen-to-tfh", "tfh-helps-germinal-centre-b"]
+    },
+    {
+      "caption": "Winners return to the dark zone to divide and mutate again; the more help they got, the more times they divide. B cells with weak or damaged receptors die, and macrophages swallow their remains.",
+      "highlight": ["germinal-centre-b", "macrophage"],
+      "interactions": ["tfh-helps-germinal-centre-b", "macrophage-phagocytoses-germinal-centre-b"],
+      "arrows": [{ "from": "light-zone", "to": "dark-zone" }]
+    },
+    {
+      "caption": "Over repeated cycles across several weeks, antibodies come to bind antigen more tightly: affinity maturation. Selected cells leave as plasma cells, which secrete the improved antibody, or as memory B cells. The cycle was worked out mainly in mice.",
+      "highlight": ["plasma-cell", "memory-b"],
+      "interactions": ["germinal-centre-b-differentiates-into-plasma-cell", "germinal-centre-b-differentiates-into-memory-b"],
+      "arrows": [
+        { "from": "dark-zone", "to": "light-zone" },
+        { "from": "light-zone", "to": "dark-zone" }
+      ]
+    }
+  ]
+}

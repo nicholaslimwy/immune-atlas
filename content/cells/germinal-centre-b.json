@@ -16,9 +16,9 @@
   "functions": [
     "Starts the germinal centre: a few activated B cells (shown in mice to be a small number of founder clones) move into the middle of a follicle and divide rapidly.",
     "In the dark zone divides every few hours, and the enzyme AID introduces point mutations into its antibody genes at a rate far above the rest of the genome (somatic hypermutation), producing many slightly different antibodies.",
-    "In the light zone tests its new antibody against antigen held on follicular dendritic cells. Cells that bind badly receive no help and die by apoptosis; cells that bind well take up antigen and show it on MHC class II to Tfh cells.",
+    "In the light zone tests its new antibody against antigen held on follicular dendritic cells. Cells that bind badly receive no help and die by apoptosis; cells that bind well take up antigen and show it on MHC class II to Tfh cells. In the dark zone, cells whose receptor has been damaged by a mutation die too (shown in mice).",
     "Cycles between the two zones many times. The amount of Tfh help it wins sets how many more rounds of division it undergoes, so antibody affinity rises over weeks (affinity maturation). This was worked out mainly in mice.",
-    "Switches antibody class (class-switch recombination), also through AID, from IgM to IgG, IgA or IgE. Cytokines from Tfh cells and others help choose the class.",
+    "Switches antibody class (class-switch recombination), also through AID, from IgM to IgG, IgA or IgE, with cytokines from Tfh cells and others helping choose the class. Most switching happens before the germinal centre forms, soon after the B cell first gets T-cell help, and is rare inside it (shown in mice).",
     "Leaves as a plasma cell or a memory B cell. In mice, cells that leave early tend to become memory cells and those that leave late plasma cells.",
     "Debated: what decides between plasma cell and memory B cell. Higher-affinity cells appear biased toward plasma cells, but lower-affinity cells also become memory cells.",
     "Debated: how strongly a germinal centre selects the single best clone. In mice, many germinal centres stay diverse and keep lower-affinity clones alongside the best.",
@@ -40,6 +40,10 @@
     "Weisel FJ, Zuccarino-Catania GV, Chikina M, Shlomchik MJ. A temporal switch in the germinal center determines differential output of memory B and plasma cells. Immunity. 2016;44(1):116-130.",
     "Cyster JG, Allen CDC. B cell responses: cell interaction dynamics and decisions. Cell. 2019;177(3):524-540.",
     "Turner JS, O'Halloran JA, Kalaidina E, et al. SARS-CoV-2 mRNA vaccines induce persistent human germinal centre responses. Nature. 2021;596(7870):109-113.",
+    "Roco JA, Mesin L, Binder SC, et al. Class-switch recombination occurs infrequently in germinal centers. Immunity. 2019;51(2):337-350.e7.",
+    "Revy P, Muto T, Levy Y, et al. Activation-induced cytidine deaminase (AID) deficiency causes the autosomal recessive form of the hyper-IgM syndrome (HIGM2). Cell. 2000;102(5):565-575.",
+    "Mayer CT, Gazumyan A, Kara EE, et al. The microanatomic segregation of selection by apoptosis in the germinal center. Science. 2017;358(6360):eaao2602.",
+    "Bannard O, Horton RM, Allen CDC, et al. Germinal center centroblasts transition to a centrocyte phenotype according to a timed program and depend on the dark zone for effective selection. Immunity. 2013;39(5):912-924.",
     "Cell Ontology, CL:0000844 (germinal center B cell)."
   ],
   "status": "draft"

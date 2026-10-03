@@ -1,0 +1,9 @@
+{
+  "id": "follicular-dendritic-cell-recruits-germinal-centre-b",
+  "source": "follicular-dendritic-cell",
+  "target": "germinal-centre-b",
+  "type": "recruits",
+  "via": ["cxcl13"],
+  "where": ["germinal-centre"],
+  "description": "Germinal centre B cells move between the two zones by following chemokines. CXCL13 from the follicular dendritic cell network draws them into the light zone through CXCR5, while CXCL12 from reticular cells holds dividing cells in the dark zone through CXCR4. When a cell switches from dividing to being tested seems to run on its own timer. Shown in mice."
+}
