@@ -5,15 +5,13 @@
   "look": "germinal-centre-b",
   "signal": "tfh",
   "marks": "b-cell-receptor",
+  "follow": true,
   "speed": "Sped up",
   "speedNote": "a real round takes hours",
   "places": {
     "h1": [165, 200],
-    "h2": [300, 190],
     "h3": [190, 345],
     "h4": [320, 255],
-    "h5": [262, 382],
-    "fdc-a": [530, 232],
     "fdc-b": [628, 196],
     "fdc-c": [470, 330],
     "fdc-d": [610, 268],
@@ -21,165 +19,98 @@
     "f2": [520, 335],
     "f3": [652, 240],
     "f4": [568, 300],
-    "f5": [478, 262],
     "tfh-a": [604, 340],
-    "tfh-b": [470, 236],
     "t1": [545, 352],
     "t2": [645, 300],
-    "t3": [470, 176],
-    "t4": [418, 215],
-    "t5": [560, 395],
     "mac": [338, 370],
     "plasma-out": [705, 350],
     "memory-out": [705, 170]
   },
   "phases": [
-    { "id": "divide", "name": "Divide, mutating the receptor, in the dark zone", "steps": [2] },
-    { "id": "to-light", "name": "Move to the light zone", "steps": [3] },
-    { "id": "antigen", "name": "Grab antigen from follicular dendritic cells", "steps": [4] },
-    { "id": "help", "name": "Show it to Tfh cells, which help the best", "steps": [5] },
-    { "id": "return", "name": "Helped cells return to divide again", "steps": [6, 7] },
-    { "id": "die", "name": "Cells without help die and are swallowed by a macrophage", "steps": [6] },
-    { "id": "leave", "name": "A few leave as plasma cells or memory B cells", "steps": [7] }
+    {"id": "divide", "name": "Divide, mutating the receptor, in the dark zone", "steps": [2]},
+    {"id": "to-light", "name": "Move to the light zone", "steps": [3]},
+    {"id": "antigen", "name": "Grab antigen from follicular dendritic cells", "steps": [4]},
+    {"id": "help", "name": "Show it to Tfh cells, which help the best", "steps": [5]},
+    {"id": "return", "name": "Helped cells return to divide again", "steps": [6, 7]},
+    {"id": "die", "name": "Cells without help die and are swallowed by a macrophage", "steps": [6]},
+    {"id": "leave", "name": "A few leave as plasma cells or memory B cells", "steps": [7]}
   ],
   "routes": {
     "selected": [
-      { "at": "$home", "phase": "divide", "stay": 3, "do": "divide" },
-      { "at": "$fdc", "phase": "to-light", "move": 2.4 },
-      { "at": "$fdc", "phase": "antigen", "stay": 1.8, "do": "take", "face": "$fdc-face" },
-      { "at": "$tfh", "phase": "help", "move": 1.2 },
-      { "at": "$tfh", "phase": "help", "stay": 1.2, "do": "help", "face": "$tfh-face" },
-      { "at": "$home", "phase": "return", "move": 2.4 }
+      {"at": "$home", "phase": "divide", "stay": 3, "do": "divide"},
+      {"at": "$fdc", "phase": "to-light", "move": 2.4},
+      {"at": "$fdc", "phase": "antigen", "stay": 1.8, "do": "take", "face": "$fdc-face"},
+      {"at": "$tfh", "phase": "help", "move": 1.2},
+      {"at": "$tfh", "phase": "help", "stay": 1.2, "do": "help", "face": "$tfh-face"},
+      {"at": "$home", "phase": "return", "move": 2.4}
     ],
     "unhelped": [
-      { "at": "$home", "phase": "divide", "stay": 3, "do": "divide" },
-      { "at": "$fdc", "phase": "to-light", "move": 2.4 },
-      { "at": "$fdc", "phase": "antigen", "stay": 1.8, "do": "take", "face": "$fdc-face" },
-      { "at": "$tfh", "phase": "help", "move": 1.2 },
-      { "at": "$tfh", "phase": "help", "stay": 1.2, "face": "$tfh-face" },
-      { "at": "mac", "phase": "die", "move": 2.4, "do": "die" }
+      {"at": "$home", "phase": "divide", "stay": 3, "do": "divide"},
+      {"at": "$fdc", "phase": "to-light", "move": 2.4},
+      {"at": "$fdc", "phase": "antigen", "stay": 1.8, "do": "take", "face": "$fdc-face"},
+      {"at": "$tfh", "phase": "help", "move": 1.2},
+      {"at": "$tfh", "phase": "help", "stay": 1.2, "face": "$tfh-face"},
+      {"at": "mac", "phase": "die", "move": 2.4, "do": "die"}
     ],
     "plasma": [
-      { "at": "$home", "phase": "divide", "stay": 3, "do": "divide" },
-      { "at": "$fdc", "phase": "to-light", "move": 2.4 },
-      { "at": "$fdc", "phase": "antigen", "stay": 1.8, "do": "take", "face": "$fdc-face" },
-      { "at": "$tfh", "phase": "help", "move": 1.2 },
-      { "at": "$tfh", "phase": "help", "stay": 1.2, "do": "help", "face": "$tfh-face" },
-      { "at": "plasma-out", "phase": "leave", "move": 2.4, "do": "leave" }
+      {"at": "$home", "phase": "divide", "stay": 3, "do": "divide"},
+      {"at": "$fdc", "phase": "to-light", "move": 2.4},
+      {"at": "$fdc", "phase": "antigen", "stay": 1.8, "do": "take", "face": "$fdc-face"},
+      {"at": "$tfh", "phase": "help", "move": 1.2},
+      {"at": "$tfh", "phase": "help", "stay": 1.2, "do": "help", "face": "$tfh-face"},
+      {"at": "plasma-out", "phase": "leave", "move": 2.4, "do": "leave"}
     ],
     "memory": [
-      { "at": "$home", "phase": "divide", "stay": 3, "do": "divide" },
-      { "at": "$fdc", "phase": "to-light", "move": 2.4 },
-      { "at": "$fdc", "phase": "antigen", "stay": 1.8, "do": "take", "face": "$fdc-face" },
-      { "at": "$tfh", "phase": "help", "move": 1.2 },
-      { "at": "$tfh", "phase": "help", "stay": 1.2, "do": "help", "face": "$tfh-face" },
-      { "at": "memory-out", "phase": "leave", "move": 2.4, "do": "leave" }
+      {"at": "$home", "phase": "divide", "stay": 3, "do": "divide"},
+      {"at": "$fdc", "phase": "to-light", "move": 2.4},
+      {"at": "$fdc", "phase": "antigen", "stay": 1.8, "do": "take", "face": "$fdc-face"},
+      {"at": "$tfh", "phase": "help", "move": 1.2},
+      {"at": "$tfh", "phase": "help", "stay": 1.2, "do": "help", "face": "$tfh-face"},
+      {"at": "memory-out", "phase": "leave", "move": 2.4, "do": "leave"}
     ]
   },
   "actors": [
     {
       "start": 0,
-      "slots": { "home": "h1", "fdc": "f3", "fdc-face": "fdc-d", "tfh": "t1", "tfh-face": "tfh-a" },
+      "slots": {"home": "h1", "fdc": "f1", "fdc-face": "fdc-b", "tfh": "t1", "tfh-face": "tfh-a"},
       "rounds": [
-        { "route": "selected", "level": 1 },
-        { "route": "selected", "level": 2 },
-        { "route": "plasma", "level": 3 }
+        {"route": "selected", "level": 1},
+        {"route": "selected", "level": 2},
+        {"route": "plasma", "level": 3},
+        {"wait": 36}
       ]
     },
     {
-      "start": 13.2,
-      "slots": { "home": "h2", "fdc": "f4", "fdc-face": "fdc-d", "tfh": "t3", "tfh-face": "tfh-b" },
+      "start": 0,
+      "slots": {"home": "h4", "fdc": "f4", "fdc-face": "fdc-d", "tfh": "t2", "tfh-face": "tfh-a"},
       "rounds": [
-        { "route": "unhelped", "level": 0 },
-        { "route": "selected", "level": 1 },
-        { "route": "unhelped", "level": 1 }
+        {"wait": 36},
+        {"route": "unhelped", "level": 0},
+        {"wait": 24}
       ]
     },
     {
-      "start": 26.4,
-      "slots": { "home": "h3", "fdc": "f5", "fdc-face": "fdc-a", "tfh": "t2", "tfh-face": "tfh-a" },
+      "start": 0,
+      "slots": {"home": "h3", "fdc": "f2", "fdc-face": "fdc-c", "tfh": "t1", "tfh-face": "tfh-a"},
       "rounds": [
-        { "route": "selected", "level": 2 },
-        { "route": "unhelped", "level": 1 },
-        { "route": "unhelped", "level": 1 }
-      ]
-    },
-    {
-      "start": 3.6,
-      "slots": { "home": "h4", "fdc": "f1", "fdc-face": "fdc-b", "tfh": "t4", "tfh-face": "tfh-b" },
-      "rounds": [
-        { "route": "selected", "level": 1 },
-        { "route": "selected", "level": 2 },
-        { "route": "memory", "level": 2 }
-      ]
-    },
-    {
-      "start": 16.8,
-      "slots": { "home": "h5", "fdc": "f2", "fdc-face": "fdc-c", "tfh": "t5", "tfh-face": "tfh-a" },
-      "rounds": [
-        { "route": "unhelped", "level": 1 },
-        { "route": "unhelped", "level": 0 },
-        { "route": "selected", "level": 1 }
-      ]
-    },
-    {
-      "start": 30,
-      "slots": { "home": "h1", "fdc": "f3", "fdc-face": "fdc-d", "tfh": "t1", "tfh-face": "tfh-a" },
-      "rounds": [
-        { "route": "selected", "level": 2 },
-        { "route": "selected", "level": 3 },
-        { "route": "unhelped", "level": 1 }
-      ]
-    },
-    {
-      "start": 7.2,
-      "slots": { "home": "h2", "fdc": "f4", "fdc-face": "fdc-d", "tfh": "t3", "tfh-face": "tfh-b" },
-      "rounds": [
-        { "route": "unhelped", "level": 0 },
-        { "route": "selected", "level": 1 },
-        { "route": "unhelped", "level": 0 }
-      ]
-    },
-    {
-      "start": 20.4,
-      "slots": { "home": "h3", "fdc": "f5", "fdc-face": "fdc-a", "tfh": "t2", "tfh-face": "tfh-a" },
-      "rounds": [
-        { "route": "selected", "level": 1 },
-        { "route": "unhelped", "level": 0 },
-        { "route": "selected", "level": 2 }
-      ]
-    },
-    {
-      "start": 33.6,
-      "slots": { "home": "h4", "fdc": "f1", "fdc-face": "fdc-b", "tfh": "t4", "tfh-face": "tfh-b" },
-      "rounds": [
-        { "route": "selected", "level": 2 },
-        { "route": "selected", "level": 3 },
-        { "route": "plasma", "level": 3 }
-      ]
-    },
-    {
-      "start": 10.8,
-      "slots": { "home": "h5", "fdc": "f2", "fdc-face": "fdc-c", "tfh": "t5", "tfh-face": "tfh-a" },
-      "rounds": [
-        { "route": "unhelped", "level": 1 },
-        { "route": "selected", "level": 2 },
-        { "route": "memory", "level": 2 }
+        {"wait": 48},
+        {"route": "selected", "level": 1},
+        {"route": "memory", "level": 2}
       ]
     }
   ],
   "still": {
     "cells": [
-      { "route": "selected", "level": 2, "time": 2.1, "slots": { "home": "h1", "fdc": "f3", "fdc-face": "fdc-d", "tfh": "t1", "tfh-face": "tfh-a" } },
-      { "route": "selected", "level": 2, "time": 7.0, "slots": { "home": "h1", "fdc": "f1", "fdc-face": "fdc-b", "tfh": "t1", "tfh-face": "tfh-a" } },
-      { "route": "selected", "level": 2, "time": 9.3, "slots": { "home": "h1", "fdc": "f1", "fdc-face": "fdc-b", "tfh": "t1", "tfh-face": "tfh-a" } },
-      { "route": "unhelped", "level": 0, "time": 11.0, "slots": { "home": "h1", "fdc": "f1", "fdc-face": "fdc-b", "tfh": "t1", "tfh-face": "tfh-a" } }
+      {"route": "selected", "level": 2, "time": 2.1, "slots": {"home": "h1", "fdc": "f3", "fdc-face": "fdc-d", "tfh": "t1", "tfh-face": "tfh-a"}},
+      {"route": "selected", "level": 2, "time": 7.0, "slots": {"home": "h1", "fdc": "f1", "fdc-face": "fdc-b", "tfh": "t1", "tfh-face": "tfh-a"}},
+      {"route": "selected", "level": 2, "time": 9.3, "slots": {"home": "h1", "fdc": "f1", "fdc-face": "fdc-b", "tfh": "t1", "tfh-face": "tfh-a"}},
+      {"route": "unhelped", "level": 0, "time": 11.0, "slots": {"home": "h1", "fdc": "f1", "fdc-face": "fdc-b", "tfh": "t1", "tfh-face": "tfh-a"}}
     ],
     "arrows": [
-      { "from": "h1", "to": "f1", "phase": "to-light" },
-      { "from": "f1", "to": "t1", "phase": "help" },
-      { "from": "t1", "to": "h1", "phase": "return" },
-      { "from": "t1", "to": "mac", "phase": "die" }
+      {"from": "h1", "to": "f1", "phase": "to-light"},
+      {"from": "f1", "to": "t1", "phase": "help"},
+      {"from": "t1", "to": "h1", "phase": "return"},
+      {"from": "t1", "to": "mac", "phase": "die"}
     ]
   }
 }

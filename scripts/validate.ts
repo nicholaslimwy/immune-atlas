@@ -504,9 +504,21 @@ for (const { file, data: loop } of loopFiles.valid.values()) {
   const lengths = loop.actors.map((actor, i) => {
     if (!actor.rounds.length) error(file, `actors[${i}].rounds: an actor needs at least one round`)
     const ok = actor.rounds.map((r, j) => {
-      level(`actors[${i}].rounds[${j}]`, r.level)
-      return bound(`actors[${i}].rounds[${j}]`, r.route, actor.slots)
+      const where = `actors[${i}].rounds[${j}]`
+      // A round is a route with a level, or a wait off stage, never both.
+      if (r.wait !== undefined) {
+        if (r.route !== undefined || r.level !== undefined) error(file, `${where}: a wait has no route or level`)
+        if (!(r.wait > 0)) error(file, `${where}.wait: ${r.wait}; a wait lasts more than 0 seconds`)
+        return r.route === undefined && r.level === undefined
+      }
+      if (r.route === undefined || r.level === undefined) {
+        error(file, `${where}: needs a route and a level, or a wait`)
+        return false
+      }
+      level(where, r.level)
+      return bound(where, r.route, actor.slots)
     })
+    if (actor.rounds.length && actor.rounds.every((r) => r.wait !== undefined)) error(file, `actors[${i}]: only waits, so it never appears`)
     return ok.every(Boolean) && actor.rounds.length ? buildTimeline(loop, actor.rounds, actor.slots).duration : undefined
   })
   const first = lengths.find((n) => n !== undefined)

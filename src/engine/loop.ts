@@ -24,8 +24,10 @@ export interface Segment {
   before: number
   /** Antigen pieces held during this stretch (set by an earlier `take` in the round). */
   carry: number
-  /** The cell was gone (died or left) before this stretch: it fades in. */
+  /** The cell was gone (died, left or waited off stage) before this stretch: it fades in. */
   enter: boolean
+  /** Off stage (a `wait` round): nothing is drawn. */
+  away: boolean
   /** Unit direction of the last move into this point: where the cell came from faces away from it. */
   dir: Pt
 }
@@ -95,16 +97,39 @@ export function buildTimeline(loop: SceneLoop, rounds: LoopRound[], slots: Recor
   let t = 0
   let here: Pt | undefined
   let dir: Pt = { x: 1, y: 0 }
-  // A loop joins up: if the last round ends with the cell gone, the first one starts with it fading in.
-  const lastStops = loop.routes[rounds[rounds.length - 1]?.route] ?? []
-  let gone = lastStops.some((s) => ends(s.do))
-  let before = rounds[rounds.length - 1]?.level ?? 0
+  const stopsOf = (round?: LoopRound) => (round?.route === undefined ? [] : (loop.routes[round.route] ?? []))
+  // A loop joins up: if the last round ends with the cell gone (or off stage), the first one starts with it fading in.
+  const last = rounds[rounds.length - 1]
+  let gone = last?.wait !== undefined || stopsOf(last).some((s) => ends(s.do))
+  let before = [...rounds].reverse().find((r) => r.level !== undefined)?.level ?? 0
   for (const round of rounds) {
+    if (round.wait !== undefined) {
+      const at = here ?? { x: 0, y: 0 }
+      segments.push({
+        phase: '',
+        level: before,
+        before,
+        t0: t,
+        t1: t + round.wait,
+        from: at,
+        to: at,
+        ctrl: at,
+        move: false,
+        carry: 0,
+        enter: false,
+        away: true,
+        dir,
+      })
+      t += round.wait
+      gone = true
+      continue
+    }
+    const level = round.level ?? 0
     let carry = 0
-    for (const stop of loop.routes[round.route] ?? []) {
+    for (const stop of stopsOf(round)) {
       const to = placeOf(loop, stop.at, slots)
       if (!to) continue
-      const base = { phase: stop.phase, level: round.level, before, effect: stop.do }
+      const base = { phase: stop.phase, level, before, effect: stop.do, away: false }
       if (stop.move && here) {
         const len = Math.hypot(to.x - here.x, to.y - here.y) || 1
         dir = { x: (to.x - here.x) / len, y: (to.y - here.y) / len }
@@ -133,10 +158,10 @@ export function buildTimeline(loop: SceneLoop, rounds: LoopRound[], slots: Recor
         segments.push({ ...base, t0: t, t1: t + stop.stay, from: to, to, ctrl: to, move: false, carry, enter: gone, dir })
         gone = false
         t += stop.stay
-        if (stop.do === 'take') carry = round.level
+        if (stop.do === 'take') carry = level
       }
     }
-    before = round.level
+    before = level
   }
   return { segments, duration: t }
 }
@@ -166,6 +191,7 @@ export function sampleTimeline({ segments, duration }: Timeline, time: number, a
     pieces: [],
     help: [],
   }
+  if (seg.away) return { ...frame, gone: true }
   if (seg.move) {
     const s = ramp(u, 0, 1)
     const a = (1 - s) * (1 - s)
@@ -249,6 +275,38 @@ export function sampleTimeline({ segments, duration }: Timeline, time: number, a
   }
   if (ends(seg.effect) && u >= 1) frame.gone = true
   return frame
+}
+
+/**
+ * The stretches of loop time (0 to `duration`, actors' starts taken into account) during which some actor is in
+ * one of `phases`, merged and in order: what a process step plays, over and over, so its part is always on show.
+ */
+export function phaseWindows(
+  timelines: Timeline[],
+  starts: number[],
+  phases: ReadonlySet<string>,
+): { t0: number; t1: number }[] {
+  const duration = timelines[0]?.duration ?? 0
+  if (!duration) return []
+  const raw: { t0: number; t1: number }[] = []
+  timelines.forEach((tl, i) => {
+    for (const seg of tl.segments) {
+      if (seg.away || !phases.has(seg.phase)) continue
+      // Actor time = loop time + start, so loop time = actor time - start, wrapped into the loop.
+      const a = (((seg.t0 - starts[i]) % duration) + duration) % duration
+      const b = a + (seg.t1 - seg.t0)
+      if (b <= duration) raw.push({ t0: a, t1: b })
+      else raw.push({ t0: a, t1: duration }, { t0: 0, t1: b - duration })
+    }
+  })
+  raw.sort((p, q) => p.t0 - q.t0)
+  const merged: { t0: number; t1: number }[] = []
+  for (const w of raw) {
+    const prev = merged[merged.length - 1]
+    if (prev && w.t0 <= prev.t1 + 1e-6) prev.t1 = Math.max(prev.t1, w.t1)
+    else merged.push({ ...w })
+  }
+  return merged
 }
 
 /** A stop's route length check for the validator: seconds of one route. */

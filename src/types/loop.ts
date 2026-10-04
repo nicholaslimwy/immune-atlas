@@ -36,11 +36,16 @@ export interface LoopPhase {
   steps: number[]
 }
 
-/** One round an actor plays: a route, and how well its receptor binds this time (0-3). */
+/**
+ * One round an actor plays: a route and how well its receptor binds this time (0-3), or a wait off stage
+ * (so cells can take turns: one on stage at a time).
+ */
 export interface LoopRound {
-  route: string
-  /** 0-3: sets the shape of the marks and how many antigen pieces a `take` picks up. */
-  level: number
+  route?: string
+  /** 0-3: sets the shape of the marks and how many antigen pieces a `take` picks up. With `route`. */
+  level?: number
+  /** Seconds off stage, instead of a route. The cell fades back in at the start of its next round. */
+  wait?: number
 }
 
 /** One moving cell. All actors' rounds must add up to the same length, so the loop joins up. */
@@ -80,6 +85,8 @@ export interface SceneLoop {
   /** Cell id whose family colour the `help` signal is drawn in. */
   signal?: string
   marks?: LoopMarks
+  /** Ring every cell on stage, so the eye can follow it (for loops that show one cell at a time). */
+  follow?: boolean
   /** The short label on the stage: "Sped up". */
   speed: string
   /** Said after it where there is room: "a real round takes hours". */

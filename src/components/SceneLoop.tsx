@@ -6,7 +6,7 @@ import { FAMILY_COLOURS, INK } from '../art/palette.ts'
 import { matchesArm } from '../engine/armFilter.ts'
 import { arrowPath } from '../engine/arrows.ts'
 import { getCell } from '../engine/content.ts'
-import { buildTimeline, placeOf, sampleTimeline, type ActorFrame } from '../engine/loop.ts'
+import { buildTimeline, phaseWindows, placeOf, sampleTimeline, type ActorFrame } from '../engine/loop.ts'
 import type { LoopMarks, SceneLoop as Loop } from '../types/loop.ts'
 import { useArmFilter } from './armFilterState.ts'
 
@@ -24,6 +24,8 @@ const HELP_DOTS = 2
 /** The cell's membrane is 40 units from the centre of its 100-unit box. */
 const MEMBRANE = 0.4
 const LEVELS = [0, 1, 2, 3]
+/** Seconds of fade where a step's replay jumps from the end of one stretch to the start of another. */
+const JUMP_FADE = 0.35
 
 /** Elements of one drawn cell, found once after mount and then updated in place every frame. */
 interface ActorEls {
@@ -97,16 +99,30 @@ export default function SceneLoop({ loop, step, compact = false }: Props) {
     [loop],
   )
   const count = reduced ? stillFrames.length : loop.actors.length
+  // While a step is open, only the stretches of the loop in its phases play, over and over, so the part the
+  // step describes is always on show (with one cell on stage, it would otherwise be there a few seconds a minute).
+  const windows = useMemo(
+    () => (active.size && !reduced ? phaseWindows(timelines, loop.actors.map((a) => a.start), active) : []),
+    [active, reduced, timelines, loop],
+  )
 
   const els = useRef<(ActorEls | null)[]>([])
+  const fadeRef = useRef<SVGGElement>(null)
   const clock = useRef(0)
+  // A new step (or none) starts from the beginning of its stretches (or of the loop).
+  useLayoutEffect(() => {
+    clock.current = 0
+  }, [windows])
   const paint = useCallback(() => {
+    const { t, fade } = windows.length ? windowTime(windows, clock.current, timelines[0]?.duration ?? 0) : { t: clock.current, fade: 1 }
+    if (fade < 1) fadeRef.current?.setAttribute('opacity', fade.toFixed(2))
+    else fadeRef.current?.removeAttribute('opacity')
     els.current.forEach((el, i) => {
       if (!el) return
-      const frame = reduced ? stillFrames[i] : sampleTimeline(timelines[i], clock.current + loop.actors[i].start, axisOf(i))
-      if (frame) paintActor(el, frame, loop.id, active)
+      const frame = reduced ? stillFrames[i] : sampleTimeline(timelines[i], t + loop.actors[i].start, axisOf(i))
+      if (frame) paintActor(el, frame, loop.id, active, !!loop.follow && !reduced)
     })
-  }, [reduced, stillFrames, timelines, loop, active])
+  }, [reduced, stillFrames, timelines, loop, active, windows])
 
   const run = playing && onScreen && tabVisible && present && !reduced && !!layer
   // Draw once whenever something but the time changes (highlight, mode), then tick while running.
@@ -205,7 +221,7 @@ export default function SceneLoop({ loop, step, compact = false }: Props) {
               <path d={d} className="loop-arrow-line" markerEnd={`url(#${loop.id}-arrowhead)`} />
             </g>
           ))}
-          {cells}
+          <g ref={fadeRef}>{cells}</g>
         </>,
         layer,
       )
@@ -240,6 +256,29 @@ export default function SceneLoop({ loop, step, compact = false }: Props) {
       )}
     </div>
   )
+}
+
+/**
+ * Where `clock` seconds of replay falls in `windows` (loop time), and how faded it is: a stretch fades in and out
+ * where the replay jumps, not where one stretch runs straight on into the next.
+ */
+function windowTime(windows: { t0: number; t1: number }[], clock: number, duration: number) {
+  const total = windows.reduce((sum, w) => sum + (w.t1 - w.t0), 0)
+  let u = ((clock % total) + total) % total
+  const joined = (end: number, start: number) => Math.abs((((end - start) % duration) + duration) % duration) < 1e-6
+  for (let i = 0; i < windows.length; i++) {
+    const w = windows[i]
+    const len = w.t1 - w.t0
+    if (u < len || i === windows.length - 1) {
+      const prev = windows[(i - 1 + windows.length) % windows.length]
+      const next = windows[(i + 1) % windows.length]
+      const fadeIn = joined(prev.t1, w.t0) ? 1 : Math.min(1, u / JUMP_FADE)
+      const fadeOut = joined(w.t1, next.t0) ? 1 : Math.min(1, (len - u) / JUMP_FADE)
+      return { t: w.t0 + Math.min(u, len), fade: Math.max(0, Math.min(fadeIn, fadeOut)) }
+    }
+    u -= len
+  }
+  return { t: 0, fade: 1 }
 }
 
 /** Each cell divides along its own axis, so neighbouring divisions do not all point the same way. */
@@ -331,7 +370,7 @@ function set(el: ActorEls, key: string, node: Element, attr: string, value: stri
 const f1 = (n: number) => n.toFixed(1)
 const f2 = (n: number) => n.toFixed(2)
 
-function paintActor(el: ActorEls, frame: ActorFrame, id: string, active: Set<string>) {
+function paintActor(el: ActorEls, frame: ActorFrame, id: string, active: Set<string>, follow: boolean) {
   const hidden = frame.gone || frame.opacity <= 0.01
   set(el, 'display', el.root, 'display', hidden ? 'none' : null)
   const highlight = active.size > 0
@@ -350,7 +389,8 @@ function paintActor(el: ActorEls, frame: ActorFrame, id: string, active: Set<str
   )
   set(el, 'bodyOpacity', el.body, 'opacity', frame.opacity < 1 ? f2(frame.opacity) : null)
   set(el, 'href', el.cell, 'href', `#${id}-${frame.dying ? 'dying' : `cell-${frame.look}`}`)
-  set(el, 'ring', el.ring, 'display', highlight && active.has(frame.phase) ? null : 'none')
+  // The ring marks the cell to watch: in a step, a cell in its phases; otherwise, with `follow`, every cell on stage.
+  set(el, 'ring', el.ring, 'display', (highlight ? active.has(frame.phase) : follow) ? null : 'none')
 
   const sib = frame.sibling
   set(el, 'sibDisplay', el.sibling, 'display', sib && sib.opacity > 0.01 ? null : 'none')

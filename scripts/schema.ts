@@ -235,8 +235,9 @@ const loopPhaseShape: Shape<LoopPhase> = {
 }
 
 const loopRoundShape: Shape<LoopRound> = {
-  route: req(id),
-  level: req(num),
+  route: opt(id),
+  level: opt(num),
+  wait: opt(num),
 }
 
 const loopActorShape: Shape<LoopActor> = {
@@ -266,6 +267,9 @@ export const loopShape: Shape<SceneLoop> = {
   look: req(id),
   signal: opt(id),
   marks: opt(oneOf(LOOP_MARKS)),
+  follow: opt<boolean>((v, path, errors) => {
+    if (typeof v !== 'boolean') errors.push(`${path}: expected true or false, got ${describe(v)}`)
+  }),
   speed: req(text),
   speedNote: opt(text),
   places: req(recordOf(point)),
